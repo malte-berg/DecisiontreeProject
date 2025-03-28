@@ -4,20 +4,36 @@ using UnityEngine;
 public class GameCharacter : MonoBehaviour{
 
     Combat c;
+
+    // STATS
     int HP = 100;
-    int dmg = 15;
+    int vitality = 100;
+    int armor = 5;
+    int strength = 10;
+    int magic = 1;
     int mana = 100;
+    public int Strength{get { return strength; }}
+    public int Magic{get { return magic; }}
+    public int Mana{get{ return mana; } set{ this.mana = value; }}
+
+    // TODO should be deprecated
+    int dmg = 15;
+    public int DMG{get{ return dmg; }}
+
+    // SKILLS
     public Skill[] skills = new Skill[8];
     int skillCount = 1;
     int selectedSkill = 0;
 
-    public int DMG{get{ return dmg; }}
-    public int Mana{get{ return mana; } set{ this.mana = value; }}
+    // INVENTORY
+    Equipment equipment;
+    Item[] inventory = new Item[20];
 
     public void Init(Combat c){
 
         this.c = c;
-        skills[0] = new Punch(this, 20);
+        skills[0] = new Punch(this, 20, 100);
+        equipment = gameObject.AddComponent<Equipment>();
 
     }
 
@@ -27,26 +43,31 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
-    /// <summary>
-    /// True means that the skill can be used
-    /// </summary>
-    /// <param name="target"></param>
-    /// <returns></returns> <summary>
     public bool UseSkill(GameCharacter target){
 
-        Skill usingSkill = skills[selectedSkill];
+        return skills[selectedSkill].Effect(target);
 
-        if(!usingSkill.Effect(target))
-            return false;
+    }
 
-        return true;
+    public float GetEquipmentStrengthMult(){
+
+        // (equipment.head as Head)
+        return 0;
+
+    }
+
+    public int GetEquipmentStrengthSum(){
+
+        return 0;
 
     }
 
     public void TakeDamage(int dmg){
 
-        // do some red effect
-        HP -= dmg;
+        if(dmg <= armor)
+            return;
+
+        HP -= dmg - armor;
         DamageEffect();
 
         if(HP <= 0)

@@ -19,7 +19,11 @@ MonoBehaviour:
     width: 1280
     height: 629.3334
   m_ShowMode: 4
+<<<<<<< HEAD
+  m_Title: Console
+=======
   m_Title: Project
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -190,10 +194,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
+    width: 363
+    height: 581
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+=======
     width: 242
     height: 339.33334
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -419,9 +430,13 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: cab00000
       m_LastClickedID: 0
+<<<<<<< HEAD
+      m_ExpandedIDs: 0cfbffff
+=======
       m_ExpandedIDs: d2d3feffd6d3feff5ed4feffe8d4feffcad5feff6ed6feffa2defeff7ee2feff3ce4feffbce4feff56e8feff92e9feff24eafeffaeeafeff32ebfeff0eecfeffe8ecfeffc2edfeff76eefeffc0effeff06f1feffd2f1feffa0f2feffaaf3feff2cf4feff9cf4feff18f5feff0cf6feffb4f6feff62f7feff50f8feff52f9feffbef9feffeaf9feff6afafefff0fafeff74fbfefff8fbfeffb201ffff3a02ffffc802ffffb003ffffee15ffff8616ffff2817ffffe21affffa81cffffc61cffff7427ffff9e27ffff1628ffff7835ffff1e0f01003a0f0100b2120100be12010058140100621401006c140100d6140100da140100781501008c1501009e150100ac1501004416010050160100ba160100d2160100c2170100d017010042180100e41a0100f21a0100e41f0100f21f010006200100ec2b01003e2c0100
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1146,7 +1161,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
+    - Assets/Scenes/Combat/Scripts/Skills
+=======
     - Assets/Scenes/SkillTree
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1156,16 +1175,27 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
+<<<<<<< HEAD
+  - Assets/Scenes/Combat/Scripts/Skills
+=======
   - Assets/Scenes/SkillTree
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\isaco\DecisiontreeProject\Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 48b00000
+    m_LastClickedID: 45128
+    m_ExpandedIDs: 0000000052ae000036b000003cb000003eb0000000ca9a3b
+=======
     scrollPos: {x: 0, y: 80.000305}
     m_SelectedIDs: 68110100
     m_LastClickedID: 69992
     m_ExpandedIDs: 00000000acbb0000babd00002c080100f4080100ee0d010068110100741101008011010000ca9a3bffffff7f
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1194,7 +1224,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
+    m_ExpandedIDs: 0000000052ae0000
+=======
     m_ExpandedIDs: 000000002c080100
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1220,8 +1254,13 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
+    m_SelectedInstanceIDs: cab00000
+    m_LastClickedInstanceID: 45258
+=======
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -1240,7 +1279,7 @@ MonoBehaviour:
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
-      m_ClientGUIView: {fileID: 10}
+      m_ClientGUIView: {fileID: 3}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0

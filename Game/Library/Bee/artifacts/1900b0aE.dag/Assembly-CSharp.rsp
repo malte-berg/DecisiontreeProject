@@ -440,11 +440,20 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/Scenes/Combat/Scripts/Boots.cs"
 "Assets/Scenes/Combat/Scripts/Combat.cs"
+"Assets/Scenes/Combat/Scripts/Consumable.cs"
+"Assets/Scenes/Combat/Scripts/Equipment.cs"
 "Assets/Scenes/Combat/Scripts/GameCharacter.cs"
+"Assets/Scenes/Combat/Scripts/Head.cs"
+"Assets/Scenes/Combat/Scripts/Item.cs"
 "Assets/Scenes/Combat/Scripts/Marker.cs"
 "Assets/Scenes/Combat/Scripts/Skill.cs"
 "Assets/Scenes/Combat/Scripts/Skills/Punch.cs"
+<<<<<<< HEAD
+"Assets/Scenes/Combat/Scripts/Torso.cs"
+"Assets/Scenes/Combat/Scripts/Weapon.cs"
+=======
 "Assets/Scenes/StartMenu/Scripts/SceneSwitch.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
@@ -480,6 +489,7 @@
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs"
+>>>>>>> d433b27791bef9175e93da0a1cd0765fe872e82e
 -langversion:9.0
 /deterministic
 /optimize+
