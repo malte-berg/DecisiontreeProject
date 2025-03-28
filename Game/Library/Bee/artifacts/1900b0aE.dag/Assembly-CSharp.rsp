@@ -442,6 +442,8 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/Scenes/Combat/Scripts/Combat.cs"
 "Assets/Scenes/Combat/Scripts/GameCharacter.cs"
+"Assets/Scenes/Combat/Scripts/Skill.cs"
+"Assets/Scenes/Combat/Scripts/Skills/Punch.cs"
 -langversion:9.0
 /deterministic
 /optimize+

@@ -1,11 +1,11 @@
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Combat : MonoBehaviour{
 
-    // List<GameCharacter> player = new List<GameCharacter>();
-    public GameObject prefab;
+    public GameObject characterPrefab;
     GameCharacter player;
     List<GameCharacter> enemies = new List<GameCharacter>();
 
@@ -14,12 +14,16 @@ public class Combat : MonoBehaviour{
 
     void Start(){
 
-        player = Instantiate(prefab).GetComponent<GameCharacter>();
+        player = Instantiate(characterPrefab).GetComponent<GameCharacter>();
         player.Init(this);
+        player.gameObject.name = "Player";
 
         for(int i = 0; i < 3; i++){
-            enemies.Add(Instantiate(prefab).GetComponent<GameCharacter>());
+
+            enemies.Add(Instantiate(characterPrefab).GetComponent<GameCharacter>());
             enemies[i].Init(this);
+            enemies[i].gameObject.name = "Enemy #" + i;
+
         }
 
     }
@@ -33,12 +37,31 @@ public class Combat : MonoBehaviour{
 
     }
 
+    public void KillCharacter(GameCharacter target){
+
+        if(enemies.Remove(target)){
+
+            Destroy(target.gameObject);
+            return;
+        
+        }
+
+        // GAME OVER (Player died)
+        UnityEngine.Debug.LogError("Main character died, sadge");
+
+    }
+
     public void CharacterClicked(GameCharacter clicked){
 
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
-        if(currentC != clicked) currentC.Attack(clicked);
+        print(currentC.gameObject.name + " is using a skill on " + clicked.gameObject.name);
+
+        if(!currentC.UseSkill(clicked)){
+            print("it failed :(");
+            return;
+        }
 
         turn = (turn + 1) % (enemies.Count + 1);
         currentC = GetCurrentCharacter();
