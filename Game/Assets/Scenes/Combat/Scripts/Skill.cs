@@ -3,13 +3,18 @@ using UnityEngine;
 public abstract class Skill{
 
     GameCharacter gc;
-    float power = 0;
+    string name;
+    float power;
     int manaCost;
     int skillCost;
 
-    public Skill(GameCharacter gc, int manaCost, int skillCost){
+    public string Name{ get { return name; } }
+
+    public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost){
 
         this.gc = gc;
+        this.name = name;
+        this.power = 1;
         this.manaCost = manaCost;
         this.skillCost = skillCost;
 

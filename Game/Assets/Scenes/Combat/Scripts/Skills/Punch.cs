@@ -3,13 +3,16 @@ using UnityEngine;
 public class Punch : Skill{
     
     GameCharacter gc;
-    float power = 0;
+    string name;
+    float power;
     int manaCost;
     int skillCost;
 
-    public Punch(GameCharacter gc, int manaCost, int skillCost) : base(gc, manaCost, skillCost){
+    public Punch(GameCharacter gc, string name, float power, int manaCost, int skillCost) : base(gc, name, power, manaCost, skillCost){
 
         this.gc = gc;
+        this.name = name;
+        this.power = 1;
         this.manaCost = manaCost;
         this.skillCost = skillCost;
         
@@ -24,13 +27,9 @@ public class Punch : Skill{
 
         gc.Mana -= manaCost;
 
-        int damageDealt = Mathf.FloorToInt((
-          (gc.Magic * 0)
-        + (gc.Strength * 1 * gc.GetEquipmentStrengthMult()) // add item scaling
-        + (15)
-        ) * power);
+        int damageDealt = Mathf.FloorToInt((gc.Strength + gc.GetEquipmentStrengthSum()) * gc.GetEquipmentStrengthMult() * power);
 
-        target.TakeDamage(Mathf.FloorToInt(gc.DMG * power));
+        target.TakeDamage(Mathf.FloorToInt(damageDealt));
 
         return true;
 
