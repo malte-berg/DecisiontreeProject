@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Combat : MonoBehaviour{
@@ -27,8 +28,8 @@ public class Combat : MonoBehaviour{
     void Start(){
 
         player = Instantiate(characterPrefab).GetComponent<GameCharacter>();
-        player.Init(this);
         player.gameObject.name = "Player";
+        player.Init(this);
 
         for(int i = 0; i < 3; i++){
 
@@ -56,13 +57,32 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public void KillCharacter(GameCharacter target){
+    public async Task KillCharacter(GameCharacter target){
+
+        SpriteRenderer sr = target.gameObject.GetComponentInChildren<SpriteRenderer>();
+        float time = 1;
 
         if(enemies.Remove(target)){
+
+            while(time > 0){
+
+                sr.color = new Color(time,time,time,time);
+                time -= Time.deltaTime;
+                await Task.Yield();
+
+            }
 
             Destroy(target.gameObject);
             return;
         
+        }
+
+        while(time > 0){
+
+            sr.color = new Color(time,time,time,time);
+            time -= Time.deltaTime;
+            await Task.Yield();
+
         }
 
         // GAME OVER (Player died)
