@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefab: {fileID: 4566980957986256734, guid: 15ef787280a6998418f06d1c2944b845, type: 3}
+  marker: {fileID: 6787740618812977528, guid: 91eb33aabfa92344db9d7d5b9ddd2602, type: 3}
 --- !u!1 &1086763922
 GameObject:
   m_ObjectHideFlags: 0

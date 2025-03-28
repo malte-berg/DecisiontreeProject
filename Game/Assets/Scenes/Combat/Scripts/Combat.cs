@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +5,24 @@ using UnityEngine;
 public class Combat : MonoBehaviour{
 
     public GameObject characterPrefab;
+    public GameObject marker;
     GameCharacter player;
     List<GameCharacter> enemies = new List<GameCharacter>();
 
     int turn = 0;
     GameCharacter currentC;
+
+    public void Init(){
+
+        marker = Instantiate(marker);
+
+    }
+
+    void Awake(){
+
+        Init();
+
+    }
 
     void Start(){
 
@@ -23,6 +35,7 @@ public class Combat : MonoBehaviour{
             enemies.Add(Instantiate(characterPrefab).GetComponent<GameCharacter>());
             enemies[i].Init(this);
             enemies[i].gameObject.name = "Enemy #" + i;
+            enemies[i].transform.position = Vector3.right * (i+1) * 2;
 
         }
 
@@ -30,10 +43,16 @@ public class Combat : MonoBehaviour{
 
     GameCharacter GetCurrentCharacter(){
 
+        GameCharacter current = null;
+
         if(turn == 0)
-            return player;
-        
-        return enemies[turn - 1];
+            current = player;
+        else
+            current = enemies[turn - 1];
+
+        // move marker aswell
+        marker.transform.position = current.gameObject.transform.position;
+        return current;
 
     }
 
@@ -47,7 +66,7 @@ public class Combat : MonoBehaviour{
         }
 
         // GAME OVER (Player died)
-        UnityEngine.Debug.LogError("Main character died, sadge");
+        UnityEngine.Debug.LogError("Main character died lol");
 
     }
 
@@ -55,8 +74,6 @@ public class Combat : MonoBehaviour{
 
         if(currentC == null)
             currentC = GetCurrentCharacter();
-
-        print(currentC.gameObject.name + " is using a skill on " + clicked.gameObject.name);
 
         if(!currentC.UseSkill(clicked)){
             print("it failed :(");

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameCharacter : MonoBehaviour{
@@ -38,25 +39,35 @@ public class GameCharacter : MonoBehaviour{
         if(!usingSkill.Effect(target))
             return false;
 
-        print(gameObject.name + " is using " + usingSkill.ToString());
-
         return true;
 
     }
 
-    // void Attack(GameCharacter target){
-
-    //     print(name + " attacks: " + target.gameObject.name);
-    //     target.TakeDamage(dmg);
-
-    // }
-
     public void TakeDamage(int dmg){
 
+        // do some red effect
         HP -= dmg;
+        DamageEffect();
 
         if(HP <= 0)
             c.KillCharacter(this);
+
+    }
+
+    async Task DamageEffect(){
+
+        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+        float time = 0.5f;
+        
+        while(time > 0){
+
+            sr.color = new Color(1,1-time,1-time);
+            time -= Time.deltaTime;
+            await Task.Yield();
+
+        }
+            
+        sr.color = new Color(1,1,1);
 
     }
 
