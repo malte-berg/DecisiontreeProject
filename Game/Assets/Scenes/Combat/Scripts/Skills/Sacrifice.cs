@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Exhaust : Skill {
+public class Sacrifice : Skill {
     GameCharacter gc;
     string name;
     float power;
@@ -15,17 +15,21 @@ public class Exhaust : Skill {
         this.skillCost = 0;   
     }
 
-    public override bool Effect(){
-        if(gc.HP < selfDamage)
+    public override bool Effect(GameCharacter target){
+        if (target != gc) {
             return false;
-
-        gc.Mana += 10;
-
-        if(gc.Mana > gc.maxMana) {
-            gc.Mana = gc.maxMana;
         }
 
-        gc.HP -= selfDamage;
+        if(target.HP < selfDamage)
+            return false;
+
+        target.Mana += 10;
+
+        if(target.Mana > target.MaxMana) {
+            target.Mana = target.MaxMana;
+        }
+
+        target.HP -= selfDamage;
 
         return true;
     }

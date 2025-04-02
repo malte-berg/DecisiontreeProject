@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : Skill {
+public class Heal : Skill {
     GameCharacter gc;
     string name;
     float power;
@@ -16,13 +16,17 @@ public class NewMonoBehaviourScript : Skill {
         
     }
 
-    public override bool Effect(){
-        if(gc.Mana < manaCost)
+    public override bool Effect(GameCharacter target){
+        if (target != gc) {
+            return false;
+        }
+
+        if(target.Mana < manaCost)
             return false;
 
-        gc.Mana -= manaCost;
+        target.Mana -= manaCost;
 
-        gc.HP = gc.Vitality;
+        target.HP = target.Vitality;
 
         return true;
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class HeatWave : Skill {
      GameCharacter gc;
@@ -15,7 +16,7 @@ public class HeatWave : Skill {
         this.skillCost = 0;
     }
 
-    public override bool Effect(GameCharacter target1, GameCharacter target2, GameCharacter target3) {
+    public override bool Effect(GameCharacter target) {
         if(target == gc)
             return false;
         if(gc.Mana < manaCost)
@@ -25,9 +26,12 @@ public class HeatWave : Skill {
 
         int damageDealt = Mathf.FloorToInt((gc.Strength + gc.GetEquipmentStrengthSum()) * gc.GetEquipmentStrengthMult() * power);
 
-        target1.TakeDamage(Mathf.FloorToInt(damageDealt));
-        target2.TakeDamage(Mathf.FloorToInt(damageDealt));
-        target3.TakeDamage(Mathf.FloorToInt(damageDealt));
+        Combat combat = target.c;
+        List<GameCharacter> enemies = combat.Enemies;
+
+        foreach (GameCharacter enemy in enemies){
+            enemy.TakeDamage(Mathf.FloorToInt(damageDealt));
+        }
 
         return true;
     }
