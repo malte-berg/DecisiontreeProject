@@ -8,13 +8,13 @@ public class Punch : Skill{
     int manaCost;
     int skillCost;
 
-    public Punch(GameCharacter gc, string name, float power, int manaCost, int skillCost) : base(gc, name, power, manaCost, skillCost){
+    public Punch(GameCharacter gc) : base(gc){
 
         this.gc = gc;
-        this.name = name;
+        this.name = "Punch";
         this.power = 1;
-        this.manaCost = manaCost;
-        this.skillCost = skillCost;
+        this.manaCost = 0;
+        this.skillCost = 0;
         
     }
 
