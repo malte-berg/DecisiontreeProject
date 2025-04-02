@@ -14,6 +14,7 @@ public class Player : GameCharacter {
 
         equipment = gameObject.GetComponent<Equipment>();
         gameObject.name = "Player";
+        HidePlayer();
         DontDestroyOnLoad(gameObject);
 
         int gold = 10;
