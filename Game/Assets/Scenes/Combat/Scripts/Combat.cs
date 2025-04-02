@@ -18,24 +18,9 @@ public class Combat : MonoBehaviour{
 
         marker = Instantiate(marker);
 
-        player = null;
-        GameObject playerG = GameObject.Find("Player");
-        if(playerG != null)
-            player = playerG.GetComponent<Player>(); //horrible way of doing this
-
-        if(player == null){
-
-            player = Instantiate(playerPrefab).GetComponent<Player>();
-            player.gameObject.name = "Player";
-            player.Init();
-            player.c = this;
-
-        } else {
-
-            player.c = this;
-            player.ShowPlayer();
-
-        }
+        player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
+        player.ShowPlayer();
+        player.c = this;
 
     }
 
