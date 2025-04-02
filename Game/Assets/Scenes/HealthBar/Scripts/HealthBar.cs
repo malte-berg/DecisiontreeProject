@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
-public class health_bar : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
     [SerializeField] public GameObject player;
     [SerializeField] public GameObject hpText;
@@ -13,8 +13,6 @@ public class health_bar : MonoBehaviour
     public int curHealth;
     public int maxHealth;
     float hpBarPercentage;
-
-    public string healthText_testing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

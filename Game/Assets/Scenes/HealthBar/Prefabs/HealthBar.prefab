@@ -237,8 +237,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8054277671039826004}
   - component: {fileID: 267919938487728593}
+  - component: {fileID: 2904205400476662565}
   m_Layer: 5
-  m_Name: HpBar
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,6 +316,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2904205400476662565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890571365804766681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe08f02a2fd0de42a40804fc970541f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  hpText: {fileID: 877079284655332243}
+  sliderValue: 0
+  curHealth: 0
+  maxHealth: 0
 --- !u!1 &7099296221287965328
 GameObject:
   m_ObjectHideFlags: 0
