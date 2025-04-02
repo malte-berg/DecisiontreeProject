@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Combat : MonoBehaviour{
 
@@ -9,7 +10,9 @@ public class Combat : MonoBehaviour{
     public GameObject playerPrefab;
     public GameObject marker;
     Player player;
+    public GameObject healthBarPrefab;
     List<GameCharacter> enemies = new List<GameCharacter>();
+    List<HealthBar> enemyHealthBars = new List<HealthBar>();
 
     int turn = 0;
     GameCharacter currentC;
@@ -28,9 +31,16 @@ public class Combat : MonoBehaviour{
 
     void Start(){ // TEMP
 
+        //Instantiate the "player" character
         player = Instantiate(playerPrefab).GetComponent<Player>();
         player.gameObject.name = "Player";
         player.Init(this);
+
+        //Add a healthbar for the player and put it inside the canvas.
+        Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
+        GameObject healthBar = Instantiate(healthBarPrefab, healthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform);
+        healthBar.GetComponent<HealthBar>().player = player.gameObject; //Connect the healthbar to the player character.
+        healthBar.name = "PlayerHP";
 
         for(int i = 0; i < 3; i++){
 
@@ -39,6 +49,12 @@ public class Combat : MonoBehaviour{
             enemies[i].gameObject.name = "Enemy #" + i;
             enemies[i].transform.position = Vector3.right * (i+1) * 2;
 
+            //Add a healthbar for the enemy and put it inside the canvas.
+            Vector3 enemyHealthBarPosition = Camera.main.WorldToScreenPoint(enemies[i].gameObject.transform.position + Vector3.up*2);   //Place healthbar above character.
+            enemyHealthBars.Add(Instantiate(healthBarPrefab, enemyHealthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>()); //Instantiate the healthbar inside the "Canvas" object.
+            enemyHealthBars[i].player = enemies[i].gameObject; //Connect the healthbar to the enemy character.
+            enemyHealthBars[i].gameObject.name = enemies[i].gameObject.name + " HP";
+            //enemyHealthBars[i].gameObject.transform.Find("Fill").GetComponent<Image>().color = Color.red; //Change color of enemy health bars to red.
         }
 
     }

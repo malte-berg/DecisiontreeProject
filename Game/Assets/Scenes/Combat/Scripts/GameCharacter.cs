@@ -13,6 +13,7 @@ public class GameCharacter : MonoBehaviour{
     int magic;
     int mana;
     int maxMana;
+  
     public int Strength{get { return strength; }}
     public int Magic{get { return magic; }}
     public int Mana{get{ return mana; } set{ this.mana = value; }}
