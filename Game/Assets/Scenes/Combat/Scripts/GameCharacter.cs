@@ -20,6 +20,7 @@ public class GameCharacter : MonoBehaviour{
     public int Mana{get{ return mana; } set{ this.mana = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
     public int Vitality{ get { return vitality; }}
+    public int MaxMana{ get { return maxMana; }}
 
     // SKILLS
     public Skill[] skills;
