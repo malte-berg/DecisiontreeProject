@@ -6,12 +6,13 @@ public class GameCharacter : MonoBehaviour{
     Combat c;
 
     // STATS
-    int hp = 100;
-    int vitality = 100;
-    int armor = 5;
-    int strength = 10;
-    int magic = 1;
-    int mana = 100;
+    int hp;
+    int vitality;
+    int armor;
+    int strength;
+    int magic;
+    int mana;
+    int maxMana;
     public int Strength{get { return strength; }}
     public int Magic{get { return magic; }}
     public int Mana{get{ return mana; } set{ this.mana = value; }}
@@ -26,14 +27,15 @@ public class GameCharacter : MonoBehaviour{
     Equipment equipment;
     Item[] inventory;
 
-    public GameCharacter(int hp, int vitality, int armor, int strength, int magic, int mana, int skillCount){
+    public GameCharacter(){
 
-        this.hp = hp;
-        this.vitality = vitality;
-        this.armor = armor;
-        this.strength = strength;
-        this.magic = magic;
-        this.mana = mana;
+        this.hp = 100;
+        this.vitality = 100;
+        this.armor = 5;
+        this.strength = 10;
+        this.magic = 0;
+        this.mana = 0;
+        this.maxMana = 0;
         this.skills = new Skill[8];
         this.skillCount = skillCount;
         this.equipment = null;
@@ -47,7 +49,7 @@ public class GameCharacter : MonoBehaviour{
         equipment = gameObject.AddComponent<Equipment>();
 
         // TEMP DEBUG
-        skills[0] = new Punch(this, "Punch", 1, 20, 0);
+        skills[0] = new Punch(this);
 
         if(gameObject.name == "Player") {
 
