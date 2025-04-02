@@ -18,6 +18,25 @@ public class Combat : MonoBehaviour{
 
         marker = Instantiate(marker);
 
+        player = null;
+        GameObject playerG = GameObject.Find("Player");
+        if(playerG != null)
+            player = playerG.GetComponent<Player>(); //horrible way of doing this
+
+        if(player == null){
+
+            player = Instantiate(playerPrefab).GetComponent<Player>();
+            player.gameObject.name = "Player";
+            player.Init();
+            player.c = this;
+
+        } else {
+
+            player.c = this;
+            player.ShowPlayer();
+
+        }
+
     }
 
     void Awake(){
@@ -27,11 +46,6 @@ public class Combat : MonoBehaviour{
     }
 
     void Start(){ // TEMP
-
-        //Instantiate the "player" character
-        player = Instantiate(playerPrefab).GetComponent<Player>();
-        player.gameObject.name = "Player";
-        player.Init(this);
 
         //Add a healthbar for the player and put it inside the canvas.
         Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
@@ -43,7 +57,8 @@ public class Combat : MonoBehaviour{
         for(int i = 0; i < 3; i++){
 
             enemies.Add(Instantiate(characterPrefab).GetComponent<GameCharacter>());
-            enemies[i].Init(this);
+            enemies[i].Init();
+            enemies[i].c = this;
             enemies[i].gameObject.name = "Enemy #" + i;
             enemies[i].transform.position = Vector3.right * (i+1) * 2;
 
