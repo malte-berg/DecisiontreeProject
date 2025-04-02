@@ -10,9 +10,8 @@ public class Player : GameCharacter {
 
     }
 
-    public override void Init(Combat c){
+    public override void Init(){
 
-        this.c = c;
         equipment = gameObject.GetComponent<Equipment>();
         DontDestroyOnLoad(gameObject);
 
