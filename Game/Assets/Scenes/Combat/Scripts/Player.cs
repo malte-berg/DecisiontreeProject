@@ -6,6 +6,8 @@ public class Player : GameCharacter {
     int gold;
     int skillPoints;
 
+    public int SkillPoints { get { return skillPoints; }}
+
     public Player() : base(){
 
     }
