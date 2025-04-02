@@ -8,6 +8,7 @@ public class Combat : MonoBehaviour{
     public GameObject playerPrefab;
     public GameObject healthBarPrefab;
     public GameObject marker;
+    public GameObject targeting;
     Player player;
     List<GameCharacter> enemies = new List<GameCharacter>();
 
@@ -19,25 +20,11 @@ public class Combat : MonoBehaviour{
     public void Init(){
 
         marker = Instantiate(marker);
+        targeting = Instantiate(targeting);
 
-        player = null;
-        GameObject playerG = GameObject.Find("Player");
-        if(playerG != null)
-            player = playerG.GetComponent<Player>(); //horrible way of doing this
-
-        if(player == null){
-
-            player = Instantiate(playerPrefab).GetComponent<Player>();
-            player.gameObject.name = "Player";
-            player.Init();
-            player.c = this;
-
-        } else {
-
-            player.c = this;
-            player.ShowPlayer();
-
-        }
+        player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
+        player.ShowPlayer();
+        player.c = this;
 
     }
 
@@ -136,6 +123,12 @@ public class Combat : MonoBehaviour{
 
         turn = (turn + 1) % (enemies.Count + 1);
         currentC = GetCurrentCharacter();
+
+    }
+
+    public void CharacterHover(GameCharacter hover){
+
+        targeting.GetComponent<Targeting>().HoverOn(hover.transform);
 
     }
 

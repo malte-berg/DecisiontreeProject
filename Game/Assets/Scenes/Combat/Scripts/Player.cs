@@ -13,6 +13,7 @@ public class Player : GameCharacter {
     public override void Init(){
 
         equipment = gameObject.GetComponent<Equipment>();
+        gameObject.name = "Player";
         DontDestroyOnLoad(gameObject);
 
         int gold = 10;
