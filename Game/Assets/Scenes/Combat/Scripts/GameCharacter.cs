@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameCharacter : MonoBehaviour{
 
-    Combat c;
+    public Combat c;
 
     // STATS
     int hp;
@@ -24,39 +24,31 @@ public class GameCharacter : MonoBehaviour{
     int selectedSkill = 0;
 
     // INVENTORY
-    Equipment equipment;
-    Item[] inventory;
+    public Equipment equipment;
+    public Item[] inventory;
 
     public GameCharacter(){
 
-        this.hp = 100;
-        this.vitality = 100;
-        this.armor = 5;
-        this.strength = 10;
-        this.magic = 0;
-        this.mana = 0;
-        this.maxMana = 0;
-        this.skills = new Skill[8];
-        this.skillCount = skillCount;
-        this.equipment = null;
-        this.inventory = new Item[20];
+        c = null;
+        hp = 100;
+        vitality = 100;
+        armor = 5;
+        strength = 10;
+        magic = 0;
+        mana = 0;
+        maxMana = 0;
+        skills = new Skill[8];
+        skillCount = 1;
+        equipment = null;
+        inventory = new Item[20];
 
     }
 
-    public void Init(Combat c){
+    public virtual void Init(Combat c){
 
         this.c = c;
-        equipment = gameObject.AddComponent<Equipment>();
-
-        // TEMP DEBUG
+        equipment = gameObject.GetComponent<Equipment>();
         skills[0] = new Punch(this);
-
-        if(gameObject.name == "Player") {
-
-            inventory[0] = new Weapon("Excalibur", 9999, 10, 1.2f, 5, 1.1f, 224, 10.7f, 23, 1.2f, 162, 1.2f);
-            equipment.Equip(inventory[0]);
-
-        }
 
     }
 

@@ -6,8 +6,9 @@ using UnityEngine;
 public class Combat : MonoBehaviour{
 
     public GameObject characterPrefab;
+    public GameObject playerPrefab;
     public GameObject marker;
-    GameCharacter player;
+    Player player;
     List<GameCharacter> enemies = new List<GameCharacter>();
 
     int turn = 0;
@@ -25,9 +26,9 @@ public class Combat : MonoBehaviour{
 
     }
 
-    void Start(){
+    void Start(){ // TEMP
 
-        player = Instantiate(characterPrefab).GetComponent<GameCharacter>();
+        player = Instantiate(playerPrefab).GetComponent<Player>();
         player.gameObject.name = "Player";
         player.Init(this);
 
