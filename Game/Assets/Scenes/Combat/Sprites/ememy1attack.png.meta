@@ -116,20 +116,42 @@ TextureImporter:
       name: ememy1attack_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 1
-        width: 89
-        height: 60
+        x: 0
+        y: 0
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2810808661b6e2300800000000000000
-      internalID: 229238375021281666
+      spriteID: 890ff6695a2751544b6db6e2a957da1a
+      internalID: -781871117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ememy1attack_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35868dfdd588a884bb1883e7fdeeae5a
+      internalID: 1218500570
       vertices: []
       indices: 
       edges: []
@@ -138,7 +160,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9bb543a424a7aa14a88b449a4e9b8181
     internalID: 0
     vertices: []
     indices: 
@@ -147,7 +169,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ememy1attack_0: -781871117
+      ememy1attack_1: 1218500570
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

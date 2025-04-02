@@ -119,20 +119,20 @@ TextureImporter:
       name: player1attack_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 40
-        height: 58
+        width: 48
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d1ce6293e29663ac0800000000000000
-      internalID: -3875794782057468899
+      spriteID: 2cddb195920837d498dd201c1eeda19d
+      internalID: -323790041
       vertices: []
       indices: 
       edges: []
@@ -141,9 +141,9 @@ TextureImporter:
       name: player1attack_1
       rect:
         serializedVersion: 2
-        x: 58
+        x: 48
         y: 0
-        width: 36
+        width: 48
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -151,10 +151,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 755726824565bf070800000000000000
-      internalID: 8141195670857086295
+      spriteID: 0250eec42e767064bae8a276b6281291
+      internalID: 1759189206
       vertices: []
       indices: 
       edges: []
@@ -163,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c7c4e1df3db7b3441bbd7409deb13edb
     internalID: 0
     vertices: []
     indices: 
@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      player1attack_0: -323790041
+      player1attack_1: 1759189206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
