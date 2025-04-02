@@ -3,12 +3,8 @@ using UnityEngine;
 public class Punch : Skill{
     
     GameCharacter gc;
-<<<<<<< HEAD
     string name;
     float power;
-=======
-    float power = 1;
->>>>>>> 9a62df7d (Added UI for skill tree options)
     int manaCost;
     int skillCost;
 
