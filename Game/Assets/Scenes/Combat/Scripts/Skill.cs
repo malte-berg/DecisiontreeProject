@@ -10,13 +10,9 @@ public abstract class Skill{
 
     public string Name{ get { return name; } }
 
-    public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost){
+    public Skill(GameCharacter gc){
 
         this.gc = gc;
-        this.name = name;
-        this.power = 1;
-        this.manaCost = manaCost;
-        this.skillCost = skillCost;
 
     }
 
