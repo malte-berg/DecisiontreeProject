@@ -8,6 +8,7 @@ public class Combat : MonoBehaviour{
     public GameObject playerPrefab;
     public GameObject healthBarPrefab;
     public GameObject marker;
+    public GameObject targeting;
     Player player;
     List<GameCharacter> enemies = new List<GameCharacter>();
 
@@ -17,6 +18,7 @@ public class Combat : MonoBehaviour{
     public void Init(){
 
         marker = Instantiate(marker);
+        targeting = Instantiate(targeting);
 
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
         player.ShowPlayer();
@@ -119,6 +121,12 @@ public class Combat : MonoBehaviour{
 
         turn = (turn + 1) % (enemies.Count + 1);
         currentC = GetCurrentCharacter();
+
+    }
+
+    public void CharacterHover(GameCharacter hover){
+
+        targeting.GetComponent<Targeting>().HoverOn(hover.transform);
 
     }
 

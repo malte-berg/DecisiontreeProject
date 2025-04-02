@@ -61,6 +61,13 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
+    void OnMouseEnter(){
+        
+        if(c != null)
+            c.CharacterHover(this);
+
+    }
+
     public bool UseSkill(GameCharacter target){
 
         print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
