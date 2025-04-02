@@ -18,13 +18,28 @@ public class GameCharacter : MonoBehaviour{
     public int HP{get{ return hp; } set{ this.hp = value; }}
 
     // SKILLS
-    public Skill[] skills = new Skill[8];
+    public Skill[] skills;
     int skillCount = 1;
     int selectedSkill = 0;
 
     // INVENTORY
     Equipment equipment;
-    Item[] inventory = new Item[20];
+    Item[] inventory;
+
+    public GameCharacter(int hp, int vitality, int armor, int strength, int magic, int mana, Skill[] skills, int skillCount, Equipment equipment, Item[] inventory){
+
+        this.hp = hp;
+        this.vitality = vitality;
+        this.armor = armor;
+        this.strength = strength;
+        this.magic = magic;
+        this.mana = mana;
+        this.skills = skills;
+        this.skillCount = skillCount;
+        this.equipment = equipment;
+        this.inventory = inventory;
+
+    }
 
     public void Init(Combat c){
 
