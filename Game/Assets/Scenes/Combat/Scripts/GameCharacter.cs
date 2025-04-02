@@ -47,9 +47,8 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
-    public virtual void Init(Combat c){
+    public virtual void Init(){
 
-        this.c = c;
         equipment = gameObject.GetComponent<Equipment>();
         skills[0] = new Punch(this);
 
