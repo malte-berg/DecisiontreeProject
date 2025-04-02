@@ -5,26 +5,22 @@ public class InventoryManager : MonoBehaviour{
 
     ItemTile[] iTs = new ItemTile[0];
     public GameObject itemTilePrefab;
-    public GameCharacter player;
+    public Player player;
     Transform content;
 
     public void Init(){
 
         // Inventory/Panel/Scroll View/View Port/Content
         content = transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0);
+        player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
+        player.HidePlayer();
+        UpdateTiles();
         
     }
 
     void Awake() {
 
         Init();
-
-    }
-
-    void Update(){
-
-        if(Input.GetKeyDown(KeyCode.Space))
-            UpdateTiles();
 
     }
 

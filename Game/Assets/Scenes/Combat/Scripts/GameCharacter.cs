@@ -75,6 +75,7 @@ public class GameCharacter : MonoBehaviour{
 
         hp -= dmg - armor;
         print(gameObject.name + " took: " + dmg + " damage!");
+
         healthBar.UpdateHealthBar(hp, vitality);
 
         if(hp <= 0)

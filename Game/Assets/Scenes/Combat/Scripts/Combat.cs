@@ -36,6 +36,7 @@ public class Combat : MonoBehaviour{
         //Add a healthbar for the player and put it inside the canvas.
         Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
         player.healthBar = Instantiate(healthBarPrefab, healthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
+        player.healthBar.Init();
         player.healthBar.gameObject.name = "PlayerHP";
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
 
@@ -49,6 +50,7 @@ public class Combat : MonoBehaviour{
             //Add a healthbar for the enemy and put it inside the canvas.
             Vector3 enemyHealthBarPosition = Camera.main.WorldToScreenPoint(enemies[i].gameObject.transform.position + Vector3.up*2);   //Place healthbar above character.
             enemies[i].healthBar = Instantiate(healthBarPrefab, enemyHealthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
+            enemies[i].healthBar.Init();
             enemies[i].healthBar.gameObject.name = enemies[i].gameObject.name + " HP";
             enemies[i].healthBar.UpdateHealthBar(enemies[i].HP, enemies[i].Vitality);
 
@@ -86,6 +88,7 @@ public class Combat : MonoBehaviour{
 
             }
 
+            Destroy(target.healthBar.gameObject);
             Destroy(target.gameObject);
             return;
         

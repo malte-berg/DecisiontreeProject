@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour {
     public void Init(){
 
         slider = GetComponent<Slider>();
-        hpText = GetComponent<TMP_Text>();
+        hpText = GetComponentInChildren<TMP_Text>();
 
     }
 
