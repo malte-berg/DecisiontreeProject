@@ -37,7 +37,7 @@ public class InventoryList : MonoBehaviour {
 
             im.iTs[i] = Instantiate(itemTilePrefab, content).GetComponent<ItemTile>();
             im.iTs[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-25 - 50*i);
-            im.iTs[i].Init(player.inventory[i]);
+            im.iTs[i].Init(im, player.inventory[i]);
 
         }
 

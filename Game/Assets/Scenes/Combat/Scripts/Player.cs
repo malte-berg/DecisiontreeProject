@@ -24,7 +24,7 @@ public class Player : GameCharacter {
 
         // OP dev privilege
         inventory[0] = new Weapon("Excalibur", 9999, 10, 1.2f, 5, 1.1f, 224, 10.7f, 23, 1.2f, 162, 1.2f);
-        equipment.Equip(inventory[0]);
+        // equipment.Equip(inventory[0]);
 
     }
 
