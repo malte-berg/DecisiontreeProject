@@ -22,7 +22,7 @@ public class Exhaust : Skill {
         gc.Mana += 10;
 
         if(gc.Mana > gc.maxMana) {
-            gc.Mana = gc.maxMana
+            gc.Mana = gc.maxMana;
         }
 
         gc.HP -= selfDamage;
