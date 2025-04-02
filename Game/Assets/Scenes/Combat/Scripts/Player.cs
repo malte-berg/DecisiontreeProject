@@ -26,11 +26,11 @@ public class Player : GameCharacter {
     int gold;
     int skillPoints;
 
-    public Player() : base(hp, vitality, armor, strength, magic, mana, maxMana, skills, skillCount, equipment, inventory){
+    // public Player() : base(hp, vitality, armor, strength, magic, mana, maxMana, skills, skillCount, equipment, inventory){
 
-        int gold = 10;
-        int skillPoints = 0;
+    //     int gold = 10;
+    //     int skillPoints = 0;
 
-    }
+    // }
     
 }
