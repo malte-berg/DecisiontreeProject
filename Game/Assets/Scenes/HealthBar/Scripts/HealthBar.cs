@@ -1,39 +1,24 @@
-using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
-{
-    [SerializeField] public GameObject player;
-    [SerializeField] public GameObject hpText;
-    public float sliderValue;
-    public int curHealth;
-    public int maxHealth;
-    float hpBarPercentage;
+public class HealthBar : MonoBehaviour {
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        //Access the player's stats, and retreive the player's HP at the start of combat.
-        maxHealth = player.GetComponent<GameCharacter>().HP;
+    Slider slider;
+    TMP_Text hpText;
+
+    public void Init(){
+
+        slider = GetComponent<Slider>();
+        hpText = GetComponent<TMP_Text>();
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Get the health of the player.
-        curHealth = player.GetComponent<GameCharacter>().HP;
+    public void UpdateHealthBar(int currentHP, int maxHP){
 
-        //Get how much of a percentage of health is left.
-        hpBarPercentage = (float)curHealth/maxHealth;
+        float hpBarPercentage = (float)currentHP/maxHP;
+        slider.value = hpBarPercentage;
+        hpText.text = $"{currentHP} / {maxHP}";
 
-        //Change the Slider attribute "value".
-        this.GetComponent<Slider>().value = hpBarPercentage;
-
-        //Update text inside health bar
-        hpText.GetComponent<TextMeshProUGUI>().text = curHealth + " / " + maxHealth;
     }
 }

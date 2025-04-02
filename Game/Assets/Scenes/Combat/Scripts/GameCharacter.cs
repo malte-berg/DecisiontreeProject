@@ -13,11 +13,13 @@ public class GameCharacter : MonoBehaviour{
     int magic;
     int mana;
     int maxMana;
-  
+    public HealthBar healthBar;
+
     public int Strength{get { return strength; }}
     public int Magic{get { return magic; }}
     public int Mana{get{ return mana; } set{ this.mana = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
+    public int Vitality{ get { return vitality; }}
 
     // SKILLS
     public Skill[] skills;
@@ -73,6 +75,7 @@ public class GameCharacter : MonoBehaviour{
 
         hp -= dmg - armor;
         print(gameObject.name + " took: " + dmg + " damage!");
+        healthBar.UpdateHealthBar(hp, vitality);
 
         if(hp <= 0)
             c.KillCharacter(this);
