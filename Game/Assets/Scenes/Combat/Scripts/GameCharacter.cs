@@ -26,7 +26,7 @@ public class GameCharacter : MonoBehaviour{
     Equipment equipment;
     Item[] inventory;
 
-    public GameCharacter(int hp, int vitality, int armor, int strength, int magic, int mana, Skill[] skills, int skillCount, Equipment equipment, Item[] inventory){
+    public GameCharacter(int hp, int vitality, int armor, int strength, int magic, int mana, int skillCount){
 
         this.hp = hp;
         this.vitality = vitality;
@@ -34,10 +34,10 @@ public class GameCharacter : MonoBehaviour{
         this.strength = strength;
         this.magic = magic;
         this.mana = mana;
-        this.skills = skills;
+        this.skills = new Skill[8];
         this.skillCount = skillCount;
-        this.equipment = equipment;
-        this.inventory = inventory;
+        this.equipment = null;
+        this.inventory = new Item[20];
 
     }
 
