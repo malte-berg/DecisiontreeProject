@@ -2,34 +2,40 @@ using UnityEngine;
 
 public class Player : GameCharacter {
 
-    Combat c;
-
-    // STATS
-    int hp;
-    int vitality;
-    int armor;
-    int strength;
-    int magic;
-    int mana;
-    int maxMana;
-
-    // SKILL
-    public Skill[] skills;
-    int skillCount;
-    int selectedSkill = 0;
-
-    // INVENTORY
-    Equipment equipment;
-    Item[] inventory;
-
     // PLAYER STATS
     int gold;
     int skillPoints;
 
-    public Player() : base(hp, vitality, armor, strength, magic, mana, maxMana, skills, skillCount, equipment, inventory){
+    public Player() : base(){
+
+    }
+
+    public override void Init(Combat c){
+
+        this.c = c;
+        equipment = gameObject.GetComponent<Equipment>();
+        DontDestroyOnLoad(gameObject);
 
         int gold = 10;
         int skillPoints = 0;
+
+        skills[0] = new Punch(this);
+
+        // OP dev privilege
+        inventory[0] = new Weapon("Excalibur", 9999, 10, 1.2f, 5, 1.1f, 224, 10.7f, 23, 1.2f, 162, 1.2f);
+        equipment.Equip(inventory[0]);
+
+    }
+
+    public void HidePlayer(){
+
+        transform.GetChild(0).gameObject.SetActive(false);
+
+    }
+
+    public void ShowPlayer(){
+
+        transform.GetChild(0).gameObject.SetActive(true);
 
     }
     
