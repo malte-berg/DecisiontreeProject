@@ -23,7 +23,7 @@ public class GameCharacter : MonoBehaviour{
 
     // SKILLS
     public Skill[] skills;
-    int skillCount = 1;
+    int skillCount;
     int selectedSkill = 0;
 
     // INVENTORY
@@ -56,7 +56,8 @@ public class GameCharacter : MonoBehaviour{
 
     void OnMouseDown(){
 
-        c.CharacterClicked(this);
+        if(c != null)
+            c.CharacterClicked(this);
 
     }
 
