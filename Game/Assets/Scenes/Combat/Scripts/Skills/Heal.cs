@@ -22,7 +22,7 @@ public class NewMonoBehaviourScript : Skill {
 
         gc.Mana -= manaCost;
 
-        gc.HP = gc.Vitality
+        gc.HP = gc.Vitality;
 
         return true;
     }
