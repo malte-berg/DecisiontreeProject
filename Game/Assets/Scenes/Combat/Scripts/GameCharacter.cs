@@ -6,7 +6,7 @@ public class GameCharacter : MonoBehaviour{
     Combat c;
 
     // STATS
-    int HP = 100;
+    int hp = 100;
     int vitality = 100;
     int armor = 5;
     int strength = 10;
@@ -15,6 +15,7 @@ public class GameCharacter : MonoBehaviour{
     public int Strength{get { return strength; }}
     public int Magic{get { return magic; }}
     public int Mana{get{ return mana; } set{ this.mana = value; }}
+    public int HP{get{ return hp; } set{ this.hp = value; }}
 
     // SKILLS
     public Skill[] skills = new Skill[8];
@@ -60,10 +61,10 @@ public class GameCharacter : MonoBehaviour{
         if(dmg <= armor)
             return;
 
-        HP -= dmg - armor;
+        hp -= dmg - armor;
         print(gameObject.name + " took: " + dmg + " damage!");
 
-        if(HP <= 0)
+        if(hp <= 0)
             c.KillCharacter(this);
         else
             DamageEffect();
