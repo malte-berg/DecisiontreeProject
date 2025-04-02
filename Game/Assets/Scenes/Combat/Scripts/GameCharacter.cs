@@ -6,25 +6,43 @@ public class GameCharacter : MonoBehaviour{
     Combat c;
 
     // STATS
-    int hp = 100;
-    int vitality = 100;
-    int armor = 5;
-    int strength = 10;
-    int magic = 1;
-    int mana = 100;
+    int hp;
+    int vitality;
+    int armor;
+    int strength;
+    int magic;
+    int mana;
+    int maxMana;
+  
     public int Strength{get { return strength; }}
     public int Magic{get { return magic; }}
     public int Mana{get{ return mana; } set{ this.mana = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
 
     // SKILLS
-    public Skill[] skills = new Skill[8];
+    public Skill[] skills;
     int skillCount = 1;
     int selectedSkill = 0;
 
     // INVENTORY
     Equipment equipment;
-    Item[] inventory = new Item[20];
+    Item[] inventory;
+
+    public GameCharacter(){
+
+        this.hp = 100;
+        this.vitality = 100;
+        this.armor = 5;
+        this.strength = 10;
+        this.magic = 0;
+        this.mana = 0;
+        this.maxMana = 0;
+        this.skills = new Skill[8];
+        this.skillCount = skillCount;
+        this.equipment = null;
+        this.inventory = new Item[20];
+
+    }
 
     public void Init(Combat c){
 
@@ -32,7 +50,7 @@ public class GameCharacter : MonoBehaviour{
         equipment = gameObject.AddComponent<Equipment>();
 
         // TEMP DEBUG
-        skills[0] = new Punch(this, "Punch", 1, 20, 0);
+        skills[0] = new Punch(this);
 
         if(gameObject.name == "Player") {
 
@@ -61,10 +79,10 @@ public class GameCharacter : MonoBehaviour{
         if(dmg <= armor)
             return;
 
-        HP -= dmg - armor;
+        hp -= dmg - armor;
         print(gameObject.name + " took: " + dmg + " damage!");
 
-        if(HP <= 0)
+        if(hp <= 0)
             c.KillCharacter(this);
         else
             DamageEffect();
