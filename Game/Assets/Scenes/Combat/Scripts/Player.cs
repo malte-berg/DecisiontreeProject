@@ -8,11 +8,7 @@ public class Player : GameCharacter {
     int statPoints;
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
 
-    Skill[] unlockedSkills;
-
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
-
-    public Skill[] UnlockedSkills { get { return unlockedSkills; }}
 
     public Player() : base(){
 
@@ -31,11 +27,7 @@ public class Player : GameCharacter {
         skillPoints = 10;    //For unlocking new abilities in the skill tree window.
         statPoints = 25;    //for increasing stats in the stats window.
 
-        skills[0] = allSkills[0]; // Punch, see AbilityManager.cs
-        skills[0].UnlockSkill();
-        unlockedSkills = new Skill[16];
-        AddUnlockedSkill(skills[0]);
-
+        skills[0] = new Punch(this);
 
         // OP dev privilege
         inventory[0] = new Head("Bucket", 2, 0, 1, 7, 1.05f, -2, 1, 0, 1, 0, 1);
@@ -61,16 +53,6 @@ public class Player : GameCharacter {
 
         transform.GetChild(0).gameObject.SetActive(true);
 
-    }
-
-    public void AddUnlockedSkill(Skill s) {
-        for (int i = 0; i < unlockedSkills.Length; i++){
-            if (unlockedSkills[i] == null) {
-                unlockedSkills[i] = s;
-                return;
-            }
-        }
-        Debug.Log("Not enough space!!!");
     }
     
     //Update the player stats (permanently).

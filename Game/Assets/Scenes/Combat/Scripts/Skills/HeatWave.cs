@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class HeatWave : Skill {
     GameCharacter gc;
 
-    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 0) {
+    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1) {
         this.gc = gc;
     }
 

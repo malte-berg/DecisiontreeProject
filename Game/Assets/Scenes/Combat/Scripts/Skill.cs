@@ -14,8 +14,11 @@ public abstract class Skill{
     public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost){
 
         this.gc = gc;
+        this.name = name;
+        this.power = power;
+        this.manaCost = manaCost;
+        this.skillCost = skillCost;
         this.unlocked = false;
-
     }
 
     public void UnlockSkill() {

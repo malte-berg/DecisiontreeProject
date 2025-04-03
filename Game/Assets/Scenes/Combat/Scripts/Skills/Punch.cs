@@ -4,7 +4,7 @@ public class Punch : Skill{
     
     GameCharacter gc;
 
-    public Punch(GameCharacter gc) : base(gc, "Punch", 1, 0, 0){
+    public Punch(GameCharacter gc) : base(gc, "Punch", 1, 0, 1){
         this.gc = gc;
     }
 

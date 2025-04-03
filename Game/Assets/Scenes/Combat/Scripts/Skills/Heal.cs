@@ -3,7 +3,7 @@ using UnityEngine;
 public class Heal : Skill {
     GameCharacter gc;
 
-    public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 0){
+    public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 1){
         this.gc = gc;
     }
 
