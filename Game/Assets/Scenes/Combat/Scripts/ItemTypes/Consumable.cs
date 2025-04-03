@@ -19,11 +19,4 @@ public class Consumable : Item {
         int type switch in the function
 
     } */
-
-    public override string GetNamn(){
-        return this.name;
-    }
-    public override int GetValue(){
-        return this.value;
-    }
 }

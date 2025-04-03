@@ -46,11 +46,4 @@ public class Torso : Item {
         this.manaMult = manaMult;
 
     }
-
-    public override string GetNamn(){
-        return this.name;
-    }
-    public override int GetValue(){
-        return this.value;
-    }
 }

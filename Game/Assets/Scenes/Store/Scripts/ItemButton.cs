@@ -3,47 +3,39 @@ using UnityEngine.UI;
 using TMPro;
 public class ItemButton : MonoBehaviour
 {
-    Shop a;
+    Shop s;
 
-    //
+    public Button btn;
     private TextMeshProUGUI detailPanel;
     // item information
     public Item currentItem;
     private TextMeshProUGUI priceText;
     // private Image iconImage;
-    // private string nameText;
-    // private int value;
-    // private string statsText;
-    // private string storyText;
 
     void Awake()
     {
         detailPanel = GameObject.Find("ItemDetail")?.GetComponent<TextMeshProUGUI>();
-        priceText = transform.Find("PriceText")?.GetComponent<TextMeshProUGUI>();
-        if (priceText == null) Debug.LogWarning("PriceText not found in ItemButton prefab!");
+        //priceText = transform.Find("PriceText")?.GetComponent<TextMeshProUGUI>();
+        priceText = transform.GetChild(0)?.GetComponent<TextMeshProUGUI>();
     }
 
-    public void Init(Item item, Shop a)
+    public void Init(Item item, Shop s)
     {
         // för att kunna använda funktion från Shop
-        this.a = a;
+        this.s = s;
 
         currentItem = item;
-        priceText.text = item.GetValue().ToString();
-
-        /* value = item.value;
-        nameText = item.itemName;
-        statsText = item.stats;
-        storyText = item.story; */
+        priceText.text = item.Value.ToString();
 
         // iconImage.sprite = ...
 
-        GetComponent<Button>().onClick.AddListener(OnItemClicked);
+        //GetComponent<Button>().onClick.AddListener(OnItemClicked);
+        btn.onClick.AddListener(OnItemClicked);
     }
 
     void DisplayItemDetail()
-    {
-        detailPanel.text = currentItem.GetNamn() + "\n"; //+ currentItem.stats + "\n" + currentItem.story;
+    {   
+        detailPanel.text = currentItem.Name + "\n\n" + "The item's story or attributes can displayed here."; 
     }
 
     public void ButtonClose()
@@ -53,7 +45,7 @@ public class ItemButton : MonoBehaviour
     private void OnItemClicked()
     {
         DisplayItemDetail();
-        a.ShowDetailPanel(true,this);
+        s.ShowDetailPanel(true,this);
     } 
 
 }

@@ -6,17 +6,19 @@ public class Player : GameCharacter {
     int gold;
     int skillPoints;
 
+    public int Gold{ get{ return gold; } set{ this.gold = value; }}
+
     public Player() : base(){
 
     }
-
+    
     public override void Init(){
 
         equipment = gameObject.GetComponent<Equipment>();
         gameObject.name = "Player";
         DontDestroyOnLoad(gameObject);
 
-        int gold = 10;
+        gold = 1650;
         int skillPoints = 0;
 
         skills[0] = new Punch(this);

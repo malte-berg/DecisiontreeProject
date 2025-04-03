@@ -7,7 +7,6 @@ public class Shop : MonoBehaviour
 {
     [Header("UI")]
     public GameObject itemButtonPrefabs;
-    //public Transform itemsParent;
     public GameObject detailPanel;
     public TextMeshProUGUI GoldText;
     public Button buyButton;
@@ -15,53 +14,71 @@ public class Shop : MonoBehaviour
     ItemButton itemButton;
 
     // Data
-    int playerGold = 2000;
-    private List<Item> allItems = new List<Item>();
+    Player player;
+    int playerGold;
+
+    // Test Demo använder först tillfälliga item. I den färdig versionen skulle man kunna sälja den givna itemarrayen enligt spelets framsteg.
+    private Item[] onSaleItems = new Item[2]; // 2 item för test
     private Item selectedItem;
 
-    void Start()
+    void Awake()
     {
+        SetGold();
         Init();
     }
 
     void Init()
     {
         TestItems();
+        LoadItems();
+
         buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(OnBuyButtonClick);
-        for (int i = 0; i < allItems.Count; i++)
-        {
-            itemButton = Instantiate(itemButtonPrefabs, content).GetComponent<ItemButton>();
-            itemButton.Init(allItems[i], this);
-        }
+        
         ShowDetailPanel(false, null);
         UpdateGoldText();
     }
+    
+     void SetGold(){
+        player = GameObject.Find("Player").GetComponent<Player>(); // finns kanske utrymme för optimering
+        player.HidePlayer();
+        playerGold = player.Gold; 
+    }
 
-
+    void LoadItems()
+    {
+        for (int i = 0; i < onSaleItems.Length; i++)
+        {
+            itemButton = Instantiate(itemButtonPrefabs, content).GetComponent<ItemButton>();
+            itemButton.Init(onSaleItems[i], this);
+        }
+    }
     void TryBuyItem()
     {
         if (itemButton == null) return;
-        int value = itemButton.currentItem.GetValue();
+        int value = itemButton.currentItem.Value;
 
         if (playerGold >= value)
         {
             playerGold -= value;
+            player.Gold = playerGold;
             itemButton.ButtonClose();
             UpdateGoldText();
         }
     }
     void TestItems()
     {
-        allItems.Add(new Weapon(
+        onSaleItems[0] = new Weapon(
             "Sword",
-            450
-        ));
+            450,
+            0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f 
+        );
 
-        allItems.Add(new Head(
+        onSaleItems[1] = new Head(
             "Head",
-            300
-        ));
+            300,
+            0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f
+        );
 
     }
 
@@ -83,37 +100,3 @@ public class Shop : MonoBehaviour
     }
 
 }
-
-/* void TestItems()
-    {
-        allItems.Add(new ShopItem(
-            "Sword",
-            450,
-            "Attack: +15",
-            "This is a sword."
-        ));
-
-        allItems.Add(new ShopItem(
-            "Armor",
-            300,
-            "Armor: +20",
-            "This is armor"
-        ));
-
-    }
-
-public class ShopItem
-    {
-        public string itemName;
-        public int value;
-        public string stats;
-        public string story;
-
-        public ShopItem(string name, int value, string stats, string story)
-        {
-            this.itemName = name;
-            this.value = value;
-            this.stats = stats;
-            this.story = story;
-        }
-    } */
