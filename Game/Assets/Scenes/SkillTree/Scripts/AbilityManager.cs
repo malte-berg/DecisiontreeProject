@@ -40,9 +40,36 @@ public class AbilityManager : MonoBehaviour {
         Debug.Log(player.Skills);
     }
 
+    public void HandleClickHeatWave() {
+        if (player.SkillPoints <= 0){
+            Debug.Log("Not enough skill points!");
+            return;
+        }
+
+        foreach (Skill s in player.UnlockedSkills){
+            if (s.GetType() == typeof(HeatWave)){
+                s.UpgradeSkill();
+                Debug.Log("Upgraded Heat Wave!");
+                return;
+            }
+        }
+
+        foreach (Skill s in player.UnlockedSkills){
+            if (s.GetType() == typeof(Punch)){
+                HeatWave heatWave = new HeatWave(player);
+                heatWave.UnlockSkill();
+                player.AddSkill(heatWave);
+                player.AddUnlockedSkill(heatWave);
+
+                Debug.Log("Unlocked Heat Wave!");
+                return;
+            }
+        }
+    }
+
     public void SetPointCounter() {
         int points = player.SkillPoints;
 
-        transform.GetChild(13).GetComponent<TMP_Text>().text = $"{points}";
+        transform.GetChild(6).GetComponent<TMP_Text>().text = $"{points}";
     }
 }
