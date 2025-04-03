@@ -24,6 +24,9 @@ public class GameCharacter : MonoBehaviour{
 
     // SKILLS
     public Skill[] skills;
+
+    public Skill[] Skills{ get { return skills; }}
+
     int skillCount;
     int selectedSkill = 0;
 
@@ -108,6 +111,16 @@ public class GameCharacter : MonoBehaviour{
             
         sr.color = new Color(1,1,1);
 
+    }
+
+    public void AddSkill(Skill newSkill) {
+        for (int i = 0; i < skills.Length; i++) {
+            if (skills[i] == null) {
+                skills[i] = newSkill;
+                return;
+            }
+        }
+        Debug.Log("Not enough slots!!");
     }
 
     public float GetEquipmentVitalityMult(){
@@ -259,5 +272,4 @@ public class GameCharacter : MonoBehaviour{
         return sum;
 
     }
-
 }
