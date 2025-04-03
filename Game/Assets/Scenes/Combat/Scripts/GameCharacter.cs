@@ -32,7 +32,7 @@ public class GameCharacter : MonoBehaviour{
 
     // to change sprite
     SpriteManager spriteManager;
-    Transform transform;
+    Transform moveCharacterSprite;
 
     public GameCharacter(){
 
@@ -53,7 +53,6 @@ public class GameCharacter : MonoBehaviour{
 
     public virtual void Init(){
 
-        this.SetSprite("Enemy");
         equipment = gameObject.GetComponent<Equipment>();
         skills[0] = new Punch(this);
 
@@ -62,8 +61,8 @@ public class GameCharacter : MonoBehaviour{
     public void SetSprite(string type){
         spriteManager = GetComponentInChildren<SpriteManager>();
         spriteManager.SetCharacter(type);
-        transform = GetComponentInChildren<Transform>();
-        transform.localScale = new Vector3(3,3,3);
+        moveCharacterSprite = gameObject.transform.GetChild(0);
+        moveCharacterSprite.localScale = new Vector3(3,3,3);
     }
 
     void OnMouseDown(){
