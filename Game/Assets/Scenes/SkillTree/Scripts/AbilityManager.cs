@@ -6,16 +6,18 @@ public class AbilityManager : MonoBehaviour {
 
     public Player player;
 
-    public Skill[] allSkills = new Skill[16];
-    allSkills[1] = new Punch(player);
-    allSkills[2] = new HeatWave(player);
-    allSkills[3] = new Heal(player);
-    allSkills[4] = new Sacrifice(player);
+    public Skill[] allSkills;
     
     public void Init(){
         player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
         player.HidePlayer();
         SetPointCounter();
+
+        allSkills = new Skill[16];
+        allSkills[1] = new Punch(player);
+        allSkills[2] = new HeatWave(player);
+        allSkills[3] = new Heal(player);
+        allSkills[4] = new Sacrifice(player);
     }
 
     void Awake(){
