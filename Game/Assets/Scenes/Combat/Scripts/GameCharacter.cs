@@ -21,6 +21,7 @@ public class GameCharacter : MonoBehaviour{
     public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value;}}
     public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set{ this.magic = value; }}
     public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set{ this.mana = value; }}
+    public int MaxMana{get{return maxMana;}}
 
     // SKILLS
     public Skill[] skills;
@@ -47,7 +48,7 @@ public class GameCharacter : MonoBehaviour{
         strength = 10;
         magic = 0;
         mana = 0;
-        maxMana = 0;
+        maxMana = 100;
         skills = new Skill[8];
         skillCount = 1;
         equipment = null;
