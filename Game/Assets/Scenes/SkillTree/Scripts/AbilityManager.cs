@@ -74,7 +74,11 @@ public class AbilityManager : MonoBehaviour {
         }
     }
 
-
+    public void HandleClickHeal() {
+        if (player.SkillPoints <= 0){
+            Debug.Log("Not enough skill points!");
+        }
+    }
 
     public void SetPointCounter() {
         int points = player.SkillPoints;
