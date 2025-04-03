@@ -6,6 +6,7 @@ public class InventoryManager : MonoBehaviour{
     public Player player;
     public InventoryList il;
     public StatsList sl;
+    public ItemDescription id;
 
     public void Init(){
 
@@ -15,6 +16,8 @@ public class InventoryManager : MonoBehaviour{
         il.Init(this);
         sl = GetComponentInChildren<StatsList>();
         sl.Init(this);
+        id = GetComponentInChildren<ItemDescription>();
+        id.Init(this);
 
     }
 

@@ -122,20 +122,20 @@ TextureImporter:
       name: punchAnimation_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 4
+        y: 39
+        width: 23
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: def81e5a8945cef49b30cfa841edaa9d
-      internalID: -1746571648
+      spriteID: f41fc8af4774b7800800000000000000
+      internalID: 611160742184153423
       vertices: []
       indices: 
       edges: []
@@ -144,20 +144,20 @@ TextureImporter:
       name: punchAnimation_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 40
+        y: 43
+        width: 15
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c28ef10c4d400414ab4c6bfcd90aa84b
-      internalID: -1165418665
+      spriteID: ccc0917b5e9201ee0800000000000000
+      internalID: -1292487026459210548
       vertices: []
       indices: 
       edges: []
@@ -166,20 +166,20 @@ TextureImporter:
       name: punchAnimation_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 10
+        y: 13
+        width: 8
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6ddda546cd55d7a438e891452aa4b0a2
-      internalID: -523367961
+      spriteID: 1d8e6d3578b37bdd0800000000000000
+      internalID: -2470440418176210735
       vertices: []
       indices: 
       edges: []
@@ -188,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ac73b3f2c933f5d4e8abef604e4af54c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      punchAnimation_0: -1746571648
-      punchAnimation_1: -1165418665
-      punchAnimation_2: -523367961
+      punchAnimation_0: 611160742184153423
+      punchAnimation_1: -1292487026459210548
+      punchAnimation_2: -2470440418176210735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
