@@ -15,11 +15,11 @@ public class GameCharacter : MonoBehaviour{
     int maxMana;
     public HealthBar healthBar;
 
-    public int Strength{get { return strength; }}
-    public int Magic{get { return magic; }}
+    public int Strength{get { return strength; } set{ this.strength = value; }}
+    public int Magic{get { return magic; } set{ this.magic = value; }}
     public int Mana{get{ return mana; } set{ this.mana = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
-    public int Vitality{ get { return vitality; }}
+    public int Vitality{ get { return vitality; } set{ this.vitality = value; }}
 
     // SKILLS
     public Skill[] skills;
