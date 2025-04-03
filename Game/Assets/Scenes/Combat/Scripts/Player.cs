@@ -18,8 +18,8 @@ public class Player : GameCharacter {
         gameObject.name = "Player";
         DontDestroyOnLoad(gameObject);
 
-        int gold = 10;          //For buying items in the store window.
-        int skillPoints = 0;    //For unlocking new abilities in the skill tree window.
+        gold = 10;          //For buying items in the store window.
+        skillPoints = 0;    //For unlocking new abilities in the skill tree window.
         statPoints = 25;    //for increasing stats in the stats window.
 
         skills[0] = new Punch(this);
