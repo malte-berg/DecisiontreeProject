@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Sacrifice : Skill {
     GameCharacter gc;
@@ -17,7 +18,7 @@ public class Sacrifice : Skill {
         if(target.HP < selfDamage)
             return false;
 
-        target.Mana += 10 + Mathf.FloorToInt((0.9 * gc.Strength) * (0.1 * gc.Magic) * power);
+        target.Mana += 10 + (int)Math.Floor((0.9 * gc.Strength) * (0.1 * gc.Magic) * power);
 
         if(target.Mana > target.MaxMana) {
             target.Mana = target.MaxMana;
