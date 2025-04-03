@@ -10,7 +10,7 @@ public class Combat : MonoBehaviour{
     public GameObject marker;
     public GameObject targeting;
     Player player;
-    List<GameCharacter> enemies = new List<GameCharacter>();
+    List<Enemy> enemies = new List<Enemy>();
 
     public List<GameCharacter> Enemies{ get { return enemies; }}
 
@@ -68,7 +68,7 @@ public class Combat : MonoBehaviour{
 
         int i = enemies.Count;
 
-        enemies.Add(Instantiate(characterPrefab).GetComponent<GameCharacter>());
+        enemies.Add(Instantiate(characterPrefab).GetComponent<Enemy>());
         enemies[i].Init();
         enemies[i].c = this;
         enemies[i].gameObject.name = "Enemy #" + i;
@@ -84,7 +84,7 @@ public class Combat : MonoBehaviour{
         enemies[i].healthBar.Init();
         enemies[i].healthBar.gameObject.name = enemies[i].gameObject.name + " HP";
         enemies[i].healthBar.UpdateHealthBar(enemies[i].HP, enemies[i].Vitality);
-        return enemies[i] as Enemy;
+        return enemies[i];
 
     }
 
@@ -93,20 +93,24 @@ public class Combat : MonoBehaviour{
         SpriteRenderer sr = target.gameObject.GetComponentInChildren<SpriteRenderer>();
         float time = 1;
 
-        if(enemies.Remove(target)){
+        if(target is Enemy){
 
-            while(time > 0){
+            if(enemies.Remove(target as Enemy)){
 
-                sr.color = new Color(time,time,time,time);
-                time -= Time.deltaTime;
-                await Task.Yield();
+                while(time > 0){
 
+                    sr.color = new Color(time,time,time,time);
+                    time -= Time.deltaTime;
+                    await Task.Yield();
+
+                }
+
+                Destroy(target.healthBar.gameObject);
+                Destroy(target.gameObject);
+                return;
+            
             }
 
-            Destroy(target.healthBar.gameObject);
-            Destroy(target.gameObject);
-            return;
-        
         }
 
         while(time > 0){
