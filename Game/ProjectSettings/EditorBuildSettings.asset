@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Map/Map.unity
     guid: 6a0745365b9b4034b9c43b35865054d8
   - enabled: 1
-    path: Assets/Scenes/WinScreen/DemoWinScreen.unity
+    path: Assets/Scenes/WinOrLoseScreen/DemoWinScreen.unity
     guid: 643c546866b0b104aa85e79830f02697
   - enabled: 1
     path: Assets/Scenes/Stats/Stats.unity

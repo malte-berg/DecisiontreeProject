@@ -31,7 +31,7 @@ public class Player : GameCharacter {
         skillPoints = 10;    //For unlocking new abilities in the skill tree window.
         statPoints = 25;    //for increasing stats in the stats window.
 
-        skills[0] = new Punch(this);
+        skills[0] = allSkills[0]; // Punch, see AbilityManager.cs
         skills[0].UnlockSkill();
         unlockedSkills = new Skill[16];
         AddUnlockedSkill(skills[0]);
