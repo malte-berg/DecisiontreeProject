@@ -24,10 +24,10 @@ public class HeatWave : Skill {
 
         gc.Mana -= manaCost;
 
-        int damageDealt = Mathf.FloorToInt((gc.Strength + gc.GetEquipmentStrengthSum()) * gc.GetEquipmentStrengthMult() * power);
+        int damageDealt = Mathf.FloorToInt(gc.Strength * power);
 
         Combat combat = target.c;
-        List<GameCharacter> enemies = combat.Enemies;
+        List<Enemy> enemies = combat.Enemies;
 
         foreach (GameCharacter enemy in enemies){
             enemy.TakeDamage(Mathf.FloorToInt(damageDealt));

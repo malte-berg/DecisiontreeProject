@@ -23,13 +23,13 @@ public class Sacrifice : Skill {
         if(target.HP < selfDamage)
             return false;
 
-        target.Mana += 10;
+        target.Mana += 10 + Mathf.FloorToInt(gc.Strength * power);
 
         if(target.Mana > target.MaxMana) {
             target.Mana = target.MaxMana;
         }
 
-        target.HP -= selfDamage;
+        target.HP -= selfDamage/(Mathf.FloorToInt(gc.Strength * power));
 
         return true;
     }

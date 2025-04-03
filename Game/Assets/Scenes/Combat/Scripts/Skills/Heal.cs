@@ -26,7 +26,7 @@ public class Heal : Skill {
 
         target.Mana -= manaCost;
 
-        target.HP = target.Vitality;
+        target.HP = target.HP + Mathf.FloorToInt(gc.Strength * power);;
 
         return true;
     }

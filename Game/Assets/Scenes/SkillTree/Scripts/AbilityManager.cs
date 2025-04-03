@@ -39,9 +39,8 @@ public class AbilityManager : MonoBehaviour {
         player.AddSkill(punch);
         player.AddUnlockedSkill(punch);
         player.SkillPoints = player.SkillPoints - 1;
-                SetPointCounter();
-
-        Debug.Log(player.Skills);
+        SetPointCounter();
+        Debug.Log("Unlocked Punch!");
     }
 
     public void HandleClickHeatWave() {
@@ -77,6 +76,54 @@ public class AbilityManager : MonoBehaviour {
     public void HandleClickHeal() {
         if (player.SkillPoints <= 0){
             Debug.Log("Not enough skill points!");
+        }
+
+        foreach (Skill s in player.UnlockedSkills){
+            if (s is Heal) {
+                s.UpgradeSkill();
+                player.SkillPoints = player.SkillPoints - 1;
+                SetPointCounter();
+                Debug.Log("Upgraded Heal!");
+                return;
+            }
+        }
+
+        Heal heal = new Heal(player);
+        heal.UnlockSkill(); 
+        player.AddSkill(heal);
+        player.AddUnlockedSkill(heal);
+        player.SkillPoints = player.SkillPoints - 1;
+        SetPointCounter();
+        Debug.Log("Unlocked Heal!");
+    }
+
+    public void HandleClickSacrifice() {
+        if (player.SkillPoints <= 0){
+            Debug.Log("Not enough skill points!");
+            return;
+        }
+
+        foreach (Skill s in player.UnlockedSkills){
+            if (s is Sacrifice){
+                s.UpgradeSkill();
+                player.SkillPoints = player.SkillPoints - 1;
+                SetPointCounter();
+                Debug.Log("Upgraded Sacrifice!");
+                return;
+            }
+        }
+
+        foreach (Skill s in player.UnlockedSkills){
+            if (s is Heal){
+                Sacrifice sacrifice = new Sacrifice(player);
+                sacrifice.UnlockSkill();
+                player.AddSkill(sacrifice);
+                player.AddUnlockedSkill(sacrifice);
+                player.SkillPoints = player.SkillPoints - 1;
+                SetPointCounter();
+                Debug.Log("Unlocked Sacrifice!");
+                return;
+            }
         }
     }
 
