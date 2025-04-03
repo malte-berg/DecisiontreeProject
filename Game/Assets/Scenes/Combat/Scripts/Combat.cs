@@ -116,7 +116,8 @@ public class Combat : MonoBehaviour{
                 return;
             }
 
-        }
+        } else if (target != player)
+            Debug.LogError("Something unknown died..");
 
         while(time > 0){
 
