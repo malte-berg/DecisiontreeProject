@@ -5,13 +5,23 @@ public class SpriteManager : MonoBehaviour
 {
 
     public SpriteRenderer spriteRenderer;
-    public List<Sprite> spriteList;
+    public SpriteRenderer helmetRenderer;
+    public SpriteRenderer weaponRenderer;
 
+    public List<Sprite> spriteList;
+    public List<Sprite> playerSprites;
+    public List<Sprite> enemySprites;
+    public List<Sprite> punchSprites;
+    private Dictionary<string, List<Sprite>> animations = new Dictionary<string, List<Sprite>>();
     private Dictionary<string, Sprite> characterSprites = new Dictionary<string, Sprite>();
 
     void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        animations["Player"] = new List<Sprite> {playerSprites[0], playerSprites[1]};
+        animations["Enemy"] = new List<Sprite> {enemySprites[0], enemySprites[1]};
+        animations["Punch"] = new List<Sprite> {punchSprites[0], punchSprites[1], punchSprites[2]};
 
         characterSprites.Add("Player", spriteList[0]);
         characterSprites.Add("PlayerAttack", spriteList[1]);
@@ -43,6 +53,12 @@ public class SpriteManager : MonoBehaviour
     }
     public void EnemyChangeBack() {
         spriteRenderer.sprite = characterSprites["Enemy"];
+    }
+
+    // to make a little cloud appear at the enemy
+    // parameter: location of enemy?
+    public void PunchAnimation() {
+        
     }
     
 }
