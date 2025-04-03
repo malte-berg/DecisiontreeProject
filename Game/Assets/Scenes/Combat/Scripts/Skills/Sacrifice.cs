@@ -23,7 +23,7 @@ public class Sacrifice : Skill {
             target.Mana = target.MaxMana;
         }
 
-        target.HP -= selfDamage/(Mathf.FloorToInt(gc.Strength * power));
+        target.HP -= Mathf.FloorToInt(selfDamage/(gc.Strength * power));
 
         return true;
     }
