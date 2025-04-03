@@ -6,6 +6,7 @@ public class ItemDescription : MonoBehaviour{
 
     InventoryManager im;
     GameObject slide;
+    Item currentDisplay;
 
     public void Init(InventoryManager im){
 
@@ -24,11 +25,11 @@ public class ItemDescription : MonoBehaviour{
 
             case Type thisType when thisType == typeof(Head) || thisType == typeof(Torso) || thisType == typeof(Boots) || thisType == typeof(Weapon):
                 Head tC = target as Head;
-                description += $"<color=green>Vitality: \t+{tC.VitalityAdd} (+{(tC.VitalityMult*100)-100}%)</color>";
-                description += $"<color=orange>Armor: \t+{tC.ArmorAdd} (+{(tC.ArmorMult*100)-100}%)</color>";
-                description += $"<color=red>Strength: \t+{tC.StrengthAdd} (+{(tC.StrengthMult*100)-100}%)</color>";
-                description += $"<color=blue>Magic: \t+{tC.MagicAdd} (+{(tC.MagicMult*100)-100}%)</color>";
-                description += $"<color=purple>Mana: \t+{tC.ManaAdd} (+{(tC.ManaMult*100)-100}%)</color>";
+                description += $"<color=green>Vitality: \t+{tC.VitalityAdd} (+{Mathf.RoundToInt(tC.VitalityMult*100)-100}%)</color>\n";
+                description += $"<color=orange>Armor: \t+{tC.ArmorAdd} (+{Mathf.RoundToInt(tC.ArmorMult*100)-100}%)</color>\n";
+                description += $"<color=red>Strength: \t+{tC.StrengthAdd} (+{Mathf.RoundToInt(tC.StrengthMult*100)-100}%)</color>\n";
+                description += $"<color=blue>Magic: \t+{tC.MagicAdd} (+{Mathf.RoundToInt(tC.MagicMult*100)-100}%)</color>\n";
+                description += $"<color=purple>Mana: \t+{tC.ManaAdd} (+{Mathf.RoundToInt(tC.ManaMult*100)-100}%)</color>\n";
                 break;
             default:
                 break;
@@ -36,6 +37,7 @@ public class ItemDescription : MonoBehaviour{
         }
 
         slide.transform.GetChild(1).GetComponent<TMP_Text>().text = description;
+        currentDisplay = target;
         
         slide.SetActive(true);
 
