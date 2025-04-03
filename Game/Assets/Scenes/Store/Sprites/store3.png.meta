@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 57f6e2eac8fb27844be497e677f10b4b
+guid: 674a38cabe74da747808cd5bca956d45
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 512590410401034647
-    second: pixel-art-7280230_1280_0
+      213: -2550047876530339248
+    second: store-7289198_1280_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixel-art-7280230_1280_0
+      name: store-7289198_1280_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 791b93f23461d1700800000000000000
-      internalID: 512590410401034647
+      spriteID: 0528b2f87f86c9cd0800000000000000
+      internalID: -2550047876530339248
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pixel-art-7280230_1280_0: 512590410401034647
+      store-7289198_1280_0: -2550047876530339248
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

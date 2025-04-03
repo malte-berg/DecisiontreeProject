@@ -15,6 +15,7 @@ public class Player : GameCharacter {
         this.SetSprite("Player");
 
         equipment = gameObject.GetComponent<Equipment>();
+        gameObject.name = "Player";
         DontDestroyOnLoad(gameObject);
 
         int gold = 10;
