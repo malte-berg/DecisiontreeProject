@@ -25,8 +25,10 @@ public class AbilityManager : MonoBehaviour {
         }
 
         foreach (Skill s in player.UnlockedSkills){
-            if (s.GetType() == typeof(Punch)){
+            if (s is Punch){
                 s.UpgradeSkill();
+                player.SkillPoints = player.SkillPoints - 1;
+                SetPointCounter();
                 Debug.Log("Upgraded Punch!");
                 return;
             }
@@ -36,6 +38,8 @@ public class AbilityManager : MonoBehaviour {
         punch.UnlockSkill(); 
         player.AddSkill(punch);
         player.AddUnlockedSkill(punch);
+        player.SkillPoints = player.SkillPoints - 1;
+                SetPointCounter();
 
         Debug.Log(player.Skills);
     }
@@ -47,25 +51,30 @@ public class AbilityManager : MonoBehaviour {
         }
 
         foreach (Skill s in player.UnlockedSkills){
-            if (s.GetType() == typeof(HeatWave)){
+            if (s is HeatWave){
                 s.UpgradeSkill();
+                player.SkillPoints = player.SkillPoints - 1;
+                SetPointCounter();
                 Debug.Log("Upgraded Heat Wave!");
                 return;
             }
         }
 
         foreach (Skill s in player.UnlockedSkills){
-            if (s.GetType() == typeof(Punch)){
+            if (s is Punch){
                 HeatWave heatWave = new HeatWave(player);
                 heatWave.UnlockSkill();
                 player.AddSkill(heatWave);
                 player.AddUnlockedSkill(heatWave);
-
+                player.SkillPoints = player.SkillPoints - 1;
+                SetPointCounter();
                 Debug.Log("Unlocked Heat Wave!");
                 return;
             }
         }
     }
+
+
 
     public void SetPointCounter() {
         int points = player.SkillPoints;

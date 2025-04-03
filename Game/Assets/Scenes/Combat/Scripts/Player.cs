@@ -10,7 +10,7 @@ public class Player : GameCharacter {
 
     Skill[] unlockedSkills;
 
-    public int SkillPoints { get { return skillPoints; }}
+    public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
 
     public Skill[] UnlockedSkills { get { return unlockedSkills; }}
 
@@ -28,7 +28,7 @@ public class Player : GameCharacter {
         DontDestroyOnLoad(gameObject);
 
         gold = 10;          //For buying items in the store window.
-        skillPoints = 0;    //For unlocking new abilities in the skill tree window.
+        skillPoints = 10;    //For unlocking new abilities in the skill tree window.
         statPoints = 25;    //for increasing stats in the stats window.
 
         skills[0] = new Punch(this);
