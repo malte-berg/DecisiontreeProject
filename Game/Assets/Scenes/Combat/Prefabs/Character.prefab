@@ -99,6 +99,8 @@ GameObject:
   - component: {fileID: 3116871136281288569}
   - component: {fileID: 485944624609594782}
   - component: {fileID: -2776920386141751306}
+  - component: {fileID: -7257038430832533952}
+  - component: {fileID: -5186805524164634729}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -134,6 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e855adcc528734da2d28af0b1d47e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  c: {fileID: 0}
+  healthBar: {fileID: 0}
+  equipment: {fileID: 0}
 --- !u!114 &485944624609594782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +185,39 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.002353251, y: 0.0023531914}
+  m_Size: {x: 0.98476815, y: 1.9836559}
   m_Direction: 0
+--- !u!114 &-7257038430832533952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566980957986256734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ed990991cdc84e4caac092ee7b9b80e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  spriteList:
+  - {fileID: -323790041, guid: 2d4f4b9cda32bbf4f81f54380e511707, type: 3}
+  - {fileID: 1759189206, guid: 2d4f4b9cda32bbf4f81f54380e511707, type: 3}
+  - {fileID: -781871117, guid: 3927ef98719359446a76b6ef88e75741, type: 3}
+  - {fileID: 1218500570, guid: 3927ef98719359446a76b6ef88e75741, type: 3}
+--- !u!114 &-5186805524164634729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566980957986256734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179f908ee322a9f439c8be89b247bf6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  c: {fileID: 0}
+  healthBar: {fileID: 0}
+  equipment: {fileID: 0}

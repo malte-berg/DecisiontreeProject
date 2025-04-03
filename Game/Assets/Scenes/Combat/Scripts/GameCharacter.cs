@@ -15,11 +15,12 @@ public class GameCharacter : MonoBehaviour{
     int maxMana;
     public HealthBar healthBar;
 
-    public int Strength{get { return strength; }}
-    public int Magic{get { return magic; }}
-    public int Mana{get{ return mana; } set{ this.mana = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
-    public int Vitality{ get { return vitality; }}
+    public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set{ this.vitality = value; }}
+    public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); }}
+    public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value;}}
+    public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set{ this.magic = value; }}
+    public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set{ this.mana = value; }}
 
     // SKILLS
     public Skill[] skills;
@@ -29,6 +30,10 @@ public class GameCharacter : MonoBehaviour{
     // INVENTORY
     public Equipment equipment;
     public Item[] inventory;
+
+    // to change sprite
+    SpriteManager spriteManager;
+    Transform moveCharacterSprite;
 
     public GameCharacter(){
 
@@ -54,6 +59,16 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
+    public void SetSprite(string type) {
+
+        spriteManager = GetComponentInChildren<SpriteManager>();
+        if(spriteManager == null) return;
+        spriteManager.SetCharacter(type);
+        moveCharacterSprite = gameObject.transform.GetChild(0);
+        moveCharacterSprite.localScale = new Vector3(3,3,3);
+
+    }
+
     void OnMouseDown(){
 
         if(c != null)
@@ -71,19 +86,26 @@ public class GameCharacter : MonoBehaviour{
     public bool UseSkill(GameCharacter target){
 
         print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
-        return skills[selectedSkill].Effect(target);
 
+        bool skill = skills[selectedSkill].Effect(target);
+
+        if(spriteManager != null && skill)
+            spriteManager.AttackAnimation();
+
+        return skill;
     }
 
     public void TakeDamage(int dmg){
 
-        if(dmg <= armor)
+        print($"Character armor: {Armor}");
+
+        if(dmg <= Armor)
             return;
 
-        hp -= dmg - armor;
+        hp -= dmg - Armor;
         print(gameObject.name + " took: " + dmg + " damage!");
 
-        healthBar.UpdateHealthBar(hp, vitality);
+        healthBar.UpdateHealthBar(hp, Vitality);
 
         if(hp <= 0)
             c.KillCharacter(this);
