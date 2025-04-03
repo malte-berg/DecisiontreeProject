@@ -2,18 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class HeatWave : Skill {
-     GameCharacter gc;
-    string name;
-    float power;
-    int manaCost;
-    int skillCost;
+    GameCharacter gc;
 
-    public HeatWave(GameCharacter gc) : base(gc) {
+    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 0) {
         this.gc = gc;
-        this.name = "Heat Wave";
-        this.power = 1;
-        this.manaCost = 0;
-        this.skillCost = 0;
     }
 
     public override bool Effect(GameCharacter target) {

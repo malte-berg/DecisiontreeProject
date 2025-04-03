@@ -2,18 +2,9 @@ using UnityEngine;
 
 public class Heal : Skill {
     GameCharacter gc;
-    string name;
-    float power;
-    int manaCost;
-    int skillCost;
 
-    public Heal(GameCharacter gc) : base(gc){
+    public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 0){
         this.gc = gc;
-        this.name = "Heal";
-        this.power = 1;
-        this.manaCost = 0;
-        this.skillCost = 0;
-        
     }
 
     public override bool Effect(GameCharacter target){

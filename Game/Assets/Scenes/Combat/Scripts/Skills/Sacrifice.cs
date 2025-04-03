@@ -2,17 +2,11 @@ using UnityEngine;
 
 public class Sacrifice : Skill {
     GameCharacter gc;
-    string name;
-    float power;
     int selfDamage;
-    int skillCost;
 
-    public Sacrifice(GameCharacter gc) : base(gc){
+    public Sacrifice(GameCharacter gc) : base(gc, "Sacrifice", 1, 0, 0){
         this.gc = gc;
-        this.name = "Heal";
-        this.power = 1;
         this.selfDamage = 10;
-        this.skillCost = 0;   
     }
 
     public override bool Effect(GameCharacter target){
