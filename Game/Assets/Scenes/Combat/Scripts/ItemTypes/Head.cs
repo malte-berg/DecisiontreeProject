@@ -30,6 +30,8 @@ public class Head : Item {
     public int ManaAdd{ get{ return manaAdd; } }
     public float ManaMult{ get{ return manaMult; } }
 
+    public Head(string name, int value) : this(name, value, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f){}
+
     public Head(string name, int value, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value){
 
         this.name = name;
@@ -47,4 +49,10 @@ public class Head : Item {
 
     }
 
+    public override string GetNamn(){
+        return this.name;
+    }
+    public override int GetValue(){
+        return this.value;
+    }  
 }

@@ -47,4 +47,10 @@ public class Torso : Item {
 
     }
 
+    public override string GetNamn(){
+        return this.name;
+    }
+    public override int GetValue(){
+        return this.value;
+    }
 }

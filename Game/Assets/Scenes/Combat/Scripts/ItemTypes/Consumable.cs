@@ -20,4 +20,10 @@ public class Consumable : Item {
 
     } */
 
+    public override string GetNamn(){
+        return this.name;
+    }
+    public override int GetValue(){
+        return this.value;
+    }
 }

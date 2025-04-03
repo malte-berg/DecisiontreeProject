@@ -14,5 +14,6 @@ public abstract class Item{
         this.value = value;
 
     }
-
+    public abstract string GetNamn();
+    public abstract int GetValue();
 }
