@@ -95,6 +95,7 @@ public class GameCharacter : MonoBehaviour{
         if(spriteManager != null && skill)
             Debug.Log(gameObject.name);
             spriteManager.Animation(gameObject.name, 0.2f);
+            spriteManager.PunchAnimation(target);
 
         return skill;
     }
