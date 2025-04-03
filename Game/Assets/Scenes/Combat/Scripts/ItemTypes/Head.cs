@@ -46,5 +46,4 @@ public class Head : Item {
         this.manaMult = manaMult;
 
     }
-
 }

@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Rifle not aimed_0: -8944633762887253246
+      Rifle not aimed_1: -4725127217908977251
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

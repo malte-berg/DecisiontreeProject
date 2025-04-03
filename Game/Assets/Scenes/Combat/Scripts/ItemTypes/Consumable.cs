@@ -19,5 +19,4 @@ public class Consumable : Item {
         int type switch in the function
 
     } */
-
 }
