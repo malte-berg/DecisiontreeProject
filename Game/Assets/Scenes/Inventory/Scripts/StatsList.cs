@@ -17,11 +17,6 @@ public class StatsList : MonoBehaviour {
     public void UpdateStats(){
 
         string text = "";
-        text += $"<color=green>Vitality: \t{im.player.Vitality}</color>\n";
-        text += $"<color=orange>Armor: \t{im.player.Armor}</color>\n";
-        text += $"<color=red>Strength: \t{im.player.Strength}</color>\n";
-        text += $"<color=blue>Magic: \t{im.player.Magic}</color>\n";
-        text += $"<color=purple>Mana: \t{im.player.Mana}</color>\n";
         if(im.player.equipment.weaponLeft != null)
             text += $"<size=70%><color=black>Weapon: \t{im.player.equipment.weaponLeft.Name}\n";
         else text += "<size=70%><color=black>Weapon: \tN/A\n";
@@ -34,6 +29,11 @@ public class StatsList : MonoBehaviour {
         if(im.player.equipment.boots != null)
             text += $"Boots: \t{im.player.equipment.boots.Name}</color></size>\n";
         else text += "Boots: \tN/A</color></size>\n";
+        text += $"<color=green>Vitality: \t{im.player.Vitality}</color>\n";
+        text += $"<color=orange>Armor: \t{im.player.Armor}</color>\n";
+        text += $"<color=red>Strength: \t{im.player.Strength}</color>\n";
+        text += $"<color=blue>Magic: \t{im.player.Magic}</color>\n";
+        text += $"<color=purple>Mana: \t{im.player.Mana}</color>\n";
 
         statText.text = text;
 

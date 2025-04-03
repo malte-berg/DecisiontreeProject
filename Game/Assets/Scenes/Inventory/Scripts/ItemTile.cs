@@ -24,7 +24,7 @@ public class ItemTile : MonoBehaviour{
 
     public void Pressed(){
 
-        player.equipment.Equip(item);
+        im.id.DisplayItem(item);
         im.sl.UpdateStats();
 
     }

@@ -59,11 +59,14 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
-    public void SetSprite(string type){
+    public void SetSprite(string type) {
+
         spriteManager = GetComponentInChildren<SpriteManager>();
+        if(spriteManager == null) return;
         spriteManager.SetCharacter(type);
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(3,3,3);
+
     }
 
     void OnMouseDown(){
@@ -84,20 +87,25 @@ public class GameCharacter : MonoBehaviour{
 
         print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
 
-        spriteManager.AttackAnimation();
+        bool skill = skills[selectedSkill].Effect(target);
 
-        return skills[selectedSkill].Effect(target);
+        if(spriteManager != null && skill)
+            spriteManager.AttackAnimation();
+
+        return skill;
     }
 
     public void TakeDamage(int dmg){
 
-        if(dmg <= armor)
+        print($"Character armor: {Armor}");
+
+        if(dmg <= Armor)
             return;
 
-        hp -= dmg - armor;
+        hp -= dmg - Armor;
         print(gameObject.name + " took: " + dmg + " damage!");
 
-        healthBar.UpdateHealthBar(hp, vitality);
+        healthBar.UpdateHealthBar(hp, Vitality);
 
         if(hp <= 0)
             c.KillCharacter(this);
