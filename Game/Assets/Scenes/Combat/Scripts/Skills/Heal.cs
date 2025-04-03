@@ -17,7 +17,7 @@ public class Heal : Skill {
 
         target.Mana -= manaCost;
 
-        target.HP = target.HP + Mathf.FloorToInt(gc.Strength * power);
+        target.HP = target.HP + Mathf.FloorToInt(gc.Magic * power);
 
         if (target.HP > target.Vitality){
             target.HP = target.Vitality;

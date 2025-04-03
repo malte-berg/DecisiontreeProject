@@ -16,7 +16,7 @@ public class HeatWave : Skill {
 
         gc.Mana -= manaCost;
 
-        int damageDealt = Mathf.FloorToInt(gc.Strength * power);
+        int damageDealt = Mathf.FloorToInt(gc.Magic * power);
 
         Combat combat = target.c;
         List<Enemy> enemies = combat.Enemies;
