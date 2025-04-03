@@ -39,7 +39,11 @@ public class InventoryList : MonoBehaviour {
             im.iTs[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-25 - 50*i);
             im.iTs[i].Init(im, player.inventory[i]);
 
+            // this should be outside of the for but naah
+            content.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Clamp((i+1) * 50, 0, 2000));
+
         }
+
 
     }
     
