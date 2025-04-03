@@ -29,7 +29,12 @@ public class GameCharacter : MonoBehaviour{
     int skillCount;
     int selectedSkill = 0;
 
-    // INVENTORY
+    // INVENTORYfor (int i = 0; i < unlockedSkills.Length; i++){
+            if (unlockedSkills[i] == null) {
+                unlockedSkills[i] = s;
+                return;
+            }
+        }
     public Equipment equipment;
     public Item[] inventory;
 
@@ -134,13 +139,13 @@ public class GameCharacter : MonoBehaviour{
     }
 
     public void AddSkill(Skill newSkill) {
-        for (int i = 0; i < skills.Length; i++) {
-            if (skills[i] == null) {
-                skills[i] = newSkill;
-                return;
-            }
+        if (skillCount == skills.Length) {
+            Debug.Log("Not enough slots!!");
+            return;
         }
-        Debug.Log("Not enough slots!!");
+
+        skills[skillCount] = newSkill;
+        skillCount++;
     }
 
     public float GetEquipmentVitalityMult(){
