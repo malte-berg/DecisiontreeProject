@@ -13,6 +13,8 @@ public class Combat : MonoBehaviour{
     Player player;
     List<Enemy> enemies = new List<Enemy>();
 
+    public List<Enemy> Enemies{ get { return enemies; }}
+
     int turn = 0;
     GameCharacter currentC;
 

@@ -21,9 +21,11 @@ public class GameCharacter : MonoBehaviour{
     public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value;}}
     public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set{ this.magic = value; }}
     public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set{ this.mana = value; }}
+    public int MaxMana{get{return maxMana;}}
 
     // SKILLS
     public Skill[] skills;
+
     int skillCount;
     int selectedSkill = 0;
 
@@ -44,7 +46,7 @@ public class GameCharacter : MonoBehaviour{
         strength = 10;
         magic = 0;
         mana = 0;
-        maxMana = 0;
+        maxMana = 100;
         skills = new Skill[8];
         skillCount = 1;
         equipment = null;
@@ -134,6 +136,16 @@ public class GameCharacter : MonoBehaviour{
             
         sr.color = new Color(1,1,1);
 
+    }
+
+    public void AddSkill(Skill newSkill) {
+        if (skillCount == skills.Length) {
+            Debug.Log("Not enough slots!!");
+            return;
+        }
+
+        skills[skillCount] = newSkill;
+        skillCount++;
     }
 
     public float GetEquipmentVitalityMult(){
@@ -285,5 +297,4 @@ public class GameCharacter : MonoBehaviour{
         return sum;
 
     }
-
 }
