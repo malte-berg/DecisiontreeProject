@@ -15,11 +15,12 @@ public class GameCharacter : MonoBehaviour{
     int maxMana;
     public HealthBar healthBar;
 
-    public int Strength{get { return strength; } set{ this.strength = value; }}
-    public int Magic{get { return magic; } set{ this.magic = value; }}
-    public int Mana{get{ return mana; } set{ this.mana = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
-    public int Vitality{ get { return vitality; } set{ this.vitality = value; }}
+    public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set{ this.vitality = value; }}
+    public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); }}
+    public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value;}}
+    public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set{ this.magic = value; }}
+    public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set{ this.mana = value; }}
 
     // SKILLS
     public Skill[] skills;
