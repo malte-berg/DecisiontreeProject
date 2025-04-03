@@ -15,6 +15,7 @@ public class Player : GameCharacter {
     public override void Init(){
 
         this.SetSprite("Player");
+        Debug.Log("Initialize player");
 
         equipment = gameObject.GetComponent<Equipment>();
         gameObject.name = "Player";

@@ -62,7 +62,10 @@ public class GameCharacter : MonoBehaviour{
     public void SetSprite(string type) {
 
         spriteManager = GetComponentInChildren<SpriteManager>();
-        if(spriteManager == null) return;
+        if(spriteManager == null) {
+            Debug.Log("spriteManager Not found");
+            return;
+        }
         spriteManager.SetCharacter(type);
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(3,3,3);

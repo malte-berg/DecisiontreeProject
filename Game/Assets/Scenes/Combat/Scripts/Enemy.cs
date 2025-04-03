@@ -8,6 +8,7 @@ public class Enemy : GameCharacter {
         skills[0] = new Punch(this);
 
         this.SetSprite("Enemy");
+        Debug.Log("Init Enemy");
         
     }
 
