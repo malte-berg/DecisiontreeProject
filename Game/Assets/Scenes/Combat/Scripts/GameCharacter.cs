@@ -59,11 +59,14 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
-    public void SetSprite(string type){
+    public void SetSprite(string type) {
+
         spriteManager = GetComponentInChildren<SpriteManager>();
+        if(spriteManager == null) return;
         spriteManager.SetCharacter(type);
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(3,3,3);
+
     }
 
     void OnMouseDown(){
@@ -84,7 +87,8 @@ public class GameCharacter : MonoBehaviour{
 
         print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
 
-        spriteManager.AttackAnimation();
+        if(spriteManager != null)
+            spriteManager.AttackAnimation();
 
         return skills[selectedSkill].Effect(target);
     }

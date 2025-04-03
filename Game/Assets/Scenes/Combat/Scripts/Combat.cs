@@ -17,12 +17,13 @@ public class Combat : MonoBehaviour{
 
     public void Init(){
 
-        marker = Instantiate(marker);
-        targeting = Instantiate(targeting);
-
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
+        player.transform.position = new Vector3(-4, 0, 0);
         player.ShowPlayer();
         player.c = this;
+        
+        marker = Instantiate(marker);
+        targeting = Instantiate(targeting);
 
         //Add a healthbar for the player and put it inside the canvas.
         Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
@@ -31,7 +32,7 @@ public class Combat : MonoBehaviour{
         player.healthBar.gameObject.name = "PlayerHP";
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
 
-        for(int i = 0; i < 1; i++){ // TEMP SPAWN ENEMIES
+        for(int i = 0; i < 4; i++){ // TEMP SPAWN ENEMIES
 
             CreateEnemy();
 
@@ -70,9 +71,9 @@ public class Combat : MonoBehaviour{
         enemies[i].gameObject.name = "Enemy #" + i;
 
         if(i % 2 == 0)
-            enemies[i].transform.position = Vector3.right * (i+1) * 2 + (Vector3.up * i * 2);
+            enemies[i].transform.position = Vector3.right * (i+1) * 2 + (Vector3.up * i * 0.5f);
         else
-            enemies[i].transform.position = Vector3.right * (i+1) * 2 - (Vector3.up * i * 2);
+            enemies[i].transform.position = Vector3.right * (i+1) * 2 - (Vector3.up * (i+1) * 0.25f);
 
         //Add a healthbar for the enemy and put it inside the canvas.
         Vector3 enemyHealthBarPosition = Camera.main.WorldToScreenPoint(enemies[i].gameObject.transform.position + Vector3.up*2);   //Place healthbar above character.
@@ -80,7 +81,7 @@ public class Combat : MonoBehaviour{
         enemies[i].healthBar.Init();
         enemies[i].healthBar.gameObject.name = enemies[i].gameObject.name + " HP";
         enemies[i].healthBar.UpdateHealthBar(enemies[i].HP, enemies[i].Vitality);
-        return enemies[i];
+        return enemies[i] as Enemy;
 
     }
 
