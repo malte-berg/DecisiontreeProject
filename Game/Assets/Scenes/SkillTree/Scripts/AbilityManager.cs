@@ -29,7 +29,7 @@ public class AbilityManager : MonoBehaviour {
             return;
         }
 
-        if (skill is Punch && !ReferenceEquals(player.skills[0], skill)) {
+        if (skill is Punch && player.skills[0] != skill) {
             player.skills[0] = skill;
             Debug.Log("Replaced Punch skill!");
             skill.UpgradeSkill();
