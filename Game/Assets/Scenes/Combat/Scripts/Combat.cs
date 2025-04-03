@@ -17,13 +17,14 @@ public class Combat : MonoBehaviour{
 
     public void Init(){
 
-        player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
-        player.transform.position = new Vector3(-4, 0, 0);
-        player.ShowPlayer();
-        player.c = this;
-        
         marker = Instantiate(marker);
         targeting = Instantiate(targeting);
+
+        player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
+        player.ShowPlayer();
+        player.c = this;
+        player.transform.position = new Vector3(-4, 0, 0);
+        GetCurrentCharacter();
 
         //Add a healthbar for the player and put it inside the canvas.
         Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
