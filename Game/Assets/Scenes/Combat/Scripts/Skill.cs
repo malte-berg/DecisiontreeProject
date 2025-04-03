@@ -7,18 +7,21 @@ public abstract class Skill{
     public float power;
     public int manaCost;
     public int skillCost;
+    public bool unlocked;
 
     public string Name{ get { return name; } }
 
     public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost){
 
         this.gc = gc;
+        this.unlocked = false;
 
     }
 
     public void UnlockSkill() {
 
         power = 1;
+        unlocked = true;
 
     }
 

@@ -30,11 +30,6 @@ public class GameCharacter : MonoBehaviour{
     int selectedSkill = 0;
 
     // INVENTORYfor (int i = 0; i < unlockedSkills.Length; i++){
-            if (unlockedSkills[i] == null) {
-                unlockedSkills[i] = s;
-                return;
-            }
-        }
     public Equipment equipment;
     public Item[] inventory;
 
