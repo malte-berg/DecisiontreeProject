@@ -76,6 +76,7 @@ public class AbilityManager : MonoBehaviour {
     public void HandleClickHeal() {
         if (player.SkillPoints <= 0){
             Debug.Log("Not enough skill points!");
+            return;
         }
 
         foreach (Skill s in player.UnlockedSkills){
