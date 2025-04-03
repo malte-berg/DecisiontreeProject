@@ -71,8 +71,16 @@ public class GameCharacter : MonoBehaviour{
 
     void OnMouseDown(){
 
-        if(c != null)
-            c.CharacterClicked(this);
+        print("mouse");
+
+        if(c == null)
+            print("panic");
+
+        if(c != null){
+            new Task(() => { c.CharacterClicked(this); }).Start();
+            // c.CharacterClicked(this);
+            print("huh");
+        }
 
     }
 
@@ -85,7 +93,7 @@ public class GameCharacter : MonoBehaviour{
 
     public bool UseSkill(GameCharacter target){
 
-        print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
+        // print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
 
         bool skill = skills[selectedSkill].Effect(target);
 
@@ -97,13 +105,11 @@ public class GameCharacter : MonoBehaviour{
 
     public void TakeDamage(int dmg){
 
-        print($"Character armor: {Armor}");
-
         if(dmg <= Armor)
             return;
 
         hp -= dmg - Armor;
-        print(gameObject.name + " took: " + dmg + " damage!");
+        // print(gameObject.name + " took: " + dmg + " damage!");
 
         healthBar.UpdateHealthBar(hp, Vitality);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour{
 
-    public GameObject characterPrefab;
+    public GameObject enemyPrefab;
     public GameObject playerPrefab;
     public GameObject healthBarPrefab;
     public GameObject marker;
@@ -57,7 +57,8 @@ public class Combat : MonoBehaviour{
             current = enemies[turn - 1];
 
         // move marker aswell
-        marker.transform.position = current.gameObject.transform.position;
+        // marker.transform.position = current.gameObject.transform.position;
+        print("jaughu");
         return current;
 
     }
@@ -66,7 +67,7 @@ public class Combat : MonoBehaviour{
 
         int i = enemies.Count;
 
-        enemies.Add(Instantiate(characterPrefab).GetComponent<Enemy>());
+        enemies.Add(Instantiate(enemyPrefab).GetComponent<Enemy>());
         enemies[i].Init();
         enemies[i].c = this;
         enemies[i].gameObject.name = "Enemy #" + i;
@@ -125,7 +126,9 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public void CharacterClicked(GameCharacter clicked){
+    public async Task CharacterClicked(GameCharacter clicked){
+
+        // print($"{currentC.gameObject.name}: clicked {clicked.gameObject.name}");
 
         if(currentC == null)
             currentC = GetCurrentCharacter();
@@ -135,8 +138,17 @@ public class Combat : MonoBehaviour{
             return;
         }
 
+        if(currentC != null)
+            print("yay");
+        else
+            print("nay");
+
         turn = (turn + 1) % (enemies.Count + 1);
         currentC = GetCurrentCharacter();
+
+        // if(currentC is Enemy)
+        //     // (currentC as Enemy).AI(this, player);
+            // new Task(() => { (currentC as Enemy).AI(this, player);}).Start();
 
     }
 
