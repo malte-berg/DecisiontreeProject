@@ -46,5 +46,4 @@ public class Weapon : Item{
         this.manaMult = manaMult;
 
     }
-
 }
