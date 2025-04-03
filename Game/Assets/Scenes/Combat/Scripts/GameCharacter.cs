@@ -26,8 +26,6 @@ public class GameCharacter : MonoBehaviour{
     // SKILLS
     public Skill[] skills;
 
-    public Skill[] Skills{ get { return skills; }}
-
     int skillCount;
     int selectedSkill = 0;
 

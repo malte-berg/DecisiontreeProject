@@ -19,6 +19,10 @@ public class Heal : Skill {
 
         target.HP = target.HP + Mathf.FloorToInt(gc.Strength * power);
 
+        if (target.HP > target.Vitality){
+            target.HP = target.Vitality;
+        }
+
         return true;
     }
 
