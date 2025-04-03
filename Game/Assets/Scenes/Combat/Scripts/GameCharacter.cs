@@ -29,7 +29,7 @@ public class GameCharacter : MonoBehaviour{
     int skillCount;
     int selectedSkill = 0;
 
-    // INVENTORYfor (int i = 0; i < unlockedSkills.Length; i++){
+    // INVENTORY
     public Equipment equipment;
     public Item[] inventory;
 
