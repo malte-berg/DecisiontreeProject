@@ -27,7 +27,7 @@ public class Punch : Skill{
 
         gc.Mana -= manaCost;
 
-        int damageDealt = Mathf.FloorToInt((gc.Strength + gc.GetEquipmentStrengthSum()) * gc.GetEquipmentStrengthMult() * power);
+        int damageDealt = Mathf.FloorToInt(gc.Strength * power);
 
         target.TakeDamage(Mathf.FloorToInt(damageDealt));
 
