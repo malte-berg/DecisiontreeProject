@@ -57,7 +57,7 @@ public class Combat : MonoBehaviour{
             current = enemies[turn - 1];
 
         // move marker aswell
-        // marker.transform.position = current.gameObject.transform.position;
+        marker.transform.position = current.gameObject.transform.position;
         print("jaughu");
         return current;
 
@@ -126,12 +126,12 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public async Task CharacterClicked(GameCharacter clicked){
-
-        // print($"{currentC.gameObject.name}: clicked {clicked.gameObject.name}");
+    public void CharacterClicked(GameCharacter clicked){
 
         if(currentC == null)
             currentC = GetCurrentCharacter();
+
+        print($"{currentC.gameObject.name}: clicked {clicked.gameObject.name}");
 
         if(!currentC.UseSkill(clicked)){
             print("it failed :(");
@@ -146,9 +146,9 @@ public class Combat : MonoBehaviour{
         turn = (turn + 1) % (enemies.Count + 1);
         currentC = GetCurrentCharacter();
 
-        // if(currentC is Enemy)
-        //     // (currentC as Enemy).AI(this, player);
-            // new Task(() => { (currentC as Enemy).AI(this, player);}).Start();
+        if(currentC is Enemy)
+            new Task(async () => { await (currentC as Enemy).AI(this, player);}).Start();
+            // (currentC as Enemy).AI(this, player);
 
     }
 

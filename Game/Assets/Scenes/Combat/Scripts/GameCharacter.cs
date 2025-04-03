@@ -77,8 +77,8 @@ public class GameCharacter : MonoBehaviour{
             print("panic");
 
         if(c != null){
-            new Task(() => { c.CharacterClicked(this); }).Start();
-            // c.CharacterClicked(this);
+            // new Task(() => { c.CharacterClicked(this); }).Start();
+            c.CharacterClicked(this);
             print("huh");
         }
 
@@ -94,6 +94,7 @@ public class GameCharacter : MonoBehaviour{
     public bool UseSkill(GameCharacter target){
 
         // print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
+        print(selectedSkill);
 
         bool skill = skills[selectedSkill].Effect(target);
 

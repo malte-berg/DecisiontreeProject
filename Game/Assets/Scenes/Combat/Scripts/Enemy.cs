@@ -15,8 +15,10 @@ public class Enemy : GameCharacter {
 
     public async Task AI(Combat c, GameCharacter target){
 
-        // Thread.Sleep(1000);
-        new Task(() => {c.CharacterClicked(target);}).Start();
+        Thread.Sleep(1000);
+        print("MAH!");
+        c.CharacterClicked(target);
+        // new Task(() => {}).Start();
 
     }
 
