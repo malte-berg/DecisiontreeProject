@@ -16,24 +16,29 @@ public class Equipment : MonoBehaviour{
         switch(target.GetType()){
 
             case Type headType when headType == typeof(Head):
-                print("Equipped head");
-                head = target as Head;
+                print("Equipped/unequipped head");
+                if(target == head) head = null;
+                else head = target as Head;
                 return true;
             case Type torsoType when torsoType == typeof(Torso):
-                print("Equipped torso");
-                torso = target as Torso;
+                print("Equipped/unequipped torso");
+                if(target == torso) torso = null;
+                else torso = target as Torso;
                 return true;
             case Type bootsType when bootsType == typeof(Boots):
-                print("Equipped boots");
-                boots = target as Boots;
+                print("Equipped/unequipped boots");
+                if(target == boots) boots = null;
+                else boots = target as Boots;
                 return true;
             case Type weaponType when weaponType == typeof(Weapon):
-                print("Equipped weapon");
-                weaponLeft = target as Weapon;
+                print("Equipped/unequipped weapon");
+                if(target == weaponLeft) weaponLeft = null;
+                else weaponLeft = target as Weapon;
                 return true;
             case Type consumableType when consumableType == typeof(Consumable):
-                print("Equipped consumable");
-                consumableLeft = target as Consumable;
+                print("Equipped/unequipped consumable");
+                if(target == consumableLeft) consumableLeft = null;
+                else consumableLeft = target as Consumable;
                 return true;
             default:
                 return false;

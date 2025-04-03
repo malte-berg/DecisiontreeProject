@@ -26,6 +26,19 @@ public class Combat : MonoBehaviour{
         player.ShowPlayer();
         player.c = this;
 
+        //Add a healthbar for the player and put it inside the canvas.
+        Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
+        player.healthBar = Instantiate(healthBarPrefab, healthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
+        player.healthBar.Init();
+        player.healthBar.gameObject.name = "PlayerHP";
+        player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
+
+        for(int i = 0; i < 1; i++){ // TEMP SPAWN ENEMIES
+
+            CreateEnemy();
+
+        }
+
     }
 
     void Awake(){
@@ -34,37 +47,9 @@ public class Combat : MonoBehaviour{
 
     }
 
-    void Start(){ // TEMP
-
-        //Add a healthbar for the player and put it inside the canvas.
-        Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
-        player.healthBar = Instantiate(healthBarPrefab, healthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
-        player.healthBar.Init();
-        player.healthBar.gameObject.name = "PlayerHP";
-        player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
-
-        for(int i = 0; i < 3; i++){
-
-            enemies.Add(Instantiate(characterPrefab).GetComponent<GameCharacter>());
-            enemies[i].Init();
-            enemies[i].c = this;
-            enemies[i].gameObject.name = "Enemy #" + i;
-            enemies[i].transform.position = Vector3.right * (i+1) * 2;
-
-            //Add a healthbar for the enemy and put it inside the canvas.
-            Vector3 enemyHealthBarPosition = Camera.main.WorldToScreenPoint(enemies[i].gameObject.transform.position + Vector3.up*2);   //Place healthbar above character.
-            enemies[i].healthBar = Instantiate(healthBarPrefab, enemyHealthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
-            enemies[i].healthBar.Init();
-            enemies[i].healthBar.gameObject.name = enemies[i].gameObject.name + " HP";
-            enemies[i].healthBar.UpdateHealthBar(enemies[i].HP, enemies[i].Vitality);
-
-        }
-
-    }
-
     GameCharacter GetCurrentCharacter(){
 
-        GameCharacter current = null;
+        GameCharacter current;
 
         if(turn == 0)
             current = player;
@@ -74,6 +59,30 @@ public class Combat : MonoBehaviour{
         // move marker aswell
         marker.transform.position = current.gameObject.transform.position;
         return current;
+
+    }
+
+    public Enemy CreateEnemy(){
+
+        int i = enemies.Count;
+
+        enemies.Add(Instantiate(characterPrefab).GetComponent<GameCharacter>());
+        enemies[i].Init();
+        enemies[i].c = this;
+        enemies[i].gameObject.name = "Enemy #" + i;
+
+        if(i % 2 == 0)
+            enemies[i].transform.position = Vector3.right * (i+1) * 2 + (Vector3.up * i * 2);
+        else
+            enemies[i].transform.position = Vector3.right * (i+1) * 2 - (Vector3.up * i * 2);
+
+        //Add a healthbar for the enemy and put it inside the canvas.
+        Vector3 enemyHealthBarPosition = Camera.main.WorldToScreenPoint(enemies[i].gameObject.transform.position + Vector3.up*2);   //Place healthbar above character.
+        enemies[i].healthBar = Instantiate(healthBarPrefab, enemyHealthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
+        enemies[i].healthBar.Init();
+        enemies[i].healthBar.gameObject.name = enemies[i].gameObject.name + " HP";
+        enemies[i].healthBar.UpdateHealthBar(enemies[i].HP, enemies[i].Vitality);
+        return enemies[i];
 
     }
 
