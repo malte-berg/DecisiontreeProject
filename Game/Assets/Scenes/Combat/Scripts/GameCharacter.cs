@@ -30,6 +30,10 @@ public class GameCharacter : MonoBehaviour{
     public Equipment equipment;
     public Item[] inventory;
 
+    // to change sprite
+    SpriteManager spriteManager;
+    Transform moveCharacterSprite;
+
     public GameCharacter(){
 
         c = null;
@@ -54,6 +58,13 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
+    public void SetSprite(string type){
+        spriteManager = GetComponentInChildren<SpriteManager>();
+        spriteManager.SetCharacter(type);
+        moveCharacterSprite = gameObject.transform.GetChild(0);
+        moveCharacterSprite.localScale = new Vector3(3,3,3);
+    }
+
     void OnMouseDown(){
 
         if(c != null)
@@ -71,8 +82,10 @@ public class GameCharacter : MonoBehaviour{
     public bool UseSkill(GameCharacter target){
 
         print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
-        return skills[selectedSkill].Effect(target);
 
+        spriteManager.AttackAnimation();
+
+        return skills[selectedSkill].Effect(target);
     }
 
     public void TakeDamage(int dmg){

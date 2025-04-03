@@ -43,7 +43,7 @@ public class Combat : MonoBehaviour{
 
         for(int i = 0; i < 3; i++){
 
-            enemies.Add(Instantiate(characterPrefab).GetComponent<GameCharacter>());
+            enemies.Add(Instantiate(characterPrefab).GetComponent<Enemy>());
             enemies[i].Init();
             enemies[i].c = this;
             enemies[i].gameObject.name = "Enemy #" + i;
