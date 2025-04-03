@@ -93,7 +93,8 @@ public class GameCharacter : MonoBehaviour{
         bool skill = skills[selectedSkill].Effect(target);
 
         if(spriteManager != null && skill)
-            spriteManager.AttackAnimation();
+            Debug.Log(gameObject.name);
+            spriteManager.Animation(gameObject.name, 0.2f);
 
         return skill;
     }
