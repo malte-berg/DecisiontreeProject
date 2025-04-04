@@ -25,6 +25,8 @@ public class Sacrifice : Skill {
         }
 
         target.HP -= Mathf.FloorToInt(selfDamage/(gc.Strength * power));
+        
+        target.healthBar.UpdateHealthBar(target.HP, target.Vitality);
 
         return true;
     }
