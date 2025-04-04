@@ -23,6 +23,8 @@ public class Heal : Skill {
             target.HP = target.Vitality;
         }
 
+        target.healthBar.UpdateHealthBar(target.HP, target.Vitality);
+
         return true;
     }
 
