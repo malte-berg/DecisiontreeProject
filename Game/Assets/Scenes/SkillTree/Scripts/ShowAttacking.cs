@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO: Remove this file?
+
 public class ShowAttacking : MonoBehaviour {
 
    public Button buttonA;
