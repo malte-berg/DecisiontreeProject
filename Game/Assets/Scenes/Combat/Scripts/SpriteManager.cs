@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class SpriteManager : MonoBehaviour
 {
     private Transform spriteContainer;
+    private Transform abilityContainer;
 
     public SpriteRenderer spriteRenderer;
     public List<Sprite> spriteList;
@@ -13,12 +14,16 @@ public class SpriteManager : MonoBehaviour
 
     void Awake()
     {
-        spriteContainer = transform.Find("Capsule");
+        abilityContainer = transform.Find("Ability");
+        SpriteRenderer sr = abilityContainer.GetComponent<SpriteRenderer>();
+        spriteLayers.Add("Ability", sr);
 
+        spriteContainer = transform.Find("CharacterContainer");
+        
         if (spriteContainer != null) {
             // get all the child objects in the sprite container
             foreach (Transform child in spriteContainer) {
-                SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
+                sr = child.GetComponent<SpriteRenderer>();
                 if (sr != null) {
                     spriteLayers.Add(child.name, sr);
                 }
@@ -62,27 +67,27 @@ public class SpriteManager : MonoBehaviour
     }
 
     public void PunchAnimation(GameCharacter target) {
-        Transform pos = spriteLayers["Animation"].gameObject.transform;
+        Transform pos = spriteLayers["Ability"].gameObject.transform;
         Vector3 toTarget = target.gameObject.transform.position - pos.position;
         Vector3 x = toTarget * 0.92f;
         pos.position = pos.position + x;
 
-        spriteLayers["Animation"].sprite = animations["Punch"][0];
+        spriteLayers["Ability"].sprite = animations["Punch"][0];
         Invoke("PunchInvoked1", 0.1f);
         
     }
 
     public void PunchInvoked1() {
-        spriteLayers["Animation"].sprite = animations["Punch"][1];
+        spriteLayers["Ability"].sprite = animations["Punch"][1];
         Invoke("PunchInvoked2", 0.1f);
     }
     public void PunchInvoked2() {
-        spriteLayers["Animation"].sprite = animations["Punch"][2];
+        spriteLayers["Ability"].sprite = animations["Punch"][2];
         Invoke("PunchInvoked3", 0.1f);
     }
     public void PunchInvoked3() {
-        spriteLayers["Animation"].sprite = null;
-        spriteLayers["Animation"].gameObject.transform.position = spriteLayers["Character"].gameObject.transform.position;
+        spriteLayers["Ability"].sprite = null;
+        spriteLayers["Ability"].gameObject.transform.position = spriteLayers["Character"].gameObject.transform.position;
     }
     
 }
