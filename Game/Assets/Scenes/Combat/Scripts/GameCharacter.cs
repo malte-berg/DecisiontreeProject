@@ -57,7 +57,6 @@ public class GameCharacter : MonoBehaviour{
     public virtual void Init(){
 
         equipment = gameObject.GetComponent<Equipment>();
-        skills[0] = new Punch(this);
 
     }
 

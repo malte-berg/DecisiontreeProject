@@ -8,6 +8,7 @@ public abstract class Skill{
     public int manaCost;
     public int skillCost;
     public bool unlocked;
+    public int level;
 
     public string Name{ get { return name; } }
 
@@ -19,17 +20,20 @@ public abstract class Skill{
         this.manaCost = manaCost;
         this.skillCost = skillCost;
         this.unlocked = false;
+        this.level = 0;
     }
 
     public void UnlockSkill() {
 
         power = 1;
         unlocked = true;
+        level = 1;
 
     }
 
     public void UpgradeSkill() {
         power = System.MathF.Log(System.MathF.Pow(System.MathF.E, power) + 1, System.MathF.E);
+        level++;
     }
 
     public abstract bool Effect(GameCharacter target);
