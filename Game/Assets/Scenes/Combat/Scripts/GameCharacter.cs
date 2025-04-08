@@ -104,8 +104,6 @@ public class GameCharacter : MonoBehaviour{
 
     public bool UseSkill(GameCharacter target){
 
-        // print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
-
         bool skill = skills[selectedSkill].Effect(target);
 
         if(spriteManager != null && skill)
@@ -117,13 +115,10 @@ public class GameCharacter : MonoBehaviour{
 
     public void TakeDamage(int dmg){
 
-        try{
-
         if(dmg <= Armor)
             return;
 
         hp -= dmg - Armor;
-        // print(gameObject.name + " took: " + dmg + " damage!");
 
         healthBar.UpdateHealthBar(hp, Vitality);
 
@@ -131,12 +126,6 @@ public class GameCharacter : MonoBehaviour{
             c.KillCharacter(this);
         else
             DamageEffect();
-
-            
-
-        } catch (Exception e) {
-            Debug.LogError(e.Message);
-        }
 
     }
 
