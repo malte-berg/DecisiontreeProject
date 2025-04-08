@@ -46,5 +46,4 @@ public class Boots : Item{
         this.manaMult = manaMult;
 
     }
-    
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Combat : MonoBehaviour{
 
@@ -13,6 +14,8 @@ public class Combat : MonoBehaviour{
     public GameObject targeting;
     Player player;
     List<Enemy> enemies = new List<Enemy>();
+
+    public List<Enemy> Enemies{ get { return enemies; }}
 
     int turn = 0;
     GameCharacter currentC;
@@ -105,8 +108,14 @@ public class Combat : MonoBehaviour{
 
                 Destroy(target.healthBar.gameObject);
                 Destroy(target.gameObject);
+
+                //All enemies are dead: Change to the "Win Screen".
+                if (enemies.Count == 0){
+                    SceneManager.LoadScene("DemoWinScreen");
+                    player.HidePlayer();
+                }
+
                 return;
-            
             }
 
         } else if (target != player)
@@ -121,6 +130,7 @@ public class Combat : MonoBehaviour{
         }
 
         // GAME OVER (Player died)
+        SceneManager.LoadScene("DemoLoseScreen");
         Debug.LogError("Main character died lol");
 
     }
