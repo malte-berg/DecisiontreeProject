@@ -127,36 +127,29 @@ public class Combat : MonoBehaviour{
 
     public void CharacterClicked(GameCharacter clicked){
 
-        try{
-
-        // make sure that currentC does not have
-        // to run outside unity thread
-
-        currentC = null; // temp
-
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
-        // try{
-        // print($"{currentC.gameObject.name}: clicked {clicked.gameObject.name}");
+        if(currentC == player)
+            UseTurnOn(clicked);
+
+    }
+
+    public void UseTurnOn(GameCharacter clicked){
+
+        if(currentC == null)
+            currentC = GetCurrentCharacter();
 
         if(!currentC.UseSkill(clicked)){
             print("it failed :(");
             return;
         }
 
-        // return to unity main thread
-
         turn = (turn + 1) % (enemies.Count + 1);
         currentC = GetCurrentCharacter();
 
         if(currentC is Enemy)
             new Task(async () => { (currentC as Enemy).AI(this, player);}).Start();
-            // (currentC as Enemy).AI(this, player);
-
-        } catch(Exception e){
-            Debug.LogError(e.Message);
-        }
 
     }
 

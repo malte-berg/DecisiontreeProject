@@ -89,7 +89,7 @@ public class GameCharacter : MonoBehaviour{
         if(index < 0)
             return false;
 
-        if(index > skillCount)
+        if(index > skillCount - 1)
             return false;
 
         if(skills[index].Cooldown > 0)

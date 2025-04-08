@@ -28,12 +28,12 @@ public class Enemy : GameCharacter {
 
         Thread.Sleep(1000);
 
-        // bad practice but simple
-        // while(!SelectSkill(UnityEngine.Random.Range(0,3)));
+        int currentS = 2;
+        while(!SelectSkill(currentS-- % 3));
 
         // run on main thread (needed for component access)
         _mainThreadActions.Enqueue(() => {
-            c.CharacterClicked(target);
+            c.UseTurnOn(target);
         });
 
     }
