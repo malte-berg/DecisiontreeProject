@@ -34,6 +34,7 @@ public class AbilityManager : MonoBehaviour {
             return true;
         }
 
+        // TODO: Check if previous skills are unlocked
         skill.UnlockSkill();
         player.AddSkill(skill);
         player.SkillPoints -= skill.skillCost;
