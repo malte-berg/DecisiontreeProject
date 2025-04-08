@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -17,8 +18,8 @@ public class GameCharacter : MonoBehaviour{
 
     public int HP{get{ return hp; } set{ this.hp = value; }}
     public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set{ this.vitality = value; }}
-    public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); }}
-    public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value;}}
+    public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); } set { this.armor = value; }}
+    public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value; }}
     public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set{ this.magic = value; }}
     public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set{ this.mana = value; }}
 
@@ -71,16 +72,8 @@ public class GameCharacter : MonoBehaviour{
 
     void OnMouseDown(){
 
-        print("mouse");
-
-        if(c == null)
-            print("panic");
-
-        if(c != null){
-            // new Task(() => { c.CharacterClicked(this); }).Start();
+        if(c != null)
             c.CharacterClicked(this);
-            print("huh");
-        }
 
     }
 
@@ -91,10 +84,25 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
+    public bool SelectSkill(int index){
+
+        if(index < 0)
+            return false;
+
+        if(index > skillCount)
+            return false;
+
+        if(skills[index].Cooldown > 0)
+            return false;
+
+        selectedSkill = index;
+        return true;
+
+    }
+
     public bool UseSkill(GameCharacter target){
 
         // print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
-        print(selectedSkill);
 
         bool skill = skills[selectedSkill].Effect(target);
 
@@ -102,9 +110,12 @@ public class GameCharacter : MonoBehaviour{
             spriteManager.AttackAnimation();
 
         return skill;
+
     }
 
     public void TakeDamage(int dmg){
+
+        try{
 
         if(dmg <= Armor)
             return;
@@ -118,6 +129,12 @@ public class GameCharacter : MonoBehaviour{
             c.KillCharacter(this);
         else
             DamageEffect();
+
+            
+
+        } catch (Exception e) {
+            Debug.LogError(e.Message);
+        }
 
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class Combat : MonoBehaviour{
     public GameObject playerPrefab;
     public GameObject healthBarPrefab;
     public GameObject marker;
+    Transform markerT;
     public GameObject targeting;
     Player player;
     List<Enemy> enemies = new List<Enemy>();
@@ -18,13 +20,13 @@ public class Combat : MonoBehaviour{
     public void Init(){
 
         marker = Instantiate(marker);
+        markerT = marker.transform;
         targeting = Instantiate(targeting);
 
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
         player.ShowPlayer();
         player.c = this;
         player.transform.position = new Vector3(-4, 0, 0);
-        GetCurrentCharacter();
 
         //Add a healthbar for the player and put it inside the canvas.
         Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
@@ -33,11 +35,10 @@ public class Combat : MonoBehaviour{
         player.healthBar.gameObject.name = "PlayerHP";
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
 
-        for(int i = 0; i < 4; i++){ // TEMP SPAWN ENEMIES
-
+        for(int i = 0; i < 4; i++) // TEMP SPAWN ENEMIES
             CreateEnemy();
 
-        }
+        GetCurrentCharacter();
 
     }
 
@@ -56,9 +57,7 @@ public class Combat : MonoBehaviour{
         else
             current = enemies[turn - 1];
 
-        // move marker aswell
-        marker.transform.position = current.gameObject.transform.position;
-        print("jaughu");
+        markerT.position = current.transform.position;
         return current;
 
     }
@@ -128,27 +127,36 @@ public class Combat : MonoBehaviour{
 
     public void CharacterClicked(GameCharacter clicked){
 
+        try{
+
+        // make sure that currentC does not have
+        // to run outside unity thread
+
+        currentC = null; // temp
+
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
-        print($"{currentC.gameObject.name}: clicked {clicked.gameObject.name}");
+        // try{
+        // print($"{currentC.gameObject.name}: clicked {clicked.gameObject.name}");
 
         if(!currentC.UseSkill(clicked)){
             print("it failed :(");
             return;
         }
 
-        if(currentC != null)
-            print("yay");
-        else
-            print("nay");
+        // return to unity main thread
 
         turn = (turn + 1) % (enemies.Count + 1);
         currentC = GetCurrentCharacter();
 
         if(currentC is Enemy)
-            new Task(async () => { await (currentC as Enemy).AI(this, player);}).Start();
+            new Task(async () => { (currentC as Enemy).AI(this, player);}).Start();
             // (currentC as Enemy).AI(this, player);
+
+        } catch(Exception e){
+            Debug.LogError(e.Message);
+        }
 
     }
 

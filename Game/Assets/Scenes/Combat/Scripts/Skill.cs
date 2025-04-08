@@ -7,6 +7,9 @@ public abstract class Skill{
     float power;
     int manaCost;
     int skillCost;
+    int cooldown = 0;
+
+    public int Cooldown{ get { return cooldown; } }
 
     public string Name{ get { return name; } }
 
