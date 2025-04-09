@@ -34,6 +34,7 @@ public class Combat : MonoBehaviour{
         player.healthBar = Instantiate(healthBarPrefab, healthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
         player.healthBar.Init();
         player.healthBar.gameObject.name = "PlayerHP";
+        player.HP = player.Vitality;
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
 
         for(int i = 0; i < 4; i++){ // TEMP SPAWN ENEMIES
