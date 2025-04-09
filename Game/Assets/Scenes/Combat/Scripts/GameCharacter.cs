@@ -15,6 +15,7 @@ public class GameCharacter : MonoBehaviour{
     int mana;
     int maxMana;
     public HealthBar healthBar;
+    public ManaBar manaBar;
 
     public int HP{get{ return hp; } set{ this.hp = value; }}
     public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set{ this.vitality = value; }}
@@ -111,7 +112,7 @@ public class GameCharacter : MonoBehaviour{
 
         bool skill = skills[selectedSkill].Effect(target);
 
-        if(spriteManager != null && skill)
+        if (spriteManager != null && skill)
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
             spriteManager.PunchAnimation(target, this);
