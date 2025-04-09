@@ -64,6 +64,7 @@ public class SkillSelection : MonoBehaviour
         UppdateAbilityText(skillIndex);
         imageRect.anchoredPosition = buttonTransforms[skillIndex].anchoredPosition;;
         //player.SetSelectedSkill(skillIndex);  //ADD THE FUNCTION ALREADY IN GAMECHARACTER
+        player.SelectSkill(skillIndex); 
         Debug.Log($"Selected skill: {player.skills[skillIndex]?.Name}");
     }
 

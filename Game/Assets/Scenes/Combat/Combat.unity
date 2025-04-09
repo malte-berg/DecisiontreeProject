@@ -1699,6 +1699,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ceb8fed050b55a40b6b68a46ab62c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectBorder: {fileID: 7352521}
+  AbilityDescriptionPanal: {fileID: 1910074926}
+  skillButtons:
+  - {fileID: 406165536}
+  - {fileID: 1504594376}
+  - {fileID: 690690954}
+  - {fileID: 1904424309}
+  - {fileID: 1967279835}
+  - {fileID: 1394350921}
+  - {fileID: 1487931421}
+  - {fileID: 96477364}
 --- !u!114 &1575427449
 MonoBehaviour:
   m_ObjectHideFlags: 0
