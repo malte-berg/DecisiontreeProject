@@ -8,18 +8,21 @@ public abstract class Skill{
     public int manaCost;
     public int skillCost;
     public bool unlocked;
+    string description;
     int cooldown = 0;
 
     public string Name{ get { return name; } }
     public int Cooldown{ get { return cooldown; } }
+    public int Description{ get { return cooldown; } }
 
-    public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost){
+    public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
 
         this.gc = gc;
         this.name = name;
         this.power = power;
         this.manaCost = manaCost;
         this.skillCost = skillCost;
+        this.description = description;
         this.unlocked = false;
     }
 
