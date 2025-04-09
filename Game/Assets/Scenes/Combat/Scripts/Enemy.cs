@@ -11,8 +11,28 @@ public class Enemy : GameCharacter {
     public override void Init() {
 
         equipment = gameObject.GetComponent<Equipment>();
-        GatherItems(20); // replace 20 with enemy power scaling
         skills[0] = new Punch(this);
+
+        // temp
+        availableItems = new Item[17];
+        availableItems[0] = new Pipe();
+        availableItems[1] = new Knife();
+        availableItems[2] = new Katana();
+        availableItems[3] = new Excalibur();
+        availableItems[4] = new Broadsword();
+        availableItems[5] = new BrassKnuckles();
+        availableItems[6] = new MilitaryJacket();
+        availableItems[7] = new Jacket();
+        availableItems[8] = new CombatJacket();
+        availableItems[9] = new Chainmail();
+        availableItems[10] = new CombatHelmet();
+        availableItems[11] = new ClimbingHelmet();
+        availableItems[12] = new Bucket();
+        availableItems[13] = new BicycleHelmet();
+        availableItems[14] = new WorkerBoots();
+        availableItems[15] = new SteelToedBoots();
+        availableItems[16] = new HikingBoots();
+        GatherItems(40); // replace 20 with enemy power scaling
 
         SetSprite("Enemy");
         
@@ -43,43 +63,42 @@ public class Enemy : GameCharacter {
 
         for(int i = 0; i < availableItems.Length; i++){
 
-            int mine = 0, available = 0;
+            int mine = 0, available = availableItems[i].Value;
 
-            switch(availableItems.GetType()){
+            switch(availableItems[i]){
 
-                case Type headType when headType == typeof(Head):
+                case Head:
                     if(equipment.head != null)
                         mine = equipment.head.Value;
-                    available = (availableItems[i] as Head).Value;
                     break;
-                case Type torsoType when torsoType == typeof(Torso):
+                case Torso:
                     if(equipment.torso != null)
                         mine = equipment.torso.Value;
-                    available = (availableItems[i] as Torso).Value;
                     break;
-                case Type bootsType when bootsType == typeof(Boots):
+                case Boots:
                     if(equipment.boots != null)
                         mine = equipment.boots.Value;
-                    available = (availableItems[i] as Boots).Value;
                     break;
-                case Type weaponType when weaponType == typeof(Weapon):
+                case Weapon:
                     if(equipment.weaponLeft != null)
                         mine = equipment.weaponLeft.Value;
-                    available = (availableItems[i] as Weapon).Value;
                     break;
-                case Type consumableType when consumableType == typeof(Consumable):
+                case Consumable:
                     if(equipment.consumableLeft != null)
                         mine = equipment.consumableLeft.Value;
-                    available = (availableItems[i] as Consumable).Value;
                     break;
                 default:
                     break;
 
             }
-            
+
             if(mine < available){
-                if(purchasingPower / available < UnityEngine.Random.value)
+                float rnd = (float)purchasingPower / available;
+                float thresh = UnityEngine.Random.value;
+
+                if(rnd > thresh)
                     equipment.Equip(availableItems[i]);
+
             }
 
         }
