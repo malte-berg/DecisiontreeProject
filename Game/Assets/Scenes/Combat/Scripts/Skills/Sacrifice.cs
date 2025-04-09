@@ -10,7 +10,7 @@ public class Sacrifice : Skill {
         gc: gc, 
         name: "Sacrifice", 
         power: 0, 
-        manacCost: 0, 
+        manaCost: 0, 
         skillCost: 1,
         description: "Inflict damage on yourself to gain mana"
         

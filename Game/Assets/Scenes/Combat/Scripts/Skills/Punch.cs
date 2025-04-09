@@ -10,7 +10,7 @@ public class Punch : Skill{
         gc: gc, 
         name: "Punch", 
         power: 0, 
-        manacCost: 0, 
+        manaCost: 0, 
         skillCost: 1,
         description: "The simplest and purest of attacks"
         
