@@ -40,7 +40,7 @@ public class AllSkills : MonoBehaviour {
             return;
         }
 
-        Debug.Log($"Clicked on skill: {allSkills[index].name}");
+        Debug.Log($"Clicked on skill: {allSkills[index].Name}");
         Skill skill = allSkills[index];
         if (GetComponent<AbilityManager>().HandleSkill(skill)) {
             SetPointCounter();
