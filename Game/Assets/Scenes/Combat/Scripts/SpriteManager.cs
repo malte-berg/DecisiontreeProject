@@ -21,12 +21,12 @@ public class SpriteManager : MonoBehaviour
     void Awake()
     {
         // add renderer of ability layer to dictionary
-        abilityContainer = transform.Find("Ability");
+        abilityContainer = transform.GetChild(1);
         SpriteRenderer sr = abilityContainer.GetComponent<SpriteRenderer>();
         spriteLayers.Add("Ability", sr);
 
         // add renderer of character/armor/weapon layer to dictionary
-        spriteContainer = transform.Find("CharacterContainer");
+        spriteContainer = transform.GetChild(0);
         if (spriteContainer != null) {
             // get all the child objects in the sprite container
             foreach (Transform child in spriteContainer) {
