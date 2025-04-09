@@ -3,14 +3,16 @@ using UnityEngine;
 public abstract class Skill{
 
     GameCharacter gc;
-    public string name;
+    string name;
     public float power;
     public int manaCost;
     public int skillCost;
     public bool unlocked;
     public int level;
+    int cooldown = 0;
 
     public string Name{ get { return name; } }
+    public int Cooldown{ get { return cooldown; } }
 
     public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost){
 

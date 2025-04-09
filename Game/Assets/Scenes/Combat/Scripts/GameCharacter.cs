@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -17,8 +18,8 @@ public class GameCharacter : MonoBehaviour{
 
     public int HP{get{ return hp; } set{ this.hp = value; }}
     public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set{ this.vitality = value; }}
-    public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); }}
-    public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value;}}
+    public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); } set { this.armor = value; }}
+    public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value; }}
     public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set{ this.magic = value; }}
     public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set{ this.mana = value; }}
     public int MaxMana{get{return maxMana;}}
@@ -84,9 +85,23 @@ public class GameCharacter : MonoBehaviour{
 
     }
 
-    public bool UseSkill(GameCharacter target){
+    public bool SelectSkill(int index){
 
-        print(gameObject.name + " is using " + skills[selectedSkill].Name + " on " + target.gameObject.name);
+        if(index < 0)
+            return false;
+
+        if(index > skillCount - 1)
+            return false;
+
+        if(skills[index].Cooldown > 0)
+            return false;
+
+        selectedSkill = index;
+        return true;
+
+    }
+
+    public bool UseSkill(GameCharacter target){
 
         bool skill = skills[selectedSkill].Effect(target);
 
@@ -94,17 +109,15 @@ public class GameCharacter : MonoBehaviour{
             spriteManager.AttackAnimation();
 
         return skill;
+
     }
-
+    
     public void TakeDamage(int dmg){
-
-        print($"Character armor: {Armor}");
 
         if(dmg <= Armor)
             return;
 
         hp -= dmg - Armor;
-        print(gameObject.name + " took: " + dmg + " damage!");
 
         healthBar.UpdateHealthBar(hp, Vitality);
 

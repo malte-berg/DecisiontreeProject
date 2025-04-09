@@ -16,7 +16,7 @@ public class Player : GameCharacter {
     
     public override void Init(){
 
-        this.SetSprite("Player");
+        SetSprite("Player");
 
         equipment = gameObject.GetComponent<Equipment>();
         gameObject.name = "Player";
@@ -56,9 +56,9 @@ public class Player : GameCharacter {
     
     //Update the player stats (permanently).
     public void UpdateStats(int newVitality, int newStrength, int newMagic, int newStatPoints){
-        this.Vitality = newVitality;
-        this.Strength = newStrength;
-        this.Magic = newMagic;
-        this.statPoints = newStatPoints;
+        Vitality = newVitality;
+        Strength = newStrength;
+        Magic = newMagic;
+        statPoints = newStatPoints;
     }
 }

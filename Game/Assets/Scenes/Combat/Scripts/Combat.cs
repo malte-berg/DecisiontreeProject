@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -5,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class Combat : MonoBehaviour{
 
-    public GameObject characterPrefab;
+    public GameObject enemyPrefab;
     public GameObject playerPrefab;
     public GameObject healthBarPrefab;
     public GameObject marker;
+    Transform markerT;
     public GameObject targeting;
     Player player;
     List<Enemy> enemies = new List<Enemy>();
@@ -21,26 +23,26 @@ public class Combat : MonoBehaviour{
     public void Init(){
 
         marker = Instantiate(marker);
+        markerT = marker.transform;
         targeting = Instantiate(targeting);
 
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
         player.ShowPlayer();
         player.c = this;
         player.transform.position = new Vector3(-4, 0, 0);
-        GetCurrentCharacter();
 
         //Add a healthbar for the player and put it inside the canvas.
         Vector3 healthBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up*2);
         player.healthBar = Instantiate(healthBarPrefab, healthBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
         player.healthBar.Init();
         player.healthBar.gameObject.name = "PlayerHP";
+        player.HP = player.Vitality;
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
 
-        for(int i = 0; i < 4; i++){ // TEMP SPAWN ENEMIES
-
+        for(int i = 0; i < 4; i++) // TEMP SPAWN ENEMIES
             CreateEnemy();
 
-        }
+        GetCurrentCharacter();
 
     }
 
@@ -59,8 +61,7 @@ public class Combat : MonoBehaviour{
         else
             current = enemies[turn - 1];
 
-        // move marker aswell
-        marker.transform.position = current.gameObject.transform.position;
+        markerT.position = current.transform.position;
         return current;
 
     }
@@ -69,7 +70,7 @@ public class Combat : MonoBehaviour{
 
         int i = enemies.Count;
 
-        enemies.Add(Instantiate(characterPrefab).GetComponent<Enemy>());
+        enemies.Add(Instantiate(enemyPrefab).GetComponent<Enemy>());
         enemies[i].Init();
         enemies[i].c = this;
         enemies[i].gameObject.name = "Enemy #" + i;
@@ -140,6 +141,16 @@ public class Combat : MonoBehaviour{
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
+        if(currentC == player)
+            UseTurnOn(clicked);
+
+    }
+
+    public void UseTurnOn(GameCharacter clicked){
+
+        if(currentC == null)
+            currentC = GetCurrentCharacter();
+
         if(!currentC.UseSkill(clicked)){
             print("it failed :(");
             return;
@@ -147,6 +158,9 @@ public class Combat : MonoBehaviour{
 
         turn = (turn + 1) % (enemies.Count + 1);
         currentC = GetCurrentCharacter();
+
+        if(currentC is Enemy)
+            new Task(async () => { (currentC as Enemy).AI(this, player);}).Start();
 
     }
 
