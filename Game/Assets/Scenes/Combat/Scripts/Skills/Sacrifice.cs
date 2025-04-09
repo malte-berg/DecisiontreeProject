@@ -5,9 +5,20 @@ public class Sacrifice : Skill {
     GameCharacter gc;
     int selfDamage;
 
-    public Sacrifice(GameCharacter gc) : base(gc, "Sacrifice", 1, 0, 1, "Lose some health and gain a larga amount of mana."){
+    public Sacrifice(GameCharacter gc) : base(
+        
+        gc: gc, 
+        name: "Sacrifice", 
+        power: 0, 
+        manaCost: 0, 
+        skillCost: 1,
+        description: "Inflict damage on yourself to gain mana"
+        
+        ){
+
         this.gc = gc;
         this.selfDamage = 10;
+        
     }
 
     public override bool Effect(GameCharacter target){

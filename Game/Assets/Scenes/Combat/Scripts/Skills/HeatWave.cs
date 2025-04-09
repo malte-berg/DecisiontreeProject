@@ -3,8 +3,20 @@ using System.Collections.Generic;
 
 public class HeatWave : Skill {
     GameCharacter gc;
-    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1, "Deal Fire Damage to all enemies.") {
+
+    public HeatWave(GameCharacter gc) : base(
+        
+        gc: gc, 
+        name: "Heat Wave", 
+        power: 0, 
+        manaCost: 0, 
+        skillCost: 1,
+        description: "Deal Fire Damage to all enemies."
+        
+        ){
+
         this.gc = gc;
+        
     }
 
     public override bool Effect(GameCharacter target) {
