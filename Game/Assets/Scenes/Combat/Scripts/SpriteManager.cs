@@ -21,7 +21,7 @@ public class SpriteManager : MonoBehaviour
     void Awake()
     {
         // add renderer of ability layer to dictionary
-        abilityContainer = transform.GetChild(1);
+        abilityContainer = transform.GetChild(0);
         SpriteRenderer sr = abilityContainer.GetComponent<SpriteRenderer>();
         spriteLayers.Add("Ability", sr);
 

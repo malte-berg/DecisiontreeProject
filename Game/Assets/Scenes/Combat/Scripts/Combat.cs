@@ -47,7 +47,7 @@ public class Combat : MonoBehaviour{
         player.manaBar.targetCharacter = player;
 
         for (int i = 0; i < 4; i++) // TEMP SPAWN ENEMIES
-            CreateEnemy();
+            SpawnEnemy(enemyPrefabs[0]);
 
         GetCurrentCharacter();
 
