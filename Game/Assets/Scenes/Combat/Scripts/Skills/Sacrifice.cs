@@ -5,7 +5,7 @@ public class Sacrifice : Skill {
     GameCharacter gc;
     int selfDamage;
 
-    public Sacrifice(GameCharacter gc) : base(gc, "Sacrifice", 1, 0, 1){
+    public Sacrifice(GameCharacter gc) : base(gc, "Sacrifice", 1, 0, 1, "Lose some health and gain a larga amount of mana."){
         this.gc = gc;
         this.selfDamage = 10;
     }

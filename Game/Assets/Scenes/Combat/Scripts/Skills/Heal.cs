@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class Heal : Skill {
     GameCharacter gc;
+    /* private string description = "Regain some lost health.\n" +
+                                 "Power: —-\n" +
+                                 // "Mana Cost: " + manaCost.ToString() + "\n" + 
+                                 "Mana Cost: --\n" + 
+                                 "Cooldown: —-\n";
 
-    public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 1){
+    public string Descrip { get {return description;} } */
+
+    public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 1, "Regain some lost health."){
         this.gc = gc;
     }
 

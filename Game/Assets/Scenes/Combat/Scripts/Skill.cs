@@ -9,15 +9,26 @@ public abstract class Skill{
     public int skillCost;
     public bool unlocked;
 
+    private string description;
     public string Name{ get { return name; } }
+    // lägg till beskrivning när man skapar skills/ability
+    public string Description { 
+        get {
+            return description +
+                   "Skill level: —-\n" + // vissa skill level istället för power?
+                   "Mana Cost: " + manaCost.ToString() + "\n" +  
+                   "Cooldown: —-\n"; 
+        } 
+    }
 
-    public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost){
+    public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
 
         this.gc = gc;
         this.name = name;
         this.power = power;
         this.manaCost = manaCost;
         this.skillCost = skillCost;
+        this.description = description;
         this.unlocked = false;
     }
 

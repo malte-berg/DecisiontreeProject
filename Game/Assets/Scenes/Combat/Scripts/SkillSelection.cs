@@ -1,23 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using Unity.VisualScripting;
 
 public class SkillSelection : MonoBehaviour
 {
     public Image selectBorder;
+    public GameObject AbilityDescriptionPanal;
+    private TextMeshProUGUI AbilityDescriptionText;
     public Button[] skillButtons = new Button[8]; // Array for 8 skill buttons
 
     private RectTransform[] buttonTransforms = new RectTransform[8];
     private Player player;
+    private Skill[] skills; 
 
     private RectTransform imageRect;
 
     void Start()
     {
         SelectBordInit();
+        DescriptionPanalInit();
 
         player = GameObject.Find("Player").GetComponent<Player>();
+        skills = player.skills;
 
-        for (int i = 0; i < skillButtons.Length; i++)
+        for (int i = 0; i < skills.Length; i++)
         {
             int skillIndex = i; // Capture index for lambda
             buttonTransforms[i] = skillButtons[i].GetComponent<RectTransform>();
@@ -25,6 +32,12 @@ public class SkillSelection : MonoBehaviour
         }
 
         UpdateSkillButtons();
+    }
+
+    void DescriptionPanalInit()
+    {
+        AbilityDescriptionPanal.SetActive(false);
+        AbilityDescriptionText = AbilityDescriptionPanal.GetComponentInChildren<TextMeshProUGUI>(false);
     }
 
     void SelectBordInit()
@@ -48,9 +61,16 @@ public class SkillSelection : MonoBehaviour
             return;
         }
         ShowSelect();
+        UppdateAbilityText(skillIndex);
         imageRect.anchoredPosition = buttonTransforms[skillIndex].anchoredPosition;;
         //player.SetSelectedSkill(skillIndex);  //ADD THE FUNCTION ALREADY IN GAMECHARACTER
         Debug.Log($"Selected skill: {player.skills[skillIndex]?.Name}");
+    }
+
+    void UppdateAbilityText(int skillIndex)
+    {
+        AbilityDescriptionPanal.SetActive(true);
+        AbilityDescriptionText.text = skills[skillIndex].Name + "\n" + skills[skillIndex].Description;
     }
 
     void ShowSelect()

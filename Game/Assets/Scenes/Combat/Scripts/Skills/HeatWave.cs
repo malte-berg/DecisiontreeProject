@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 public class HeatWave : Skill {
     GameCharacter gc;
-
-    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1) {
+    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1, "Deal Fire Damage to all enemies.") {
         this.gc = gc;
     }
 
