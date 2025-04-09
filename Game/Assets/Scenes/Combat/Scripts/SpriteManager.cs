@@ -49,7 +49,7 @@ public class SpriteManager : MonoBehaviour
         if(animations.ContainsKey(type)) {
             SetSprite(animations[type][0], spriteLayers["Character"]) ;
         } else {
-            Debug.Log("Could not find sprite");
+            Debug.LogError("Could not find sprite");
         }
     }
 
@@ -67,11 +67,11 @@ public class SpriteManager : MonoBehaviour
     }
 
     //new attack animation
-    public void AttackAnimation(string type) {
+    public void AttackAnimation(string type, GameCharacter thisCharacter) {
         string characterType;
-        if(type.Contains("Player")){
+        if(thisCharacter is Player){
             characterType = "Player";
-        }else if(type.Contains("Enemy")){
+        }else if(thisCharacter is Enemy){
             characterType = "Enemy";
         }else{
             characterType = "Player"; // default option
