@@ -35,7 +35,7 @@ public class SkillSelection : MonoBehaviour
             return;
         }
 
-        player.SetSelectedSkill(skillIndex);
+        //player.SetSelectedSkill(skillIndex);  //ADD THE FUNCTION ALREADY IN GAMECHARACTER
         Debug.Log($"Selected skill: {player.skills[skillIndex]?.Name}");
     }
 }
