@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
 
 public class SkillSelection : MonoBehaviour
 {
@@ -61,17 +60,17 @@ public class SkillSelection : MonoBehaviour
             return;
         }
         ShowSelect();
-        UppdateAbilityText(skillIndex);
+        UpdateAbilityText(skillIndex);
         imageRect.anchoredPosition = buttonTransforms[skillIndex].anchoredPosition;;
         //player.SetSelectedSkill(skillIndex);  //ADD THE FUNCTION ALREADY IN GAMECHARACTER
         player.SelectSkill(skillIndex); 
         Debug.Log($"Selected skill: {player.skills[skillIndex]?.Name}");
     }
 
-    void UppdateAbilityText(int skillIndex)
+    void UpdateAbilityText(int skillIndex)
     {
         AbilityDescriptionPanel.SetActive(true);
-        AbilityDescriptionText.text = skills[skillIndex].Name + "\n" + skills[skillIndex].Description;
+        AbilityDescriptionText.text = skills[skillIndex].Name + "\n" + skills[skillIndex].DescriptionPanel;
     }
 
     void ShowSelect()

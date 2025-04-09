@@ -29,10 +29,7 @@ public class Player : GameCharacter {
         statPoints = 25;    //for increasing stats in the stats window.
 
         skills[0] = new Punch(this);
-        // även om följande innehåll inte kommenteras måste man uppgradera i skill tree för att använda det
-        /* skills[1] = new Heal(this);
-        skills[2] = new HeatWave(this);
-        skills[3] = new Sacrifice(this); */
+        // skills[0].unlocked = true; 
 
         // OP dev privilege
         inventory[0] = new Head("Bucket", 2, 0, 1, 7, 1.05f, -2, 1, 0, 1, 0, 1);
