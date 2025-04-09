@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 public class SkillSelection : MonoBehaviour
 {
     public Image selectBorder;
-    public GameObject AbilityDescriptionPanal;
+    public GameObject AbilityDescriptionPanel;
     private TextMeshProUGUI AbilityDescriptionText;
     public Button[] skillButtons = new Button[8]; // Array for 8 skill buttons
 
@@ -19,7 +19,7 @@ public class SkillSelection : MonoBehaviour
     void Start()
     {
         SelectBordInit();
-        DescriptionPanalInit();
+        DescriptionPanelInit();
 
         player = GameObject.Find("Player").GetComponent<Player>();
         skills = player.skills;
@@ -34,10 +34,10 @@ public class SkillSelection : MonoBehaviour
         UpdateSkillButtons();
     }
 
-    void DescriptionPanalInit()
+    void DescriptionPanelInit()
     {
-        AbilityDescriptionPanal.SetActive(false);
-        AbilityDescriptionText = AbilityDescriptionPanal.GetComponentInChildren<TextMeshProUGUI>(false);
+        AbilityDescriptionPanel.SetActive(false);
+        AbilityDescriptionText = AbilityDescriptionPanel.GetComponentInChildren<TextMeshProUGUI>(false);
     }
 
     void SelectBordInit()
@@ -70,7 +70,7 @@ public class SkillSelection : MonoBehaviour
 
     void UppdateAbilityText(int skillIndex)
     {
-        AbilityDescriptionPanal.SetActive(true);
+        AbilityDescriptionPanel.SetActive(true);
         AbilityDescriptionText.text = skills[skillIndex].Name + "\n" + skills[skillIndex].Description;
     }
 

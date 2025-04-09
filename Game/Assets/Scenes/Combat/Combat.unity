@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectBorder: {fileID: 7352521}
-  AbilityDescriptionPanal: {fileID: 1910074926}
+  AbilityDescriptionPanel: {fileID: 1910074926}
   skillButtons:
   - {fileID: 406165536}
   - {fileID: 1504594376}
