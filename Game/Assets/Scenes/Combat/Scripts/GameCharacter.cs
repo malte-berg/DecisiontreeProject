@@ -37,6 +37,7 @@ public class GameCharacter : MonoBehaviour{
     // to change sprite
     SpriteManager spriteManager;
     Transform moveCharacterSprite;
+    public Vector3 originalPos;
 
     public GameCharacter(){
 
@@ -59,6 +60,7 @@ public class GameCharacter : MonoBehaviour{
 
         equipment = gameObject.GetComponent<Equipment>();
         skills[0] = new Punch(this);
+        originalPos = this.transform.position;
 
     }
 
@@ -69,7 +71,7 @@ public class GameCharacter : MonoBehaviour{
             Debug.Log("spriteManager Not found");
             return;
         }
-        spriteManager.SetCharacter(type);
+        spriteManager.SetCharacter(type, this);
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(3,3,3);
 
@@ -112,7 +114,7 @@ public class GameCharacter : MonoBehaviour{
         if(spriteManager != null && skill)
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.PunchAnimation(target);
+            spriteManager.PunchAnimation(target, this);
 
         return skill;
 

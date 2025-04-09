@@ -56,6 +56,7 @@ public class Player : GameCharacter {
     public void ShowPlayer(){
 
         transform.GetChild(0).gameObject.SetActive(true);
+        SetSprite("Player");
 
     }
     

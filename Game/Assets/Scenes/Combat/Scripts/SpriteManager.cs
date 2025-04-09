@@ -8,13 +8,18 @@ public class SpriteManager : MonoBehaviour
     private Transform abilityContainer;
 
     public SpriteRenderer spriteRenderer;
-    public List<Sprite> spriteList;
+    public List<List<Sprite>> allSprites;
+    public List<Sprite> characterSprites;
+    public List<Sprite> clothingSprites;
+    public List<Sprite> weaponSprites;
+    public List<Sprite> abilitySprites;
 
-    private Dictionary<string, List<Sprite>> animations = new Dictionary<string, List<Sprite>>();
+    private Dictionary<string, Dictionary<string, List<Sprite>>> animations = new Dictionary<string, Dictionary<string, List<Sprite>>>();
+
     private Dictionary<string, SpriteRenderer> spriteLayers = new Dictionary<string, SpriteRenderer>();
 
     /**
-    *   Awake sets the 4 different renderers in a dictionary
+    *   Awake sets the different renderers in a dictionary
     *   Also assign trasnformer objects, one for the character and
     *   one for ability animation
     */
@@ -39,18 +44,37 @@ public class SpriteManager : MonoBehaviour
             Debug.LogError("SpriteContainer not found!");
         }
 
-        animations["Player"] = new List<Sprite> {spriteList[0], spriteList[1]};
-        animations["Enemy"] = new List<Sprite> {spriteList[2], spriteList[3]};
-        animations["Punch"] = new List<Sprite> {spriteList[4], spriteList[5], spriteList[6], spriteList[7]};
+        animations["GameCharacter"] = new Dictionary<string, List<Sprite>>();
+        animations["GameCharacter"]["Player"] = new List<Sprite> {characterSprites[0], characterSprites[1]};
+        animations["GameCharacter"]["Enemy"] = new List<Sprite> {characterSprites[2], characterSprites[3]};
+
+        animations["Weapon"] = new Dictionary<string, List<Sprite>>();
+        animations["Weapon"]["Stick"] = new List<Sprite> {weaponSprites[0], weaponSprites[1]};
+    
+        animations["Head"] = new Dictionary<string, List<Sprite>>();
+        animations["Head"]["Bucket"] = new List<Sprite> {clothingSprites[0]};
+
+        animations["Torso"] = new Dictionary<string, List<Sprite>>();
+
+        animations["Boots"] = new Dictionary<string, List<Sprite>>();
+
+        animations["Ability"] = new Dictionary<string, List<Sprite>>();
+        animations["Ability"]["Punch"] = new List<Sprite> {abilitySprites[0], abilitySprites[1], abilitySprites[2], abilitySprites[3]};
 
     }
 
-    public void SetCharacter(string type) {
-        if(animations.ContainsKey(type)) {
-            SetSprite(animations[type][0], spriteLayers["Character"]) ;
-        } else {
-            Debug.LogError("Could not find sprite");
+    public void SetCharacter(string type, GameCharacter thisCharacter) {
+        SetSprite(animations["GameCharacter"][type][0], spriteLayers["Character"]) ;
+        Equipment equipment = thisCharacter.equipment;
+        if(equipment != null) {
+            if(equipment.head != null) {
+                SetSprite(animations["Head"]["Bucket"][0], spriteLayers["Head"]);
+            }
+            if(equipment.weaponLeft != null) {
+                SetSprite(animations["Weapon"]["Stick"][0], spriteLayers["Weapon"]);
+            }
         }
+        // continue this pattern when we have more item sprites
     }
 
     private void SetSprite(Sprite sprite, SpriteRenderer sr) {
@@ -68,24 +92,27 @@ public class SpriteManager : MonoBehaviour
 
     //new attack animation
     public void AttackAnimation(string type, GameCharacter thisCharacter) {
-        string characterType;
-        if(thisCharacter is Player){
-            characterType = "Player";
-        }else if(thisCharacter is Enemy){
-            characterType = "Enemy";
-        }else{
-            characterType = "Player"; // default option
+        string characterType = thisCharacter.GetType().Name;
+        Equipment equipment = thisCharacter.equipment;
+        if(equipment.weaponLeft != null) {
+            RollSprites(animations["GameCharacter"][characterType], spriteLayers["Character"], 0.2f);
+            RollSprites(animations["Weapon"]["Stick"], spriteLayers["Weapon"], 0.2f); // use only stick for now
         }
-        RollSprites(animations[characterType], spriteLayers["Character"], 0.2f);
     }
 
-    public void PunchAnimation(GameCharacter target) {
+    public void PunchAnimation(GameCharacter target, GameCharacter sender) {
+        
         Transform pos = spriteLayers["Ability"].gameObject.transform;
+        pos.position = sender.originalPos;
         Vector3 toTarget = target.gameObject.transform.position - pos.position;
         Vector3 x = toTarget * 0.92f;
         pos.position = pos.position + x;
 
-        RollSprites(animations["Punch"], spriteLayers["Ability"], 0.1f);
+        RollSprites(animations["Ability"]["Punch"], spriteLayers["Ability"], 0.1f);
+    }
+
+    private void LungeTo(GameCharacter thisCharacter, Vector3 target) {
+
     }
 
     // methods for running a certain function after a delay
