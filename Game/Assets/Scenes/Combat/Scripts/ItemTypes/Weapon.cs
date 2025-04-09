@@ -1,9 +1,4 @@
-using UnityEngine;
-
 public class Weapon : Item{
-
-    string name;
-    int value;
 
     int vitalityAdd;
     float vitalityMult;
@@ -30,10 +25,8 @@ public class Weapon : Item{
     public int ManaAdd{ get{ return manaAdd; } }
     public float ManaMult{ get{ return manaMult; } }
 
-    public Weapon(string name, int value, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value){
+    public Weapon(string name, int value, string description, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value, description){
 
-        this.name = name;
-        this.value = value;
         this.vitalityAdd = vitalityAdd;
         this.vitalityMult = vitalityMult;
         this.armorAdd = armorAdd;

@@ -70,13 +70,13 @@ public class Shop : MonoBehaviour
     {
         onSaleItems[0] = new Weapon(
             "Sword",
-            450,
+            450, "swrd", 
             0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f 
         );
 
         onSaleItems[1] = new Head(
             "Head",
-            300,
+            300, "hed",
             0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f
         );
 
