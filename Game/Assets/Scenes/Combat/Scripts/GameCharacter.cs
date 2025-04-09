@@ -15,6 +15,7 @@ public class GameCharacter : MonoBehaviour{
     int mana;
     int maxMana;
     public HealthBar healthBar;
+    public ManaBar manaBar;
 
     public int HP{get{ return hp; } set{ this.hp = value; }}
     public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set{ this.vitality = value; }}
@@ -65,7 +66,10 @@ public class GameCharacter : MonoBehaviour{
     public void SetSprite(string type) {
 
         spriteManager = GetComponentInChildren<SpriteManager>();
-        if(spriteManager == null) return;
+        if(spriteManager == null) {
+            Debug.Log("spriteManager Not found");
+            return;
+        }
         spriteManager.SetCharacter(type);
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(3,3,3);
@@ -106,8 +110,10 @@ public class GameCharacter : MonoBehaviour{
 
         bool skill = skills[selectedSkill].Effect(target);
 
-        if(spriteManager != null && skill)
-            spriteManager.AttackAnimation();
+        if (spriteManager != null && skill)
+            Debug.Log(gameObject.name);
+            spriteManager.AttackAnimation(gameObject.name, this);
+            spriteManager.PunchAnimation(target);
 
         return skill;
 

@@ -738,6 +738,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4566980957986256734, guid: 18dcda6f13e76cb4fab84b4367d8c1dc, type: 3}
   playerPrefab: {fileID: 4566980957986256734, guid: 86422ab414f0293409b6742ab03c10f4, type: 3}
   healthBarPrefab: {fileID: 890571365804766681, guid: de53d4faa3a2cb547a557d3978c5a3f4, type: 3}
+  manaBarPrefab: {fileID: 890571365804766681, guid: 542dc4aa792f4864a83cc5942f7e2866, type: 3}
   marker: {fileID: 6787740618812977528, guid: 91eb33aabfa92344db9d7d5b9ddd2602, type: 3}
   targeting: {fileID: 635128218622116287, guid: 69dac99111e378d4a8f0fc4505f0b0f2, type: 3}
 --- !u!1 &1086763922
@@ -1475,7 +1476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1575427446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733204d978b442f40a36e579833a5aab, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ceb8fed050b55a40b6b68a46ab62c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillButtons:
@@ -1483,10 +1484,10 @@ MonoBehaviour:
   - {fileID: 1504594376}
   - {fileID: 690690954}
   - {fileID: 1904424309}
-  - {fileID: 1967279835}
-  - {fileID: 1394350921}
-  - {fileID: 1487931421}
-  - {fileID: 96477364}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1641158026
 GameObject:
   m_ObjectHideFlags: 0
