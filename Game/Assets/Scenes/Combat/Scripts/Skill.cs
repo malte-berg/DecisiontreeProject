@@ -7,6 +7,7 @@ public abstract class Skill{
     public float power;
     public int manaCost;
     public int skillCost;
+    int skillLevel;
     public bool unlocked;
     string description;
     int cooldown = 0;
@@ -14,6 +15,7 @@ public abstract class Skill{
     public string Name{ get { return name; } }
     public int Cooldown{ get { return cooldown; } }
     public string Description{ get { return description; } }
+    public int SkillLevel{ get {skillLevel; } }
 
     public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
 
@@ -29,12 +31,14 @@ public abstract class Skill{
     public void UnlockSkill() {
 
         power = 1;
+        skillLevel = 1;
         unlocked = true;
 
     }
 
     public void UpgradeSkill() {
         power = System.MathF.Log(System.MathF.Pow(System.MathF.E, power) + 1, System.MathF.E);
+        skillLevel++;
     }
 
     public abstract bool Effect(GameCharacter target);
