@@ -96,15 +96,6 @@ public class GameCharacter : MonoBehaviour{
 
         return skill;
     }
-
-    public void SetSelectedSkill(int skillIndex)
-    {
-        if (skills[skillIndex] != null)
-        {
-            selectedSkill = skillIndex;
-            Debug.Log($"GameCharacter selected skill: {skills[selectedSkill].Name}");
-        }
-    }
     
     public void TakeDamage(int dmg){
 
