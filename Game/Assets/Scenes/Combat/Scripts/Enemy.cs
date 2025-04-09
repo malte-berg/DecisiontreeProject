@@ -13,12 +13,7 @@ public class Enemy : GameCharacter {
         equipment = gameObject.GetComponent<Equipment>();
         skills[0] = new Punch(this);
 
-<<<<<<< HEAD
-        this.SetSprite("Enemy");
-        Debug.Log("Init Enemy");
-=======
         SetSprite("Enemy");
->>>>>>> upstream/main
         
     }
 
