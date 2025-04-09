@@ -26,7 +26,7 @@ public class SpriteManager : MonoBehaviour
         spriteLayers.Add("Ability", sr);
 
         // add renderer of character/armor/weapon layer to dictionary
-        spriteContainer = transform.GetChild(0);
+        spriteContainer = transform.GetChild(1);
         if (spriteContainer != null) {
             // get all the child objects in the sprite container
             foreach (Transform child in spriteContainer) {
@@ -47,7 +47,7 @@ public class SpriteManager : MonoBehaviour
 
     public void SetCharacter(string type) {
         if(animations.ContainsKey(type)) {
-            SetSprite(animations[type][0], spriteLayers["Character"]) ;
+            SetSprite(animations[type][0], spriteLayers["Character"]);
         } else {
             Debug.LogError("Could not find sprite");
         }
