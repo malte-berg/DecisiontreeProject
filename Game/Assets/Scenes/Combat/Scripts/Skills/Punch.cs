@@ -5,8 +5,19 @@ public class Punch : Skill{
     
     GameCharacter gc;
 
-    public Punch(GameCharacter gc) : base(gc, "Punch", 1, 0, 1){
+    public Punch(GameCharacter gc) : base(
+        
+        gc: gc, 
+        name: "Punch", 
+        power: 0, 
+        manaCost: 0, 
+        skillCost: 1,
+        description: "The simplest and purest of attacks"
+        
+        ){
+
         this.gc = gc;
+        
     }
 
     public override bool Effect(GameCharacter target){
