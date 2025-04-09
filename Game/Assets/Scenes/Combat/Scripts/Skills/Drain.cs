@@ -4,16 +4,16 @@ public class Drain : Skill
 {
     GameCharacter gc;
 
-    /* public Drain(GameCharacter gc) : base(
+    public Drain(GameCharacter gc) : base(
 
-         gc: gc,
-         name: "Drain",
-         power: 0,
-         manaCost: 100,
-         skillCost: 1,
-         description: "Reduces enemy's Mana to zero"
-     )*/
-    public Drain(GameCharacter gc) : base(gc, "Drain", 1, 0, 1)
+        gc: gc,
+        name: "Drain",
+        power: 0,
+        manaCost: 100,
+        skillCost: 1,
+        description: "Reduces enemy's Mana to zero"
+    )
+    //public Drain(GameCharacter gc) : base(gc, "Drain", 1, 0, 1)
     {
         this.gc = gc;
     }

@@ -4,23 +4,23 @@ public class Disarm : Skill
 {
     GameCharacter gc;
 
-    // public Disarm(GameCharacter gc) : base(
-    //     gc: gc,
-    //     name: "Disarm",
-    //     power: 10,
-    //     manaCost: 40,
-    //     skillCost: 1,
-    //     description: "Enemy unequips weapon"
-    //     )
-    // {
-
-    //     this.gc = gc;
-    // }
-
-    public Disarm(GameCharacter gc) : base(gc, "Disarm", 10, 40, 1)
+    public Disarm(GameCharacter gc) : base(
+         gc: gc,
+         name: "Disarm",
+         power: 10,
+         manaCost: 40,
+         skillCost: 1,
+         description: "Enemy unequips weapon"
+         )
     {
+
         this.gc = gc;
     }
+
+    //public Disarm(GameCharacter gc) : base(gc, "Disarm", 10, 40, 1)
+    //{
+    //  this.gc = gc;
+    //}
 
 
     public override bool Effect(GameCharacter target)

@@ -4,22 +4,22 @@ public class Corrode : Skill
 {
     GameCharacter gc;
 
-    // public Corrode(GameCharacter gc) : base(
-    //     gc: gc,
-    //     name: "Corrode",
-    //     power: 0,
-    //     manaCost: 25,
-    //     skillCost: 1,
-    //     description: "Reduces enemy armor"
-    //     )
-    // {
-    //     this.gc = gc;
-    // }
-
-    public Corrode(GameCharacter gc) : base(gc, "Corrode", 0, 25, 1)
+    public Corrode(GameCharacter gc) : base(
+        gc: gc,
+        name: "Corrode",
+        power: 0,
+        manaCost: 25,
+        skillCost: 1,
+        description: "Reduces enemy armor"
+        )
     {
         this.gc = gc;
     }
+
+    //public Corrode(GameCharacter gc) : base(gc, "Corrode", 0, 25, 1)
+    //{
+    //    this.gc = gc;
+    //}
 
     public override bool Effect(GameCharacter target)
     {

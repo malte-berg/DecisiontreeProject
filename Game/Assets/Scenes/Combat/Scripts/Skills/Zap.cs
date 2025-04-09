@@ -5,17 +5,17 @@ public class Zap : Skill
 {
     GameCharacter gc;
 
-    // public Zap(GameCharacter gc) : base(
+    public Zap(GameCharacter gc) : base(
 
-    //     gc: gc,
-    //     name: "Zap",
-    //     power: 0,
-    //     manaCost: 30,
-    //     skillCost: 1,
-    //     description: "Steals enemy's health while dealing damage"
-    //     )
+        gc: gc,
+        name: "Zap",
+        power: 0,
+        manaCost: 30,
+        skillCost: 1,
+        description: "Steals enemy's health while dealing damage"
+        )
 
-    public Zap(GameCharacter gc) : base(gc, "Zap", 2, 30, 1)
+    //public Zap(GameCharacter gc) : base(gc, "Zap", 2, 30, 1)
     {
         this.gc = gc;
     }

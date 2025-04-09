@@ -9,7 +9,20 @@ public class Poison : Skill
     int turnsLeft;
     bool active;
 
-    public Poison(GameCharacter gc) : base(gc, "Poison", 10, 40, 1)
+    //public Poison(GameCharacter gc) : base(gc, "Poison", 10, 40, 1)
+    //{
+    //    this.gc = gc;
+    //}
+
+    public Poison(GameCharacter gc) : base(
+
+         gc: gc,
+         name: "Poison",
+         power: 10,
+         manaCost: 40,
+         skillCost: 1,
+         description: "Deals poison damage for 3 turns"
+         )
     {
         this.gc = gc;
     }

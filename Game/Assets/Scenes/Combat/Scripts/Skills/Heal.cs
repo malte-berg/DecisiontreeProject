@@ -4,24 +4,15 @@ public class Heal : Skill
 {
     GameCharacter gc;
 
-<<<<<<< HEAD
-    /* public Heal(GameCharacter gc) : base(
 
-          gc: gc,
-          name: "Heal",
-          power: 0,
-          manaCost: 0,
-          skillCost: 1,
-          description: "Heals the player"
+    //public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 1)
+    //{
 
-          )*/
+    //  this.gc = gc;
 
-    public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 1)
-    {
+    //}
 
-        this.gc = gc;
 
-=======
     public Heal(GameCharacter gc) : base(
 
         gc: gc,
@@ -30,12 +21,12 @@ public class Heal : Skill
         manaCost: 0,
         skillCost: 1,
         description: "Heals the player"
-        
-        ){
+
+        )
+    {
 
         this.gc = gc;
-        
->>>>>>> upstream/main
+
     }
 
     public override bool Effect(GameCharacter target)
