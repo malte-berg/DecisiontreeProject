@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb62a4a5dcde4a489dc37ceeb49fa01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 4566980957986256734, guid: 15ef787280a6998418f06d1c2944b845, type: 3}
+  enemyPrefab: {fileID: 4566980957986256734, guid: 18dcda6f13e76cb4fab84b4367d8c1dc, type: 3}
   playerPrefab: {fileID: 4566980957986256734, guid: 86422ab414f0293409b6742ab03c10f4, type: 3}
   healthBarPrefab: {fileID: 890571365804766681, guid: de53d4faa3a2cb547a557d3978c5a3f4, type: 3}
   marker: {fileID: 6787740618812977528, guid: 91eb33aabfa92344db9d7d5b9ddd2602, type: 3}
@@ -1696,7 +1696,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1575427446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733204d978b442f40a36e579833a5aab, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ceb8fed050b55a40b6b68a46ab62c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1575427449
@@ -1718,10 +1718,10 @@ MonoBehaviour:
   - {fileID: 1504594376}
   - {fileID: 690690954}
   - {fileID: 1904424309}
-  - {fileID: 1967279835}
-  - {fileID: 1394350921}
-  - {fileID: 1487931421}
-  - {fileID: 96477364}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1641158026
 GameObject:
   m_ObjectHideFlags: 0

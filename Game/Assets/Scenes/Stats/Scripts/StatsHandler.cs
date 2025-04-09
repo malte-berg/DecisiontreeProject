@@ -19,17 +19,13 @@ public class StatsHandler : MonoBehaviour {
         this.statPoints = player.StatPoints;    //Get player's current amount of stat points.
         
         DisplayStatText(); //Make sure the stat texts show the correct player stats.
-        statPointsText.text = "Stat Points: " + statPoints;
-        
-        //Hämta spelarens stats och spara dem som rätt text i text-objektet.
-        //Spara ner och visa upp spelarensstatl points.
     }
 
     //Changes the text in the stat windows to show the correct player stats
     public void DisplayStatText(){
-        vitalityText.text = "<color=green>Vitality:\t" + player.Vitality + "\t+" + this.vitalityIncrease +"</color>";
-        strengthText.text = "<color=red>Strength:\t" + player.Strength + "\t+" + this.strengthIncrease + "</color>";
-        magicText.text = "<color=blue>Magic:\t" + player.Magic + "\t+" + this.magicIncrease + "</color>";
+        vitalityText.text = "<color=green>Vitality:\t" + player.Vitality + "\t+" + vitalityIncrease +"</color>";
+        strengthText.text = "<color=red>Strength:\t" + player.Strength + "\t+" + strengthIncrease + "</color>";
+        magicText.text = "<color=blue>Magic:\t" + player.Magic + "\t+" + magicIncrease + "</color>";
         statPointsText.text = "Stat Points: " + statPoints;
     }
 

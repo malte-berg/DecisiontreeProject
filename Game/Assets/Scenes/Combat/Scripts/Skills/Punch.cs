@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Punch : Skill
@@ -17,12 +18,12 @@ public class Punch : Skill
             return false;
         if (gc.Mana < manaCost)
             return false;
-
+            
         gc.Mana -= manaCost;
 
         int damageDealt = Mathf.FloorToInt(gc.Strength * power);
 
-        target.TakeDamage(Mathf.FloorToInt(damageDealt));
+        target.TakeDamage(damageDealt);
 
         return true;
 
