@@ -114,7 +114,7 @@ public class GameCharacter : MonoBehaviour{
         return skill;
 
     }
-
+    
     public void TakeDamage(int dmg){
 
         if(dmg <= Armor)
