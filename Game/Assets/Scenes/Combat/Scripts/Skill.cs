@@ -13,7 +13,7 @@ public abstract class Skill{
 
     public string Name{ get { return name; } }
     public int Cooldown{ get { return cooldown; } }
-    public int Description{ get { return cooldown; } }
+    public int Description{ get { return description; } }
 
     public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
 
