@@ -46,15 +46,12 @@ public class Combat : MonoBehaviour
         player.HP = player.Vitality;
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
 
-<<<<<<< HEAD
-=======
         // Add a mana bar for the player and put it inside the canvas.
         Vector3 manaBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up * 2.2f);
         player.manaBar = Instantiate(manaBarPrefab, manaBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<ManaBar>();
         player.manaBar.gameObject.name = "PlayerMBar";
         player.manaBar.targetCharacter = player;
 
->>>>>>> upstream/main
         for (int i = 0; i < 4; i++) // TEMP SPAWN ENEMIES
             CreateEnemy();
 

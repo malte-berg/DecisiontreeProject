@@ -28,29 +28,22 @@ public class AllSkills : MonoBehaviour
 
     }
 
-<<<<<<< HEAD
-    public void SkillTreeClick(int index)
-    {
-        if (index < 0 || index >= allSkills.Length)
-        {
-            Debug.Log("Invalid skill index");
-            return;
-        }
-=======
     /*
-        AllSkills is placed on Canvas. On each skill button, the onClick() can be bound to the Canvas, with the AllSkills method 
-        SkillTreeClick, taking in the name of the skill (as described in the skill). This will send the skill to unlock/upgrade
-        in the AbilityManager, taking in a skill and deciding what to do based on what is sent in.
-    */
-    public void SkillTreeClick(string skillName) {
->>>>>>> upstream/main
+       AllSkills is placed on Canvas. On each skill button, the onClick() can be bound to the Canvas, with the AllSkills method 
+       SkillTreeClick, taking in the name of the skill (as described in the skill). This will send the skill to unlock/upgrade
+       in the AbilityManager, taking in a skill and deciding what to do based on what is sent in.
+   */
+    public void SkillTreeClick(string skillName)
+    {
+
 
         Debug.Log($"Clicked on skill {skillName}");
 
         Skill skillToHandle = allSkills.SingleOrDefault(skill => skill != null && skill.Name.Equals(skillName));
-        
+
         GetComponent<AbilityManager>().HandleSkillClick(skillToHandle);
         Debug.Log($"Skill {skillToHandle.Name} has power level: {skillToHandle.power}");
     }
 
 }
+

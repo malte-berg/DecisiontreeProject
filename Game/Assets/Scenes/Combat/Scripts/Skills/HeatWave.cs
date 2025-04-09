@@ -6,8 +6,8 @@ public class HeatWave : Skill
     GameCharacter gc;
 
 
-    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1)
-    {
+    //public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1)
+    //{
 
     public HeatWave(GameCharacter gc) : base(
 
@@ -24,7 +24,7 @@ public class HeatWave : Skill
         this.gc = gc;
 
     }
-    }
+
 
     public override bool Effect(GameCharacter target)
     {
