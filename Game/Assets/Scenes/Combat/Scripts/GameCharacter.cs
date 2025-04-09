@@ -7,6 +7,7 @@ public class GameCharacter : MonoBehaviour{
     public Combat c;
 
     // STATS
+    string cName;
     int hp;
     int vitality;
     int armor;
@@ -105,6 +106,7 @@ public class GameCharacter : MonoBehaviour{
     public bool UseSkill(GameCharacter target){
 
         bool skill = skills[selectedSkill].Effect(target);
+        healthBar.UpdateHealthBar(HP, Vitality);
 
         if(spriteManager != null && skill)
             spriteManager.AttackAnimation();
