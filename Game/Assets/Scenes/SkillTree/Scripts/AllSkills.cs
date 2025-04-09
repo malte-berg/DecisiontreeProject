@@ -17,6 +17,7 @@ public class AllSkills : MonoBehaviour
         allSkills[1] = new HeatWave(player);
         allSkills[2] = new Heal(player);
         allSkills[3] = new Sacrifice(player);
+        allSkills[4] = new Poison(player);
     }
 
     void Awake()
@@ -26,8 +27,10 @@ public class AllSkills : MonoBehaviour
 
     }
 
-    public void SkillTreeClick(int index) {
-        if (index < 0 || index >= allSkills.Length) {
+    public void SkillTreeClick(int index)
+    {
+        if (index < 0 || index >= allSkills.Length)
+        {
             Debug.Log("Invalid skill index");
             return;
         }

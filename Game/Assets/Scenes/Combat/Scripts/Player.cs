@@ -1,20 +1,23 @@
 using UnityEngine;
 
-public class Player : GameCharacter {
+public class Player : GameCharacter
+{
 
     // PLAYER STATS
     int gold;
     int skillPoints;
     int statPoints;
-    public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
-    public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
-    public int Gold{ get{ return gold; } set{ this.gold = value; }}
+    public int StatPoints { get { return statPoints; } set { this.statPoints = value; } }
+    public int SkillPoints { get { return skillPoints; } set { this.skillPoints = value; } }
+    public int Gold { get { return gold; } set { this.gold = value; } }
 
-    public Player() : base(){
+    public Player() : base()
+    {
 
     }
-    
-    public override void Init(){
+
+    public override void Init()
+    {
 
         SetSprite("Player");
 
@@ -23,7 +26,7 @@ public class Player : GameCharacter {
         HidePlayer();
         DontDestroyOnLoad(gameObject);
 
-        
+
         gold = 1750;          //For buying items in the store window.
         skillPoints = 10;    //For unlocking new abilities in the skill tree window.
         statPoints = 25;    //for increasing stats in the stats window.
@@ -32,6 +35,11 @@ public class Player : GameCharacter {
         skills[1] = new Heal(this);
         skills[2] = new HeatWave(this);
         skills[3] = new Sacrifice(this);
+        skills[4] = new Corrode(this);
+        skills[5] = new Disarm(this);
+        skills[6] = new Drain(this);
+        //skills[7] = new Shield(this);
+        skills[7] = new Zap(this);
 
         // OP dev privilege
         inventory[0] = new Head("Bucket", 2, 0, 1, 7, 1.05f, -2, 1, 0, 1, 0, 1);
@@ -46,21 +54,24 @@ public class Player : GameCharacter {
 
     }
     //Hide the player model.
-    public void HidePlayer(){
+    public void HidePlayer()
+    {
 
         transform.GetChild(0).gameObject.SetActive(false);
 
     }
-    
+
     //Show the player model.
-    public void ShowPlayer(){
+    public void ShowPlayer()
+    {
 
         transform.GetChild(0).gameObject.SetActive(true);
 
     }
-    
+
     //Update the player stats (permanently).
-    public void UpdateStats(int newVitality, int newStrength, int newMagic, int newStatPoints){
+    public void UpdateStats(int newVitality, int newStrength, int newMagic, int newStatPoints)
+    {
         Vitality = newVitality;
         Strength = newStrength;
         Magic = newMagic;

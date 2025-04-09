@@ -1,17 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class HeatWave : Skill {
+public class HeatWave : Skill
+{
     GameCharacter gc;
 
-    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1) {
+    public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1)
+    {
         this.gc = gc;
     }
 
-    public override bool Effect(GameCharacter target) {
-        if(target == gc)
+    public override bool Effect(GameCharacter target)
+    {
+        if (target == gc)
             return false;
-        if(gc.Mana < manaCost)
+        if (gc.Mana < manaCost)
             return false;
 
         gc.Mana -= manaCost;
@@ -21,7 +24,8 @@ public class HeatWave : Skill {
         Combat combat = target.c;
         List<Enemy> enemies = combat.Enemies;
 
-        foreach (GameCharacter enemy in enemies){
+        foreach (GameCharacter enemy in enemies)
+        {
             enemy.TakeDamage(Mathf.FloorToInt(damageDealt));
         }
 
