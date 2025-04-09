@@ -128,7 +128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 41047801}
-  - component: {fileID: 41047800}
   - component: {fileID: 41047802}
   m_Layer: 0
   m_Name: AreaManager
