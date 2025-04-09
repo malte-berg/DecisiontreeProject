@@ -16,6 +16,7 @@ public class GameCharacter : MonoBehaviour
     int mana;
     int maxMana;
     public HealthBar healthBar;
+    public ManaBar manaBar;
 
     public int HP { get { return hp; } set { this.hp = value; } }
     public int Vitality { get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set { this.vitality = value; } }

@@ -4,6 +4,7 @@ public class Heal : Skill
 {
     GameCharacter gc;
 
+<<<<<<< HEAD
     /* public Heal(GameCharacter gc) : base(
 
           gc: gc,
@@ -20,6 +21,21 @@ public class Heal : Skill
 
         this.gc = gc;
 
+=======
+    public Heal(GameCharacter gc) : base(
+
+        gc: gc,
+        name: "Heal",
+        power: 0,
+        manaCost: 0,
+        skillCost: 1,
+        description: "Heals the player"
+        
+        ){
+
+        this.gc = gc;
+        
+>>>>>>> upstream/main
     }
 
     public override bool Effect(GameCharacter target)
@@ -34,7 +50,7 @@ public class Heal : Skill
 
         target.Mana -= manaCost;
 
-        target.HP = target.HP + Mathf.FloorToInt(gc.Magic * power);
+        target.HP += Mathf.FloorToInt(gc.Magic * power);
 
         if (target.HP > target.Vitality)
         {

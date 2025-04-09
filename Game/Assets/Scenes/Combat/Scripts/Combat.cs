@@ -10,6 +10,7 @@ public class Combat : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject playerPrefab;
     public GameObject healthBarPrefab;
+    public GameObject manaBarPrefab;
     public GameObject marker;
     Transform markerT;
     public GameObject targeting;
@@ -45,6 +46,15 @@ public class Combat : MonoBehaviour
         player.HP = player.Vitality;
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
 
+<<<<<<< HEAD
+=======
+        // Add a mana bar for the player and put it inside the canvas.
+        Vector3 manaBarPosition = Camera.main.WorldToScreenPoint(player.gameObject.transform.position + Vector3.up * 2.2f);
+        player.manaBar = Instantiate(manaBarPrefab, manaBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<ManaBar>();
+        player.manaBar.gameObject.name = "PlayerMBar";
+        player.manaBar.targetCharacter = player;
+
+>>>>>>> upstream/main
         for (int i = 0; i < 4; i++) // TEMP SPAWN ENEMIES
             CreateEnemy();
 
@@ -95,6 +105,11 @@ public class Combat : MonoBehaviour
         enemies[i].healthBar.Init();
         enemies[i].healthBar.gameObject.name = enemies[i].gameObject.name + " HP";
         enemies[i].healthBar.UpdateHealthBar(enemies[i].HP, enemies[i].Vitality);
+
+        Vector3 enemyManaBarPosition = Camera.main.WorldToScreenPoint(enemies[i].gameObject.transform.position + Vector3.up * 2.2f);
+        enemies[i].manaBar = Instantiate(manaBarPrefab, enemyManaBarPosition, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<ManaBar>();
+        enemies[i].manaBar.targetCharacter = enemies[i];
+        enemies[i].manaBar.gameObject.name = enemies[i].gameObject.name + " MBar";
         return enemies[i];
 
     }

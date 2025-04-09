@@ -5,9 +5,24 @@ public class HeatWave : Skill
 {
     GameCharacter gc;
 
+<<<<<<< HEAD
     public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1)
     {
+=======
+    public HeatWave(GameCharacter gc) : base(
+        
+        gc: gc, 
+        name: "Heat Wave", 
+        power: 0, 
+        manaCost: 0, 
+        skillCost: 1,
+        description: "Damages all enemies"
+        
+        ){
+
+>>>>>>> upstream/main
         this.gc = gc;
+        
     }
 
     public override bool Effect(GameCharacter target)
