@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class SpriteManager : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class SpriteManager : MonoBehaviour
     private Transform abilityContainer;
     public SpriteRenderer spriteRenderer;
     private Dictionary<string, SpriteRenderer> spriteLayers = new Dictionary<string, SpriteRenderer>();
+
+    private readonly float ATTACK_TIME = 0.35f; 
+    private readonly float DINSTANCE_TO_LUNGE = 0.7f; 
+    private readonly float ABILITY_ANIMATION_TIME = 0.25f; 
+    private readonly float CHANGE_SPRITE_TIME = 0.2f; 
+
 
     /**
     *   Awake sets the different renderers in a dictionary
@@ -51,7 +58,6 @@ public class SpriteManager : MonoBehaviour
             }
         }
         if(!(thisCharacter is Player)){
-            Debug.Log("an enemy!");
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         // continue this pattern when we have more item sprites
@@ -66,7 +72,7 @@ public class SpriteManager : MonoBehaviour
         int l = sprites.Count;
         for(int i = 1; i <= l; i++){
             int frameIndex = i;
-            DelayedAction(() => SetSprite(sprites[frameIndex % l], sr), delay * frameIndex - delay);
+            DelayedAction(() => SetSprite(sprites[frameIndex % l], sr), delay * frameIndex - delay + ATTACK_TIME/3f);
         }
     }
 
@@ -75,59 +81,87 @@ public class SpriteManager : MonoBehaviour
         string characterType = thisCharacter.GetType().Name;
         Equipment equipment = thisCharacter.equipment;
         if(equipment.weaponLeft != null) {
-            RollSprites(thisCharacter.sprites, spriteLayers["Character"], 0.2f);
+            RollSprites(thisCharacter.sprites, spriteLayers["Character"], CHANGE_SPRITE_TIME);
             if(equipment.weaponLeft.sprites != null)
-                RollSprites(equipment.weaponLeft.sprites, spriteLayers["Weapon"], 0.2f); // use only stick for now
+                RollSprites(equipment.weaponLeft.sprites, spriteLayers["Weapon"], CHANGE_SPRITE_TIME); // use only stick for now
         }
     }
 
-    public void AbilityAnimation(GameCharacter target, GameCharacter sender, int selectedSkill, int frames) {
+    public void AbilityAnimation(Vector3 targetPos, GameCharacter sender, int selectedSkill, int frames) {
         
         Transform pos = spriteLayers["Ability"].gameObject.transform;
-        pos.position = sender.originalPos + Vector3.forward;
-        Vector3 toTarget = target.gameObject.transform.position - pos.position;
+        pos.position += Vector3.forward;
+        Vector3 toTarget = targetPos - pos.position;
+        float distanceX = Mathf.Abs(toTarget.x) / 40f;
 
-        if (sender.skills[selectedSkill].sprites == null){
+        Skill skillToUse = sender.skills[selectedSkill];
+
+        if(!(skillToUse is Heal || skillToUse is Sacrifice)) {
+            Vector3 lungeOffset = toTarget * DINSTANCE_TO_LUNGE;
+            LungeTo(sender, lungeOffset, ATTACK_TIME/2f + distanceX); 
+        }
+
+        if (skillToUse.sprites == null){
             return;
         }
         Sprite sprite = sender.skills[selectedSkill].sprites[0];
 
         if(sprite != null) {
-            Debug.Log("An ability animation should happen");
             pos.GetComponent<SpriteRenderer>().enabled = false;
             pos.GetComponent<SpriteRenderer>().sprite = sprite;
-
-            
-            SetPosOfAnimation(pos, toTarget, 0.9f); 
-            RollScales(pos, frames, 0.25f);
+             
+            RollScales(sender, pos, toTarget, frames, ABILITY_ANIMATION_TIME);
         }
     }
 
-    private void SetPosOfAnimation(Transform tr, Vector3 toTarget, float scalar){
-        tr.position = toTarget * scalar;
-    }
-    private void RollScales(Transform tr, int frames, float delay) {
+    private void RollScales(GameCharacter sender, Transform tr, Vector3 toTarget, int frames, float delay) {
         float scale = frames;
+        Vector3 originalPos = tr.position;
+        tr.position += toTarget * 0.9f;
         for(int i = 0; i <= frames; i++){
             int frameIndex = i;
-            float newScale = ((scale-i) / frames) * 3;
-            DelayedAction(() => SetScale(tr, newScale), frameIndex * (delay/frames));
+            float newScale = ((scale-i) / frames) * 5;
+            DelayedAction(() => SetScale(sender, tr, newScale, originalPos), frameIndex * (delay/frames) + ATTACK_TIME);
         }   
     }
 
-    private void SetScale(Transform tr, float scale) {
+    private void SetScale(GameCharacter sender, Transform tr, float scale, Vector3 originalPos) {
+        SpriteRenderer sr = tr.GetComponent<SpriteRenderer>();
         if(scale <= 0) {
-            tr.GetComponent<SpriteRenderer>().enabled = false;
+            sr.enabled = false;
+            tr.position = originalPos;
         }else {
-            if(!tr.GetComponent<SpriteRenderer>().enabled) 
-                tr.GetComponent<SpriteRenderer>().enabled = true;
+            if(!sr.enabled) 
+                sr.enabled = true;
             tr.localScale = new Vector3(scale, scale, scale);
-            Debug.Log("changed scale to: " + scale);
         }
     }
 
-    private void LungeTo(GameCharacter thisCharacter, Vector3 toTarget) {
-        
+    // make a character lugne smoothly to the target and back
+    private void LungeTo(GameCharacter thisCharacter, Vector3 offset, float duration) {
+        StartCoroutine(LungeCoroutine(thisCharacter.transform.GetChild(0).transform, offset, duration));
+    }
+    private IEnumerator LungeCoroutine(Transform t, Vector3 offset, float duration) {
+        Vector3 start = t.position;
+        Vector3 end = start + offset;
+
+        float halfDuration = duration/2f;
+        float time = 0f;
+
+        while(time < halfDuration){
+            t.position = Vector3.Lerp(start, end, time / halfDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        t.position = end;
+        time = 0f;
+
+        while(time < halfDuration){
+            t.position = Vector3.Lerp(end, start, time / halfDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        t.position = start;
     }
 
     // methods for running a certain function after a delay
