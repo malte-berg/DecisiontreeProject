@@ -64,7 +64,7 @@ public class GameCharacter : MonoBehaviour{
 
         equipment = gameObject.GetComponent<Equipment>();
         skills[0] = new Punch(this);
-        //TODO: Call UnlockSKill() here
+        skills[0].UnlockSkill();
         originalPos = this.transform.position;
 
     }
