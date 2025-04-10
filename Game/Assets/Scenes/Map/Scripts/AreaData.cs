@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelData", menuName = "Game/LevelData")]
+[CreateAssetMenu(fileName = "AreaData", menuName = "Game/AreaData")]
 public class AreaData : ScriptableObject
 {
     public int areaIndex;
-    public string arealName;
+    public string areaName;
     public Sprite backgroundImage;
     public AudioClip bgm;
 

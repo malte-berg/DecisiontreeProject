@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03413086a039f47a2837ef7e6a2fa232, type: 3}
   m_Name: Area2
   m_EditorClassIdentifier: 
-  areaIndex: 2
-  arealName: Area2
+  areaIndex: 3
+  areaName: Area3
   backgroundImage: {fileID: -308409591812723033, guid: f0e3ad52c274549199cf12a58314543b, type: 3}
   bgm: {fileID: 0}

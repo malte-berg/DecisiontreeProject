@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AreaManager : MonoBehaviour
+public class MapManager : MonoBehaviour
 {
     public Button[] buttons;
 
@@ -20,6 +20,7 @@ public class AreaManager : MonoBehaviour
 
     void OnButtonClick(Button clickedButton)
     {
+        // When there are too many buttons may want to consider using another method instead of if-else for optimization
         if (clickedButton.name == "Area1")
         {
             Debug.Log("Area 1 clicked");
