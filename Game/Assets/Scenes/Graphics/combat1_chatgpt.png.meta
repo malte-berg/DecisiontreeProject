@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0e60d3096a08c22de89aeb174f22936e
+guid: f9812555787231d4581008734faeb3e9
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      combat1_chatgpt_0: 1451904613459109000
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -14,20 +14,23 @@ public class AbilityManager : MonoBehaviour {
         Init();
 
     }
+    public void HandleSkillClick(Skill skill) {
 
     public void HandleSkill(Skill skill) {
         Init();
         if (skill == null) {
+
             Debug.Log("Skill not found");
             return;
+
         }
 
         Skill playerSkill = GetPlayerSkillByName(skill.Name);
 
         if (player.SkillPoints < skill.skillCost) {
+
             Debug.Log("Not enough skill points!");
             return;
-        }
 
         if (playerSkill == null) {
             skill.UnlockSkill();
@@ -41,7 +44,14 @@ public class AbilityManager : MonoBehaviour {
             playerSkill.UpgradeSkill();
             player.SkillPoints -= skill.skillCost;
             Debug.Log($"Upgraded {skill.Name}!");
-            return;
+
+        } else {
+
+            skill.UnlockSkill();
+            player.AddSkill(skill);
+            player.SkillPoints -= skill.skillCost;
+            Debug.Log($"Unlocked {skill.Name}!");
+
         }
 
         Debug.Log("Something went wrong!");

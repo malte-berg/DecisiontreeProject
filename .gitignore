@@ -2,6 +2,8 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+.DS_Store
+**/.DS_Store
 */.utmp/
 */[Ll]ibrary/
 */[Tt]emp/
@@ -75,3 +77,4 @@ crashlytics-build.properties
 
 # Editor files
 */.vscode/
+*.vscode

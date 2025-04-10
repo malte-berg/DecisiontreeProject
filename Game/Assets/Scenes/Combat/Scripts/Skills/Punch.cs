@@ -1,20 +1,36 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Punch : Skill{
-    
+public class Punch : Skill
+{
+
     GameCharacter gc;
 
-    public Punch(GameCharacter gc) : base(gc, "Punch", 1, 0, 1){
+    public Punch(GameCharacter gc) : base(
+        
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation_0"), 
+            Resources.Load<Sprite>("Sprites/Abilities/punchAnimation_0"),
+            Resources.Load<Sprite>("Sprites/Abilities/punchAnimation_0")},
+        gc: gc, 
+        name: "Punch", 
+        power: 0, 
+        manaCost: 0, 
+        skillCost: 1,
+        description: "Perform a basic attack on one enemy."
+        
+        ){
+
         this.gc = gc;
+        
     }
 
-    public override bool Effect(GameCharacter target){
+    public override bool Effect(GameCharacter target)
+    {
 
-        if(target == gc)
+        if (target == gc)
             return false;
-
-        if(gc.Mana < manaCost)
+        if (gc.Mana < manaCost)
             return false;
             
         gc.Mana -= manaCost;

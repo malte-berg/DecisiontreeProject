@@ -11,6 +11,7 @@ public class AllSkills : MonoBehaviour {
 
     public Skill[] allSkills;
 
+    /* There is an issue with this part: Every time the Skill Tree interface is opened, a new allSkills[] array is generated. When the corresponding skill button is clicked to upgrade, the newly generated skills in allSkills[] is passed to the HandleSkillClick function. This means that when the player upgrades a skill like Punch, exits the Skill Tree, and then re-enters and upgrades Punch again, the allSkills[0].unlocked will be false, even though Punch was previously unlocked and the player's skills[] already contains Punch. */
     public void Init()
     {
         player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
@@ -34,11 +35,12 @@ public class AllSkills : MonoBehaviour {
 
     }
 
-    public void SkillTreeClick(int index) {
-        if (index < 0 || index >= allSkills.Length) {
-            Debug.Log("Invalid skill index");
-            return;
-        }
+    /*
+        AllSkills is placed on Canvas. On each skill button, the onClick() can be bound to the Canvas, with the AllSkills method 
+        SkillTreeClick, taking in the name of the skill (as described in the skill). This will send the skill to unlock/upgrade
+        in the AbilityManager, taking in a skill and deciding what to do based on what is sent in.
+    */
+    public void SkillTreeClick(string skillName) {
 
         Skill skill = allSkills[index];
         GetComponent<AbilityManager>().HandleSkill(skill);
