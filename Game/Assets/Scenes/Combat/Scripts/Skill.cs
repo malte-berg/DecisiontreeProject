@@ -14,6 +14,7 @@ public abstract class Skill{
     int cooldown = 0;
 
     private string description;
+    private Sprite icon;
     public string Name{ get { return name; } }
     // lägg till beskrivning när man skapar skills/ability
     public string DescriptionPanel { 
@@ -27,9 +28,10 @@ public abstract class Skill{
     public int Cooldown{ get { return cooldown; } }
     public string Description{ get { return description; } }
     public int SkillLevel{ get { return skillLevel; } }
+    public Sprite Icon{ get { return icon; } }
 
-    public Skill(List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
-
+    public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
+        this.icon = icon;
         this.sprites = sprites;
         this.gc = gc;
         this.name = name;

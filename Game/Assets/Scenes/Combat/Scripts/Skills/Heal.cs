@@ -4,7 +4,7 @@ public class Heal : Skill {
     GameCharacter gc;
     
     public Heal(GameCharacter gc) : base(
-
+        icon: Resources.Load<Sprite>("Sprites/Abilities/Heal_Icon"),
         sprites: null,
         gc: gc,
         name: "Heal",
