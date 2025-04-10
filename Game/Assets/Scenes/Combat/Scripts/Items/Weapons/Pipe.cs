@@ -11,7 +11,7 @@ public class Pipe : Weapon{
         armorAdd: 0,
         armorMult: 1,
         strengthAdd: 1,
-        strengthMult: 1.01f,
+        strengthMult: 1.001f,
         magicAdd: 0,
         magicMult: 1,
         manaAdd: 0,
