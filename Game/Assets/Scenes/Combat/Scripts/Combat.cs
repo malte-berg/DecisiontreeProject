@@ -18,6 +18,8 @@ public class Combat : MonoBehaviour{
 
     public List<Enemy> Enemies{ get { return enemies; }}
 
+    public SkillBook sb = new SkillBook();
+
     int turn = 0;
     GameCharacter currentC;
 

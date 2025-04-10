@@ -16,7 +16,7 @@ public class AllSkills : MonoBehaviour {
         player.HidePlayer();
 
         SkillBook sb = new SkillBook();
-        sb.Load(player);
+        sb.Load();
         allSkills = sb.Pages;
 
         SetSkillLevelCounters();

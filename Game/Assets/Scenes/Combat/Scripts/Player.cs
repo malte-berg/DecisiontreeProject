@@ -42,8 +42,8 @@ public class Player : GameCharacter {
         HidePlayer();
         DontDestroyOnLoad(gameObject);
       
-        Skill punch = new Punch(this);
-        punch.UnlockSkill();
+        Skill punch = new Punch();
+        punch.UnlockSkill(this);
         AddSkill(punch);
 
         // OP dev privilege

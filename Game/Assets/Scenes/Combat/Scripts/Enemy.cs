@@ -48,8 +48,8 @@ public class Enemy : GameCharacter {
         HP = Vitality;
         Mana = MaxMana;
 
-        Punch punch = new Punch(this);
-        punch.UnlockSkill();
+        Punch punch = new Punch();
+        punch.UnlockSkill(this);
         AddSkill(punch);
 
         // temp
