@@ -5,7 +5,7 @@ public class HeatWave : Skill {
     GameCharacter gc;
 
     public HeatWave(GameCharacter gc) : base(
-        
+        icon: Resources.Load<Sprite>("Sprites/Abilities/HeatWave_Icon"),
         sprites: null,
         gc: gc, 
         name: "Heat Wave", 

@@ -49,6 +49,7 @@ public class SkillSelection : MonoBehaviour
         for (int i = 0; i < skillButtons.Length; i++)
         {
             skillButtons[i].interactable = player.skills.Length > i && player.skills[i] != null;
+            skillButtons[i].GetComponent<Image>().sprite = player.skills.Length > i && player.skills[i] != null ? player.skills[i].Icon : null;
         }
     }
 
