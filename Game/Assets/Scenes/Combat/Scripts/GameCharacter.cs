@@ -115,10 +115,11 @@ public class GameCharacter : MonoBehaviour{
         bool skill = skills[selectedSkill].Effect(target);
         healthBar.UpdateHealthBar(HP, Vitality);
 
-        if (spriteManager != null && skill)
+        if (spriteManager != null && skill) {
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
             spriteManager.AbilityAnimation(target, this, selectedSkill, 5);
+        }
 
         return skill;
 
