@@ -8,8 +8,7 @@ using UnityEngine;
 public class Enemy : GameCharacter {
 
     Item[] availableItems;
-    int level;
-    int purchacePower;
+    public int level;
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
     public Enemy() : base(
@@ -25,11 +24,11 @@ public class Enemy : GameCharacter {
 
     ){}
 
-    public void CreateEnemy(Item[] availableItems, int level, int purchacePower, string cName){
+    public void CreateEnemy(Item[] availableItems, int levelDelta, string cName){
 
         this.availableItems = availableItems;
-        this.level = level;
-        this.purchacePower = purchacePower;
+        level += levelDelta;
+        if(level < 1) level = 1;
         CName = cName;
 
     }
@@ -72,7 +71,7 @@ public class Enemy : GameCharacter {
         availableItems[14] = new WorkerBoots();
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
-        GatherItems(purchacePower);
+        GatherItems((level - 1) * 10 + 1);
         equipment.PrintEquipment();
 
         SetSprite("Enemy");
