@@ -118,7 +118,7 @@ public class GameCharacter : MonoBehaviour{
         if (spriteManager != null && skill)
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.PunchAnimation(target, this, selectedSkill);
+            spriteManager.AbilityAnimation(target, this, selectedSkill, 5);
 
         return skill;
 
