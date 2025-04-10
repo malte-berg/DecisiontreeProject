@@ -9,9 +9,7 @@ public class Punch : Skill
 
     public Punch(GameCharacter gc) : base(
         
-        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation_0"), 
-            Resources.Load<Sprite>("Sprites/Abilities/punchAnimation_0"),
-            Resources.Load<Sprite>("Sprites/Abilities/punchAnimation_0")},
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation")},
         gc: gc, 
         name: "Punch", 
         power: 0, 

@@ -34,7 +34,7 @@ public class Enemy : GameCharacter {
 
     public override void Init() {
 
-        sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp1")};
+        sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2")};
 
         equipment = gameObject.GetComponent<Equipment>();
 
@@ -47,7 +47,9 @@ public class Enemy : GameCharacter {
         HP = Vitality;
         Mana = MaxMana;
 
-        skills[0] = new Punch(this);
+        Punch punch = new Punch(this);
+        punch.UnlockSkill();
+        AddSkill(punch);
 
         // temp
         availableItems = new Item[17];

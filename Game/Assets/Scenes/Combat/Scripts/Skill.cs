@@ -38,6 +38,7 @@ public abstract class Skill{
         this.skillCost = skillCost;
         this.description = description;
         this.unlocked = false;
+        this.skillLevel = 0;
     }
 
     public void UnlockSkill() {

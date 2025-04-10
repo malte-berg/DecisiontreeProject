@@ -32,6 +32,7 @@ public class GameCharacter : MonoBehaviour{
     public Skill[] skills;
 
     int skillCount;
+
     int selectedSkill = 0;
 
     // INVENTORY
@@ -63,9 +64,7 @@ public class GameCharacter : MonoBehaviour{
     }
 
     public virtual void Init(){
-
         equipment = gameObject.GetComponent<Equipment>();
-        skills[0] = new Punch(this);
         originalPos = this.transform.position;
 
     }
@@ -118,10 +117,11 @@ public class GameCharacter : MonoBehaviour{
         bool skill = skills[selectedSkill].Effect(target);
         healthBar.UpdateHealthBar(HP, Vitality);
 
-        if (spriteManager != null && skill)
+        if (spriteManager != null && skill) {
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.PunchAnimation(target, this, selectedSkill);
+            spriteManager.AbilityAnimation(target, this, selectedSkill, 5);
+        }
 
         return skill;
 

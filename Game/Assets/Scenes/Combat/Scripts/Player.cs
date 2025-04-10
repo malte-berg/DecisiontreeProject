@@ -40,9 +40,10 @@ public class Player : GameCharacter {
         gameObject.name = "Player";
         HidePlayer();
         DontDestroyOnLoad(gameObject);
-
-        skills[0] = new Punch(this);
-        // skills[0].unlocked = true; 
+      
+        Skill punch = new Punch(this);
+        punch.UnlockSkill();
+        AddSkill(punch);
 
         // OP dev privilege
         inventory[0] = new Knife();
