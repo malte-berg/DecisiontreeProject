@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour {
+public class HealthBar : Bar {
 
     Slider slider;
     TMP_Text hpText;
@@ -15,6 +15,8 @@ public class HealthBar : MonoBehaviour {
     }
 
     public void UpdateHealthBar(int currentHP, int maxHP){
+
+        if (slider == null || hpText == null) return;
 
         float hpBarPercentage = (float)currentHP/maxHP;
         slider.value = hpBarPercentage;

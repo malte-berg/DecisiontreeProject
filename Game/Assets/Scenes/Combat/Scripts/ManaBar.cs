@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManaBar : MonoBehaviour
+public class ManaBar : Bar
 {
     public Slider manaSlider;
     public GameCharacter targetCharacter;
@@ -10,16 +10,9 @@ public class ManaBar : MonoBehaviour
     int currentMana;
     int maxMana;
 
-    void Start()
+    protected override void Start()
     {
-        if (targetCharacter == null)
-        {
-            Debug.LogError("ManaBar: No target character assigned.");
-            enabled = false;
-            return;
-            mpText = GetComponentInChildren<TMP_Text>();
-        }
-
+        base.Start(); // Check for target
         UpdateManaBar();
     }
 

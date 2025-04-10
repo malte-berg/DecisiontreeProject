@@ -33,24 +33,20 @@ public class Combat : MonoBehaviour{
         player.transform.position = new Vector3(-4, 0, 0);
 
         //Add a healthbar for the player and put it inside the canvas.
-        player.healthBar = Instantiate(healthBarPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
+        player.healthBar = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
         player.healthBar.Init();
         player.healthBar.gameObject.name = "PlayerHP";
+        player.healthBar.target = player.transform;
+        player.healthBar.yOffset = 2f;
         player.HP = player.Vitality;
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
 
-        BarsPosition followHP = player.healthBar.gameObject.AddComponent<BarsPosition>();
-        followHP.target = player.transform;
-        followHP.offset = Vector3.up * 2f;
-
         //Add a mana bar for the player and put it inside the canvas.
-        player.manaBar = Instantiate(manaBarPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<ManaBar>();
+        player.manaBar = Instantiate(manaBarPrefab, GameObject.Find("Canvas").transform).GetComponent<ManaBar>();
         player.manaBar.gameObject.name = "PlayerMBar";
         player.manaBar.targetCharacter = player;
-
-        BarsPosition followMP = player.manaBar.gameObject.AddComponent<BarsPosition>();
-        followMP.target = player.transform;
-        followMP.offset = Vector3.up * 2.215f;
+        player.manaBar.target = player.transform;
+        player.manaBar.yOffset = 2.215f;
 
         for (int i = 0; i < 4; i++) // TEMP SPAWN ENEMIES
             SpawnEnemy(enemyPrefabs[0]);
@@ -96,23 +92,20 @@ public class Combat : MonoBehaviour{
             cEnemy.transform.position = Vector3.right * (i+1) * 2 - (Vector3.up * (i+1) * 0.25f);
 
         //Add a healthbar for the enemy and put it inside the canvas.
-        cEnemy.healthBar = Instantiate(healthBarPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
+        cEnemy.healthBar = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
         cEnemy.healthBar.Init();
         cEnemy.healthBar.gameObject.name = cEnemy.gameObject.name + " HP";
+        cEnemy.healthBar.target = cEnemy.transform;
+        cEnemy.healthBar.yOffset = 2f;
         cEnemy.healthBar.UpdateHealthBar(cEnemy.HP, cEnemy.Vitality);
 
-        BarsPosition followHP = cEnemy.healthBar.gameObject.AddComponent<BarsPosition>();
-        followHP.target = cEnemy.transform;
-        followHP.offset = Vector3.up * 2f;
-
         //Add a mana bar for the enemy and put it inside the canvas.
-        cEnemy.manaBar = Instantiate(manaBarPrefab, Vector3.zero, Quaternion.identity, GameObject.Find("Canvas").transform).GetComponent<ManaBar>();
-        cEnemy.manaBar.targetCharacter = enemies[i];
-        cEnemy.manaBar.gameObject.name = enemies[i].gameObject.name + " MBar";
+        cEnemy.manaBar = Instantiate(manaBarPrefab, GameObject.Find("Canvas").transform).GetComponent<ManaBar>();
+        cEnemy.manaBar.gameObject.name = cEnemy.gameObject.name + " MBar";
+        cEnemy.manaBar.targetCharacter = cEnemy;
+        cEnemy.manaBar.target = cEnemy.transform;
+        cEnemy.manaBar.yOffset = 2.215f;
 
-        BarsPosition followMP = cEnemy.manaBar.gameObject.AddComponent<BarsPosition>();
-        followMP.target = cEnemy.transform;
-        followMP.offset = Vector3.up * 2.215f;
         return cEnemy;
 
     }
