@@ -765,10 +765,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 610894375}
-  - component: {fileID: 610894376}
-  - component: {fileID: 610894377}
-  - component: {fileID: 610894379}
-  - component: {fileID: 610894378}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -793,66 +789,6 @@ Transform:
   - {fileID: 2085345790}
   m_Father: {fileID: 657434394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &610894376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610894374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c559f72469f5b144982dd5ae327a9c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonA: {fileID: 1428001147}
-  buttonB: {fileID: 2085345787}
-  newColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
---- !u!114 &610894377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610894374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c559f72469f5b144982dd5ae327a9c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonA: {fileID: 2085345787}
-  buttonB: {fileID: 1428001147}
-  newColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
---- !u!114 &610894378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610894374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c559f72469f5b144982dd5ae327a9c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonA: {fileID: 2085345787}
-  buttonB: {fileID: 2085345787}
-  newColor: {r: 0.16229264, g: 0.509434, b: 0, a: 1}
---- !u!114 &610894379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610894374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c559f72469f5b144982dd5ae327a9c57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonA: {fileID: 1428001147}
-  buttonB: {fileID: 1428001147}
-  newColor: {r: 0.5330188, g: 0, b: 0, a: 1}
 --- !u!1 &646366834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,8 +937,8 @@ GameObject:
   - component: {fileID: 657434393}
   - component: {fileID: 657434392}
   - component: {fileID: 657434391}
-  - component: {fileID: 657434395}
   - component: {fileID: 657434396}
+  - component: {fileID: 657434395}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1111,7 +1047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de653f8731641128883b220191c14800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &657434396
 MonoBehaviour:
   m_ObjectHideFlags: 0

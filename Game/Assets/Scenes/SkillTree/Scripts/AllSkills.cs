@@ -16,7 +16,7 @@ public class AllSkills : MonoBehaviour {
         player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
         player.HidePlayer();
 
-        allSkills = new Skill[16];
+        allSkills = new Skill[8];
         allSkills[0] = new Punch(player);
         allSkills[1] = new HeatWave(player);
         allSkills[2] = new Heal(player);
@@ -40,11 +40,10 @@ public class AllSkills : MonoBehaviour {
             return;
         }
 
-        Debug.Log($"Clicked on skill: {allSkills[index].Name}");
         Skill skill = allSkills[index];
-        if (GetComponent<AbilityManager>().HandleSkill(skill)) {
-            SetPointCounter();
-        }
+        GetComponent<AbilityManager>().HandleSkill(skill);
+            
+        SetPointCounter();
         SetSkillLevelCounters();
         SetSkillColors();
     }
@@ -55,9 +54,15 @@ public class AllSkills : MonoBehaviour {
                 continue;
             }
             TMP_Text skillLevelText = skillLevelTexts[i];
+
+            Skill playerSkill = GetComponent<AbilityManager>().GetPlayerSkillByName(allSkills[i].Name);
+            if (playerSkill != null) {
+                allSkills[i] = playerSkill;
+            }
             if (skillLevelText != null && allSkills[i].unlocked) {
                 skillLevelText.text = allSkills[i].level.ToString();
             }
+
             if (skillLevelText != null && !allSkills[i].unlocked) {
                 skillLevelText.text = "Unlock";
             }
@@ -71,6 +76,12 @@ public class AllSkills : MonoBehaviour {
             }
             GameObject skillNode = skillNodes[i];
             Image imageComponent = skillNode.GetComponent<Image>();
+
+            Skill playerSkill = GetComponent<AbilityManager>().GetPlayerSkillByName(allSkills[i].Name);
+            if (playerSkill != null) {
+                allSkills[i] = playerSkill;
+            }
+
             if (imageComponent != null) {
                 if (allSkills[i].unlocked) {
                     imageComponent.color = Color.green;
