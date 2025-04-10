@@ -17,9 +17,9 @@ public class ManaBar : MonoBehaviour
             Debug.LogError("ManaBar: No target character assigned.");
             enabled = false;
             return;
-            mpText = GetComponentInChildren<TMP_Text>();
         }
 
+        mpText = GetComponentInChildren<TMP_Text>();
         UpdateManaBar();
     }
 
