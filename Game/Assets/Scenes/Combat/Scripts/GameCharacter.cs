@@ -42,7 +42,6 @@ public class GameCharacter : MonoBehaviour{
     // to change sprite
     SpriteManager spriteManager;
     Transform moveCharacterSprite;
-    public Vector3 originalPos;
     public List<Sprite> sprites;
 
     public GameCharacter(string cName, int vitality, int armor, int strength, int magic, int mana, int maxSkill, int inventorySize){
@@ -65,8 +64,6 @@ public class GameCharacter : MonoBehaviour{
 
     public virtual void Init(){
         equipment = gameObject.GetComponent<Equipment>();
-        originalPos = this.transform.position;
-
     }
 
     public void SetSprite(string type) {
@@ -114,13 +111,14 @@ public class GameCharacter : MonoBehaviour{
 
     public bool UseSkill(GameCharacter target){
 
-        bool skill = skills[selectedSkill].Effect(target);
+        bool skill = target != null && skills[selectedSkill].Effect(target);
         healthBar.UpdateHealthBar(HP, Vitality);
 
+        Vector3 posOfTarget = target.transform.GetChild(0).position;
         if (spriteManager != null && skill) {
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.AbilityAnimation(target, this, selectedSkill, 5);
+            spriteManager.AbilityAnimation(posOfTarget, this, selectedSkill, 5);
         }
 
         return skill;
