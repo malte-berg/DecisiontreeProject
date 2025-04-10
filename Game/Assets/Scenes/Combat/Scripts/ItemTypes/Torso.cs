@@ -1,9 +1,6 @@
 using UnityEngine;
 
-public class Torso : Item {
-
-    string name;
-    int value;
+public class Torso : Item{
 
     int vitalityAdd;
     float vitalityMult;
@@ -30,10 +27,9 @@ public class Torso : Item {
     public int ManaAdd{ get{ return manaAdd; } }
     public float ManaMult{ get{ return manaMult; } }
 
-    public Torso(string name, int value, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value){
+    public Torso(Sprite sprite, string name, int value, string description, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value, description){
 
-        this.name = name;
-        this.value = value;
+        this.sprite = sprite;
         this.vitalityAdd = vitalityAdd;
         this.vitalityMult = vitalityMult;
         this.armorAdd = armorAdd;

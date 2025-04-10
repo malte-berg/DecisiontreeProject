@@ -2,13 +2,7 @@ using UnityEngine;
 
 public class Consumable : Item {
 
-    string name;
-    int value;
-
-    public Consumable(string name, int value) : base(name, value){
-
-        this.name = name;
-        this.value = value;
+    public Consumable(string name, int value, string description) : base(name, value, description){
 
     }
 

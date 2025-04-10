@@ -69,14 +69,16 @@ public class Shop : MonoBehaviour
     void TestItems()
     {
         onSaleItems[0] = new Weapon(
+            null,
             "Sword",
-            450,
+            450, "swrd", 
             0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f 
         );
 
         onSaleItems[1] = new Head(
+            null,
             "Head",
-            300,
+            300, "hed",
             0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f
         );
 

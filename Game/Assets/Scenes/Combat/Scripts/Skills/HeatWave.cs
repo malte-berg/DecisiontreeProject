@@ -11,12 +11,13 @@ public class HeatWave : Skill
 
     public HeatWave(GameCharacter gc) : base(
 
+        sprites: null,
         gc: gc,
         name: "Heat Wave",
         power: 0,
         manaCost: 0,
         skillCost: 1,
-        description: "Damages all enemies"
+        description: "Deal Fire Damage to all enemies."
 
         )
     {

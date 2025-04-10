@@ -4,23 +4,15 @@ public class Heal : Skill
 {
     GameCharacter gc;
 
-
-    //public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 1)
-    //{
-
-    //  this.gc = gc;
-
-    //}
-
-
     public Heal(GameCharacter gc) : base(
 
+        sprites: null,
         gc: gc,
         name: "Heal",
         power: 0,
         manaCost: 0,
         skillCost: 1,
-        description: "Heals the player"
+        description: "Regain some lost health."
 
         )
     {
@@ -52,3 +44,11 @@ public class Heal : Skill
     }
 
 }
+
+
+//public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 1)
+//{
+
+//  this.gc = gc;
+
+//}
