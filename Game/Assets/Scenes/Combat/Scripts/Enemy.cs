@@ -11,7 +11,7 @@ public class Enemy : GameCharacter {
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
     public override void Init() {
-        sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp1")};
+        sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2")};
 
         equipment = gameObject.GetComponent<Equipment>();
         skills[0] = new Punch(this);
