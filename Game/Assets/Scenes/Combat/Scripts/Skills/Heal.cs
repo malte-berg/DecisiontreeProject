@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Heal : Skill {
     GameCharacter gc;
-
+    
     public Heal(GameCharacter gc) : base(
 
         gc: gc,
@@ -10,7 +10,7 @@ public class Heal : Skill {
         power: 0,
         manaCost: 0,
         skillCost: 1,
-        description: "Heals the player"
+        description: "Regain some lost health."
         
         ){
 
