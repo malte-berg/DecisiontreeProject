@@ -24,7 +24,6 @@ public class Player : GameCharacter {
         DontDestroyOnLoad(gameObject);
 
 
-        /**
         Skill punch = new Punch(this);
         Skill heal = new Heal(this);
         Skill heatWave = new HeatWave(this);
@@ -39,7 +38,6 @@ public class Player : GameCharacter {
         AddSkill(heal);
         AddSkill(heatWave);
         AddSkill(sacrifice);
-        */
         
         gold = 1750;          //For buying items in the store window.
         skillPoints = 10;    //For unlocking new abilities in the skill tree window.
