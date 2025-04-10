@@ -14,7 +14,10 @@ public class Enemy : GameCharacter {
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp1")};
 
         equipment = gameObject.GetComponent<Equipment>();
-        skills[0] = new Punch(this);
+
+        Punch punch = new Punch(this);
+        punch.UnlockSkill();
+        AddSkill(punch);
 
         // temp
         availableItems = new Item[17];

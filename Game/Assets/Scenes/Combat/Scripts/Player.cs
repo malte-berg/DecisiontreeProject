@@ -26,18 +26,19 @@ public class Player : GameCharacter {
         HidePlayer();
         DontDestroyOnLoad(gameObject);
 
-        /*
         Skill punch = new Punch(this);
+        punch.UnlockSkill();
+        AddSkill(punch);
+        
+        /*
         Skill heal = new Heal(this);
         Skill heatWave = new HeatWave(this);
         Skill sacrifice = new Sacrifice(this);
 
-        punch.UnlockSkill();
         heal.UnlockSkill();
         heatWave.UnlockSkill();
         sacrifice.UnlockSkill();
 
-        AddSkill(punch);
         AddSkill(heal);
         AddSkill(heatWave);
         AddSkill(sacrifice);
