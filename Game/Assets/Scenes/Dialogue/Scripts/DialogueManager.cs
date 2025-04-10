@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Init()
+    void Start()
     {
         sentences = new Queue<string>();
     }
@@ -45,9 +45,6 @@ public class DialogueManager : MonoBehaviour
     }
 
     void EndDialogue(){
-        // // Make the text inside the dialogue window empty.
-        // dialogueText.text = null;
-        // nameText.text = null;
         Debug.Log("End of convo");
     }
 }
