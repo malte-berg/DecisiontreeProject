@@ -1,18 +1,16 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ManaBar : Bar
 {
-    public Slider manaSlider;
+    // public Slider manaSlider;
     public GameCharacter targetCharacter;
-    public TMP_Text mpText;
-    int currentMana;
-    int maxMana;
+    // public TMP_Text mpText;
+    // int currentMana;
+    // int maxMana;
 
-    protected override void Start()
+    public void Start()
     {
-        base.Start(); // Check for target
+        base.Init(); // Check for target
         UpdateManaBar();
     }
 
@@ -26,7 +24,7 @@ public class ManaBar : Bar
 
     public void UpdateManaBar()
     {
-        if (manaSlider == null || targetCharacter == null)
+        /*if (manaSlider == null || targetCharacter == null)
             return;
 
         currentMana = targetCharacter.Mana;
@@ -37,7 +35,11 @@ public class ManaBar : Bar
         mpText.text = $"{currentMana} / {maxMana}";
 
         manaSlider.maxValue = maxMana;
-        manaSlider.value = currentMana;
+        manaSlider.value = currentMana;*/
+
+        if (targetCharacter == null) return;
+
+        UpdateBar(targetCharacter.Mana, targetCharacter.MaxMana);
     }
 }
 
