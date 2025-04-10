@@ -7,6 +7,7 @@ public class Sacrifice : Skill {
 
     public Sacrifice(GameCharacter gc) : base(
         
+        sprites: null,
         gc: gc, 
         name: "Sacrifice", 
         power: 0, 

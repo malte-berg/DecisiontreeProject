@@ -1,20 +1,17 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class SpriteManager : MonoBehaviour
 {
     private Transform spriteContainer;
     private Transform abilityContainer;
-
     public SpriteRenderer spriteRenderer;
-    public List<Sprite> spriteList;
-
-    private Dictionary<string, List<Sprite>> animations = new Dictionary<string, List<Sprite>>();
     private Dictionary<string, SpriteRenderer> spriteLayers = new Dictionary<string, SpriteRenderer>();
 
     /**
-    *   Awake sets the 4 different renderers in a dictionary
+    *   Awake sets the different renderers in a dictionary
     *   Also assign trasnformer objects, one for the character and
     *   one for ability animation
     */
@@ -38,19 +35,26 @@ public class SpriteManager : MonoBehaviour
         } else {
             Debug.LogError("SpriteContainer not found!");
         }
-
-        animations["Player"] = new List<Sprite> {spriteList[0], spriteList[1]};
-        animations["Enemy"] = new List<Sprite> {spriteList[2], spriteList[3]};
-        animations["Punch"] = new List<Sprite> {spriteList[4], spriteList[5], spriteList[6], spriteList[7]};
-
     }
 
-    public void SetCharacter(string type) {
-        if(animations.ContainsKey(type)) {
-            SetSprite(animations[type][0], spriteLayers["Character"]) ;
-        } else {
-            Debug.LogError("Could not find sprite");
+    public void SetCharacter(GameCharacter thisCharacter) {
+        SetSprite(thisCharacter.sprites[0], spriteLayers["Character"]) ;
+        Equipment equipment = thisCharacter.equipment;
+        if(equipment != null) {
+            if(equipment.head != null) {
+                if(equipment.head.sprite != null)
+                    SetSprite(equipment.head.sprite, spriteLayers["Head"]); 
+            }
+            if(equipment.weaponLeft != null) {
+                if(equipment.weaponLeft.sprites != null)
+                    SetSprite(equipment.weaponLeft.sprites[0], spriteLayers["Weapon"]); 
+            }
         }
+        if(!(thisCharacter is Player)){
+            Debug.Log("an enemy!");
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        // continue this pattern when we have more item sprites
     }
 
     private void SetSprite(Sprite sprite, SpriteRenderer sr) {
@@ -68,24 +72,28 @@ public class SpriteManager : MonoBehaviour
 
     //new attack animation
     public void AttackAnimation(string type, GameCharacter thisCharacter) {
-        string characterType;
-        if(thisCharacter is Player){
-            characterType = "Player";
-        }else if(thisCharacter is Enemy){
-            characterType = "Enemy";
-        }else{
-            characterType = "Player"; // default option
+        string characterType = thisCharacter.GetType().Name;
+        Equipment equipment = thisCharacter.equipment;
+        if(equipment.weaponLeft != null) {
+            RollSprites(thisCharacter.sprites, spriteLayers["Character"], 0.2f);
+            if(equipment.weaponLeft.sprites != null)
+                RollSprites(equipment.weaponLeft.sprites, spriteLayers["Weapon"], 0.2f); // use only stick for now
         }
-        RollSprites(animations[characterType], spriteLayers["Character"], 0.2f);
     }
 
-    public void PunchAnimation(GameCharacter target) {
+    public void PunchAnimation(GameCharacter target, GameCharacter sender, int selectedSkill) {
+        
         Transform pos = spriteLayers["Ability"].gameObject.transform;
+        pos.position = sender.originalPos;
         Vector3 toTarget = target.gameObject.transform.position - pos.position;
         Vector3 x = toTarget * 0.92f;
         pos.position = pos.position + x;
 
-        RollSprites(animations["Punch"], spriteLayers["Ability"], 0.1f);
+        RollSprites(sender.skills[selectedSkill].sprites, spriteLayers["Ability"], 0.1f);
+    }
+
+    private void LungeTo(GameCharacter thisCharacter, Vector3 target) {
+
     }
 
     // methods for running a certain function after a delay

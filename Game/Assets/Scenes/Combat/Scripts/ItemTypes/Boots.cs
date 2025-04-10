@@ -1,10 +1,7 @@
 using UnityEngine;
 
 public class Boots : Item{
-
-    string name;
-    int value;
-
+    
     int vitalityAdd;
     float vitalityMult;
     public int VitalityAdd{ get{ return vitalityAdd; } }
@@ -30,10 +27,9 @@ public class Boots : Item{
     public int ManaAdd{ get{ return manaAdd; } }
     public float ManaMult{ get{ return manaMult; } }
 
-    public Boots(string name, int value, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value){
+    public Boots(Sprite sprite, string name, int value, string description, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value, description){
 
-        this.name = name;
-        this.value = value;
+        this.sprite = sprite;
         this.vitalityAdd = vitalityAdd;
         this.vitalityMult = vitalityMult;
         this.armorAdd = armorAdd;

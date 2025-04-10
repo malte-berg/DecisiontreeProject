@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Skill{
+    public List<Sprite> sprites;
 
     GameCharacter gc;
     string name;
@@ -26,8 +28,9 @@ public abstract class Skill{
     public string Description{ get { return description; } }
     public int SkillLevel{ get { return skillLevel; } }
 
-    public Skill(GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
+    public Skill(List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
 
+        this.sprites = sprites;
         this.gc = gc;
         this.name = name;
         this.power = power;
