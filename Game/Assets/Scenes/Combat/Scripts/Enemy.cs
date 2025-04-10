@@ -8,7 +8,7 @@ using UnityEngine;
 public class Enemy : GameCharacter {
 
     Item[] availableItems;
-    int enemyPower;
+    public int level;
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
     public Enemy() : base(
@@ -24,10 +24,11 @@ public class Enemy : GameCharacter {
 
     ){}
 
-    public void CreateEnemy(Item[] availableItems, int enemyPower, string cName){
+    public void CreateEnemy(Item[] availableItems, int levelDelta, string cName){
 
         this.availableItems = availableItems;
-        this.enemyPower = enemyPower;
+        level += levelDelta;
+        if(level < 1) level = 1;
         CName = cName;
 
     }
@@ -38,12 +39,12 @@ public class Enemy : GameCharacter {
 
         equipment = gameObject.GetComponent<Equipment>();
 
-        // have stats based on enemyPower
-        Vitality = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(80,121);
-        Armor = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(1,5);
-        Strength = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(8,16);
-        Magic = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(2,16);
-        MaxMana = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(5,16);
+        // have stats based on level
+        Vitality = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(80,121);
+        Armor = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(1,5);
+        Strength = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(8,16);
+        Magic = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(2,16);
+        MaxMana = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(5,16);
         HP = Vitality;
         Mana = MaxMana;
 
@@ -70,7 +71,8 @@ public class Enemy : GameCharacter {
         availableItems[14] = new WorkerBoots();
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
-        GatherItems(enemyPower);
+        GatherItems((level - 1) * 10 + 1);
+        equipment.PrintEquipment();
 
         SetSprite("Enemy");
         

@@ -9,7 +9,7 @@ public class Jacket : Torso{
         vitalityAdd: 20,
         vitalityMult: 1f,
         armorAdd: 0,
-        armorMult: 1.01f,
+        armorMult: 1.001f,
         strengthAdd: 2,
         strengthMult: 1f,
         magicAdd: 0,
