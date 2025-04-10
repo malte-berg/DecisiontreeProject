@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class SpriteManager : MonoBehaviour
 {
@@ -80,19 +81,50 @@ public class SpriteManager : MonoBehaviour
         }
     }
 
-    public void PunchAnimation(GameCharacter target, GameCharacter sender, int selectedSkill) {
+    public void AbilityAnimation(GameCharacter target, GameCharacter sender, int selectedSkill, int frames) {
         
         Transform pos = spriteLayers["Ability"].gameObject.transform;
-        pos.position = sender.originalPos;
+        pos.position = sender.originalPos + new Vector3(0f, 0f, 1f);
         Vector3 toTarget = target.gameObject.transform.position - pos.position;
-        Vector3 x = toTarget * 0.92f;
-        pos.position = pos.position + x;
 
-        RollSprites(sender.skills[selectedSkill].sprites, spriteLayers["Ability"], 0.1f);
+        Sprite sprite = sender.skills[selectedSkill].sprites[0];
+
+        if(sprite != null) {
+            Debug.Log("An ability animation should happen");
+            pos.GetComponent<SpriteRenderer>().enabled = false;
+            pos.GetComponent<SpriteRenderer>().sprite = sprite;
+
+            
+            SetPosOfAnimation(pos, toTarget, 0.9f); 
+            RollScales(pos, frames, 0.25f);
+        }
     }
 
-    private void LungeTo(GameCharacter thisCharacter, Vector3 target) {
+    private void SetPosOfAnimation(Transform tr, Vector3 toTarget, float scalar){
+        tr.position = toTarget * scalar;
+    }
+    private void RollScales(Transform tr, int frames, float delay) {
+        float scale = frames;
+        for(int i = 0; i <= frames; i++){
+            int frameIndex = i;
+            float newScale = ((scale-i) / frames) * 3;
+            DelayedAction(() => SetScale(tr, newScale), frameIndex * (delay/frames));
+        }   
+    }
 
+    private void SetScale(Transform tr, float scale) {
+        if(scale <= 0) {
+            tr.GetComponent<SpriteRenderer>().enabled = false;
+        }else {
+            if(!tr.GetComponent<SpriteRenderer>().enabled) 
+                tr.GetComponent<SpriteRenderer>().enabled = true;
+            tr.localScale = new Vector3(scale, scale, scale);
+            Debug.Log("changed scale to: " + scale);
+        }
+    }
+
+    private void LungeTo(GameCharacter thisCharacter, Vector3 toTarget) {
+        
     }
 
     // methods for running a certain function after a delay
