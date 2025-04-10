@@ -11,10 +11,19 @@ public abstract class Skill{
     public int skillCost;
     int skillLevel;
     public bool unlocked;
-    string description;
     int cooldown = 0;
 
+    private string description;
     public string Name{ get { return name; } }
+    // lägg till beskrivning när man skapar skills/ability
+    public string DescriptionPanel { 
+        get {
+            return description +
+                   "Skill level: —-\n" + // vissa skill level istället för power?
+                   "Mana Cost: " + manaCost.ToString() + "\n" +  
+                   "Cooldown: —-\n"; 
+        } 
+    }
     public int Cooldown{ get { return cooldown; } }
     public string Description{ get { return description; } }
     public int SkillLevel{ get { return skillLevel; } }

@@ -12,7 +12,7 @@ public class HeatWave : Skill {
         power: 0, 
         manaCost: 0, 
         skillCost: 1,
-        description: "Damages all enemies"
+        description: "Deal Fire Damage to all enemies."
         
         ){
 

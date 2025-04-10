@@ -32,9 +32,7 @@ public class Player : GameCharacter {
         statPoints = 25;    //for increasing stats in the stats window.
 
         skills[0] = new Punch(this);
-        skills[1] = new Heal(this);
-        skills[2] = new HeatWave(this);
-        skills[3] = new Sacrifice(this);
+        // skills[0].unlocked = true; 
 
         // OP dev privilege
         inventory[0] = new Knife();

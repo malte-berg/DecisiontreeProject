@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Punch : Skill{
-    
+public class Punch : Skill
+{
+
     GameCharacter gc;
 
     public Punch(GameCharacter gc) : base(
@@ -16,7 +17,7 @@ public class Punch : Skill{
         power: 0, 
         manaCost: 0, 
         skillCost: 1,
-        description: "The simplest and purest of attacks"
+        description: "Perform a basic attack on one enemy."
         
         ){
 
@@ -24,12 +25,12 @@ public class Punch : Skill{
         
     }
 
-    public override bool Effect(GameCharacter target){
+    public override bool Effect(GameCharacter target)
+    {
 
-        if(target == gc)
+        if (target == gc)
             return false;
-
-        if(gc.Mana < manaCost)
+        if (gc.Mana < manaCost)
             return false;
             
         gc.Mana -= manaCost;
