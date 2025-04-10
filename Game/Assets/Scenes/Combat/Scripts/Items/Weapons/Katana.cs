@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class Katana : Weapon{
 
     public Katana() : base(
 
-        sprites: null,
+        sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/katana1"), Resources.Load<Sprite>("Sprites/Items/katana2")},
         name: "Katana",
         value: 110,
         description: "Surviving the nuclear blast the way of the Samurai persists.",
