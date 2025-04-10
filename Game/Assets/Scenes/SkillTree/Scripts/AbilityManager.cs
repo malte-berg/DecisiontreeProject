@@ -3,13 +3,10 @@ using UnityEngine.UI;
 using TMPro;
 
 public class AbilityManager : MonoBehaviour {
-
-    public Player player;
+    private Player player;
     
     public void Init(){
         player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
-        player.HidePlayer();
-        SetPointCounter();
     }
 
     void Awake(){
@@ -17,8 +14,8 @@ public class AbilityManager : MonoBehaviour {
         Init();
 
     }
-    public void HandleSkillClick(Skill skill) {
 
+    public void HandleSkill(Skill skill) {
         if (skill == null) {
 
             Debug.Log("Skill not found");
@@ -30,32 +27,39 @@ public class AbilityManager : MonoBehaviour {
 
             Debug.Log("Not enough skill points!");
             return;
-
         }
 
-        if (skill.unlocked) {
+        Skill playerSkill = GetPlayerSkillByName(skill.Name);
 
-            skill.UpgradeSkill();
-            player.SkillPoints -= skill.skillCost;
-            // TODO: IMPLEMENT UPDATING SKILL COST HERE
-            Debug.Log($"Upgraded {skill.Name}!");
-
-        } else {
-
+        if (playerSkill == null) {
             skill.UnlockSkill();
             player.AddSkill(skill);
             player.SkillPoints -= skill.skillCost;
             Debug.Log($"Unlocked {skill.Name}!");
+            return;
+        }
+
+        if (playerSkill.unlocked) {
+            playerSkill.UpgradeSkill();
+            player.SkillPoints -= skill.skillCost;
+            Debug.Log($"Upgraded {skill.Name}!");
+            return;
 
         }
 
-        SetPointCounter();
-
+        Debug.Log("Something went wrong!");
+        return;
     }
+    
 
-    public void SetPointCounter() {
-        int points = player.SkillPoints;
-
-        transform.GetChild(5).GetComponent<TMP_Text>().text = $"{points}"; // TODO: Kan man göra det här snyggare?
+    public Skill GetPlayerSkillByName(string name) {
+        foreach (Skill skill in player.skills) {
+            if (skill == null) {
+                continue;
+            } else if (skill.Name == name) {
+                return skill;
+            }
+        }
+        return null;
     }
 }

@@ -9,18 +9,51 @@ public class Enemy : GameCharacter
 {
 
     Item[] availableItems;
+    int enemyPower;
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
-<<<<<<< HEAD
+    public Enemy() : base(
+
+        cName: "N/A",
+        vitality: 100,
+        armor: 0,
+        strength: 10,
+        magic: 0,
+        mana: 0,
+        maxSkill: 8,
+        inventorySize: 2
+
+    )
+    { }
+
+    public void CreateEnemy(Item[] availableItems, int enemyPower, string cName)
+    {
+
+        this.availableItems = availableItems;
+        this.enemyPower = enemyPower;
+        CName = cName;
+
+    }
+
     public override void Init()
     {
-=======
-    public override void Init() {
-        sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp1")};
->>>>>>> upstream/main
+
+        sprites = new List<Sprite> { Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2") };
 
         equipment = gameObject.GetComponent<Equipment>();
-        skills[0] = new Punch(this);
+
+        // have stats based on enemyPower
+        Vitality = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(80, 121);
+        Armor = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(1, 5);
+        Strength = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(8, 16);
+        Magic = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(2, 16);
+        MaxMana = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(5, 16);
+        HP = Vitality;
+        Mana = MaxMana;
+
+        Punch punch = new Punch(this);
+        punch.UnlockSkill();
+        AddSkill(punch);
 
         // temp
         availableItems = new Item[17];
@@ -41,7 +74,7 @@ public class Enemy : GameCharacter
         availableItems[14] = new WorkerBoots();
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
-        GatherItems(40); // replace 20 with enemy power scaling
+        GatherItems(enemyPower);
 
         SetSprite("Enemy");
 
@@ -59,7 +92,6 @@ public class Enemy : GameCharacter
     {
 
         Thread.Sleep(1000);
-        //c.ActivatePassiveEffect();    //Doesn't quite work. Might stop the AI.
 
         int currentS = 2;
         while (!SelectSkill(currentS-- % 3)) ;
@@ -72,32 +104,35 @@ public class Enemy : GameCharacter
 
     }
 
-    void GatherItems(int purchasingPower){
+    void GatherItems(int purchasingPower)
+    {
 
-        for(int i = 0; i < availableItems.Length; i++){
+        for (int i = 0; i < availableItems.Length; i++)
+        {
 
             int mine = 0, available = availableItems[i].Value;
 
-            switch(availableItems[i]){
+            switch (availableItems[i])
+            {
 
                 case Head:
-                    if(equipment.head != null)
+                    if (equipment.head != null)
                         mine = equipment.head.Value;
                     break;
                 case Torso:
-                    if(equipment.torso != null)
+                    if (equipment.torso != null)
                         mine = equipment.torso.Value;
                     break;
                 case Boots:
-                    if(equipment.boots != null)
+                    if (equipment.boots != null)
                         mine = equipment.boots.Value;
                     break;
                 case Weapon:
-                    if(equipment.weaponLeft != null)
+                    if (equipment.weaponLeft != null)
                         mine = equipment.weaponLeft.Value;
                     break;
                 case Consumable:
-                    if(equipment.consumableLeft != null)
+                    if (equipment.consumableLeft != null)
                         mine = equipment.consumableLeft.Value;
                     break;
                 default:
@@ -105,11 +140,12 @@ public class Enemy : GameCharacter
 
             }
 
-            if(mine < available){
+            if (mine < available)
+            {
                 float rnd = (float)purchasingPower / available;
                 float thresh = UnityEngine.Random.value;
 
-                if(rnd > thresh)
+                if (rnd > thresh)
                     equipment.Equip(availableItems[i]);
 
             }

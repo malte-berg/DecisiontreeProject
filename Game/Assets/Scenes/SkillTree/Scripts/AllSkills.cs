@@ -1,25 +1,31 @@
 using UnityEngine;
-using System.Linq;
+using TMPro;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class AllSkills : MonoBehaviour
 {
-
+    [SerializeField] private TMP_Text pointCounterText;
+    [SerializeField] private TMP_Text[] skillLevelTexts;
+    [SerializeField] private GameObject[] skillNodes;
     Player player;
 
     public Skill[] allSkills;
 
-    /* There is an issue with this part: Every time the Skill Tree interface is opened, a new allSkills[] array is generated. When the corresponding skill button is clicked to upgrade, the newly generated skills in allSkills[] is passed to the HandleSkillClick function. This means that when the player upgrades a skill like Punch, exits the Skill Tree, and then re-enters and upgrades Punch again, the allSkills[0].unlocked will be false, even though Punch was previously unlocked and the player's skills[] already contains Punch. */
     public void Init()
     {
         player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
         player.HidePlayer();
 
-        allSkills = new Skill[16];
+        allSkills = new Skill[8];
         allSkills[0] = new Punch(player);
         allSkills[1] = new HeatWave(player);
         allSkills[2] = new Heal(player);
         allSkills[3] = new Sacrifice(player);
-        allSkills[4] = new Poison(player);
+
+        SetSkillLevelCounters();
+        SetSkillColors();
+        SetPointCounter();
     }
 
     void Awake()
@@ -30,21 +36,91 @@ public class AllSkills : MonoBehaviour
     }
 
     /*
-       AllSkills is placed on Canvas. On each skill button, the onClick() can be bound to the Canvas, with the AllSkills method 
-       SkillTreeClick, taking in the name of the skill (as described in the skill). This will send the skill to unlock/upgrade
-       in the AbilityManager, taking in a skill and deciding what to do based on what is sent in.
-   */
-    public void SkillTreeClick(string skillName)
+        AllSkills is placed on Canvas. On each skill button, the onClick() can be bound to the Canvas, with the AllSkills method 
+        SkillTreeClick, taking in the name of the skill (as described in the skill). This will send the skill to unlock/upgrade
+        in the AbilityManager, taking in a skill and deciding what to do based on what is sent in.
+    */
+    public void SkillTreeClick(int index)
     {
+        Skill skill = allSkills[index];
+        GetComponent<AbilityManager>().HandleSkill(skill);
 
-
-        Debug.Log($"Clicked on skill {skillName}");
-
-        Skill skillToHandle = allSkills.SingleOrDefault(skill => skill != null && skill.Name.Equals(skillName));
-
-        GetComponent<AbilityManager>().HandleSkillClick(skillToHandle);
-        Debug.Log($"Skill {skillToHandle.Name} has power level: {skillToHandle.power}");
+        SetPointCounter();
+        SetSkillLevelCounters();
+        SetSkillColors();
     }
 
+    public void SetSkillLevelCounters()
+    {
+        for (int i = 0; i < skillLevelTexts.Length; i++)
+        {
+            if (allSkills[i] == null)
+            {
+                continue;
+            }
+            TMP_Text skillLevelText = skillLevelTexts[i];
+
+            Skill playerSkill = GetComponent<AbilityManager>().GetPlayerSkillByName(allSkills[i].Name);
+            if (playerSkill != null)
+            {
+                allSkills[i] = playerSkill;
+            }
+            if (skillLevelText != null && allSkills[i].unlocked)
+            {
+                skillLevelText.text = allSkills[i].SkillLevel.ToString();
+            }
+
+            if (skillLevelText != null && !allSkills[i].unlocked)
+            {
+                skillLevelText.text = "Unlock";
+            }
+        }
+    }
+
+    public void SetSkillColors()
+    {
+        for (int i = 0; i < skillNodes.Length; i++)
+        {
+            if (allSkills[i] == null)
+            {
+                continue;
+            }
+            GameObject skillNode = skillNodes[i];
+            Image imageComponent = skillNode.GetComponent<Image>();
+
+            Skill playerSkill = GetComponent<AbilityManager>().GetPlayerSkillByName(allSkills[i].Name);
+            if (playerSkill != null)
+            {
+                allSkills[i] = playerSkill;
+            }
+
+            if (imageComponent != null)
+            {
+                if (allSkills[i].unlocked)
+                {
+                    imageComponent.color = Color.green;
+                }
+                else
+                {
+                    imageComponent.color = Color.gray;
+                }
+            }
+        }
+    }
+
+    public void SetPointCounter()
+    {
+        int points = player.SkillPoints;
+        try
+        {
+            pointCounterText.text = points.ToString();
+
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Error setting point counter: " + e.Message);
+        }
+
+    }
 }
 

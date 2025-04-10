@@ -32,6 +32,7 @@ public class GameCharacter : MonoBehaviour
     public Skill[] skills;
 
     int skillCount;
+
     int selectedSkill = 0;
 
     // INVENTORY
@@ -56,7 +57,7 @@ public class GameCharacter : MonoBehaviour
         mana = 100;
         maxMana = 100;
         skills = new Skill[8];
-        skillCount = 1;
+        skillCount = 0;
         equipment = null;
         inventory = new Item[20];
 
@@ -64,9 +65,7 @@ public class GameCharacter : MonoBehaviour
 
     public virtual void Init()
     {
-
         equipment = gameObject.GetComponent<Equipment>();
-        skills[0] = new Punch(this);
         originalPos = this.transform.position;
 
     }
@@ -126,15 +125,11 @@ public class GameCharacter : MonoBehaviour
         healthBar.UpdateHealthBar(HP, Vitality);
 
         if (spriteManager != null && skill)
+        {
             Debug.Log(gameObject.name);
-<<<<<<< HEAD
-        spriteManager.AttackAnimation(gameObject.name, this);
-        spriteManager.PunchAnimation(target);
-        healthBar.UpdateHealthBar(hp, Vitality);
-=======
             spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.PunchAnimation(target, this, selectedSkill);
->>>>>>> upstream/main
+            spriteManager.AbilityAnimation(target, this, selectedSkill, 5);
+        }
 
         return skill;
 
