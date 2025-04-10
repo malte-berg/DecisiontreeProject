@@ -8,7 +8,7 @@ using UnityEngine;
 public class Enemy : GameCharacter {
 
     Item[] availableItems;
-    int level;
+    public int level;
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
     public Enemy() : base(
@@ -24,10 +24,11 @@ public class Enemy : GameCharacter {
 
     ){}
 
-    public void CreateEnemy(Item[] availableItems, int level, string cName){
+    public void CreateEnemy(Item[] availableItems, int levelDelta, string cName){
 
         this.availableItems = availableItems;
-        this.level = level;
+        level += levelDelta;
+        if(level < 1) level = 1;
         CName = cName;
 
     }
