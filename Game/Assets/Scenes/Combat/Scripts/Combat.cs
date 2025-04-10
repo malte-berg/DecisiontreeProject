@@ -78,8 +78,9 @@ public class Combat : MonoBehaviour{
         int i = enemies.Count;
 
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
+        cEnemy.CreateEnemy(new Item[0], 0, "Street Thug");             //TODO TEMP
         enemies.Add(cEnemy);
-        cEnemy.gameObject.name = $"{prefab.name} #{i}";
+        cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.Init();
         cEnemy.c = this;
 

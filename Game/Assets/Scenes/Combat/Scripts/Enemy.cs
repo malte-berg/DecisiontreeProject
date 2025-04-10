@@ -8,13 +8,49 @@ using UnityEngine;
 public class Enemy : GameCharacter {
 
     Item[] availableItems;
+    public int level;
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
+    public Enemy() : base(
+
+        cName: "N/A",
+        vitality: 100,
+        armor: 0,
+        strength: 10,
+        magic: 0,
+        mana: 0,
+        maxSkill: 8,
+        inventorySize: 2
+
+    ){}
+
+    public void CreateEnemy(Item[] availableItems, int levelDelta, string cName){
+
+        this.availableItems = availableItems;
+        level += levelDelta;
+        if(level < 1) level = 1;
+        CName = cName;
+
+    }
+
     public override void Init() {
+
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2")};
 
         equipment = gameObject.GetComponent<Equipment>();
-        skills[0] = new Punch(this);
+
+        // have stats based on level
+        Vitality = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(80,121);
+        Armor = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(1,5);
+        Strength = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(8,16);
+        Magic = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(2,16);
+        MaxMana = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(5,16);
+        HP = Vitality;
+        Mana = MaxMana;
+
+        Punch punch = new Punch(this);
+        punch.UnlockSkill();
+        AddSkill(punch);
 
         // temp
         availableItems = new Item[17];
@@ -35,7 +71,8 @@ public class Enemy : GameCharacter {
         availableItems[14] = new WorkerBoots();
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
-        GatherItems(40); // replace 20 with enemy power scaling
+        GatherItems((level - 1) * 10 + 1);
+        equipment.PrintEquipment();
 
         SetSprite("Enemy");
         

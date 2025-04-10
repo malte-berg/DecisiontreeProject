@@ -14,6 +14,7 @@ public abstract class Skill{
     int cooldown = 0;
 
     private string description;
+    private Sprite icon;
     public string Name{ get { return name; } }
     // lägg till beskrivning när man skapar skills/ability
     public string DescriptionPanel { 
@@ -27,9 +28,10 @@ public abstract class Skill{
     public int Cooldown{ get { return cooldown; } }
     public string Description{ get { return description; } }
     public int SkillLevel{ get { return skillLevel; } }
+    public Sprite Icon{ get { return icon; } }
 
-    public Skill(List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
-
+    public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
+        this.icon = icon;
         this.sprites = sprites;
         this.gc = gc;
         this.name = name;
@@ -38,6 +40,7 @@ public abstract class Skill{
         this.skillCost = skillCost;
         this.description = description;
         this.unlocked = false;
+        this.skillLevel = 0;
     }
 
     public void UnlockSkill() {
@@ -49,8 +52,8 @@ public abstract class Skill{
     }
 
     public void UpgradeSkill() {
-        power = System.MathF.Log(System.MathF.Pow(System.MathF.E, power) + 1, System.MathF.E);
         skillLevel++;
+        power = System.MathF.Log(skillLevel, System.MathF.E) + 1;
     }
 
     public abstract bool Effect(GameCharacter target);

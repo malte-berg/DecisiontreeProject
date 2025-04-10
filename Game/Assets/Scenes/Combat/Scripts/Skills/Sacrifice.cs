@@ -6,7 +6,7 @@ public class Sacrifice : Skill {
     int selfDamage;
 
     public Sacrifice(GameCharacter gc) : base(
-        
+        icon: Resources.Load<Sprite>("Sprites/Abilities/Sacrifice_Icon"),
         sprites: null,
         gc: gc, 
         name: "Sacrifice", 

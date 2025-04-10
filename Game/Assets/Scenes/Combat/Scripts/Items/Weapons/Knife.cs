@@ -11,7 +11,7 @@ public class Knife : Weapon{
         armorAdd: 0,
         armorMult: 1,
         strengthAdd: 2,
-        strengthMult: 1.05f,
+        strengthMult: 1.005f,
         magicAdd: 0,
         magicMult: 1,
         manaAdd: 0,
