@@ -31,6 +31,7 @@ public class GameCharacter : MonoBehaviour{
     public Skill[] skills;
 
     int skillCount;
+
     int selectedSkill = 0;
 
     // INVENTORY
@@ -54,16 +55,14 @@ public class GameCharacter : MonoBehaviour{
         mana = 0;
         maxMana = 100;
         skills = new Skill[8];
-        skillCount = 1;
+        skillCount = 0;
         equipment = null;
         inventory = new Item[20];
 
     }
 
     public virtual void Init(){
-
         equipment = gameObject.GetComponent<Equipment>();
-        skills[0] = new Punch(this);
         originalPos = this.transform.position;
 
     }

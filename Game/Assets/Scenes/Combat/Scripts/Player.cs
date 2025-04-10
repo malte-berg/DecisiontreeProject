@@ -26,13 +26,27 @@ public class Player : GameCharacter {
         HidePlayer();
         DontDestroyOnLoad(gameObject);
 
+        Skill punch = new Punch(this);
+        punch.UnlockSkill();
+        AddSkill(punch);
+        
+        /*
+        Skill heal = new Heal(this);
+        Skill heatWave = new HeatWave(this);
+        Skill sacrifice = new Sacrifice(this);
+
+        heal.UnlockSkill();
+        heatWave.UnlockSkill();
+        sacrifice.UnlockSkill();
+
+        AddSkill(heal);
+        AddSkill(heatWave);
+        AddSkill(sacrifice);
+        */
         
         gold = 1750;          //For buying items in the store window.
         skillPoints = 10;    //For unlocking new abilities in the skill tree window.
         statPoints = 25;    //for increasing stats in the stats window.
-
-        skills[0] = new Punch(this);
-        // skills[0].unlocked = true; 
 
         // OP dev privilege
         inventory[0] = new Knife();
