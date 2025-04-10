@@ -38,6 +38,7 @@ public abstract class Skill{
         this.skillCost = skillCost;
         this.description = description;
         this.unlocked = false;
+        this.skillLevel = 0;
     }
 
     public void UnlockSkill() {
@@ -49,8 +50,8 @@ public abstract class Skill{
     }
 
     public void UpgradeSkill() {
-        power = System.MathF.Log(System.MathF.Pow(System.MathF.E, power) + 1, System.MathF.E);
         skillLevel++;
+        power = System.MathF.Log(skillLevel, System.MathF.E) + 1;
     }
 
     public abstract bool Effect(GameCharacter target);

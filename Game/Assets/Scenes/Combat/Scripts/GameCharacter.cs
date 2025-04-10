@@ -19,18 +19,20 @@ public class GameCharacter : MonoBehaviour{
     public HealthBar healthBar;
     public ManaBar manaBar;
 
+    public string CName{get { return cName; } set {this.cName = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
     public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set{ this.vitality = value; }}
     public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); } set { this.armor = value; }}
     public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value; }}
     public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set{ this.magic = value; }}
     public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set{ this.mana = value; }}
-    public int MaxMana{get{return maxMana;}}
+    public int MaxMana{get{ return maxMana; } set {this.maxMana = value; }}
 
     // SKILLS
     public Skill[] skills;
 
     int skillCount;
+
     int selectedSkill = 0;
 
     // INVENTORY
@@ -43,27 +45,26 @@ public class GameCharacter : MonoBehaviour{
     public Vector3 originalPos;
     public List<Sprite> sprites;
 
-    public GameCharacter(){
+    public GameCharacter(string cName, int vitality, int armor, int strength, int magic, int mana, int maxSkill, int inventorySize){
 
+        this.cName = cName;
         c = null;
-        hp = 100;
-        vitality = 100;
-        armor = 5;
-        strength = 10;
-        magic = 0;
-        mana = 0;
-        maxMana = 100;
-        skills = new Skill[8];
-        skillCount = 1;
+        hp = vitality;
+        this.vitality = vitality;
+        this.armor = armor;
+        this.strength = strength;
+        this.magic = magic;
+        this.mana = mana;
+        this.maxMana = mana;
+        skills = new Skill[maxSkill];
+        skillCount = 0;
         equipment = null;
-        inventory = new Item[20];
+        inventory = new Item[inventorySize];
 
     }
 
     public virtual void Init(){
-
         equipment = gameObject.GetComponent<Equipment>();
-        skills[0] = new Punch(this);
         originalPos = this.transform.position;
 
     }
@@ -116,16 +117,19 @@ public class GameCharacter : MonoBehaviour{
         bool skill = skills[selectedSkill].Effect(target);
         healthBar.UpdateHealthBar(HP, Vitality);
 
-        if (spriteManager != null && skill)
+        if (spriteManager != null && skill) {
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.PunchAnimation(target, this, selectedSkill);
+            spriteManager.AbilityAnimation(target, this, selectedSkill, 5);
+        }
 
         return skill;
 
     }
     
     public void TakeDamage(int dmg){
+
+        print($"{cName} is attacked with {dmg} damage and has {Armor} armor");
 
         if(dmg <= Armor)
             return;
