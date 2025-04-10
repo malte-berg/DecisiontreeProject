@@ -5,6 +5,7 @@ public class Corrode : Skill
     GameCharacter gc;
 
     public Corrode(GameCharacter gc) : base(
+        sprites: null,
         gc: gc,
         name: "Corrode",
         power: 0,

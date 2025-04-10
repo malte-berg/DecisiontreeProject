@@ -5,6 +5,7 @@ public class Shield : Skill
     GameCharacter gc;
 
     public Shield(GameCharacter gc) : base(
+         sprites: null,
          gc: gc,
          name: "Shield",
          power: 20,

@@ -6,7 +6,7 @@ public class MindControl : Skill
     GameCharacter gc;
 
     public MindControl(GameCharacter gc) : base(
-
+        sprites: null,
         gc: gc,
         name: "Mind Control",
         power: 10,

@@ -6,7 +6,7 @@ public class Zap : Skill
     GameCharacter gc;
 
     public Zap(GameCharacter gc) : base(
-
+        sprites: null,
         gc: gc,
         name: "Zap",
         power: 0,

@@ -5,7 +5,7 @@ public class Drain : Skill
     GameCharacter gc;
 
     public Drain(GameCharacter gc) : base(
-
+        sprites: null,
         gc: gc,
         name: "Drain",
         power: 0,

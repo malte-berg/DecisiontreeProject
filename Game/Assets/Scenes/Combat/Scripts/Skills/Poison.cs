@@ -16,6 +16,7 @@ public class Poison : Skill
 
     public Poison(GameCharacter gc) : base(
 
+         sprites: null,
          gc: gc,
          name: "Poison",
          power: 10,
@@ -30,45 +31,45 @@ public class Poison : Skill
     //Selected enemy takes damage each turn for 3 turns.
     public override bool Effect(GameCharacter target)
     {
-        if (target == gc)
-            return false;
-        if (gc.Mana < manaCost)
-            return false;
+        // if (target == gc)
+        //     return false;
+        // if (gc.Mana < manaCost)
+        //     return false;
 
-        active = target.c.passiveIsActive;
+        // active = target.c.passiveIsActive;
 
-        //Check if the passive effect has been activated yet or not.
-        if (active == false)
-        {
-            gc.Mana -= manaCost;
+        // //Check if the passive effect has been activated yet or not.
+        // if (active == false)
+        // {
+        //     gc.Mana -= manaCost;
 
-            target.c.passiveEffect = this;  //The passiv eeffect should be this
-            target.c.passiveIsActive = true;    //In Combat, the passive effect should be active.
-            turnsLeft = 3;  //Poison acts for 3 turns
-            Debug.Log("Activate Poison effect");
-        }
+        //     target.c.passiveEffect = this;  //The passiv eeffect should be this
+        //     target.c.passiveIsActive = true;    //In Combat, the passive effect should be active.
+        //     turnsLeft = 3;  //Poison acts for 3 turns
+        //     Debug.Log("Activate Poison effect");
+        // }
 
-        //If the passive effect still has turns left in which it should activate, this should happen.
-        else if (turnsLeft > 0)
-        {
-            //Damage the enemy each turn.
-            int damageDealt = Mathf.FloorToInt(10);
+        // //If the passive effect still has turns left in which it should activate, this should happen.
+        // else if (turnsLeft > 0)
+        // {
+        //     //Damage the enemy each turn.
+        //     int damageDealt = Mathf.FloorToInt(10);
 
-            target.TakeDamage(Mathf.FloorToInt(damageDealt));
+        //     target.TakeDamage(Mathf.FloorToInt(damageDealt));
 
-            turnsLeft--;    //Reduce the amount of turns left until the effect ends.
+        //     turnsLeft--;    //Reduce the amount of turns left until the effect ends.
 
-            Debug.Log("Poison damages enemy");
-        }
+        //     Debug.Log("Poison damages enemy");
+        // }
 
-        //If there are no turns left for this effect, it ends.
-        else
-        {
-            Debug.Log("Poison ends");
+        // //If there are no turns left for this effect, it ends.
+        // else
+        // {
+        //     Debug.Log("Poison ends");
 
-            target.c.passiveIsActive = false;
-            active = false;
-        }
+        //     target.c.passiveIsActive = false;
+        //     active = false;
+        // }
 
         return true;
 

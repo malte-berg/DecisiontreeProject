@@ -20,13 +20,14 @@ public class GameCharacter : MonoBehaviour
     public HealthBar healthBar;
     public ManaBar manaBar;
 
+    public string CName { get { return cName; } set { this.cName = value; } }
     public int HP { get { return hp; } set { this.hp = value; } }
     public int Vitality { get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set { this.vitality = value; } }
     public int Armor { get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); } set { this.armor = value; } }
     public int Strength { get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set { this.strength = value; } }
     public int Magic { get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set { this.magic = value; } }
     public int Mana { get { return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set { this.mana = value; } }
-    public int MaxMana { get { return maxMana; } }
+    public int MaxMana { get { return maxMana; } set { this.maxMana = value; } }
 
     // SKILLS
     public Skill[] skills;
@@ -45,21 +46,22 @@ public class GameCharacter : MonoBehaviour
     public Vector3 originalPos;
     public List<Sprite> sprites;
 
-    public GameCharacter()
+    public GameCharacter(string cName, int vitality, int armor, int strength, int magic, int mana, int maxSkill, int inventorySize)
     {
 
+        this.cName = cName;
         c = null;
-        hp = 100;
-        vitality = 100;
-        armor = 5;
-        strength = 10;
-        magic = 10;
-        mana = 100;
-        maxMana = 100;
-        skills = new Skill[8];
+        hp = vitality;
+        this.vitality = vitality;
+        this.armor = armor;
+        this.strength = strength;
+        this.magic = magic;
+        this.mana = mana;
+        this.maxMana = mana;
+        skills = new Skill[maxSkill];
         skillCount = 0;
         equipment = null;
-        inventory = new Item[20];
+        inventory = new Item[inventorySize];
 
     }
 
@@ -135,10 +137,9 @@ public class GameCharacter : MonoBehaviour
 
     }
 
-    public void TakeDamage(int dmg)
-    {
+    print($"{cName} is attacked with {dmg} damage and has {Armor} armor");
 
-        if (dmg <= Armor)
+        if(dmg <= Armor)
             return;
 
         hp -= dmg - Armor;
@@ -152,194 +153,194 @@ public class GameCharacter : MonoBehaviour
 
     }
 
-    async Task DamageEffect()
+async Task DamageEffect()
+{
+
+    SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+    float time = 0.5f;
+
+    while (time > 0)
     {
 
-        SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
-        float time = 0.5f;
-
-        while (time > 0)
-        {
-
-            sr.color = new Color(1, 1 - time, 1 - time);
-            time -= Time.deltaTime;
-            await Task.Yield();
-
-        }
-
-        sr.color = new Color(1, 1, 1);
+        sr.color = new Color(1, 1 - time, 1 - time);
+        time -= Time.deltaTime;
+        await Task.Yield();
 
     }
 
-    public void AddSkill(Skill newSkill)
-    {
-        if (skillCount == skills.Length)
-        {
-            Debug.Log("Not enough slots!!");
-            return;
-        }
+    sr.color = new Color(1, 1, 1);
 
-        skills[skillCount] = newSkill;
-        skillCount++;
+}
+
+public void AddSkill(Skill newSkill)
+{
+    if (skillCount == skills.Length)
+    {
+        Debug.Log("Not enough slots!!");
+        return;
     }
 
-    public float GetEquipmentVitalityMult()
-    {
+    skills[skillCount] = newSkill;
+    skillCount++;
+}
 
-        float factor = 1;
-        if (equipment.head != null)
-            factor *= equipment.head.VitalityMult;
-        if (equipment.torso != null)
-            factor *= equipment.torso.VitalityMult;
-        if (equipment.boots != null)
-            factor *= equipment.boots.VitalityMult;
-        if (equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.VitalityMult;
-        return factor;
+public float GetEquipmentVitalityMult()
+{
 
-    }
+    float factor = 1;
+    if (equipment.head != null)
+        factor *= equipment.head.VitalityMult;
+    if (equipment.torso != null)
+        factor *= equipment.torso.VitalityMult;
+    if (equipment.boots != null)
+        factor *= equipment.boots.VitalityMult;
+    if (equipment.weaponLeft != null)
+        factor *= equipment.weaponLeft.VitalityMult;
+    return factor;
 
-    public int GetEquipmentVitalitySum()
-    {
+}
 
-        int sum = 0;
-        if (equipment.head != null)
-            sum += equipment.head.VitalityAdd;
-        if (equipment.torso != null)
-            sum += equipment.torso.VitalityAdd;
-        if (equipment.boots != null)
-            sum += equipment.boots.VitalityAdd;
-        if (equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.VitalityAdd;
-        return sum;
+public int GetEquipmentVitalitySum()
+{
 
-    }
+    int sum = 0;
+    if (equipment.head != null)
+        sum += equipment.head.VitalityAdd;
+    if (equipment.torso != null)
+        sum += equipment.torso.VitalityAdd;
+    if (equipment.boots != null)
+        sum += equipment.boots.VitalityAdd;
+    if (equipment.weaponLeft != null)
+        sum += equipment.weaponLeft.VitalityAdd;
+    return sum;
 
-    public float GetEquipmentArmorMult()
-    {
+}
 
-        float factor = 1;
-        if (equipment.head != null)
-            factor *= equipment.head.ArmorMult;
-        if (equipment.torso != null)
-            factor *= equipment.torso.ArmorMult;
-        if (equipment.boots != null)
-            factor *= equipment.boots.ArmorMult;
-        if (equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.ArmorMult;
-        return factor;
+public float GetEquipmentArmorMult()
+{
 
-    }
+    float factor = 1;
+    if (equipment.head != null)
+        factor *= equipment.head.ArmorMult;
+    if (equipment.torso != null)
+        factor *= equipment.torso.ArmorMult;
+    if (equipment.boots != null)
+        factor *= equipment.boots.ArmorMult;
+    if (equipment.weaponLeft != null)
+        factor *= equipment.weaponLeft.ArmorMult;
+    return factor;
 
-    public int GetEquipmentArmorSum()
-    {
+}
 
-        int sum = 0;
-        if (equipment.head != null)
-            sum += equipment.head.ArmorAdd;
-        if (equipment.torso != null)
-            sum += equipment.torso.ArmorAdd;
-        if (equipment.boots != null)
-            sum += equipment.boots.ArmorAdd;
-        if (equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.ArmorAdd;
-        return sum;
+public int GetEquipmentArmorSum()
+{
 
-    }
+    int sum = 0;
+    if (equipment.head != null)
+        sum += equipment.head.ArmorAdd;
+    if (equipment.torso != null)
+        sum += equipment.torso.ArmorAdd;
+    if (equipment.boots != null)
+        sum += equipment.boots.ArmorAdd;
+    if (equipment.weaponLeft != null)
+        sum += equipment.weaponLeft.ArmorAdd;
+    return sum;
 
-    public float GetEquipmentStrengthMult()
-    {
+}
 
-        float factor = 1;
-        if (equipment.head != null)
-            factor *= equipment.head.StrengthMult;
-        if (equipment.torso != null)
-            factor *= equipment.torso.StrengthMult;
-        if (equipment.boots != null)
-            factor *= equipment.boots.StrengthMult;
-        if (equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.StrengthMult;
-        return factor;
+public float GetEquipmentStrengthMult()
+{
 
-    }
+    float factor = 1;
+    if (equipment.head != null)
+        factor *= equipment.head.StrengthMult;
+    if (equipment.torso != null)
+        factor *= equipment.torso.StrengthMult;
+    if (equipment.boots != null)
+        factor *= equipment.boots.StrengthMult;
+    if (equipment.weaponLeft != null)
+        factor *= equipment.weaponLeft.StrengthMult;
+    return factor;
 
-    public int GetEquipmentStrengthSum()
-    {
+}
 
-        int sum = 0;
-        if (equipment.head != null)
-            sum += equipment.head.StrengthAdd;
-        if (equipment.torso != null)
-            sum += equipment.torso.StrengthAdd;
-        if (equipment.boots != null)
-            sum += equipment.boots.StrengthAdd;
-        if (equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.StrengthAdd;
-        return sum;
+public int GetEquipmentStrengthSum()
+{
 
-    }
+    int sum = 0;
+    if (equipment.head != null)
+        sum += equipment.head.StrengthAdd;
+    if (equipment.torso != null)
+        sum += equipment.torso.StrengthAdd;
+    if (equipment.boots != null)
+        sum += equipment.boots.StrengthAdd;
+    if (equipment.weaponLeft != null)
+        sum += equipment.weaponLeft.StrengthAdd;
+    return sum;
 
-    public float GetEquipmentMagicMult()
-    {
+}
 
-        float factor = 1;
-        if (equipment.head != null)
-            factor *= equipment.head.MagicMult;
-        if (equipment.torso != null)
-            factor *= equipment.torso.MagicMult;
-        if (equipment.boots != null)
-            factor *= equipment.boots.MagicMult;
-        if (equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.MagicMult;
-        return factor;
+public float GetEquipmentMagicMult()
+{
 
-    }
+    float factor = 1;
+    if (equipment.head != null)
+        factor *= equipment.head.MagicMult;
+    if (equipment.torso != null)
+        factor *= equipment.torso.MagicMult;
+    if (equipment.boots != null)
+        factor *= equipment.boots.MagicMult;
+    if (equipment.weaponLeft != null)
+        factor *= equipment.weaponLeft.MagicMult;
+    return factor;
 
-    public int GetEquipmentMagicSum()
-    {
+}
 
-        int sum = 0;
-        if (equipment.head != null)
-            sum += equipment.head.MagicAdd;
-        if (equipment.torso != null)
-            sum += equipment.torso.MagicAdd;
-        if (equipment.boots != null)
-            sum += equipment.boots.MagicAdd;
-        if (equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.MagicAdd;
-        return sum;
+public int GetEquipmentMagicSum()
+{
 
-    }
+    int sum = 0;
+    if (equipment.head != null)
+        sum += equipment.head.MagicAdd;
+    if (equipment.torso != null)
+        sum += equipment.torso.MagicAdd;
+    if (equipment.boots != null)
+        sum += equipment.boots.MagicAdd;
+    if (equipment.weaponLeft != null)
+        sum += equipment.weaponLeft.MagicAdd;
+    return sum;
 
-    public float GetEquipmentManaMult()
-    {
+}
 
-        float factor = 1;
-        if (equipment.head != null)
-            factor *= equipment.head.ManaMult;
-        if (equipment.torso != null)
-            factor *= equipment.torso.ManaMult;
-        if (equipment.boots != null)
-            factor *= equipment.boots.ManaMult;
-        if (equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.ManaMult;
-        return factor;
+public float GetEquipmentManaMult()
+{
 
-    }
+    float factor = 1;
+    if (equipment.head != null)
+        factor *= equipment.head.ManaMult;
+    if (equipment.torso != null)
+        factor *= equipment.torso.ManaMult;
+    if (equipment.boots != null)
+        factor *= equipment.boots.ManaMult;
+    if (equipment.weaponLeft != null)
+        factor *= equipment.weaponLeft.ManaMult;
+    return factor;
 
-    public int GetEquipmentManaSum()
-    {
+}
 
-        int sum = 0;
-        if (equipment.head != null)
-            sum += equipment.head.ManaAdd;
-        if (equipment.torso != null)
-            sum += equipment.torso.ManaAdd;
-        if (equipment.boots != null)
-            sum += equipment.boots.ManaAdd;
-        if (equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.ManaAdd;
-        return sum;
+public int GetEquipmentManaSum()
+{
 
-    }
+    int sum = 0;
+    if (equipment.head != null)
+        sum += equipment.head.ManaAdd;
+    if (equipment.torso != null)
+        sum += equipment.torso.ManaAdd;
+    if (equipment.boots != null)
+        sum += equipment.boots.ManaAdd;
+    if (equipment.weaponLeft != null)
+        sum += equipment.weaponLeft.ManaAdd;
+    return sum;
+
+}
 }

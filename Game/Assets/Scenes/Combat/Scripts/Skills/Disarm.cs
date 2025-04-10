@@ -5,6 +5,7 @@ public class Disarm : Skill
     GameCharacter gc;
 
     public Disarm(GameCharacter gc) : base(
+         sprites: null,
          gc: gc,
          name: "Disarm",
          power: 10,
