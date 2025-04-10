@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 57a92bd0ad8f0ce49a9dce54a7962a0e
+guid: e08f9cf0a69e2034c9905e6e70039540
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6948284911111661351
-    second: woodsword1_0
-  - first:
-      213: 8740169967815212080
-    second: woodsword1_1
+      213: -5482734022148393953
+    second: ememy1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: woodsword1_0
+      name: ememy1_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 36
-        width: 28
-        height: 28
+        x: 0
+        y: 0
+        width: 41
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d89bfadfabb29f90800000000000000
-      internalID: -6948284911111661351
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: woodsword1_1
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 32
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 03cb92047425b4970800000000000000
-      internalID: 8740169967815212080
+      spriteID: f1475e3a47a69e3b0800000000000000
+      internalID: -5482734022148393953
       vertices: []
       indices: 
       edges: []
@@ -163,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -172,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ememy1_0: -5482734022148393953
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

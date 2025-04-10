@@ -312,8 +312,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   c: {fileID: 0}
   healthBar: {fileID: 0}
+  manaBar: {fileID: 0}
   equipment: {fileID: 0}
   originalPos: {x: 0, y: 0, z: 0}
+  sprites: []
 --- !u!114 &4291114191027114424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,21 +378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
-  characterSprites:
-  - {fileID: -476825809174011509, guid: e08ab9a9fa2838e4f905c8dedb3ab9c9, type: 3}
-  - {fileID: -889739676950766307, guid: d1316acb188548640a1d1d9bc0c3e0f1, type: 3}
-  - {fileID: -781871117, guid: 3927ef98719359446a76b6ef88e75741, type: 3}
-  - {fileID: 1218500570, guid: 3927ef98719359446a76b6ef88e75741, type: 3}
-  clothingSprites:
-  - {fileID: 21300000, guid: 57e5cf06f4024ac4ab7951ee3fef2979, type: 3}
-  weaponSprites:
-  - {fileID: 21300000, guid: f715808375c2962498cfac535f050802, type: 3}
-  - {fileID: 21300000, guid: 3c404c4c92ef0bc48bcbb8b42ba7dc7c, type: 3}
-  abilitySprites:
-  - {fileID: 0}
-  - {fileID: 611160742184153423, guid: dddc85274c8636042918337fa53ecd33, type: 3}
-  - {fileID: -1292487026459210548, guid: dddc85274c8636042918337fa53ecd33, type: 3}
-  - {fileID: -2470440418176210735, guid: dddc85274c8636042918337fa53ecd33, type: 3}
 --- !u!1 &5584978873976137319
 GameObject:
   m_ObjectHideFlags: 0

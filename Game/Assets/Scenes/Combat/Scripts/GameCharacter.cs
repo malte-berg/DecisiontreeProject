@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class GameCharacter : MonoBehaviour{
     public Combat c;
 
     // STATS
+    string cName;
     int hp;
     int vitality;
     int armor;
@@ -39,6 +41,7 @@ public class GameCharacter : MonoBehaviour{
     SpriteManager spriteManager;
     Transform moveCharacterSprite;
     public Vector3 originalPos;
+    public List<Sprite> sprites;
 
     public GameCharacter(){
 
@@ -72,7 +75,7 @@ public class GameCharacter : MonoBehaviour{
             Debug.Log("spriteManager Not found");
             return;
         }
-        spriteManager.SetCharacter(type, this);
+        spriteManager.SetCharacter(this);
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(3,3,3);
 
@@ -111,11 +114,12 @@ public class GameCharacter : MonoBehaviour{
     public bool UseSkill(GameCharacter target){
 
         bool skill = skills[selectedSkill].Effect(target);
+        healthBar.UpdateHealthBar(HP, Vitality);
 
         if (spriteManager != null && skill)
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.PunchAnimation(target, this);
+            spriteManager.PunchAnimation(target, this, selectedSkill);
 
         return skill;
 

@@ -6,16 +6,7 @@ public class SpriteManager : MonoBehaviour
 {
     private Transform spriteContainer;
     private Transform abilityContainer;
-
     public SpriteRenderer spriteRenderer;
-    public List<List<Sprite>> allSprites;
-    public List<Sprite> characterSprites;
-    public List<Sprite> clothingSprites;
-    public List<Sprite> weaponSprites;
-    public List<Sprite> abilitySprites;
-
-    private Dictionary<string, Dictionary<string, List<Sprite>>> animations = new Dictionary<string, Dictionary<string, List<Sprite>>>();
-
     private Dictionary<string, SpriteRenderer> spriteLayers = new Dictionary<string, SpriteRenderer>();
 
     /**
@@ -43,35 +34,19 @@ public class SpriteManager : MonoBehaviour
         } else {
             Debug.LogError("SpriteContainer not found!");
         }
-
-        animations["GameCharacter"] = new Dictionary<string, List<Sprite>>();
-        animations["GameCharacter"]["Player"] = new List<Sprite> {characterSprites[0], characterSprites[1]};
-        animations["GameCharacter"]["Enemy"] = new List<Sprite> {characterSprites[2], characterSprites[3]};
-
-        animations["Weapon"] = new Dictionary<string, List<Sprite>>();
-        animations["Weapon"]["Stick"] = new List<Sprite> {weaponSprites[0], weaponSprites[1]};
-    
-        animations["Head"] = new Dictionary<string, List<Sprite>>();
-        animations["Head"]["Bucket"] = new List<Sprite> {clothingSprites[0]};
-
-        animations["Torso"] = new Dictionary<string, List<Sprite>>();
-
-        animations["Boots"] = new Dictionary<string, List<Sprite>>();
-
-        animations["Ability"] = new Dictionary<string, List<Sprite>>();
-        animations["Ability"]["Punch"] = new List<Sprite> {abilitySprites[0], abilitySprites[1], abilitySprites[2], abilitySprites[3]};
-
     }
 
-    public void SetCharacter(string type, GameCharacter thisCharacter) {
-        SetSprite(animations["GameCharacter"][type][0], spriteLayers["Character"]) ;
+    public void SetCharacter(GameCharacter thisCharacter) {
+        SetSprite(thisCharacter.sprites[0], spriteLayers["Character"]) ;
         Equipment equipment = thisCharacter.equipment;
         if(equipment != null) {
             if(equipment.head != null) {
-                SetSprite(animations["Head"]["Bucket"][0], spriteLayers["Head"]);
+                if(equipment.head.sprite != null)
+                    SetSprite(equipment.head.sprite, spriteLayers["Head"]); 
             }
             if(equipment.weaponLeft != null) {
-                SetSprite(animations["Weapon"]["Stick"][0], spriteLayers["Weapon"]);
+                if(equipment.weaponLeft.sprites != null)
+                    SetSprite(equipment.weaponLeft.sprites[0], spriteLayers["Weapon"]); 
             }
         }
         // continue this pattern when we have more item sprites
@@ -95,12 +70,13 @@ public class SpriteManager : MonoBehaviour
         string characterType = thisCharacter.GetType().Name;
         Equipment equipment = thisCharacter.equipment;
         if(equipment.weaponLeft != null) {
-            RollSprites(animations["GameCharacter"][characterType], spriteLayers["Character"], 0.2f);
-            RollSprites(animations["Weapon"]["Stick"], spriteLayers["Weapon"], 0.2f); // use only stick for now
+            RollSprites(thisCharacter.sprites, spriteLayers["Character"], 0.2f);
+            if(equipment.weaponLeft.sprites != null)
+                RollSprites(equipment.weaponLeft.sprites, spriteLayers["Weapon"], 0.2f); // use only stick for now
         }
     }
 
-    public void PunchAnimation(GameCharacter target, GameCharacter sender) {
+    public void PunchAnimation(GameCharacter target, GameCharacter sender, int selectedSkill) {
         
         Transform pos = spriteLayers["Ability"].gameObject.transform;
         pos.position = sender.originalPos;
@@ -108,7 +84,7 @@ public class SpriteManager : MonoBehaviour
         Vector3 x = toTarget * 0.92f;
         pos.position = pos.position + x;
 
-        RollSprites(animations["Ability"]["Punch"], spriteLayers["Ability"], 0.1f);
+        RollSprites(sender.skills[selectedSkill].sprites, spriteLayers["Ability"], 0.1f);
     }
 
     private void LungeTo(GameCharacter thisCharacter, Vector3 target) {

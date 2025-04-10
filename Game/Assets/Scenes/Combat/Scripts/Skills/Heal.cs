@@ -5,6 +5,7 @@ public class Heal : Skill {
 
     public Heal(GameCharacter gc) : base(
 
+        sprites: null,
         gc: gc,
         name: "Heal",
         power: 0,

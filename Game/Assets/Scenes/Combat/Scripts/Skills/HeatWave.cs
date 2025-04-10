@@ -6,6 +6,7 @@ public class HeatWave : Skill {
 
     public HeatWave(GameCharacter gc) : base(
         
+        sprites: null,
         gc: gc, 
         name: "Heat Wave", 
         power: 0, 
