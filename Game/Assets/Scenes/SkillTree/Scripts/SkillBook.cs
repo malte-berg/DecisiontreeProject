@@ -1,23 +1,30 @@
+using System;
+
 public class SkillBook {
 
-    Skill[] pages;
+    Type[] pages = {
+        typeof(Punch),
+        typeof(HeatWave),
+        typeof(Heal),
+        typeof(Sacrifice)
+    };
 
-    public Skill[] Pages{ get { return pages; }}
+    public int Count{ get{ return pages.Length; }}
 
-    public void Load(){
+    public Skill[] CreateSkillBook(){
 
-        pages = new Skill[12];
-        pages[0] = new Punch();
-        pages[1] = new HeatWave();
-        pages[2] = new Heal();
-        pages[3] = new Sacrifice();
+        Skill[] temp = new Skill[pages.Length];
+
+        for(int i = 0; i < pages.Length; i++)
+            temp[i] = ReadPage(i);
+
+        return temp;
 
     }
 
-    public Skill GetSkill(int index){
+    public Skill ReadPage(int index){
 
-        if(pages.Length == 0) return null;
-        return pages[index];
+        return Activator.CreateInstance(pages[index]) as Skill;
         
     }
 

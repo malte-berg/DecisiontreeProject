@@ -72,7 +72,7 @@ public class Enemy : GameCharacter {
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
         GatherItems((level - 1) * 10 + 1);
-        GatherSkills(level);
+        GatherSkills(level / 3);
         equipment.PrintEquipment();
 
         SetSprite("Enemy");
@@ -148,7 +148,28 @@ public class Enemy : GameCharacter {
 
     void GatherSkills(int skillPower){
 
+        SkillBook sb = new SkillBook();
+        skillPower = Math.Clamp(skillPower, 0, sb.Count-1);
 
+        while(skillPower > 0){
+
+            Skill potential = sb.ReadPage(skillPower);
+
+            // add fun skills
+            if(SkillCount < skills.Length - 2)
+                potential.UnlockSkill(this);
+
+            // last skill has to have no cooldown or mana cost
+            else if(SkillCount < skills.Length - 1){
+
+                if(potential.Cooldown == 0 && potential.manaCost == 0)
+                    potential.UnlockSkill(this);
+
+            } else return; // no more skills
+
+            skillPower--;
+
+        }
 
     }
 
