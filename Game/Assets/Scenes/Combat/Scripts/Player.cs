@@ -7,9 +7,11 @@ public class Player : GameCharacter {
     int gold;           //For buying items in the store window.
     int skillPoints;    //For unlocking new abilities in the skill tree window.
     int statPoints;     //For increasing stats in the stats window.
+    int currentAreaIndex; //For record the current area of ​​the role
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
+    public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
 
     public Player() : base(
 
@@ -27,6 +29,7 @@ public class Player : GameCharacter {
         gold = 1750;
         skillPoints = 10;
         statPoints = 25;
+        currentAreaIndex = 1; // save index(0) for tutorial Area
 
     }
     
