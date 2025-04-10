@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class SpriteManager : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class SpriteManager : MonoBehaviour
                 if(equipment.weaponLeft.sprites != null)
                     SetSprite(equipment.weaponLeft.sprites[0], spriteLayers["Weapon"]); 
             }
+        }
+        if(!(thisCharacter is Player)){
+            Debug.Log("an enemy!");
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         // continue this pattern when we have more item sprites
     }
