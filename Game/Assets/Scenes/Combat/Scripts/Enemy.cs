@@ -72,6 +72,7 @@ public class Enemy : GameCharacter {
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
         GatherItems((level - 1) * 10 + 1);
+        GatherSkills(level);
         equipment.PrintEquipment();
 
         SetSprite("Enemy");
@@ -142,6 +143,12 @@ public class Enemy : GameCharacter {
             }
 
         }
+
+    }
+
+    void GatherSkills(int skillPower){
+
+
 
     }
 

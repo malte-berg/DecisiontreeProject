@@ -7,6 +7,7 @@ public class Player : GameCharacter {
     int gold;           //For buying items in the store window.
     int skillPoints;    //For unlocking new abilities in the skill tree window.
     int statPoints;     //For increasing stats in the stats window.
+    public int progression = 0;
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
