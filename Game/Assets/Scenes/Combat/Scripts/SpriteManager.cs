@@ -84,9 +84,12 @@ public class SpriteManager : MonoBehaviour
     public void AbilityAnimation(GameCharacter target, GameCharacter sender, int selectedSkill, int frames) {
         
         Transform pos = spriteLayers["Ability"].gameObject.transform;
-        pos.position = sender.originalPos + new Vector3(0f, 0f, 1f);
+        pos.position = sender.originalPos + Vector3.forward;
         Vector3 toTarget = target.gameObject.transform.position - pos.position;
 
+        if (sender.skills[selectedSkill].sprites == null){
+            return;
+        }
         Sprite sprite = sender.skills[selectedSkill].sprites[0];
 
         if(sprite != null) {
