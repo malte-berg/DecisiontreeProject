@@ -11,7 +11,6 @@ public abstract class Skill{
     public int skillCost;
     int skillLevel;
     public bool unlocked;
-    public int level;
     int cooldown = 0;
 
     private string description;
@@ -39,6 +38,7 @@ public abstract class Skill{
         this.skillCost = skillCost;
         this.description = description;
         this.unlocked = false;
+        this.skillLevel = 0;
     }
 
     public void UnlockSkill() {
@@ -46,7 +46,6 @@ public abstract class Skill{
         power = 1;
         skillLevel = 1;
         unlocked = true;
-        level = 1;
 
     }
 
