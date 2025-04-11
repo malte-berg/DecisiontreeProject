@@ -16,8 +16,8 @@ public class GameCharacter : MonoBehaviour{
     int magic;
     int mana;
     int maxMana;
-    public HealthBar healthBar;
-    public ManaBar manaBar;
+    public Bar healthBar;
+    public Bar manaBar;
 
     public string CName{get { return cName; } set {this.cName = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
@@ -114,7 +114,7 @@ public class GameCharacter : MonoBehaviour{
     public bool UseSkill(GameCharacter target){
 
         bool skill = target != null && skills[selectedSkill].Effect(target);
-        healthBar.UpdateHealthBar(HP, Vitality);
+        healthBar.UpdateBar(HP, Vitality);
 
         Vector3 posOfTarget = target.transform.GetChild(0).position;
         if (spriteManager != null && skill) {
@@ -136,7 +136,7 @@ public class GameCharacter : MonoBehaviour{
 
         hp -= dmg - Armor;
 
-        healthBar.UpdateHealthBar(hp, Vitality);
+        healthBar.UpdateBar(hp, Vitality);
 
         if(hp <= 0)
             c.KillCharacter(this);
