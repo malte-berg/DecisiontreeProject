@@ -18,18 +18,25 @@ public class Shop : MonoBehaviour
     int playerGold;
 
     // Test Demo använder först tillfälliga item. I den färdig versionen skulle man kunna sälja den givna itemarrayen enligt spelets framsteg.
-    private Item[] onSaleItems = new Item[2]; // 2 item för test
-    private Item selectedItem;
+    public Item[] onSaleItems; // 2 item för test
+    // private Item selectedItem;
 
     void Awake()
     {
         SetGold();
+        /* AreaData data = AreaDataLoader.Load(player.CurrentAreaIndex);
+        if (data == null)
+        {
+            Debug.Log("AreaData is null");
+        } else {
+            Debug.Log("AreaData is not null");
+        } */
         Init();
     }
 
     void Init()
     {
-        TestItems();
+        // TestItems();
         LoadItems();
 
         buyButton.onClick.RemoveAllListeners();
@@ -47,6 +54,13 @@ public class Shop : MonoBehaviour
 
     void LoadItems()
     {
+        onSaleItems = AreaDataLoader.GetAreaItems(player.CurrentAreaIndex);
+        
+        if (onSaleItems == null) {
+            Debug.Log("onSaleItems is null");
+            return; 
+        }
+
         for (int i = 0; i < onSaleItems.Length; i++)
         {
             itemButton = Instantiate(itemButtonPrefabs, content).GetComponent<ItemButton>();

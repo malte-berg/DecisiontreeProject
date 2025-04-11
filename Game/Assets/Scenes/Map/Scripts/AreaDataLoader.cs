@@ -8,12 +8,12 @@ public static class AreaDataLoader
         AreaData currentLevelData = Resources.Load<AreaData>($"LevelData/{fileName}");
         if (currentLevelData != null)
         {
-            Debug.Log("Load:" + currentLevelData.areaName);
+            //Debug.Log("Load:" + currentLevelData.areaName);
             return currentLevelData;
         }
         else
         {
-            Debug.LogError("Not found: " + fileName);
+            Debug.Log("Not found: " + fileName);
             return null;
         }
     }
@@ -31,7 +31,7 @@ public static class AreaDataLoader
     public static void MovePlayerToArea(Player player, int areaIndex)
     {
          
-        if (!AreaDataLoader.IsAreaExplored(areaIndex))
+        if (!IsAreaExplored(areaIndex))
         {
             Debug.Log("Progress mismatch");
             return;
@@ -44,11 +44,11 @@ public static class AreaDataLoader
     }
 
     public static Item[] GetAreaItems(int areaIndex)
-    {
+    {    
         return Load(areaIndex).RegionItems;
     }
     public static void InitAreaRegionItems(int areaIndex, Item[] regionItems)
     {
-        Load(areaIndex).RegionItems = regionItems; 
+            Load(areaIndex).RegionItems = regionItems; 
     }
 }
