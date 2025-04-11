@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class NewGame : MonoBehaviour{
 
     public GameObject playerPrefab;
-    GameObject playerObject;
 
     public void StartNewGame() {
 
@@ -22,7 +21,7 @@ public class NewGame : MonoBehaviour{
         AreaDataLoader.InitAreaRegionItems(1,regionItems);
 
         // Try to find player game object
-        playerObject = GameObject.Find("Player");
+        GameObject playerObject = GameObject.Find("Player");
 
         // If player game object does not exist, create it
         if (playerObject == null) {
