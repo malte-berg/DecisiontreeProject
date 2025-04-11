@@ -25,35 +25,35 @@ public class ItemDescription : MonoBehaviour{
 
             case Head:
                 Head head = target as Head;
-                description += $"<color=green>Vitality: \t+{head.VitalityAdd} (+{head.VitalityMult*100-100:F1}%)</color>\n";
-                description += $"<color=orange>Armor: \t+{head.ArmorAdd} (+{head.ArmorMult*100-100:F1}%)</color>\n";
-                description += $"<color=red>Strength: \t+{head.StrengthAdd} (+{head.StrengthMult*100-100:F1}%)</color>\n";
-                description += $"<color=blue>Magic: \t+{head.MagicAdd} (+{head.MagicMult*100-100:F1}%)</color>\n";
-                description += $"<color=purple>Mana: \t+{head.ManaAdd} (+{head.ManaMult*100-100:F1}%)</color>\n";
+                description += $"<color=green>Vitality: \t{CalcAdd(head.VitalityAdd)} ({CalcMult(head.VitalityMult)})</color>\n";
+                description += $"<color=orange>Armor: \t{CalcAdd(head.ArmorAdd)} ({CalcMult(head.ArmorMult)})</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(head.StrengthAdd)} ({CalcMult(head.StrengthMult)}%)</color>\n";
+                description += $"<color=blue>Magic: \t{CalcAdd(head.MagicAdd)} ({CalcMult(head.MagicMult)})</color>\n";
+                description += $"<color=purple>Mana: \t{CalcAdd(head.ManaAdd)} ({CalcMult(head.ManaMult)})</color>\n";
                 break;
             case Torso:
                 Torso torso = target as Torso;
-                description += $"<color=green>Vitality: \t+{torso.VitalityAdd} (+{torso.VitalityMult*100-100:F1}%)</color>\n";
-                description += $"<color=orange>Armor: \t+{torso.ArmorAdd} (+{torso.ArmorMult*100-100:F1}%)</color>\n";
-                description += $"<color=red>Strength: \t+{torso.StrengthAdd} (+{torso.StrengthMult*100-100:F1}%)</color>\n";
-                description += $"<color=blue>Magic: \t+{torso.MagicAdd} (+{torso.MagicMult*100-100:F1}%)</color>\n";
-                description += $"<color=purple>Mana: \t+{torso.ManaAdd} (+{torso.ManaMult*100-100:F1}%)</color>\n";
+                description += $"<color=green>Vitality: \t{CalcAdd(torso.VitalityAdd)} ({CalcMult(torso.VitalityMult)})</color>\n";
+                description += $"<color=orange>Armor: \t{CalcAdd(torso.ArmorAdd)} ({CalcMult(torso.ArmorMult)})</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(torso.StrengthAdd)} ({CalcMult(torso.StrengthMult)})</color>\n";
+                description += $"<color=blue>Magic: \t{CalcAdd(torso.MagicAdd)} ({CalcMult(torso.MagicMult)})</color>\n";
+                description += $"<color=purple>Mana: \t{CalcAdd(torso.ManaAdd)} ({CalcMult(torso.ManaMult)})</color>\n";
                 break;
             case Boots:
                 Boots boots = target as Boots;
-                description += $"<color=green>Vitality: \t+{boots.VitalityAdd} (+{boots.VitalityMult*100-100:F1}%)</color>\n";
-                description += $"<color=orange>Armor: \t+{boots.ArmorAdd} (+{boots.ArmorMult*100-100:F1}%)</color>\n";
-                description += $"<color=red>Strength: \t+{boots.StrengthAdd} (+{boots.StrengthMult*100-100:F1}%)</color>\n";
-                description += $"<color=blue>Magic: \t+{boots.MagicAdd} (+{boots.MagicMult*100-100:F1}%)</color>\n";
-                description += $"<color=purple>Mana: \t+{boots.ManaAdd} (+{boots.ManaMult*100-100:F1}%)</color>\n";
+                description += $"<color=green>Vitality: \t{CalcAdd(boots.VitalityAdd)} ({CalcMult(boots.VitalityMult)})</color>\n";
+                description += $"<color=orange>Armor: \t{CalcAdd(boots.ArmorAdd)} ({CalcMult(boots.ArmorMult)})</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(boots.StrengthAdd)} ({CalcMult(boots.StrengthMult)})</color>\n";
+                description += $"<color=blue>Magic: \t{CalcAdd(boots.MagicAdd)} ({CalcMult(boots.MagicMult)})</color>\n";
+                description += $"<color=purple>Mana: \t{CalcAdd(boots.ManaAdd)} ({CalcMult(boots.ManaMult)})</color>\n";
                 break;
             case Weapon:
                 Weapon weapon = target as Weapon;
-                description += $"<color=green>Vitality: \t+{weapon.VitalityAdd} (+{weapon.VitalityMult*100-100:F1}%)</color>\n";
-                description += $"<color=orange>Armor: \t+{weapon.ArmorAdd} (+{weapon.ArmorMult*100-100:F1}%)</color>\n";
-                description += $"<color=red>Strength: \t+{weapon.StrengthAdd} (+{weapon.StrengthMult*100-100:F1}%)</color>\n";
-                description += $"<color=blue>Magic: \t+{weapon.MagicAdd} (+{weapon.MagicMult*100-100:F1}%)</color>\n";
-                description += $"<color=purple>Mana: \t+{weapon.ManaAdd} (+{weapon.ManaMult*100-100:F1}%)</color>\n";
+                description += $"<color=green>Vitality: \t{CalcAdd(weapon.VitalityAdd)} ({CalcMult(weapon.VitalityMult)})</color>\n";
+                description += $"<color=orange>Armor: \t{CalcAdd(weapon.ArmorAdd)} ({CalcMult(weapon.ArmorMult)})</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(weapon.StrengthAdd)} ({CalcMult(weapon.StrengthMult)})</color>\n";
+                description += $"<color=blue>Magic: \t{CalcAdd(weapon.MagicAdd)} ({CalcMult(weapon.MagicMult)})</color>\n";
+                description += $"<color=purple>Mana: \t{CalcAdd(weapon.ManaAdd)} ({CalcMult(weapon.ManaMult)})</color>\n";
                 break;
             case Consumable:
                 // TODO
@@ -69,6 +69,14 @@ public class ItemDescription : MonoBehaviour{
         
         slide.SetActive(true);
 
+    }
+
+    private string CalcAdd(int statAdd) {
+        return $"{(statAdd < 0 ? "" : "+")}{statAdd}";
+    }
+
+    private string CalcMult(float statMult) {
+        return $"{(statMult < 1 ? "" : "+")}{statMult*100-100:F1}%";
     }
 
     public void Equip(){
