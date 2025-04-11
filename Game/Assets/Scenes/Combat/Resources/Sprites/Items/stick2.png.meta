@@ -119,10 +119,10 @@ TextureImporter:
       name: stick2_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 22
-        width: 10
-        height: 9
+        x: 24
+        y: 34
+        width: 14
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: stick2_1
       rect:
         serializedVersion: 2
-        x: 25
-        y: 29
-        width: 23
-        height: 26
+        x: 38
+        y: 44
+        width: 34
+        height: 38
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

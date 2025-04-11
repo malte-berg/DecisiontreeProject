@@ -1,25 +1,15 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ManaBar : MonoBehaviour
+public class ManaBar : Bar
 {
-    public Slider manaSlider;
     public GameCharacter targetCharacter;
-    public TMP_Text mpText;
-    int currentMana;
-    int maxMana;
 
-    void Start()
+    public void Start()
     {
-        if (targetCharacter == null)
-        {
-            Debug.LogError("ManaBar: No target character assigned.");
-            enabled = false;
-            return;
-        }
+        if (targetCharacter != null)
+           target = targetCharacter.transform;
 
-        mpText = GetComponentInChildren<TMP_Text>();
+        base.Init(); // Check for target
         UpdateManaBar();
     }
 
@@ -33,18 +23,9 @@ public class ManaBar : MonoBehaviour
 
     public void UpdateManaBar()
     {
-        if (manaSlider == null || targetCharacter == null)
-            return;
+        if (targetCharacter == null) return;
 
-        currentMana = targetCharacter.Mana;
-        maxMana = targetCharacter.MaxMana;
-
-        float mpBarPercentage = (float)currentMana / maxMana;
-        manaSlider.value = mpBarPercentage;
-        mpText.text = $"{currentMana} / {maxMana}";
-
-        manaSlider.maxValue = maxMana;
-        manaSlider.value = currentMana;
+        UpdateBar(targetCharacter.Mana, targetCharacter.MaxMana);
     }
 }
 

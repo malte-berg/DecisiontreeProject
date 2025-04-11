@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class Pipe : Weapon{
 
     public Pipe() : base(
 
-        sprites: null,
+        sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/pipe1"), Resources.Load<Sprite>("Sprites/Items/pipe2")},
         name: "Pipe",
         value: 5,
         description: "A random pipe that no one knows the origin of.",
