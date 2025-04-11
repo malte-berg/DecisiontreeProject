@@ -78,6 +78,8 @@ public class GameCharacter : MonoBehaviour{
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(CHARACTER_SCALE,CHARACTER_SCALE,CHARACTER_SCALE);
 
+        spriteManager.AddShadow();
+
     }
 
     void OnMouseDown(){

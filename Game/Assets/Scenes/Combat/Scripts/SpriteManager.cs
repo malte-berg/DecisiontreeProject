@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class SpriteManager : MonoBehaviour
 {
@@ -61,6 +62,21 @@ public class SpriteManager : MonoBehaviour
         // continue this pattern when we have more item sprites
     }
 
+    public void AddShadow() {
+        SpriteRenderer shadowRenderer = spriteLayers["ShadowBehind"];
+        SpriteRenderer shadowGroundRenderer = spriteLayers["ShadowGround"];
+
+        if(shadowRenderer == null) return;
+
+        shadowRenderer.sprite = spriteLayers["Character"].sprite;
+        shadowRenderer.color = new Color(0f, 0f, 0f, 0.8f);
+        shadowRenderer.transform.localScale = Vector3.one * 1.02f;
+        shadowGroundRenderer.sprite = Resources.Load<Sprite>("Sprites/Characters/ShadowGround");
+        shadowGroundRenderer.transform.localPosition = new Vector3(0f, -0.46f, 0f);
+        shadowGroundRenderer.transform.localScale = Vector3.one * 0.7f;
+        shadowGroundRenderer.color = new Color(0f, 0f, 0f, 0.6f);
+    }
+
     private void SetSprite(Sprite sprite, SpriteRenderer sr) {
         sr.sprite = sprite;
     }
@@ -70,7 +86,7 @@ public class SpriteManager : MonoBehaviour
         int l = sprites.Count;
         for(int i = 1; i <= l; i++){
             int frameIndex = i;
-            DelayedAction(() => SetSprite(sprites[frameIndex % l], sr), delay * frameIndex - delay + ATTACK_TIME/5f);
+            DelayedAction(() => SetSprite(sprites[frameIndex % l], sr), delay * frameIndex - delay + ATTACK_TIME/3f);
         }
     }
 
