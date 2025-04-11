@@ -14,8 +14,6 @@ public class Player : GameCharacter {
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
     public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
 
-    public Area area;
-
     public Player() : base(
 
         cName: "Ynnos",
@@ -38,8 +36,6 @@ public class Player : GameCharacter {
     
     public override void Init(){
 
-        area = new TheSlumbs(); // TEMP TODO load area
-        area.Init();
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2")};
 
         SetSprite();
