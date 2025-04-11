@@ -4,7 +4,7 @@ using UnityEngine;
 public class Broadsword : Weapon{
     public Broadsword() : base(
 
-        sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/woodsword1"), Resources.Load<Sprite>("Sprites/Items/woodsword2")},
+        sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/sword1"), Resources.Load<Sprite>("Sprites/Items/sword2")},
         name: "Broadsword",
         value: 70,
         description: "Simply created to defend and defeat the enemy.",
