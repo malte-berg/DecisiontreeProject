@@ -27,7 +27,7 @@ public class ItemDescription : MonoBehaviour{
                 Head head = target as Head;
                 description += $"<color=green>Vitality: \t{CalcAdd(head.VitalityAdd)} ({CalcMult(head.VitalityMult)})</color>\n";
                 description += $"<color=orange>Armor: \t{CalcAdd(head.ArmorAdd)} ({CalcMult(head.ArmorMult)})</color>\n";
-                description += $"<color=red>Strength: \t{CalcAdd(head.StrengthAdd)} ({CalcMult(head.StrengthMult)}%)</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(head.StrengthAdd)} ({CalcMult(head.StrengthMult)})</color>\n";
                 description += $"<color=blue>Magic: \t{CalcAdd(head.MagicAdd)} ({CalcMult(head.MagicMult)})</color>\n";
                 description += $"<color=purple>Mana: \t{CalcAdd(head.ManaAdd)} ({CalcMult(head.ManaMult)})</color>\n";
                 break;
