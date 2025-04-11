@@ -12,7 +12,7 @@ public class Player : GameCharacter {
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
 
-    public Area area = new TheSlumbs(); // TEMP
+    public Area area;
 
     public Player() : base(
 
@@ -35,6 +35,8 @@ public class Player : GameCharacter {
     
     public override void Init(){
 
+        area = new TheSlumbs(); // TEMP TODO load area
+        area.Init();
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2")};
 
         SetSprite();
@@ -51,6 +53,7 @@ public class Player : GameCharacter {
         // OP dev privilege
         inventory[0] = new Knife();
         inventory[1] = new Pipe();
+        inventory = area.GetItems(); // TEMP
 
     }
     //Hide the player model.
