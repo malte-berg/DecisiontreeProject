@@ -2,13 +2,13 @@ using UnityEngine;
 using System;
 
 public class Sacrifice : Skill {
-    GameCharacter gc;
+
     int selfDamage;
 
-    public Sacrifice(GameCharacter gc) : base(
+    public Sacrifice() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Sacrifice_Icon"),
         sprites: null,
-        gc: gc, 
+        gc: null, 
         name: "Sacrifice", 
         power: 0, 
         manaCost: 0, 
@@ -17,7 +17,6 @@ public class Sacrifice : Skill {
         
         ){
 
-        this.gc = gc;
         this.selfDamage = 10;
         
     }

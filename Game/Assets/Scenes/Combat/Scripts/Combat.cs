@@ -18,8 +18,11 @@ public class Combat : MonoBehaviour{
 
     public List<Enemy> Enemies{ get { return enemies; }}
 
+    public SkillBook sb = new SkillBook();
+
     int turn = 0;
     GameCharacter currentC;
+    Area area;
 
     public void Init(){
 
@@ -29,6 +32,7 @@ public class Combat : MonoBehaviour{
 
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
         player.ShowPlayer();
+        area = player.area;
         player.c = this;
         player.transform.position = new Vector3(-4, 0, 0);
 
@@ -81,7 +85,7 @@ public class Combat : MonoBehaviour{
         int i = enemies.Count;
 
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
-        cEnemy.CreateEnemy(new Item[0], 0, "Street Thug");             //TODO TEMP
+        cEnemy.CreateEnemy(area.GetItems(), 0, "Street Thug");             //TODO TEMP
         enemies.Add(cEnemy);
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.Init();
