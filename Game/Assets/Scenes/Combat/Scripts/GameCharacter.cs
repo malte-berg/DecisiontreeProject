@@ -172,6 +172,13 @@ public class GameCharacter : MonoBehaviour{
         skillCount++;
     }
 
+    //Update the player stats (permanently).
+    public void UpdateStats(int vitDelta, int strDelta, int magDelta){
+        vitality += vitDelta;
+        strength += strDelta;
+        magic += magDelta;
+    }
+
     public float GetEquipmentVitalityMult(){
 
         float factor = 1;

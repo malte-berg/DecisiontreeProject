@@ -67,11 +67,4 @@ public class Player : GameCharacter {
 
     }
     
-    //Update the player stats (permanently).
-    public void UpdateStats(int newVitality, int newStrength, int newMagic, int newStatPoints){
-        Vitality = newVitality;
-        Strength = newStrength;
-        Magic = newMagic;
-        statPoints = newStatPoints;
-    }
 }
