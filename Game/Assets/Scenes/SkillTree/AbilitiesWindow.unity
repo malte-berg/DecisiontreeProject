@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 236077704}
   - component: {fileID: 236077703}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HealTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1254,6 +1254,7 @@ GameObject:
   - component: {fileID: 949225367}
   - component: {fileID: 949225366}
   - component: {fileID: 949225365}
+  - component: {fileID: 949225368}
   m_Layer: 5
   m_Name: Sacrifice
   m_TagString: Untagged
@@ -1376,6 +1377,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949225363}
   m_CullTransparentMesh: 1
+--- !u!114 &949225368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949225363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee91ff25c6e3a4ed0b6cffdb82bd6e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverPanelPrefab: {fileID: 6947124629896455898, guid: 2259942d9de894457a07fe1e1ff29f64, type: 3}
+  offset: {x: -250, y: 45}
+  skillIndex: 0
 --- !u!1 &987245297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1495,7 @@ GameObject:
   - component: {fileID: 1130377903}
   - component: {fileID: 1130377902}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SacrificeTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1789,6 +1805,7 @@ GameObject:
   - component: {fileID: 1302235444}
   - component: {fileID: 1302235443}
   - component: {fileID: 1302235442}
+  - component: {fileID: 1302235445}
   m_Layer: 5
   m_Name: Heal
   m_TagString: Untagged
@@ -1911,6 +1928,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302235440}
   m_CullTransparentMesh: 1
+--- !u!114 &1302235445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302235440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee91ff25c6e3a4ed0b6cffdb82bd6e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverPanelPrefab: {fileID: 6947124629896455898, guid: 2259942d9de894457a07fe1e1ff29f64, type: 3}
+  offset: {x: -250, y: 45}
+  skillIndex: 0
 --- !u!1 &1311921621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,7 +2226,7 @@ GameObject:
   - component: {fileID: 1409239398}
   - component: {fileID: 1409239397}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PunchTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2488,6 +2520,7 @@ GameObject:
   - component: {fileID: 1632072549}
   - component: {fileID: 1632072548}
   - component: {fileID: 1632072547}
+  - component: {fileID: 1632072550}
   m_Layer: 5
   m_Name: Punch
   m_TagString: Untagged
@@ -2610,6 +2643,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632072545}
   m_CullTransparentMesh: 1
+--- !u!114 &1632072550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632072545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee91ff25c6e3a4ed0b6cffdb82bd6e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverPanelPrefab: {fileID: 6947124629896455898, guid: 2259942d9de894457a07fe1e1ff29f64, type: 3}
+  offset: {x: 200, y: 45}
+  skillIndex: 0
 --- !u!1 &1738468330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,7 +2844,7 @@ GameObject:
   - component: {fileID: 1843307851}
   - component: {fileID: 1843307850}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HeatWaveTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3072,8 +3120,9 @@ GameObject:
   - component: {fileID: 1906170492}
   - component: {fileID: 1906170491}
   - component: {fileID: 1906170490}
+  - component: {fileID: 1906170493}
   m_Layer: 5
-  m_Name: Heat Wave
+  m_Name: HeatWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3194,6 +3243,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906170488}
   m_CullTransparentMesh: 1
+--- !u!114 &1906170493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906170488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee91ff25c6e3a4ed0b6cffdb82bd6e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverPanelPrefab: {fileID: 6947124629896455898, guid: 2259942d9de894457a07fe1e1ff29f64, type: 3}
+  offset: {x: 200, y: 45}
+  skillIndex: 0
 --- !u!1 &1948196090
 GameObject:
   m_ObjectHideFlags: 0
