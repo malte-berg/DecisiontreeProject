@@ -13,6 +13,9 @@ public class Player : GameCharacter {
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
     public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
+    public int CurrentLevel { get; private set; } = 0;
+    public int CurrentExp { get; private set; } = 0;
+    public int ExpToNextLevel { get; private set; } = 100;
 
     public Player() : base(
 
@@ -73,5 +76,20 @@ public class Player : GameCharacter {
         Strength = newStrength;
         Magic = newMagic;
         statPoints = newStatPoints;
+    }
+
+    public void AddExp(int amount)
+    {
+        CurrentExp += amount;
+
+        while (CurrentExp >= ExpToNextLevel)
+        {
+            CurrentExp -= ExpToNextLevel;
+            CurrentLevel++;
+            ExpToNextLevel += 50;
+
+            StatPoints += 5;      // Reward stat points for every new level reached
+            SkillPoints += 1;     // Reward skill points for every new level reached
+        }
     }
 }
