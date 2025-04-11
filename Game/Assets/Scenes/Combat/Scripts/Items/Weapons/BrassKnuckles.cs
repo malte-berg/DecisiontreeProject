@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class BrassKnuckles : Weapon{
 
     public BrassKnuckles() : base(
 
-        sprites: null,
+        sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/brassKnuckles")},
         name: "Brass Knuckles",
         value: 40,
         description: "The hard cold brass shall be felt in your enemies face.",
