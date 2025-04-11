@@ -4,24 +4,15 @@ using UnityEngine.UI;
 
 public class Bar : MonoBehaviour
 {
-    public Transform target;
-    public float yOffset = 2f;
-
     public Slider slider;               
     public TMP_Text valueText;         
 
-    public void Init()
-    {
-        if (target == null)
-        {
-            Debug.LogError($"{GetType().Name}: No target assigned.");
-            enabled = false;
-            return; 
-        }
+    public void Init() {
 
         slider = GetComponent<Slider>();               
         valueText = GetComponentInChildren<TMP_Text>();
-    }
+        
+    }/* 
 
     public void FixedUpdate()
     {
@@ -30,7 +21,7 @@ public class Bar : MonoBehaviour
             Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + Vector3.up * yOffset);
             transform.position = screenPos;
         }
-    }
+    } */
 
     public void UpdateBar(int current, int max)
     {

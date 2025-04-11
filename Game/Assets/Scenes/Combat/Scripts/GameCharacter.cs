@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameCharacter : MonoBehaviour{
 
     public Combat c;
+    public Transform bars;
 
     // STATS
     string cName;
@@ -78,6 +79,12 @@ public class GameCharacter : MonoBehaviour{
         spriteManager.SetCharacter(this);
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(CHARACTER_SCALE,CHARACTER_SCALE,CHARACTER_SCALE);
+
+    }
+
+    public void Moved(){
+
+        bars.position = Camera.main.WorldToScreenPoint(transform.position*0.73f);
 
     }
 
