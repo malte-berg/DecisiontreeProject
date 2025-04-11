@@ -46,5 +46,18 @@ public class Equipment : MonoBehaviour{
         }
 
     }
+
+    public void PrintEquipment(){
+
+        print($@"{gameObject?.name} equipment:
+        HEAD:           {head?.Name}
+        TORSO:          {torso?.Name}
+        BOOTS:          {boots?.Name}
+        WEAPON-L:       {weaponLeft?.Name}
+        WEAPON-R:       {weaponRight?.Name}
+        CONSUMABLE-L:   {consumableLeft?.Name}
+        CONSUMABLE-R:   {consumableRight?.Name}");
+
+    }
     
 }

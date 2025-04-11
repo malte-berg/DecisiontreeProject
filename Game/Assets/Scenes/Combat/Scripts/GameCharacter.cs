@@ -16,8 +16,8 @@ public class GameCharacter : MonoBehaviour{
     int magic;
     int mana;
     int maxMana;
-    public HealthBar healthBar;
-    public ManaBar manaBar;
+    public Bar healthBar;
+    public Bar manaBar;
 
     public string CName{get { return cName; } set {this.cName = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
@@ -42,8 +42,8 @@ public class GameCharacter : MonoBehaviour{
     // to change sprite
     SpriteManager spriteManager;
     Transform moveCharacterSprite;
-    public Vector3 originalPos;
     public List<Sprite> sprites;
+    private readonly float CHARACTER_SCALE = 2.4f;
 
     public GameCharacter(string cName, int vitality, int armor, int strength, int magic, int mana, int maxSkill, int inventorySize){
 
@@ -65,8 +65,6 @@ public class GameCharacter : MonoBehaviour{
 
     public virtual void Init(){
         equipment = gameObject.GetComponent<Equipment>();
-        originalPos = this.transform.position;
-
     }
 
     public void SetSprite(string type) {
@@ -78,7 +76,7 @@ public class GameCharacter : MonoBehaviour{
         }
         spriteManager.SetCharacter(this);
         moveCharacterSprite = gameObject.transform.GetChild(0);
-        moveCharacterSprite.localScale = new Vector3(3,3,3);
+        moveCharacterSprite.localScale = new Vector3(CHARACTER_SCALE,CHARACTER_SCALE,CHARACTER_SCALE);
 
     }
 
@@ -114,13 +112,14 @@ public class GameCharacter : MonoBehaviour{
 
     public bool UseSkill(GameCharacter target){
 
-        bool skill = skills[selectedSkill].Effect(target);
-        healthBar.UpdateHealthBar(HP, Vitality);
+        bool skill = target != null && skills[selectedSkill].Effect(target);
+        healthBar.UpdateBar(HP, Vitality);
 
+        Vector3 posOfTarget = target.transform.GetChild(0).position;
         if (spriteManager != null && skill) {
             Debug.Log(gameObject.name);
             spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.AbilityAnimation(target, this, selectedSkill, 5);
+            spriteManager.AbilityAnimation(posOfTarget, this, selectedSkill, 5);
         }
 
         return skill;
@@ -136,7 +135,7 @@ public class GameCharacter : MonoBehaviour{
 
         hp -= dmg - Armor;
 
-        healthBar.UpdateHealthBar(hp, Vitality);
+        healthBar.UpdateBar(hp, Vitality);
 
         if(hp <= 0)
             c.KillCharacter(this);

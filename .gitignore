@@ -78,3 +78,7 @@ crashlytics-build.properties
 # Editor files
 */.vscode/
 *.vscode
+
+# vsconfig
+*/.vsconfig/
+*.vsconfig
