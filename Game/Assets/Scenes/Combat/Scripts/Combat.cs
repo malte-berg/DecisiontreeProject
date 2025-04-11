@@ -59,8 +59,6 @@ public class Combat : MonoBehaviour{
 
     Transform CreateBars(GameCharacter who){
 
-        print("test");
-
         GameObject t = Instantiate(barPrefab, GameObject.Find("Canvas").transform);
 
         // Setup healthBar
@@ -83,6 +81,12 @@ public class Combat : MonoBehaviour{
     void Awake(){
 
         Init();
+
+    }
+
+    void FixedUpdate(){
+
+        print($"{player?.bars.name}");
 
     }
 

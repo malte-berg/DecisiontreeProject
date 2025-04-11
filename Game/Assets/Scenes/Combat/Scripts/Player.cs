@@ -8,7 +8,7 @@ public class Player : GameCharacter {
     int skillPoints;        // For unlocking new abilities in the skill tree window.
     int statPoints;         // For increasing stats in the stats window.
     int currentAreaIndex;   // For record the current area of ​​the role
-    int cutscene = 0;       // For telling cutscene scene to run animation
+    int cutscene = -1;       // For telling cutscene scene to run animation
 
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}

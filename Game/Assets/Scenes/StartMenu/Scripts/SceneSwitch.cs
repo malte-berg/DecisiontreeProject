@@ -22,6 +22,7 @@ public class SceneSwitch : MonoBehaviour
     public void LoadScene(string sceneName) {
 
         string curr = SceneManager.GetActiveScene().name;
+        // SceneManager.LoadScene(sceneName);
         StartCoroutine(SwitchScene(sceneName, curr));
 
     }
@@ -31,12 +32,22 @@ public class SceneSwitch : MonoBehaviour
         SceneManager.LoadScene("Cutscene", LoadSceneMode.Additive);
         SceneManager.LoadScene(final, LoadSceneMode.Additive);
 
-        yield return null;
-
         Scene nextScene = SceneManager.GetSceneByName("Cutscene");
-        if (nextScene.IsValid() && nextScene.isLoaded)
-            SceneManager.SetActiveScene(nextScene);
+        int timeout = 200;
+        while ((!nextScene.IsValid() || !nextScene.isLoaded) && timeout-- > 0)
+            yield return null;
 
+        if(!nextScene.IsValid())
+            Debug.LogError("NOT VALID");
+
+        if(!nextScene.isLoaded)
+            Debug.LogError("NOT LOADED");
+
+        if(nextScene.IsValid() && nextScene.isLoaded)
+            SceneManager.SetActiveScene(nextScene);
+        else
+            Debug.LogError("SwitchScene messed up.");
+        
         SceneManager.UnloadSceneAsync(curr);
 
     }
