@@ -11,6 +11,10 @@ public class TheSlumbs : Area {
         new WorkerBoots()
     };
 
-    // public Item[] LocalItems = { get{ return regionItems; }}
+    public override Item[] GetItems(){
+
+        return regionItems;
+
+    }
 
 }

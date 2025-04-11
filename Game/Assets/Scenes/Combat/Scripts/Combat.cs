@@ -31,6 +31,7 @@ public class Combat : MonoBehaviour{
         targeting = Instantiate(targeting);
 
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
+        area = player.area;
         player.ShowPlayer();
         player.c = this;
         player.transform.position = new Vector3(-4, 0, 0);
@@ -83,7 +84,7 @@ public class Combat : MonoBehaviour{
         int i = enemies.Count;
 
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
-        cEnemy.CreateEnemy(new Item[0], 0, "Street Thug");             //TODO TEMP
+        cEnemy.CreateEnemy(area.GetItems(), 0, "Street Thug");             //TODO TEMP
         enemies.Add(cEnemy);
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.Init();

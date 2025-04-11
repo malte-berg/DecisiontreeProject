@@ -12,7 +12,7 @@ public class Player : GameCharacter {
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
 
-    public Area area;
+    public Area area = new TheSlumbs(); // TEMP
 
     public Player() : base(
 
