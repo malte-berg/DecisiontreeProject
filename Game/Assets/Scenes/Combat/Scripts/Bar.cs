@@ -7,8 +7,8 @@ public class Bar : MonoBehaviour
     public Transform target;
     public float yOffset = 2f;
 
-    public Slider slider;               /////
-    public TMP_Text valueText;          /////
+    public Slider slider;               
+    public TMP_Text valueText;         
 
     public virtual void Init()
     {
@@ -16,14 +16,14 @@ public class Bar : MonoBehaviour
         {
             Debug.LogError($"{GetType().Name}: No target assigned.");
             enabled = false;
-            return; //////
+            return; 
         }
 
-        slider = GetComponent<Slider>();                /////
-        valueText = GetComponentInChildren<TMP_Text>(); /////
+        slider = GetComponent<Slider>();               
+        valueText = GetComponentInChildren<TMP_Text>();
     }
 
-    public virtual void FixedUpdate()
+    public void FixedUpdate()
     {
         if (target != null)
         {
@@ -32,12 +32,14 @@ public class Bar : MonoBehaviour
         }
     }
 
-    public virtual void UpdateBar(int current, int max) //////////
+    public void UpdateBar(int current, int max)
     {
         if (slider == null || valueText == null || max == 0) return;
 
-        slider.maxValue = max;
-        slider.value = current;
+        current = Mathf.Clamp(current, 0, max); // To keep current between 0 and the max value
+
+        //slider.maxValue = max;
+        //slider.value = current;
 
         float percentage = (float)current / max;
         slider.value = percentage;

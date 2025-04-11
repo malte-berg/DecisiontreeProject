@@ -34,9 +34,9 @@ public class Combat : MonoBehaviour{
 
         //Add a healthbar for the player and put it inside the canvas.
         player.healthBar = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
+        player.healthBar.target = player.transform; 
         player.healthBar.Init();
         player.healthBar.gameObject.name = "PlayerHP";
-        player.healthBar.target = player.transform;
         player.healthBar.yOffset = 2f;
         player.HP = player.Vitality;
         player.healthBar.UpdateHealthBar(player.HP, player.Vitality);
@@ -93,9 +93,9 @@ public class Combat : MonoBehaviour{
 
         //Add a healthbar for the enemy and put it inside the canvas.
         cEnemy.healthBar = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform).GetComponent<HealthBar>();
+        cEnemy.healthBar.target = cEnemy.transform; 
         cEnemy.healthBar.Init();
         cEnemy.healthBar.gameObject.name = cEnemy.gameObject.name + " HP";
-        cEnemy.healthBar.target = cEnemy.transform;
         cEnemy.healthBar.yOffset = 2f;
         cEnemy.healthBar.UpdateHealthBar(cEnemy.HP, cEnemy.Vitality);
 
