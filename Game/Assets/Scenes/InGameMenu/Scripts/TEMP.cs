@@ -25,7 +25,7 @@ public class TEMP : MonoBehaviour{
     void UpdateBackground()
     {
         Debug.Log(currentAreaIndex);
-        currentArea = AreaDataLoader.Load("Area"+currentAreaIndex);
+        currentArea = AreaDataLoader.Load(currentAreaIndex);
         backgroundImage.sprite = currentArea.backgroundImage;
     }
 }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03413086a039f47a2837ef7e6a2fa232, type: 3}
   m_Name: Area1
   m_EditorClassIdentifier: 
-  areaIndex: 2
-  areaName: Area2
-  backgroundImage: {fileID: 3116867862431625320, guid: 3937552ba42114c6a9edd0d7d2952fe7, type: 3}
+  areaIndex: 1
+  areaName: Area0
+  backgroundImage: {fileID: 2979148220289618135, guid: 098ea4e274cd94e4eb53d42e8ed9c94d, type: 3}
   bgm: {fileID: 0}
+  unlock: 1

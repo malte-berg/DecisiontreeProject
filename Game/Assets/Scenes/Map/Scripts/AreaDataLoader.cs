@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 public static class AreaDataLoader
 {
-    public static AreaData Load(string fileName)
+    public static AreaData Load(int areaIntex)
     {
+        string fileName = "Area"+areaIntex;
         AreaData currentLevelData = Resources.Load<AreaData>($"LevelData/{fileName}");
         if (currentLevelData != null)
         {
@@ -14,5 +16,30 @@ public static class AreaDataLoader
             Debug.LogError("Not found: " + fileName);
             return null;
         }
+    }
+
+    public static Boolean IsAreaExplored(int areaIntex)
+    {
+        AreaData a = Load(areaIntex);
+        if (a.Unlock == false)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public static void MovePlayerToArea(Player player, int areaIndex)
+    {
+         
+        if (!AreaDataLoader.IsAreaExplored(areaIndex))
+        {
+            Debug.Log("Progress mismatch");
+            return;
+        } else if (player.CurrentAreaIndex == areaIndex)
+        {
+            return;
+        }
+
+        player.CurrentAreaIndex = areaIndex;
     }
 }

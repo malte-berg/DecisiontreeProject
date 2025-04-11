@@ -533,8 +533,7 @@ GameObject:
   - component: {fileID: 887566328}
   - component: {fileID: 887566327}
   - component: {fileID: 887566326}
-  - component: {fileID: 887566331}
-  - component: {fileID: 887566330}
+  - component: {fileID: 887566332}
   m_Layer: 5
   m_Name: Map
   m_TagString: Untagged
@@ -626,7 +625,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &887566330
+--- !u!114 &887566332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -635,26 +634,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 887566325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294ec13aaec4e4864a2c949c614bfc49, type: 3}
+  m_Script: {fileID: 11500000, guid: 2818c8fc22ff34f3393d681e67230727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttons:
   - {fileID: 1058203472}
   - {fileID: 986410774}
   - {fileID: 1750742928}
---- !u!114 &887566331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 887566325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b82523cc552b64f7d99b858986e0405d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxlevelIntex: 0
 --- !u!1 &909193669
 GameObject:
   m_ObjectHideFlags: 0
