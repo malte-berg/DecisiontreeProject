@@ -22,6 +22,7 @@ public class Combat : MonoBehaviour{
 
     int turn = 0;
     GameCharacter currentC;
+    Area area;
 
     public void Init(){
 

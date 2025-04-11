@@ -12,6 +12,8 @@ public class Player : GameCharacter {
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
 
+    public Area area;
+
     public Player() : base(
 
         cName: "Ynnos",
@@ -35,7 +37,7 @@ public class Player : GameCharacter {
 
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2")};
 
-        SetSprite("Player");
+        SetSprite();
 
         equipment = gameObject.GetComponent<Equipment>();
         gameObject.name = "Player";
@@ -62,7 +64,7 @@ public class Player : GameCharacter {
     public void ShowPlayer(){
 
         transform.GetChild(0).gameObject.SetActive(true);
-        SetSprite("Player");
+        SetSprite();
 
     }
     

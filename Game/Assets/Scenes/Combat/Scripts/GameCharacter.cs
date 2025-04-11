@@ -67,7 +67,7 @@ public class GameCharacter : MonoBehaviour{
         equipment = gameObject.GetComponent<Equipment>();
     }
 
-    public void SetSprite(string type) {
+    public void SetSprite() {
 
         spriteManager = GetComponentInChildren<SpriteManager>();
         if(spriteManager == null) {

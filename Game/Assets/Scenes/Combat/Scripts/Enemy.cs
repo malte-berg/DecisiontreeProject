@@ -75,7 +75,7 @@ public class Enemy : GameCharacter {
         GatherSkills(level / 3);
         equipment.PrintEquipment();
 
-        SetSprite("Enemy");
+        SetSprite();
         
     }
 
