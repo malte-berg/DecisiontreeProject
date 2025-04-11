@@ -11,10 +11,8 @@ public class AreaData : ScriptableObject
 
     [SerializeField] // 
     private Boolean unlock; 
-    private Item[] shelfItems; // items that can be sold according to the corresponding area
+    private Item[] regionItems; // items that can be sold according to the corresponding area
 
-    public Item[] ShelfItems{ get{ return shelfItems; } set{ this.shelfItems = value;}}
-
+    public Item[] RegionItems{ get{ return regionItems; } set{ this.regionItems = value;}}
     public Boolean Unlock{ get{ return unlock; } set{ this.unlock = value;}}
-
 }

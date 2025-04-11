@@ -42,4 +42,13 @@ public static class AreaDataLoader
 
         player.CurrentAreaIndex = areaIndex;
     }
+
+    public static Item[] GetAreaItems(int areaIndex)
+    {
+        return Load(areaIndex).RegionItems;
+    }
+    public static void InitAreaRegionItems(int areaIndex, Item[] regionItems)
+    {
+        Load(areaIndex).RegionItems = regionItems; 
+    }
 }
