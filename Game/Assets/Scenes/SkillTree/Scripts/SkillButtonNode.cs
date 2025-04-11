@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class SkillButtonNode : MonoBehaviour
 {
- public Skill skill;
+    public GameObject thisNode;
+    public Skill skill;
     public SkillButtonNode parent;
     public SkillButtonNode right;
     public SkillButtonNode left;

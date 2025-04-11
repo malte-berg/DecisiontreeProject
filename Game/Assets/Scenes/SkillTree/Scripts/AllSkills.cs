@@ -31,7 +31,7 @@ public class AllSkills : MonoBehaviour {
         SetNodes();
         */
 
-        foreach (AllSkills skill : allSkills){
+        foreach (Skill skill in allSkills){
             stt.AddNode(skill, skillButtonPrefab);
         }
     }

@@ -48,10 +48,9 @@ public class SkillTreeTree {
         return FindSkillRecursive(node.right, skillName);
     }
 
-    public void AddNode(Skill skill, GameObject prefab) {
+    public void AddNode(SkillButtonNode newNode) {
         if (root == null) {
-            root = Instantiate(prefab);
-            
+            root = newNode;
         }
         SkillButtonNode newNode = new SkillButtonNode(skill, null);
         if (skillType == SkillType.Attack) {
@@ -62,5 +61,4 @@ public class SkillTreeTree {
             else root.AddRightChild(newNode);
         }
     }
-    */
 }
