@@ -12,16 +12,7 @@ public class Bar : MonoBehaviour
         slider = GetComponent<Slider>();               
         valueText = GetComponentInChildren<TMP_Text>();
         
-    }/* 
-
-    public void FixedUpdate()
-    {
-        if (target != null)
-        {
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position + Vector3.up * yOffset);
-            transform.position = screenPos;
-        }
-    } */
+    }
 
     public void UpdateBar(int current, int max)
     {
