@@ -52,6 +52,7 @@ public class Combat : MonoBehaviour{
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
 
         for (int i = 0; i < 4; i++) // TEMP SPAWN ENEMIES
+            // SpawnEnemy(enemyPrefabs[i]); 
             SpawnEnemy(enemyPrefabs[0]);
 
         GetCurrentCharacter();

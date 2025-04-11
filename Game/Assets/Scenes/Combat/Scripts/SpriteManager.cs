@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using UnityEngine.Scripting.APIUpdating;
 
 public class SpriteManager : MonoBehaviour
 {
@@ -106,13 +107,17 @@ public class SpriteManager : MonoBehaviour
         Transform pos = spriteLayers["Ability"].gameObject.transform;
         pos.position += Vector3.forward;
         Vector3 toTarget = targetPos - pos.position;
-        float distanceX = Mathf.Abs(toTarget.x) / 40f;
+        float attackTime = ATTACK_TIME/2f + Mathf.Abs(toTarget.x) / 40f;
 
         Skill skillToUse = sender.skills[selectedSkill];
 
         if(!(skillToUse is Heal || skillToUse is Sacrifice)) {
             Vector3 lungeOffset = toTarget * DINSTANCE_TO_LUNGE;
-            LungeTo(sender, lungeOffset, ATTACK_TIME/2f + distanceX); 
+            if(skillToUse is HeatWave) {
+                lungeOffset /= 20f;
+                attackTime /= 2f;
+            }
+            LungeTo(sender, lungeOffset, attackTime); 
         }
 
         if (skillToUse.sprites == null){
@@ -123,25 +128,41 @@ public class SpriteManager : MonoBehaviour
         if(sprite != null) {
             pos.GetComponent<SpriteRenderer>().enabled = false;
             pos.GetComponent<SpriteRenderer>().sprite = sprite;
+
+            bool isReverse = false;
+            float animationTime = ABILITY_ANIMATION_TIME/2f;
+            if(skillToUse is HeatWave) {
+                isReverse = true;
+                animationTime *= 4f;
+            }
              
-            RollScales(sender, pos, toTarget, frames, ABILITY_ANIMATION_TIME);
+            RollScales(pos, toTarget, frames, animationTime, isReverse);
         }
     }
 
-    private void RollScales(GameCharacter sender, Transform tr, Vector3 toTarget, int frames, float delay) {
+    private void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, bool isReverse) {
         float scale = frames;
         Vector3 originalPos = tr.position;
         tr.position += toTarget * 0.9f;
         for(int i = 0; i <= frames; i++){
+            float newScale;
             int frameIndex = i;
-            float newScale = ((scale-i) / frames) * 5;
-            DelayedAction(() => SetScale(sender, tr, newScale, originalPos), frameIndex * (delay/frames) + ATTACK_TIME);
+            if(isReverse){
+                newScale = (float)frameIndex * 1.1f;
+            }else {
+                newScale = (float)(scale-frameIndex) * 0.8f;
+            }
+
+            float capturedScale = newScale;
+            int capturedIndex = frameIndex;
+
+            DelayedAction(() => SetScale(tr, newScale, originalPos, frames, frameIndex), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
         }   
     }
 
-    private void SetScale(GameCharacter sender, Transform tr, float scale, Vector3 originalPos) {
+    private void SetScale(Transform tr, float scale, Vector3 originalPos, int frames, int frameIndex) {
         SpriteRenderer sr = tr.GetComponent<SpriteRenderer>();
-        if(scale <= 0) {
+        if(frameIndex >= frames) {
             sr.enabled = false;
             tr.position = originalPos;
         }else {
