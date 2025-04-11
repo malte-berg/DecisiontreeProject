@@ -11,11 +11,12 @@ public class Shop : MonoBehaviour
     public TextMeshProUGUI GoldText;
     public Button buyButton;
     public Transform content;
-    ItemButton itemButton;
+    private ItemButton itemButton;
 
+    private int inventoryIndex;
     // Data
-    Player player;
-    int playerGold;
+    private Player player;
+    private int playerGold;
 
     // Test Demo använder först tillfälliga item. I den färdig versionen skulle man kunna sälja den givna itemarrayen enligt spelets framsteg.
     public Item[] onSaleItems; // 2 item för test
@@ -23,14 +24,7 @@ public class Shop : MonoBehaviour
 
     void Awake()
     {
-        SetGold();
-        /* AreaData data = AreaDataLoader.Load(player.CurrentAreaIndex);
-        if (data == null)
-        {
-            Debug.Log("AreaData is null");
-        } else {
-            Debug.Log("AreaData is not null");
-        } */
+        DataFromPlayer();
         Init();
     }
 
@@ -46,10 +40,16 @@ public class Shop : MonoBehaviour
         UpdateGoldText();
     }
     
-     void SetGold(){
+     void DataFromPlayer(){
         player = GameObject.Find("Player").GetComponent<Player>(); // finns kanske utrymme för optimering
         player.HidePlayer();
-        playerGold = player.Gold; 
+        playerGold = player.Gold;
+        inventoryIndex = 0;
+        while (inventoryIndex < player.inventory.Length && player.inventory[inventoryIndex] != null)
+        {
+            inventoryIndex++;
+        }
+        Debug.Log("inventoryIndex: "+inventoryIndex);
     }
 
     void LoadItems()
@@ -72,10 +72,11 @@ public class Shop : MonoBehaviour
         if (itemButton == null) return;
         int value = itemButton.currentItem.Value;
 
-        if (playerGold >= value)
+        if (playerGold >= value )//&& inventoryIndex < player.inventory.Length)
         {
             playerGold -= value;
             player.Gold = playerGold;
+            player.inventory[inventoryIndex++] = itemButton.currentItem;
             itemButton.ButtonClose();
             UpdateGoldText();
         }

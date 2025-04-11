@@ -49,10 +49,8 @@ public class Player : GameCharacter {
         AddSkill(punch);
 
         // OP dev privilege
-        /* inventory[0] = new Knife();
-        inventory[1] = new Pipe(); */
-
-        inventory = AreaDataLoader.GetAreaItems(currentAreaIndex);
+        inventory[0] = new Knife();
+        inventory[1] = new Pipe(); 
 
     }
     //Hide the player model.
