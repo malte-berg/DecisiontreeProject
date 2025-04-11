@@ -7,9 +7,14 @@ public class Player : GameCharacter {
     int gold;           //For buying items in the store window.
     int skillPoints;    //For unlocking new abilities in the skill tree window.
     int statPoints;     //For increasing stats in the stats window.
+    int currentAreaIndex; //For record the current area of ​​the role
+  
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
+    public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
+
+    public Area area;
 
     public Player() : base(
 
@@ -27,27 +32,28 @@ public class Player : GameCharacter {
         gold = 1750;
         skillPoints = 10;
         statPoints = 25;
+        currentAreaIndex = 1; // save index(0) for tutorial Area
 
     }
     
     public override void Init(){
 
+        area = new TheSlumbs(); // TEMP TODO load area
+        area.Init();
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2")};
 
-        SetSprite("Player");
+        SetSprite();
 
         equipment = gameObject.GetComponent<Equipment>();
         gameObject.name = "Player";
         HidePlayer();
         DontDestroyOnLoad(gameObject);
       
-        Skill punch = new Punch(this);
-        punch.UnlockSkill();
+        Skill punch = new Punch();
+        punch.UnlockSkill(this);
         AddSkill(punch);
-
-        // OP dev privilege
-        inventory[0] = new Knife();
-        inventory[1] = new Pipe();
+      
+        inventory = AreaDataLoader.GetAreaItems(currentAreaIndex);
 
     }
     //Hide the player model.
@@ -61,7 +67,7 @@ public class Player : GameCharacter {
     public void ShowPlayer(){
 
         transform.GetChild(0).gameObject.SetActive(true);
-        SetSprite("Player");
+        SetSprite();
 
     }
     

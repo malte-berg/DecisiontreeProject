@@ -32,6 +32,7 @@ public class GameCharacter : MonoBehaviour{
     public Skill[] skills;
 
     int skillCount;
+    public int SkillCount{ get{ return skillCount; }}
 
     int selectedSkill = 0;
 
@@ -67,7 +68,7 @@ public class GameCharacter : MonoBehaviour{
         equipment = gameObject.GetComponent<Equipment>();
     }
 
-    public void SetSprite(string type) {
+    public void SetSprite() {
 
         spriteManager = GetComponentInChildren<SpriteManager>();
         if(spriteManager == null) {
