@@ -43,6 +43,7 @@ public class GameCharacter : MonoBehaviour{
     SpriteManager spriteManager;
     Transform moveCharacterSprite;
     public List<Sprite> sprites;
+    private readonly float CHARACTER_SCALE = 2.4f;
 
     public GameCharacter(string cName, int vitality, int armor, int strength, int magic, int mana, int maxSkill, int inventorySize){
 
@@ -75,7 +76,7 @@ public class GameCharacter : MonoBehaviour{
         }
         spriteManager.SetCharacter(this);
         moveCharacterSprite = gameObject.transform.GetChild(0);
-        moveCharacterSprite.localScale = new Vector3(3,3,3);
+        moveCharacterSprite.localScale = new Vector3(CHARACTER_SCALE,CHARACTER_SCALE,CHARACTER_SCALE);
 
     }
 
