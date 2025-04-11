@@ -14,7 +14,7 @@ public class SpriteManager : MonoBehaviour
     private readonly float ATTACK_TIME = 0.35f; 
     private readonly float DINSTANCE_TO_LUNGE = 0.7f; 
     private readonly float ABILITY_ANIMATION_TIME = 0.25f; 
-    private readonly float CHANGE_SPRITE_TIME = 0.2f; 
+    private readonly float CHANGE_SPRITE_TIME = 0.3f; 
 
 
     /**
@@ -72,7 +72,7 @@ public class SpriteManager : MonoBehaviour
         int l = sprites.Count;
         for(int i = 1; i <= l; i++){
             int frameIndex = i;
-            DelayedAction(() => SetSprite(sprites[frameIndex % l], sr), delay * frameIndex - delay + ATTACK_TIME/3f);
+            DelayedAction(() => SetSprite(sprites[frameIndex % l], sr), delay * frameIndex - delay + ATTACK_TIME/5f);
         }
     }
 
@@ -83,7 +83,7 @@ public class SpriteManager : MonoBehaviour
         if(equipment.weaponLeft != null) {
             RollSprites(thisCharacter.sprites, spriteLayers["Character"], CHANGE_SPRITE_TIME);
             if(equipment.weaponLeft.sprites != null)
-                RollSprites(equipment.weaponLeft.sprites, spriteLayers["Weapon"], CHANGE_SPRITE_TIME); // use only stick for now
+                RollSprites(equipment.weaponLeft.sprites, spriteLayers["Weapon"], CHANGE_SPRITE_TIME);
         }
     }
 
