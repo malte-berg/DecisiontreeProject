@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3d2ee62f39bfbd342b3f7f465012b78d
+guid: 390aed8e3dd8ff14a99ce8abf7b19d6f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5938600727294060535
-    second: mainMenu2_0
+      213: -4817219312971657784
+    second: BattleButton(1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mainMenu2_0
+      name: BattleButton(1)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3000
-        height: 2000
+        width: 512
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f72d3db5e52a6250800000000000000
-      internalID: 5938600727294060535
+      spriteID: 8cd4c2dbe8cc52db0800000000000000
+      internalID: -4817219312971657784
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mainMenu2_0: 5938600727294060535
+      BattleButton(1)_0: -4817219312971657784
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
