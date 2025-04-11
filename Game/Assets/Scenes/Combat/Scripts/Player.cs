@@ -48,6 +48,10 @@ public class Player : GameCharacter
         punch.UnlockSkill();
         AddSkill(punch);
 
+        Skill MindControl = new MindControl(this);
+        MindControl.UnlockSkill();
+        AddSkill(MindControl);
+
         // OP dev privilege
         inventory[0] = new Knife();
         inventory[1] = new Pipe();

@@ -10,6 +10,11 @@ public class Enemy : GameCharacter
 
     Item[] availableItems;
     int enemyPower;
+
+    //For mindcontrol ability
+    public Enemy targetedByControlled = null; // which target the mind controlled enemy targets
+    public int controlledTurns = 0; // How many turns enemy is controlled when mindcontrol is activated.
+
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
     public Enemy() : base(
@@ -92,6 +97,18 @@ public class Enemy : GameCharacter
     {
 
         Thread.Sleep(1000);
+
+        if (targetedByControlled != null)
+        {
+            target = targetedByControlled;
+            controlledTurns--;
+        }
+
+        if (controlledTurns < 0)
+        {
+            controlledTurns = 0; //just to be sure
+            targetedByControlled = null;
+        }
 
         int currentS = 2;
         while (!SelectSkill(currentS-- % 3)) ;
