@@ -1,91 +1,66 @@
+using System.Collections.Generic;
+using UnityEngine;
 
 public class SkillTreeTree {
-    public SkillTreeRoot root;
-    public Node currentNode;
+    public SkillButtonNode root;
     public GameCharacter player;
-    public SkillTreeTree(Player player) {
+
+    public enum SkillType {
+        Defense,
+        Attack
+    }
+
+    public SkillTreeTree(GameCharacter player) {
         this.player = player;
-        root = new SkillTreeRoot(null, null);
-        currentNode = root;
+        root = null;
     }
 
-    public void AddSkill(Skill skill) {
-        if (currentNode == null) {
-            Debug.Log("Current node is null");
-            return;
-        }
-        currentNode.AddSkill(skill);
+    public List<Skill> GetAllSkills() {
+        List<Skill> skills = new List<Skill>();
+        GetAllSkillsRecursive(root, skills);
+        return skills;
     }
 
-    public void MoveToAttacking() {
-        currentNode = root.attacking;
-        if (currentNode == null) {
-            Debug.Log("Current node is null");
-            return;
-        }
-    }
-
-    public void MoveToDefending() {
-        currentNode = root.defending;
-        if (currentNode == null) {
-            Debug.Log("Current node is null");
-            return;
-        }
-    }
-
-    public void MoveToParent() {
-        if (currentNode == root) {
-            Debug.Log("Current node is root");
-            return;
-        }
-
-        currentNode = currentNode.parent;
-
-        if (currentNode == null) {
-            Debug.Log("Current node is null");
-            return;
-        }
-    }
-
-    public void MoveToChild() {
-        if (currentNode == null) {
-            Debug.Log("Current node is null");
-            return;
-        }
-
-        currentNode = currentNode.child;
-
-        if (currentNode == null) {
-            Debug.Log("Current node is null");
-            return;
-        }
-    }
-
-    public void FindSkill(Skill skill) {
-        if (FindInBranch(root.attacking, skill)) {
-            Debug.Log("Skill found in attacking branch: " + skill.Name);
-            return;
-        }
-        if (FindInBranch(root.defending, skill)) {
-            Debug.Log("Skill found in defending branch: " + skill.Name);
-            return;
-        }
-        Debug.Log("Skill not found: " + skill.Name);
-        currentNode = null;
-    }
-
-    bool FindInBranch(SkillTreeNode node, Skill skill) {
+    void GetAllSkillsRecursive(SkillButtonNode node, List<Skill> skills) {
         if (node == null) {
-            return false;
+            return;
         }
-
-        if (node.skill != null && node.skill.Name == skill.Name) {
-            Debug.Log("Skill found: " + node.skill.Name);
-            currentNode = node;
-            return true;
-        }
-
-        TraverseBranch(node.child, skill);
+        skills.Add(node.skill);
+        GetAllSkillsRecursive(node.left, skills);
+        GetAllSkillsRecursive(node.right, skills);
     }
 
+    public SkillButtonNode FindSkill(string skillName) {
+        return FindSkillRecursive(root, skillName);
+    }
+
+    SkillButtonNode FindSkillRecursive(SkillButtonNode node, string skillName) {
+        if (node == null) {
+            return null;
+        }
+        if (node.skill.Name == skillName) {
+            return node;
+        }
+        SkillButtonNode foundNode = FindSkillRecursive(node.left, skillName);
+        if (foundNode != null) {
+            return foundNode;
+        }
+        return FindSkillRecursive(node.right, skillName);
+    }
+
+    public void AddNode(Skill skill, GameObject prefab) {
+        if (root == null) {
+            root = Instantiate(prefab);
+            
+        }
+        SkillButtonNode newNode = new SkillButtonNode(skill, null);
+        if (skillType == SkillType.Attack) {
+            if(root.left != null) root.left.AddChild(newNode);
+            else root.AddLeftChild(newNode);
+        } else if (skillType == SkillType.Defense){
+            if (root.right != null) root.right.AddChild(newNode);
+            else root.AddRightChild(newNode);
+        }
+    }
+    */
 }
