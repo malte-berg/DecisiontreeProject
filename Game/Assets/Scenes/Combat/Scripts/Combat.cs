@@ -31,8 +31,8 @@ public class Combat : MonoBehaviour{
         targeting = Instantiate(targeting);
 
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
-        area = player.area;
         player.ShowPlayer();
+        area = player.area;
         player.c = this;
         player.transform.position = new Vector3(-4, 0, 0);
 
