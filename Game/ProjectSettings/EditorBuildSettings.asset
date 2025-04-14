@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: bfc75cd575eae5a448f2aba162e806fe
   - enabled: 1
     path: Assets/Scenes/InGameMenu/InGameMenu.unity
-    guid: fccf4abb8a39b8e4184ebcc68a0df55f
+    guid: 19a8a12afc26fe24a8b58d85c029546f
   - enabled: 1
     path: Assets/Scenes/SkillTree/AbilitiesWindow.unity
     guid: 02dd7c1b7fe7d114b8c17455013df31a
@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stats/Stats.unity
     guid: e54e3091f7ec44753ad83d2cb72cce99
+  - enabled: 1
+    path: Assets/Scenes/Cutscene/Cutscene.unity
+    guid: 457e99c40b2568847a3073b1eb4f3208
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
