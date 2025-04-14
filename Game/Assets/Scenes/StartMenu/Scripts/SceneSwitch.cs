@@ -5,17 +5,25 @@ using UnityEngine.SceneManagement;
 public class SceneSwitch : MonoBehaviour
 {
 
+    // A check to see if we need to go to title screen
     void Awake(){
 
-        if(SceneManager.GetActiveScene().name == "StartMenu")
+        if(SceneManager.GetActiveScene().buildIndex == 0)
             return;
 
         GameObject p = GameObject.Find("Player");
 
         if(p == null)
-            LoadScene("StartMenu");
+
+            LoadScene(0);
         else
             p.GetComponent<Player>().HidePlayer();
+
+    }
+
+    public void SwitchScene(int sceneIndex){
+
+        StartCoroutine(LoadScene(sceneIndex));
 
     }
 
@@ -24,15 +32,7 @@ public class SceneSwitch : MonoBehaviour
     /// AKA load cutscene and next scene in that order, then unload itself
     /// </summary>
     /// <param name="sceneName"></param>
-    public void LoadScene(string sceneName) {
-
-        StartCoroutine(SwitchScene(sceneName));
-
-    }
-
-    IEnumerator SwitchScene(string destination){
-
-        // var asyncLoad = SceneManager.LoadSceneAsync("Cutscene", LoadSceneMode.Additive);
+    public IEnumerator LoadScene(int sceneIndex) {
 
         string temp = "SCENES RN:\n";
 
@@ -45,37 +45,20 @@ public class SceneSwitch : MonoBehaviour
             }
         }
 
+        /// OK NOW LOAD SCENES ///
         // Add cutscene and next scene to load queue
-        
-        SceneManager.LoadScene("Cutscene", LoadSceneMode.Additive);
-        SceneManager.LoadScene(destination, LoadSceneMode.Additive);
+        AsyncOperation csOp = SceneManager.LoadSceneAsync(10, LoadSceneMode.Additive);
+        // csOp.allowSceneActivation = false;
 
-        /*
-        int timeout = 200;
-        while ((!nextScene.IsValid() || !nextScene.isLoaded) && timeout-- > 0)
+        while(!csOp.isDone)
             yield return null;
 
-        if(!nextScene.IsValid())
-            Debug.LogError("NOT VALID");
-
-        if(!nextScene.isLoaded)
-            Debug.LogError("NOT LOADED");
-
-        if(nextScene.IsValid() && nextScene.isLoaded) */
-        // while(!asyncLoad.isDone)
-
-        // Wait for cutscene to load
-        while(!SceneManager.GetSceneAt(1).isLoaded)
-            yield return null;
-
-        // Set cutscene to primary
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
-        print($"NEW ACTIVE SCENE: {SceneManager.GetActiveScene().name}");
-        /* else
-            Debug.LogError("SwitchScene messed up."); */
-        
-        // Unload current scene
-        SceneManager.UnloadSceneAsync(0);
+        // csOp.allowSceneActivation = true;
+        Scene cs = SceneManager.GetSceneAt(1);
+        SceneManager.SetActiveScene(cs);
+        GameObject[] GOs = cs.GetRootGameObjects();
+        CutsceneManager CM = GOs[1].GetComponent<CutsceneManager>();
+        StartCoroutine(CM.DoCutscene(SceneManager.GetSceneAt(0), sceneIndex, 0));
 
     }
 

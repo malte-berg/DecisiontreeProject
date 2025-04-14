@@ -5,7 +5,7 @@ public class Intro : SceneScript {
 
     public override IEnumerable RunAnimation() {
 
-        int frames = 125;
+        int frames = 1025;
 
         while(frames-- > 0){
             
