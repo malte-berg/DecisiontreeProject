@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Heal : Skill {
     
     public Heal() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Heal_Icon"),
-        sprites: null,
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/heal")},
         gc: null,
         name: "Heal",
         power: 0,
@@ -13,7 +14,6 @@ public class Heal : Skill {
         description: "Regain some lost health."
         
         ){
-
     }
 
     public override bool Effect(GameCharacter target){

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,8 +9,7 @@ public class Combat : MonoBehaviour{
 
     public GameObject[] enemyPrefabs;
     public GameObject playerPrefab;
-    public GameObject healthBarPrefab;
-    public GameObject manaBarPrefab;
+    public GameObject barPrefab;
     public GameObject marker;
     Transform markerT;
     public GameObject targeting;
@@ -25,37 +25,59 @@ public class Combat : MonoBehaviour{
 
     public void Init(){
 
+        // Create markers
         marker = Instantiate(marker);
         markerT = marker.transform;
         targeting = Instantiate(targeting);
 
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
-        player.ShowPlayer();
+
+        // Fix player positioning
         player.c = this;
+        player.ShowPlayer();
         player.transform.position = new Vector3(-4, 0, 0);
 
-        //Add a healthbar for the player and put it inside the canvas.
-        player.healthBar = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform).GetComponent<Bar>();
-        player.healthBar.target = player.transform; 
-        player.healthBar.Init();
-        player.healthBar.gameObject.name = "PlayerHP";
-        player.healthBar.yOffset = 2f;
+        // Create status bar
+        player.bars = CreateBars(player);
+        player.Moved();
+
+        // Update HealthBar on the player
         player.HP = player.Vitality;
         player.healthBar.UpdateBar(player.HP, player.Vitality);
 
-        //Add a mana bar for the player and put it inside the canvas.
-        player.manaBar = Instantiate(manaBarPrefab, GameObject.Find("Canvas").transform).GetComponent<Bar>();
-        player.manaBar.gameObject.name = "PlayerMBar";
-        player.manaBar.target = player.transform;
-        player.manaBar.Init();
-        player.manaBar.yOffset = 2.215f;
+        // Update ManaBar on the player
+        player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
 
-        for (int i = 0; i < 4; i++) // TEMP SPAWN ENEMIES
-            // SpawnEnemy(enemyPrefabs[i]); 
-            SpawnEnemy(enemyPrefabs[0]);
+        for (int i = 0; i < 4; i++) // To spawn all different types of enemy
+            SpawnEnemy(enemyPrefabs[i]);
+
+        // Spawn enemies
+        // for (int i = 0; i < 4; i++)
+        //     SpawnEnemy(enemyPrefabs[0]);
 
         GetCurrentCharacter();
+
+    }
+
+    Transform CreateBars(GameCharacter who){
+
+        GameObject t = Instantiate(barPrefab, GameObject.Find("Canvas").transform);
+
+        // Setup healthBar
+        Bar hb = t.transform.GetChild(0).GetChild(0).GetComponent<Bar>();
+        hb.Init();
+        who.healthBar = hb;
+
+        // Setup manaBar
+        Bar mb = t.transform.GetChild(0).GetChild(1).GetComponent<Bar>();
+        mb.Init();
+        who.manaBar = mb;
+
+        // Setup text
+        t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{(who as Enemy)?.level}";
+
+        return t.transform;
 
     }
 
@@ -83,34 +105,32 @@ public class Combat : MonoBehaviour{
 
         int i = enemies.Count;
 
+        // Create enemy
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
-        cEnemy.CreateEnemy(new Item[0], 0, "Street Thug");             //TODO TEMP
-        enemies.Add(cEnemy);
+        cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4), "Street Thug");
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
-        cEnemy.Init();
         cEnemy.c = this;
+        cEnemy.Init();
 
+        // Place enemy
         if(i % 2 == 0)
             cEnemy.transform.position = Vector3.right * (i+1) * 2 + (Vector3.up * i * 0.5f);
         else
             cEnemy.transform.position = Vector3.right * (i+1) * 2 - (Vector3.up * (i+1) * 0.25f);
 
-        //Add a healthbar for the enemy and put it inside the canvas.
-        cEnemy.healthBar = Instantiate(healthBarPrefab, GameObject.Find("Canvas").transform).GetComponent<Bar>();
-        cEnemy.healthBar.target = cEnemy.transform; 
-        cEnemy.healthBar.Init();
-        cEnemy.healthBar.gameObject.name = cEnemy.gameObject.name + " HP";
-        cEnemy.healthBar.yOffset = 2f;
+        // Create status bar
+        cEnemy.bars = CreateBars(cEnemy);
+        cEnemy.Moved();
+
+        // Update HealthBar on the cEnemy
+        cEnemy.HP = cEnemy.Vitality;
         cEnemy.healthBar.UpdateBar(cEnemy.HP, cEnemy.Vitality);
 
-        //Add a mana bar for the enemy and put it inside the canvas.
-        cEnemy.manaBar = Instantiate(manaBarPrefab, GameObject.Find("Canvas").transform).GetComponent<Bar>();
-        cEnemy.manaBar.gameObject.name = cEnemy.gameObject.name + " MBar";
-        cEnemy.manaBar.target = cEnemy.transform;
-        cEnemy.manaBar.Init();
-        cEnemy.manaBar.yOffset = 2.215f;
+        // Update ManaBar on the cEnemy
+        cEnemy.Mana = cEnemy.MaxMana;
         cEnemy.manaBar.UpdateBar(cEnemy.Mana, cEnemy.MaxMana);
 
+        enemies.Add(cEnemy);
         return cEnemy;
 
     }
@@ -133,6 +153,7 @@ public class Combat : MonoBehaviour{
                 }
 
                 Destroy(target.healthBar.gameObject);
+                Destroy(target.manaBar.gameObject);
                 Destroy(target.gameObject);
 
                 //All enemies are dead: Change to the "Win Screen".

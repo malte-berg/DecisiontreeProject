@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
 using UnityEngine.Scripting.APIUpdating;
+using Unity.VisualScripting;
 
 public class SpriteManager : MonoBehaviour
 {
@@ -129,18 +130,29 @@ public class SpriteManager : MonoBehaviour
             pos.GetComponent<SpriteRenderer>().enabled = false;
             pos.GetComponent<SpriteRenderer>().sprite = sprite;
 
+            bool fade = false;
             bool isReverse = false;
             float animationTime = ABILITY_ANIMATION_TIME/2f;
             if(skillToUse is HeatWave) {
                 isReverse = true;
                 animationTime *= 4f;
+                ChangeOpacity(spriteLayers["Ability"], 0.8f);
+            }
+            if(skillToUse is Heal) {
+                toTarget = Vector3.zero;
+                fade = true;
+                frames *= 2;
+                animationTime *= 6f;
+                pos.localScale = new Vector3(1.3f,1.3f,1.3f);
+                // pos.position += new Vector3(0f,0.2f,0f);
+                ChangeOpacity(spriteLayers["Ability"], 1f);
             }
              
-            RollScales(pos, toTarget, frames, animationTime, isReverse);
+            RollScales(pos, toTarget, frames, animationTime, isReverse, fade);
         }
     }
 
-    private void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, bool isReverse) {
+    private void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, bool isReverse, bool fade) {
         float scale = frames;
         Vector3 originalPos = tr.position;
         tr.position += toTarget * 0.9f;
@@ -149,18 +161,15 @@ public class SpriteManager : MonoBehaviour
             int frameIndex = i;
             if(isReverse){
                 newScale = (float)frameIndex * 1.1f;
-            }else {
+            }else{
                 newScale = (float)(scale-frameIndex) * 0.8f;
             }
 
-            float capturedScale = newScale;
-            int capturedIndex = frameIndex;
-
-            DelayedAction(() => SetScale(tr, newScale, originalPos, frames, frameIndex), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
+            DelayedAction(() => SetScale(tr, newScale, originalPos, frames, frameIndex, fade), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
         }   
     }
 
-    private void SetScale(Transform tr, float scale, Vector3 originalPos, int frames, int frameIndex) {
+    private void SetScale(Transform tr, float scale, Vector3 originalPos, int frames, int frameIndex, bool fade) {
         SpriteRenderer sr = tr.GetComponent<SpriteRenderer>();
         if(frameIndex >= frames) {
             sr.enabled = false;
@@ -168,7 +177,14 @@ public class SpriteManager : MonoBehaviour
         }else {
             if(!sr.enabled) 
                 sr.enabled = true;
-            tr.localScale = new Vector3(scale, scale, scale);
+            if(fade) {
+                // tr.Rotate(0f, 0f, 90f);
+                tr.position += new Vector3(0f, 0.015f, 0f);
+                ChangeOpacity(sr, 1f/(float)frameIndex);
+                tr.localScale *= 0.98f;
+            }else {
+                tr.localScale = new Vector3(scale, scale, scale);
+            }
         }
     }
 
@@ -197,6 +213,12 @@ public class SpriteManager : MonoBehaviour
             yield return null;
         }
         t.position = start;
+    }
+
+    private void ChangeOpacity(SpriteRenderer sr, float opacity) {
+        Color color = sr.color;
+        color.a = 0.6f;
+        sr.color = color;
     }
 
     // methods for running a certain function after a delay

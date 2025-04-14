@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameCharacter : MonoBehaviour{
 
     public Combat c;
+    public Transform bars;
 
     // STATS
     string cName;
@@ -80,6 +81,12 @@ public class GameCharacter : MonoBehaviour{
         moveCharacterSprite.localScale = new Vector3(CHARACTER_SCALE,CHARACTER_SCALE,CHARACTER_SCALE);
 
         spriteManager.AddShadow();
+
+    }
+
+    public void Moved(){
+
+        bars.position = Camera.main.WorldToScreenPoint(transform.position*0.73f);
 
     }
 
@@ -172,6 +179,13 @@ public class GameCharacter : MonoBehaviour{
 
         skills[skillCount] = newSkill;
         skillCount++;
+    }
+
+    //Update the player stats (permanently).
+    public void UpdateStats(int vitDelta, int strDelta, int magDelta){
+        vitality += vitDelta;
+        strength += strDelta;
+        magic += magDelta;
     }
 
     public float GetEquipmentVitalityMult(){
