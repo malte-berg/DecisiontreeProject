@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      StoreIcon_scaled_4x_pngcrushed_0: -4442110383286146605
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

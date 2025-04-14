@@ -20,7 +20,14 @@ public class NewGame : MonoBehaviour{
         };
         AreaDataLoader.InitAreaRegionItems(1,regionItems);
 
-        Instantiate(playerPrefab).GetComponent<Player>().Init();
+        // Try to find player game object
+        GameObject playerObject = GameObject.Find("Player");
+
+        // If player game object does not exist, create it
+        if (playerObject == null) {
+            Instantiate(playerPrefab).GetComponent<Player>().Init();
+        } // Else, just continue with already created player
+        
         SceneManager.LoadScene("InGameMenu");
 
     }
