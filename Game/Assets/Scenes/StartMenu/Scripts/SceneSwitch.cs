@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,13 +13,32 @@ public class SceneSwitch : MonoBehaviour
         GameObject p = GameObject.Find("Player");
 
         if(p == null)
-            SceneManager.LoadScene("StartMenu");
+            LoadScene("StartMenu");
         else
             p.GetComponent<Player>().HidePlayer();
 
     }
 
-    public void loadScene(string sceneName) {
-        SceneManager.LoadScene(sceneName);
+    public void LoadScene(string sceneName) {
+
+        string curr = SceneManager.GetActiveScene().name;
+        StartCoroutine(SwitchScene(sceneName, curr));
+
     }
+
+    IEnumerator SwitchScene(string final, string curr){
+
+        SceneManager.LoadScene("Cutscene", LoadSceneMode.Additive);
+        SceneManager.LoadScene(final, LoadSceneMode.Additive);
+
+        yield return null;
+
+        Scene nextScene = SceneManager.GetSceneByName("Cutscene");
+        if (nextScene.IsValid() && nextScene.isLoaded)
+            SceneManager.SetActiveScene(nextScene);
+
+        SceneManager.UnloadSceneAsync(curr);
+
+    }
+
 }
