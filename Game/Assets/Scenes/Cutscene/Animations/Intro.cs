@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class Intro : SceneScript {
 
-    public override IEnumerable RunAnimation() {
+    public override IEnumerator RunAnimation() {
 
-        int frames = 1025;
+        int frames = 120; // 2 seconds
 
         while(frames-- > 0){
             
-            print("Animation frame");
             yield return new WaitForSeconds(1/60);
 
         }

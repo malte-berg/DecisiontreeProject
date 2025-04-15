@@ -6,33 +6,23 @@ public class CutsceneManager : MonoBehaviour{
 
     public SceneScript[] sceneScripts;
 
-    void Start(){
+    public void SwitchScene(int from, int to, int cutscene){
 
-        // StartCoroutine(Loading());
+        AsyncOperation departingOp = SceneManager.UnloadSceneAsync(from);
+        StartCoroutine(DoCutscene(departingOp, to, cutscene));
 
     }
 
-    public IEnumerator DoCutscene(Scene from, int to, int cutscene){
+    IEnumerator DoCutscene(AsyncOperation from, int to, int cutscene){
 
-        print($"From: {from.name}, To: {to}, Cutscene: {cutscene}");
-        AsyncOperation departingOp = SceneManager.UnloadSceneAsync(from);
+        while(!from.isDone)
+            yield return null;
+
         AsyncOperation arrivingSceneOp = SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         arrivingSceneOp.allowSceneActivation = false;
 
-        print("STAGE1");
-
-        while(!departingOp.isDone){
-            print($"UNLOADING PREVIOUS SCENE: {departingOp.progress}%");
-            yield return new WaitForEndOfFrame();
-        }
-
-
-        print("STAGE2");
-
-        if(cutscene > -1){
-            print("should start animation");
-            yield return StartCoroutine(DoAnimation(cutscene));
-        }
+        if(cutscene >= 0 && cutscene < sceneScripts.Length)
+            yield return sceneScripts[cutscene].RunAnimation();
 
         arrivingSceneOp.allowSceneActivation = true;
 
@@ -41,64 +31,8 @@ public class CutsceneManager : MonoBehaviour{
 
         Scene arrivingScene = SceneManager.GetSceneAt(1);
         SceneManager.SetActiveScene(arrivingScene);
-        SceneManager.UnloadSceneAsync(0);
+        SceneManager.UnloadSceneAsync(10);
 
     }
 
-    IEnumerator Loading(){
-
-        Scene previous = SceneManager.GetActiveScene();
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
-        SceneManager.UnloadSceneAsync(previous);
-
-        // Wait for previous scene to unload
-        while(SceneManager.GetSceneAt(0) != SceneManager.GetActiveScene()){
-            print($"{SceneManager.GetSceneAt(0).name} is perhaps equal to: {SceneManager.GetActiveScene().name}");
-            yield return null;
-        }
-
-        int cs = -1;
-        Player p = GameObject.Find("Player").GetComponent<Player>();
-
-        if(p != null)
-            cs = p.Cutscene;
-
-        if(cs != -1)
-            yield return StartCoroutine(DoAnimation(cs));
-        
-        StartCoroutine(EndCutscene());
-
-    }
-
-    IEnumerator DoAnimation(int i){
-
-        // GameObject[] rootObjects = SceneManager.GetSceneAt(1).GetRootGameObjects();
-        // foreach (GameObject obj in rootObjects) obj.SetActive(false);
-        print("animation start");
-        yield return StartCoroutine(sceneScripts[i].RunAnimation().GetEnumerator());
-        // foreach (GameObject obj in rootObjects) obj.SetActive(true);
-
-    }
-
-    IEnumerator EndCutscene(){
-
-        string temp = "SCENES RN:\n";
-
-        for(int i = 0; true; i++){
-            try{
-                temp += $"[{i}] {SceneManager.GetSceneAt(i).name}\n";
-            } catch {
-                print(temp);
-                break;
-            }
-        }
-
-        while(!SceneManager.GetSceneAt(1).isLoaded)
-            yield return null;
-
-        SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(0));
-
-    }
-    
 }

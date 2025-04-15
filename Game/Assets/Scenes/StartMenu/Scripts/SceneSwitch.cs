@@ -27,38 +27,20 @@ public class SceneSwitch : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Should switch scene but also ask the cutscene manager to perchance do a cutscene
-    /// AKA load cutscene and next scene in that order, then unload itself
-    /// </summary>
-    /// <param name="sceneName"></param>
     public IEnumerator LoadScene(int sceneIndex) {
 
-        string temp = "SCENES RN:\n";
-
-        for(int i = 0; true; i++){
-            try{
-                temp += $"[{i}] {SceneManager.GetSceneAt(i).name}\n";
-            } catch {
-                print(temp);
-                break;
-            }
-        }
-
-        /// OK NOW LOAD SCENES ///
         // Add cutscene and next scene to load queue
+        int from = SceneManager.GetActiveScene().buildIndex;
         AsyncOperation csOp = SceneManager.LoadSceneAsync(10, LoadSceneMode.Additive);
-        // csOp.allowSceneActivation = false;
 
         while(!csOp.isDone)
             yield return null;
 
-        // csOp.allowSceneActivation = true;
         Scene cs = SceneManager.GetSceneAt(1);
         SceneManager.SetActiveScene(cs);
         GameObject[] GOs = cs.GetRootGameObjects();
         CutsceneManager CM = GOs[1].GetComponent<CutsceneManager>();
-        StartCoroutine(CM.DoCutscene(SceneManager.GetSceneAt(0), sceneIndex, 0));
+        CM.SwitchScene(from, sceneIndex, 0);
 
     }
 
