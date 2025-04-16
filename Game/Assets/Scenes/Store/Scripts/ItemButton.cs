@@ -10,7 +10,7 @@ public class ItemButton : MonoBehaviour
     private TextMeshProUGUI detailPanel;
     public Item currentItem;
     private TextMeshProUGUI priceText;
-    // private Image iconImage;
+    private Sprite iconImage;
 
     void Awake()
     {
@@ -31,8 +31,8 @@ public class ItemButton : MonoBehaviour
         {
             ButtonClose();
         }
-
-        // iconImage.sprite = ...
+        // set icon for items
+        gameObject.transform.GetChild(1).GetComponent<Image>().sprite = item.icon;
 
         //GetComponent<Button>().onClick.AddListener(OnItemClicked);
         btn.onClick.AddListener(OnItemClicked);
