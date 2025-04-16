@@ -14,6 +14,9 @@ public class SkillButtonNode : MonoBehaviour
     public SkillButtonNode right;
     public SkillButtonNode left;
 
+    public int offsetX;
+    public int offsetY;
+
     public void Init(GameObject node, Player player, Skill skill, SkillButtonNode parent, TMP_Text pointsCounter) {
         self = node;
         this.player = player;
@@ -21,8 +24,11 @@ public class SkillButtonNode : MonoBehaviour
         this.parent = parent;
         this.right = null;
         this.left = null;
+        this.offsetX = 0;
+        this.offsetY = 0;
         this.pointsCounter = pointsCounter;
 
+        MoveNode();
         SetNode();
     }
 
@@ -30,18 +36,6 @@ public class SkillButtonNode : MonoBehaviour
         Image imageComponent = self.GetComponent<Image>();
         TMP_Text skillNameText = skillName.GetComponent<TMP_Text>();
         TMP_Text skillLevelText = skillLevel.GetComponent<TMP_Text>();
-
-        if (imageComponent == null) {
-            imageComponent = self.AddComponent<Image>();
-        }
-
-        if (skillNameText == null) {
-            skillNameText = self.AddComponent<TMP_Text>();
-        }
-
-        if (skillLevelText == null) {
-            skillLevelText = self.AddComponent<TMP_Text>();
-        }
 
         if (imageComponent != null) {
             if (skill.unlocked) {
@@ -81,7 +75,8 @@ public class SkillButtonNode : MonoBehaviour
             skill.UpgradeSkill();
             player.SkillPoints -= skill.skillCost;
             Debug.Log($"Upgraded {skill.Name}!");
-        } else {
+        } 
+        if (!skill.unlocked && (parent.skill.unlocked || parent == null)) {
             skill.UnlockSkill(player);
             player.AddSkill(skill);
             player.SkillPoints -= skill.skillCost;
@@ -94,11 +89,17 @@ public class SkillButtonNode : MonoBehaviour
         if (left == null){
             left = child;
             child.parent = this;
+            child.offsetX = this.offsetX + this.offsetX / 2;
+            child.offsetY = this.offsetY - 100;
+            child.MoveNode();
             return true;
         } 
         if (right == null){
             right = child;
             child.parent = this;
+            child.offsetX = this.offsetX + this.offsetX / 2;
+            child.offsetY = this.offsetY - 100;
+            child.MoveNode();
             return true;
         }
 
@@ -108,5 +109,32 @@ public class SkillButtonNode : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void AddLeftChild(SkillButtonNode child) {
+        left = child;
+        child.parent = this;
+        child.MoveNode();
+    }
+
+    public void AddRightChild(SkillButtonNode child) {
+        right = child;
+        child.parent = this;
+        child.MoveNode();
+    }
+
+    public string ToString() {
+        string result = "SkillButtonNode: " + skill.Name + "\n";
+        //result += "Skill Level: " + skill.SkillLevel + "\n";
+        //result += "Skill Cost: " + skill.skillCost + "\n";
+        //result += "Skill Points: " + player.SkillPoints + "\n";
+        result += "Parent: " + (parent != null ? parent.skill.Name : "null") + "\n";
+        result += "Left Child: " + (left != null ? left.skill.Name : "null") + "\n";
+        result += "Right Child: " + (right != null ? right.skill.Name : "null") + "\n";
+        return result;
+    }
+
+    public void MoveNode() {
+        self.transform.position = new Vector3(offsetX + self.transform.position.x, offsetY + self.transform.position.y, 0);
     }
 }

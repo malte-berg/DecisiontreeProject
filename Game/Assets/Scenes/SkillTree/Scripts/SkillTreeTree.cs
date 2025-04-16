@@ -3,31 +3,31 @@ using UnityEngine;
 
 public class SkillTreeTree {
     public SkillButtonNode root;
-    public GameCharacter player;
+    public Player player;
 
     public enum SkillType {
         Defense,
         Attack
     }
 
-    public SkillTreeTree(GameCharacter player) {
+    public SkillTreeTree(Player player) {
         this.player = player;
         root = null;
     }
 
-    public List<Skill> GetAllSkills() {
-        List<Skill> skills = new List<Skill>();
-        GetAllSkillsRecursive(root, skills);
-        return skills;
+    public List<SkillButtonNode> GetAllNodes() {
+        List<SkillButtonNode> nodes = new List<SkillButtonNode>();
+        GetAllNodeRecursive(root, nodes);
+        return nodes;
     }
 
-    void GetAllSkillsRecursive(SkillButtonNode node, List<Skill> skills) {
+    void GetAllNodeRecursive(SkillButtonNode node, List<SkillButtonNode> nodes) {
         if (node == null) {
             return;
         }
-        skills.Add(node.skill);
-        GetAllSkillsRecursive(node.left, skills);
-        GetAllSkillsRecursive(node.right, skills);
+        nodes.Add(node);
+        GetAllNodeRecursive(node.left, nodes);
+        GetAllNodeRecursive(node.right, nodes);
     }
 
     public SkillButtonNode FindSkill(string skillName) {
@@ -51,7 +51,9 @@ public class SkillTreeTree {
     public void AddNode(SkillButtonNode newNode) {
         if (root == null) {
             root = newNode;
+            return;
         }
+
         root.AddChild(newNode);
     }
 }

@@ -21,28 +21,39 @@ public class AllSkills : MonoBehaviour {
 
         // Initialize the skill tree with the skills
         stt = new SkillTreeTree(player);
+
+        GameObject skillButton = Instantiate(skillButtonPrefab, transform);
+        SkillButtonNode punch = skillButton.GetComponent<SkillButtonNode>();
+        punch.Init(skillButton, player, player.skills[0], null, pointCounterText);
+        punch.offsetX = 0;
+        punch.offsetY = -200;
+        punch.MoveNode();
+
+        stt.AddNode(punch);
+
+        skillButton = Instantiate(skillButtonPrefab, transform);
+        SkillButtonNode heatWave = skillButton.GetComponent<SkillButtonNode>();
+        heatWave.Init(skillButton, player, new HeatWave(), punch, pointCounterText);
+        heatWave.offsetX = -240;
+        heatWave.offsetY = punch.offsetY - 100;
+        punch.AddLeftChild(heatWave);
+
+        skillButton = Instantiate(skillButtonPrefab, transform);
+        SkillButtonNode heal = skillButton.GetComponent<SkillButtonNode>();
+        heal.Init(skillButton, player, new Heal(), punch, pointCounterText);
+        heal.offsetX = 240;
+        heal.offsetY = punch.offsetY - 100;
         
-        int offsetX = 200;
-        foreach (Skill skill in allSkills){
-            if (skill == null) {
-                continue;
-            }
+        punch.AddRightChild(heal);
+        
+        skillButton = Instantiate(skillButtonPrefab, transform);
+        SkillButtonNode sacrifice = skillButton.GetComponent<SkillButtonNode>();
+        sacrifice.Init(skillButton, player, new Sacrifice(), heal, pointCounterText);
 
-            Debug.Log(skill.Name);
-
-            Vector3 position = new Vector3(offsetX, 200, 0);
-            GameObject skillButton = Instantiate(skillButtonPrefab, position, Quaternion.identity, transform);
-            SkillButtonNode node = skillButton.GetComponent<SkillButtonNode>();
-            node.Init(skillButton, player, skill, null, pointCounterText);
-
-            stt.AddNode(node);
-            offsetX += 150;
-        }
+        heal.AddChild(sacrifice);
     }
 
     void Awake() {
-
         Init();
-
     }
 }
