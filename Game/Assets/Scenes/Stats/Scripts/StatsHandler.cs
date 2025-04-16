@@ -12,15 +12,16 @@ public class StatsHandler : MonoBehaviour {
     public TextMeshProUGUI strengthText;
     public TextMeshProUGUI magicText;
     public TextMeshProUGUI statPointsText;
-    private TextMeshProUGUI expText;
-    private TextMeshProUGUI levelText;
-    private Image expBar;
+    public TextMeshProUGUI expText;
+    public TextMeshProUGUI levelText;
+    public Image expBar;
     public Player player;
     
     void Start() {
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this (TAGET FRÅN Combat.cs)
         this.statPoints = player.StatPoints;    //Get player's current amount of stat points.
         
+        print(this.gameObject);
         DisplayStatText(); //Make sure the stat texts show the correct player stats.
     }
 
@@ -30,6 +31,7 @@ public class StatsHandler : MonoBehaviour {
         strengthText.text = "<color=red>Strength:\t" + player.Strength + "\t+" + strengthIncrease + "</color>";
         magicText.text = "<color=blue>Magic:\t" + player.Magic + "\t+" + magicIncrease + "</color>";
         statPointsText.text = "Stat Points: " + statPoints;
+        print(expText);
         expText.text = $"EXP: {player.CurrentExp}/{player.ExpToNextLevel}";
         levelText.text = $"Level: {player.CurrentLevel}";
 
