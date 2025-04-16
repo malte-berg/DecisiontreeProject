@@ -12,6 +12,9 @@ public class StatsHandler : MonoBehaviour {
     public TextMeshProUGUI strengthText;
     public TextMeshProUGUI magicText;
     public TextMeshProUGUI statPointsText;
+    private TextMeshProUGUI expText;
+    private TextMeshProUGUI levelText;
+    private Image expBar;
     public Player player;
     
     void Start() {
@@ -27,6 +30,10 @@ public class StatsHandler : MonoBehaviour {
         strengthText.text = "<color=red>Strength:\t" + player.Strength + "\t+" + strengthIncrease + "</color>";
         magicText.text = "<color=blue>Magic:\t" + player.Magic + "\t+" + magicIncrease + "</color>";
         statPointsText.text = "Stat Points: " + statPoints;
+        expText.text = $"EXP: {player.CurrentExp}/{player.ExpToNextLevel}";
+        levelText.text = $"Level: {player.CurrentLevel}";
+
+        expBar.fillAmount = (float)player.CurrentExp / player.ExpToNextLevel; // Used for the Exp level bar
     }
 
     //Update the player stats and show the new stats.
