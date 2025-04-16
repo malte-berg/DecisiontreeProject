@@ -177,7 +177,7 @@ public class Combat : MonoBehaviour{
 
         // GAME OVER (Player died)
         SceneManager.LoadScene("DemoLoseScreen");
-        Debug.LogError("Main character died lol");
+        Debug.LogWarning("Main character died lol");
 
     }
 

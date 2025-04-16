@@ -764,11 +764,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 271864373}
+  m_TargetGraphic: {fileID: 1386213566}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1930408938}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: DecreaseStat
         m_Mode: 5
@@ -897,11 +897,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 347656480}
+  m_TargetGraphic: {fileID: 1386213566}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1930408938}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: DecreaseStat
         m_Mode: 5
@@ -1719,11 +1719,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 842202486}
+  m_TargetGraphic: {fileID: 1386213566}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1930408938}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: IncreaseStat
         m_Mode: 5
@@ -1852,11 +1852,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 878662687}
+  m_TargetGraphic: {fileID: 1386213566}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1930408938}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: DecreaseStat
         m_Mode: 5
@@ -2797,11 +2797,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1349849774}
+  m_TargetGraphic: {fileID: 1386213566}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1930408938}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: IncreaseStat
         m_Mode: 5
@@ -3077,7 +3077,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1930408938}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: IncreaseStat
         m_Mode: 5
@@ -3814,11 +3814,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1999484720}
+  m_TargetGraphic: {fileID: 1386213566}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1930408938}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: UpdateStats
         m_Mode: 1
@@ -3827,7 +3827,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Vitality
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1999484720
