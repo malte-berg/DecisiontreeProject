@@ -12,15 +12,14 @@ public class StatsHandler : MonoBehaviour {
     public TextMeshProUGUI strengthText;
     public TextMeshProUGUI magicText;
     public TextMeshProUGUI statPointsText;
-    private TextMeshProUGUI expText;
-    private TextMeshProUGUI levelText;
-    private Image expBar;
+    public TextMeshProUGUI expText;
+    public TextMeshProUGUI levelText;
+    public Image expBar;
     public Player player;
     
     void Start() {
         player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this (TAGET FRÅN Combat.cs)
         this.statPoints = player.StatPoints;    //Get player's current amount of stat points.
-        
         DisplayStatText(); //Make sure the stat texts show the correct player stats.
     }
 

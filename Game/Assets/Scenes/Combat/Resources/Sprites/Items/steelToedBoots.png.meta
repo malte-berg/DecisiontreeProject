@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: e08f9cf0a69e2034c9905e6e70039540
+guid: b8bed4444faa3f94f88ceb7dad8b926c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5482734022148393953
-    second: ememy1_0
+      213: -3971422093343330303
+    second: steelToedBoots_0
+  - first:
+      213: 5143171706620100702
+    second: steelToedBoots_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ememy1_0
+      name: steelToedBoots_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 15
         y: 0
-        width: 41
-        height: 60
+        width: 23
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f1475e3a47a69e3b0800000000000000
-      internalID: -5482734022148393953
+      spriteID: 100f129c5aca2e8c0800000000000000
+      internalID: -3971422093343330303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: steelToedBoots_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 22
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e504eefda67306740800000000000000
+      internalID: 5143171706620100702
       vertices: []
       indices: 
       edges: []
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ememy1_0: -5482734022148393953
+      steelToedBoots_0: -3971422093343330303
+      steelToedBoots_1: 5143171706620100702
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

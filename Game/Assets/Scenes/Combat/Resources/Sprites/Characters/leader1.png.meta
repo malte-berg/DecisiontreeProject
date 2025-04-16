@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 2d4f4b9cda32bbf4f81f54380e511707
+guid: d4eb1e7524088b648b083c7326805af5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3875794782057468899
-    second: player1attack_0
-  - first:
-      213: 8141195670857086295
-    second: player1attack_1
+      213: -7562214170122004040
+    second: leader1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -116,45 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player1attack_0
+      name: leader1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 48
-        height: 64
+        width: 61
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 2cddb195920837d498dd201c1eeda19d
-      internalID: -323790041
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player1attack_1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0250eec42e767064bae8a276b6281291
-      internalID: 1759189206
+      spriteID: 8b9d372574e9d0790800000000000000
+      internalID: -7562214170122004040
       vertices: []
       indices: 
       edges: []
@@ -163,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c7c4e1df3db7b3441bbd7409deb13edb
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      player1attack_0: -323790041
-      player1attack_1: 1759189206
+      leader1_0: -7562214170122004040
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
