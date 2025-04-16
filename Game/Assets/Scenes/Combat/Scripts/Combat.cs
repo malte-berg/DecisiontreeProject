@@ -140,6 +140,7 @@ public class Combat : MonoBehaviour{
 
         if(target is Enemy){
 
+            int enemyCount = enemies.Count;
             if(enemies.Remove(target as Enemy)){
 
                 while(time > 0){
@@ -155,7 +156,7 @@ public class Combat : MonoBehaviour{
                 Destroy(target.gameObject);
 
                 //All enemies are dead: Change to the "Win Screen".
-                if (enemies.Count == 0){
+                if (enemyCount == 1){
                     player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle

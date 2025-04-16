@@ -9,7 +9,7 @@ public class Player : GameCharacter {
     int skillPoints;            //For unlocking new abilities in the skill tree window.
     int statPoints;             //For increasing stats in the stats window.
     int currentAreaIndex;       //For record the current area of ​​the role
-    int[] combatsWon = new int[3];
+    int[] combatsWon = new int[4];
     int currentLevel;
     int currentExp;
     int expToNextLevel;
