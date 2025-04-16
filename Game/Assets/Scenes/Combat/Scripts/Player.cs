@@ -11,6 +11,7 @@ public class Player : GameCharacter {
     int currentLevel;
     int currentExp;
     int expToNextLevel;
+    int cutscene = -1;       // For telling cutscene scene to run animation
 
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
@@ -19,6 +20,7 @@ public class Player : GameCharacter {
     public int CurrentLevel { get { return currentLevel; } set { this.currentLevel = value; } }
     public int CurrentExp { get { return currentExp; } set { this.currentExp = value; } }
     public int ExpToNextLevel { get { return expToNextLevel; } set { this.expToNextLevel = value; } }
+    public int Cutscene{ get{ return cutscene; }}
 
     public Player() : base(
 

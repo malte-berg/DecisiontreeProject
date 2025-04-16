@@ -5,39 +5,42 @@ using UnityEngine.SceneManagement;
 public class SceneSwitch : MonoBehaviour
 {
 
+    // A check to see if we need to go to title screen
     void Awake(){
 
-        if(SceneManager.GetActiveScene().name == "StartMenu")
+        if(SceneManager.GetActiveScene().buildIndex == 0)
             return;
 
         GameObject p = GameObject.Find("Player");
 
         if(p == null)
-            LoadScene("StartMenu");
+
+            LoadScene(0);
         else
             p.GetComponent<Player>().HidePlayer();
 
     }
 
-    public void LoadScene(string sceneName) {
+    public void SwitchScene(int sceneIndex){
 
-        string curr = SceneManager.GetActiveScene().name;
-        StartCoroutine(SwitchScene(sceneName, curr));
+        StartCoroutine(LoadScene(sceneIndex));
 
     }
 
-    IEnumerator SwitchScene(string final, string curr){
+    public IEnumerator LoadScene(int sceneIndex) {
 
-        SceneManager.LoadScene("Cutscene", LoadSceneMode.Additive);
-        SceneManager.LoadScene(final, LoadSceneMode.Additive);
+        // Add cutscene and next scene to load queue
+        int from = SceneManager.GetActiveScene().buildIndex;
+        AsyncOperation csOp = SceneManager.LoadSceneAsync(10, LoadSceneMode.Additive);
 
-        yield return null;
+        while(!csOp.isDone)
+            yield return null;
 
-        Scene nextScene = SceneManager.GetSceneByName("Cutscene");
-        if (nextScene.IsValid() && nextScene.isLoaded)
-            SceneManager.SetActiveScene(nextScene);
-
-        SceneManager.UnloadSceneAsync(curr);
+        Scene cs = SceneManager.GetSceneAt(1);
+        SceneManager.SetActiveScene(cs);
+        GameObject[] GOs = cs.GetRootGameObjects();
+        CutsceneManager CM = GOs[1].GetComponent<CutsceneManager>();
+        CM.SwitchScene(from, sceneIndex, 0);
 
     }
 
