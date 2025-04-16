@@ -20,8 +20,8 @@ public abstract class Skill{
     public string DescriptionPanel { 
         get {
             return description +
-                   "Skill level: —-\n" + // vissa skill level istället för power?
-                   "Mana Cost: " + manaCost.ToString() + "\n" +  
+                   //"Skill level: —-\n" + // vissa skill level istället för power?
+                   "\nMana Cost: " + manaCost.ToString() + "\n" +  
                    "Cooldown: —-\n"; 
         } 
     }
