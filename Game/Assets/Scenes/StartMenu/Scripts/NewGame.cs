@@ -28,7 +28,8 @@ public class NewGame : MonoBehaviour{
             Instantiate(playerPrefab).GetComponent<Player>().Init();
         } // Else, just continue with already created player
         
-        SceneManager.LoadScene("InGameMenu");
+        GetComponent<SceneSwitch>().WithCutscene = 0;
+        GetComponent<SceneSwitch>().SwitchScene(1);
 
     }
     
