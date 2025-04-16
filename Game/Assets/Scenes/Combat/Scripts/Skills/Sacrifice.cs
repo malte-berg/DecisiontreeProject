@@ -46,6 +46,8 @@ public class Sacrifice : Skill {
         Transform AbilityContainer = AbilityRenderer.gameObject.transform;
 
         sm.SetSprite(this.sprites[0], AbilityRenderer);
+        sm.HideSprite(AbilityRenderer);
+
         sm.ChangeOpacity(AbilityRenderer, 1f);
 
         sm.AttackAnimation(sender);

@@ -42,6 +42,8 @@ public class HeatWave : Skill {
         Transform AbilityContainer = AbilityRenderer.gameObject.transform;
 
         sm.SetSprite(this.sprites[0], AbilityRenderer);
+        sm.HideSprite(AbilityRenderer);
+
         sm.ChangeOpacity(AbilityRenderer, 1f);
 
         Vector3 toTarget = targetPos - sender.transform.position; 

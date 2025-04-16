@@ -39,12 +39,15 @@ public class Heal : Skill {
     public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm) {
         SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
 
-        sm.SetSprite(this.sprites[0], AbilityRenderer);
+        sm.SetSprite(this.sprites[0], AbilityRenderer);        
+        sm.HideSprite(AbilityRenderer);
+        sm.SetScale(AbilityRenderer.transform, 1.6f);
+
         sm.ChangeOpacity(AbilityRenderer, 1f);
 
         Transform tr = AbilityRenderer.gameObject.transform;
 
-        sm.RollScales(tr, Vector3.zero, 10, 0.7f, false, true, true);
+        sm.RollScales(tr, Vector3.zero, 10, 0.4f, false, true, true);
     }
 
 

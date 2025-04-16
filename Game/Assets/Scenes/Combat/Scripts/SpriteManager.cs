@@ -13,8 +13,6 @@ public class SpriteManager : MonoBehaviour
     public Dictionary<string, SpriteRenderer> spriteLayers = new Dictionary<string, SpriteRenderer>();
 
     private readonly float ATTACK_TIME = 0.35f; 
-    private readonly float DINSTANCE_TO_LUNGE = 0.7f; 
-    private readonly float ABILITY_ANIMATION_TIME = 0.25f; 
     private readonly float CHANGE_SPRITE_TIME = 0.3f; 
 
 
@@ -77,6 +75,14 @@ public class SpriteManager : MonoBehaviour
         sr.sprite = sprite;
     }
 
+    public void HideSprite(SpriteRenderer sr) {
+        sr.enabled = false;
+    }
+
+    public void SetScale(Transform tr, float newScale) {
+        tr.localScale = Vector3.one * newScale;
+    }
+
     public void AddShadow() {
         SpriteRenderer shadowRenderer = spriteLayers["ShadowBehind"];
         SpriteRenderer shadowGroundRenderer = spriteLayers["ShadowGround"];
@@ -107,7 +113,7 @@ public class SpriteManager : MonoBehaviour
             RollSprites(thisCharacter.sprites, spriteLayers["Character"], CHANGE_SPRITE_TIME);
             if(equipment.weaponLeft.sprites != null) {
                 RollSprites(equipment.weaponLeft.sprites, spriteLayers["Weapon"], CHANGE_SPRITE_TIME);
-                if(equipment.torso.sprites != null)
+                if(equipment.torso != null && equipment.torso.sprites != null)
                     RollSprites(equipment.torso.sprites, spriteLayers["Torso"], CHANGE_SPRITE_TIME);
             }
         }
