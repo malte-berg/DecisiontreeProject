@@ -7,19 +7,21 @@ public class SkillButtonNode : MonoBehaviour
     GameObject self;
     public GameObject skillName;
     public GameObject skillLevel;
+    private TMP_Text pointsCounter;
     public Player player;
     public Skill skill;
     public SkillButtonNode parent;
     public SkillButtonNode right;
     public SkillButtonNode left;
 
-    public void Init(GameObject node, Player player, Skill skill, SkillButtonNode parent) {
+    public void Init(GameObject node, Player player, Skill skill, SkillButtonNode parent, TMP_Text pointsCounter) {
         self = node;
         this.player = player;
         this.skill = skill;
         this.parent = parent;
         this.right = null;
         this.left = null;
+        this.pointsCounter = pointsCounter;
 
         SetNode();
     }
@@ -60,10 +62,13 @@ public class SkillButtonNode : MonoBehaviour
         if (skillNameText != null){
             skillNameText.text = skill.Name;
         }
+
+        if (pointsCounter != null) {
+            pointsCounter.text = player.SkillPoints.ToString();
+        }
     }
 
     public void OnClick(){
-        GetComponent<AllSkills>().SetPointCounter();
         if (skill == null) {
             Debug.Log("Skill not found");
             return;
@@ -85,33 +90,23 @@ public class SkillButtonNode : MonoBehaviour
         SetNode();
     }
 
-    public void AddChild(SkillButtonNode child) {
+    public bool AddChild(SkillButtonNode child) {
         if (left == null){
             left = child;
             child.parent = this;
-        } else if (right == null){
+            return true;
+        } 
+        if (right == null){
             right = child;
             child.parent = this;
-        } else {
-            left.AddChild(child);
+            return true;
         }
-    }
 
-    public void AddLeftChild(SkillButtonNode child) {
-        if (left == null) {
-            left = child;
-            child.parent = this;
-        } else {
-            left.AddLeftChild(child);
+        if (left.AddChild(child)){
+            return true;
+        } else if(right.AddChild(child)){
+            return true;
         }
-    }
-
-    public void AddRightChild(SkillButtonNode child) {
-        if (right == null) {
-            right = child;
-            child.parent = this;
-        } else {
-            left.AddRightChild(child);
-        }
+        return false;
     }
 }
