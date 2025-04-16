@@ -44,22 +44,12 @@ public class SpriteManager : MonoBehaviour
         SetSprite(thisCharacter.sprites[0], spriteLayers["Character"]) ;
         Equipment equipment = thisCharacter.equipment;
         if(equipment != null) {
-            if(equipment.head != null) {
-                if(equipment.head.sprite != null)
-                    SetSprite(equipment.head.sprite, spriteLayers["Head"]); 
-            }
-            if(equipment.torso != null) {
-                if(equipment.torso.sprites != null)
-                    SetSprite(equipment.torso.sprites[0], spriteLayers["Torso"]); 
-            }
-            if(equipment.boots != null) {
-                if(equipment.boots.sprite != null)
-                    SetSprite(equipment.boots.sprite, spriteLayers["Boots"]); 
-            }
-            if(equipment.weaponLeft != null) {
-                if(equipment.weaponLeft.sprites != null)
-                    SetSprite(equipment.weaponLeft.sprites[0], spriteLayers["Weapon"]); 
-            }
+
+            SetSprite((equipment.head == null ? null : equipment.head.sprite), spriteLayers["Head"]); 
+            SetSprite((equipment.torso == null ? null : equipment.torso.sprites[0]), spriteLayers["Torso"]); 
+            SetSprite((equipment.boots == null ? null : equipment.boots.sprite), spriteLayers["Boots"]); 
+            SetSprite((equipment.weaponLeft == null ? null : equipment.weaponLeft.sprites[0]), spriteLayers["Weapon"]); 
+
         }
         if(!(thisCharacter is Player)){
             transform.localScale = new Vector3(-1f, 1f, 1f);

@@ -43,6 +43,7 @@ public class GameCharacter : MonoBehaviour{
 
     // to change sprite
     SpriteManager spriteManager;
+    public SpriteManager SM{ get { return spriteManager; }}
     Transform moveCharacterSprite;
     public List<Sprite> sprites;
     private readonly float CHARACTER_SCALE = 2.4f;
