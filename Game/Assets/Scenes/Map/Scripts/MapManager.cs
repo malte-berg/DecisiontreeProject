@@ -33,18 +33,18 @@ public class MapManager : MonoBehaviour
         /* temporary use */
         if (clickedButton.name == "Area1")
         {
-            Debug.Log("Area 1 clicked");
             AreaDataLoader.MovePlayerToArea(player, 1);
+            Debug.Log("Btn 1 clicked :" + player.CurrentAreaIndex);
         }
         if (clickedButton.name == "Area2")
         {
-            Debug.Log("Area 2 clicked");
             AreaDataLoader.MovePlayerToArea(player, 2);
+            Debug.Log("Btn 2 clicked :" + player.CurrentAreaIndex);
         }
         else if (clickedButton.name == "Area3")
         {
             AreaDataLoader.MovePlayerToArea(player, 3);
-            Debug.Log("Area 3 clicked");
+            Debug.Log("Btn 3 clicked :" + player.CurrentAreaIndex);
         }
     }
 

@@ -7,12 +7,14 @@ public class ItemDescription : MonoBehaviour{
     InventoryManager im;
     GameObject slide;
     Item currentDisplay;
+    TMP_Text equipButtonText;
 
     public void Init(InventoryManager im){
 
         this.im = im;
         slide = transform.GetChild(1).gameObject;
         slide.SetActive(false);
+        equipButtonText = slide.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
 
     }
 
@@ -30,6 +32,9 @@ public class ItemDescription : MonoBehaviour{
                 description += $"<color=red>Strength: \t{CalcAdd(head.StrengthAdd)} ({CalcMult(head.StrengthMult)})</color>\n";
                 description += $"<color=blue>Magic: \t{CalcAdd(head.MagicAdd)} ({CalcMult(head.MagicMult)})</color>\n";
                 description += $"<color=purple>Mana: \t{CalcAdd(head.ManaAdd)} ({CalcMult(head.ManaMult)})</color>\n";
+
+                equipButtonText.text = (im.player.equipment.head == head) ? "Unequip" : "Equip";
+
                 break;
             case Torso:
                 Torso torso = target as Torso;
@@ -38,6 +43,8 @@ public class ItemDescription : MonoBehaviour{
                 description += $"<color=red>Strength: \t{CalcAdd(torso.StrengthAdd)} ({CalcMult(torso.StrengthMult)})</color>\n";
                 description += $"<color=blue>Magic: \t{CalcAdd(torso.MagicAdd)} ({CalcMult(torso.MagicMult)})</color>\n";
                 description += $"<color=purple>Mana: \t{CalcAdd(torso.ManaAdd)} ({CalcMult(torso.ManaMult)})</color>\n";
+
+                equipButtonText.text = (im.player.equipment.torso == torso) ? "Unequip" : "Equip";
                 break;
             case Boots:
                 Boots boots = target as Boots;
@@ -46,6 +53,8 @@ public class ItemDescription : MonoBehaviour{
                 description += $"<color=red>Strength: \t{CalcAdd(boots.StrengthAdd)} ({CalcMult(boots.StrengthMult)})</color>\n";
                 description += $"<color=blue>Magic: \t{CalcAdd(boots.MagicAdd)} ({CalcMult(boots.MagicMult)})</color>\n";
                 description += $"<color=purple>Mana: \t{CalcAdd(boots.ManaAdd)} ({CalcMult(boots.ManaMult)})</color>\n";
+
+                equipButtonText.text = (im.player.equipment.boots == boots) ? "Unequip" : "Equip";
                 break;
             case Weapon:
                 Weapon weapon = target as Weapon;
@@ -54,6 +63,8 @@ public class ItemDescription : MonoBehaviour{
                 description += $"<color=red>Strength: \t{CalcAdd(weapon.StrengthAdd)} ({CalcMult(weapon.StrengthMult)})</color>\n";
                 description += $"<color=blue>Magic: \t{CalcAdd(weapon.MagicAdd)} ({CalcMult(weapon.MagicMult)})</color>\n";
                 description += $"<color=purple>Mana: \t{CalcAdd(weapon.ManaAdd)} ({CalcMult(weapon.ManaMult)})</color>\n";
+
+                equipButtonText.text = (im.player.equipment.weaponLeft == weapon) ? "Unequip" : "Equip";
                 break;
             case Consumable:
                 // TODO
@@ -87,6 +98,14 @@ public class ItemDescription : MonoBehaviour{
             return;
 
         im.player.equipment.Equip(currentDisplay);
+
+        // Update button
+        if (equipButtonText.text == "Equip") {
+            equipButtonText.text = "Unequip";
+        } else {
+            equipButtonText.text = "Equip";
+        }
+
         im.sl.UpdateStats();
 
     }
