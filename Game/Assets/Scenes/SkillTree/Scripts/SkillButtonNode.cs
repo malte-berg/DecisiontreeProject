@@ -26,15 +26,15 @@ public class SkillButtonNode : MonoBehaviour
 
     public void SetNode() {
         Image imageComponent = self.GetComponent<Image>();
-        Text textComponent = self.GetComponent<Text>();
-        TMP_Text skillLevelText = self.GetComponent<TMP_Text>();
+        TMP_Text skillNameText = skillName.GetComponent<TMP_Text>();
+        TMP_Text skillLevelText = skillLevel.GetComponent<TMP_Text>();
 
         if (imageComponent == null) {
             imageComponent = self.AddComponent<Image>();
         }
 
-        if (textComponent == null) {
-            textComponent = self.AddComponent<Text>();
+        if (skillNameText == null) {
+            skillNameText = self.AddComponent<TMP_Text>();
         }
 
         if (skillLevelText == null) {
@@ -57,8 +57,8 @@ public class SkillButtonNode : MonoBehaviour
             skillLevelText.text = "Unlock";
         }
 
-        if (textComponent != null){
-            textComponent.text = skill.Name;
+        if (skillNameText != null){
+            skillNameText.text = skill.Name;
         }
     }
 
