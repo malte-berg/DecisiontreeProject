@@ -59,10 +59,6 @@ public class Player : GameCharacter {
         punch.UnlockSkill(this);
         AddSkill(punch);
 
-        // OP dev privilege
-        inventory[0] = new Knife();
-        inventory[1] = new Pipe(); 
-
     }
     //Hide the player model.
     public void HidePlayer(){
