@@ -46,6 +46,7 @@ public class Shop : MonoBehaviour
         player.HidePlayer();
         playerGold = player.Gold;
         inventoryIndex = 0;
+        // find the first empty space of the player inventory (array)
         while (inventoryIndex < player.inventory.Length && player.inventory[inventoryIndex] != null)
         {
             inventoryIndex++;
@@ -78,6 +79,7 @@ public class Shop : MonoBehaviour
         {
             playerGold -= value;
             player.Gold = playerGold;
+            // the player inventory is a fixed-size array
             player.inventory[inventoryIndex++] = itemButton.currentItem;
             itemButton.ButtonClose();
             // close buyButton
@@ -101,24 +103,6 @@ public class Shop : MonoBehaviour
 
         return false;
     }
-
-    /* void TestItems()
-    {
-        onSaleItems[0] = new Weapon(
-            null,
-            "Sword",
-            450, "swrd", 
-            0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f 
-        );
-
-        onSaleItems[1] = new Head(
-            null,
-            "Head",
-            300, "hed",
-            0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f
-        );
-
-    } */
 
     void UpdateGoldText()
     {
