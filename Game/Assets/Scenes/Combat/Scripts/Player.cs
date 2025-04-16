@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class Player : GameCharacter {
     int skillPoints;            //For unlocking new abilities in the skill tree window.
     int statPoints;             //For increasing stats in the stats window.
     int currentAreaIndex;       //For record the current area of ​​the role
+    int[] combatsWon = new int[3];
     int currentLevel;
     int currentExp;
     int expToNextLevel;
@@ -17,6 +19,7 @@ public class Player : GameCharacter {
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
     public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
+    public int CombatsWon{ get{ return combatsWon[currentAreaIndex]; } set {combatsWon[currentAreaIndex] = value;}}
     public int CurrentLevel { get { return currentLevel; } set { this.currentLevel = value; }}
     public int CurrentExp { get { return currentExp; } set { this.currentExp = value; }}
     public int ExpToNextLevel { get { return expToNextLevel; } set { this.expToNextLevel = value; }}
@@ -39,7 +42,7 @@ public class Player : GameCharacter {
         skillPoints = 10;
         statPoints = 25;
         currentAreaIndex = 1; // save index(0) for tutorial Area
-        currentLevel = 0;
+        currentLevel = 1;
         currentExp = 0;
         expToNextLevel = 100;
     }
@@ -89,4 +92,70 @@ public class Player : GameCharacter {
             SkillPoints += 1;     // Reward skill points for every new level reached
         }
     }
+
+    public Save CreateSave(){
+
+        /// TEMP ///
+        inventory[0] = new Knife();
+        inventory[1] = new BrassKnuckles();
+        inventory[2] = new Jacket();
+        inventory[3] = new Bucket();
+        inventory[4] = new WorkerBoots();
+        equipment.Equip(inventory[0]);
+        equipment.Equip(inventory[2]);
+        equipment.Equip(inventory[3]);
+        equipment.Equip(inventory[4]);
+        /// TEMP ///
+
+        int[] equipped = new int[7];
+        string[] items = new string[inventory.Length];
+
+        for(int i = 0; i < inventory.Length; i++){
+
+            if(inventory[i] == null)
+                break;
+
+            items[i] = inventory[i].GetType().FullName;
+
+            switch(inventory[i]){
+
+                case Head:
+                    if(equipment.head == inventory[i])
+                        equipped[0] = i;
+                    break;
+
+                case Torso:
+                    if(equipment.torso == inventory[i])
+                        equipped[1] = i;
+                    break;
+
+                case Boots:
+                    if(equipment.boots == inventory[i])
+                        equipped[2] = i;
+                    break;
+
+                case Weapon:
+                    if(equipment.weaponLeft == inventory[i])
+                        equipped[3] = i;
+                    else if(equipment.weaponRight == inventory[i])
+                        equipped[4] = i;
+                    break;
+
+                case Consumable:
+                    if(equipment.consumableLeft == inventory[i])
+                        equipped[5] = i;
+                    else if(equipment.consumableRight == inventory[i])
+                        equipped[6] = i;
+                    break;
+
+            }
+
+        }
+
+        // TODO SKILLS (waiting for skilltree)
+        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, equipped, items, new int[0], new string[0]);
+        return s;
+
+    }
+
 }

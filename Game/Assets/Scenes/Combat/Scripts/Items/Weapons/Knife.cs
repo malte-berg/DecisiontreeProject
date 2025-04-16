@@ -5,6 +5,7 @@ public class Knife : Weapon{
 
     public Knife() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/knife_Icon"),
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/knife1"), Resources.Load<Sprite>("Sprites/Items/knife2")},
         name: "Knife",
         value: 15,

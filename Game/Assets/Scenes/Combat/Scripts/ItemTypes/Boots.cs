@@ -27,8 +27,9 @@ public class Boots : Item{
     public int ManaAdd{ get{ return manaAdd; } }
     public float ManaMult{ get{ return manaMult; } }
 
-    public Boots(Sprite sprite, string name, int value, string description, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value, description){
+    public Boots(Sprite icon, Sprite sprite, string name, int value, string description, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value, description){
 
+        this.icon = icon;
         this.sprite = sprite;
         this.vitalityAdd = vitalityAdd;
         this.vitalityMult = vitalityMult;

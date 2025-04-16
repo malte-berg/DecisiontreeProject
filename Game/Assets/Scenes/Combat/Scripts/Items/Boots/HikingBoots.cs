@@ -4,6 +4,7 @@ public class HikingBoots : Boots{
 
     public HikingBoots() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/hikingBoots_Icon"),
         sprite: Resources.Load<Sprite>("Sprites/Items/hikingBoots"),
         name: "Hiking Boots",
         value: 36,

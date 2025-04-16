@@ -72,7 +72,8 @@ public class Combat : MonoBehaviour{
         who.manaBar = mb;
 
         // Setup text
-        t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{(who as Enemy)?.level}";
+        string levelText = who is Player player ? player.CurrentLevel.ToString() : (who as Enemy)?.level.ToString();
+        t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{levelText}";
 
         return t.transform;
 
@@ -104,7 +105,7 @@ public class Combat : MonoBehaviour{
 
         // Create enemy
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
-        cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4), "Street Thug");
+        cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4) + player.CombatsWon, "Street Thug");
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.c = this;
         cEnemy.Init();
@@ -155,6 +156,7 @@ public class Combat : MonoBehaviour{
 
                 //All enemies are dead: Change to the "Win Screen".
                 if (enemies.Count == 0){
+                    player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle
                     SceneManager.LoadScene("DemoWinScreen");
@@ -177,7 +179,7 @@ public class Combat : MonoBehaviour{
 
         // GAME OVER (Player died)
         SceneManager.LoadScene("DemoLoseScreen");
-        Debug.LogError("Main character died lol");
+        Debug.LogWarning("Main character died lol");
 
     }
 

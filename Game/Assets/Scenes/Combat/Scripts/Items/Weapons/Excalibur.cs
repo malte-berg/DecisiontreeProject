@@ -2,6 +2,7 @@ public class Excalibur : Weapon{
 
     public Excalibur() : base(
 
+        icon: null,
         sprites: null,
         name: "Excalibur",
         value: 28000,
