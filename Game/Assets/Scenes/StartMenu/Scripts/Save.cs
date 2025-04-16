@@ -4,6 +4,10 @@ using UnityEngine;
 [Serializable]
 public class Save{
     
+    // Save specific
+    [SerializeField] string created;
+    [SerializeField] long seed;
+
     // Experience
     [SerializeField] int level;
     [SerializeField] int xp;
@@ -26,6 +30,11 @@ public class Save{
 
     public Save(int level, int xp, int gold, int skillPoints, int area, int[] combats, int[] equipped, Type[] inventory, int[] levels, Type[] skills){
 
+        created = DateTime.Now.ToString("O");
+        System.Random random = new System.Random();
+        byte[] buffer = new byte[8];
+        random.NextBytes(buffer);
+        seed = BitConverter.ToInt64(buffer, 0);
         this.level = level;
         this.xp = xp;
         this.gold = gold;
