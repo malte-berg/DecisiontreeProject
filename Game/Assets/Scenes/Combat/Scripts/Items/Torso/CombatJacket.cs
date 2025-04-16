@@ -1,8 +1,11 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class CombatJacket : Torso{
 
     public CombatJacket() : base(
 
-        sprite: null,
+        sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/combatJacket1"), Resources.Load<Sprite>("Sprites/Items/combatJacket2")},
         name: "Combat Jacket",
         value: 180,
         description: "A preppers dream, made to carry first aid and ammunition.",

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3927ef98719359446a76b6ef88e75741
+guid: fa1ba303d9be76e4398207c932985657
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 229238375021281666
-    second: ememy1attack_0
+      213: -6518216050269918999
+    second: shadowGround_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,45 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ememy1attack_0
+      name: shadowGround_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 48
-        height: 64
+        x: 6
+        y: 3
+        width: 109
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 890ff6695a2751544b6db6e2a957da1a
-      internalID: -781871117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ememy1attack_1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35868dfdd588a884bb1883e7fdeeae5a
-      internalID: 1218500570
+      spriteID: 9e8696a8905aa85a0800000000000000
+      internalID: -6518216050269918999
       vertices: []
       indices: 
       edges: []
@@ -160,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9bb543a424a7aa14a88b449a4e9b8181
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -169,9 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ememy1attack_0: -781871117
-      ememy1attack_1: 1218500570
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
