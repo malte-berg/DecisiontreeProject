@@ -65,10 +65,6 @@ public class Shop : MonoBehaviour
         {
             itemButton = Instantiate(itemButtonPrefabs, content).GetComponent<ItemButton>();
             itemButton.Init(onSaleItems[i], this);
-            if (IsItemPurchased(itemButton.currentItem))
-            {
-                itemButton.ButtonClose();
-            }
         }
     }
     void TryBuyItem()
@@ -86,7 +82,7 @@ public class Shop : MonoBehaviour
         }
     }
     
-    Boolean IsItemPurchased(Item selectItem)
+    public Boolean IsItemPurchased(Item selectItem)
     {
         // itemButton.currentItem.Name;
         int i = 0;

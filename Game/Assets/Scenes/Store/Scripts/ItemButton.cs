@@ -24,6 +24,10 @@ public class ItemButton : MonoBehaviour
         // för att kunna använda funktion från Shop
         this.s = s;
 
+        /* if (s.IsItemPurchased(currentItem))
+        {
+            ButtonClose();  
+        } */
         currentItem = item;
         priceText.text = item.Value.ToString();
 
