@@ -42,7 +42,7 @@ public class Player : GameCharacter {
         skillPoints = 10;
         statPoints = 25;
         currentAreaIndex = 1; // save index(0) for tutorial Area
-        currentLevel = 0;
+        currentLevel = 1;
         currentExp = 0;
         expToNextLevel = 100;
     }

@@ -72,7 +72,8 @@ public class Combat : MonoBehaviour{
         who.manaBar = mb;
 
         // Setup text
-        t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{(who as Enemy)?.level}";
+        string levelText = who is Player player ? player.CurrentLevel.ToString() : (who as Enemy)?.level.ToString();
+        t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{levelText}";
 
         return t.transform;
 

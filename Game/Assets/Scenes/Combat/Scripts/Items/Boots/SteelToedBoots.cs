@@ -4,6 +4,7 @@ public class SteelToedBoots : Boots{
 
     public SteelToedBoots() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/steelToedBoots_Icon"),
         sprite: Resources.Load<Sprite>("Sprites/Items/steelToedBoots"),
         name: "Steel Toed Boots",
         value: 102,

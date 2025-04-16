@@ -4,6 +4,7 @@ public class WorkerBoots : Boots{
 
     public WorkerBoots() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/workerBoots_Icon"),
         sprite: Resources.Load<Sprite>("Sprites/Items/workerBoots"),
         name: "Worker Boots",
         value: 12,

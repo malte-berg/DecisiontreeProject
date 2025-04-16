@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemDescription : MonoBehaviour{
 
@@ -77,6 +78,7 @@ public class ItemDescription : MonoBehaviour{
         
         description += $"\n<i><size=75%>{target.Description}</size></i>";
 
+        slide.transform.GetChild(0).GetComponent<Image>().sprite = target.icon;
         slide.transform.GetChild(1).GetComponent<TMP_Text>().text = description;
         currentDisplay = target;
         
@@ -107,6 +109,8 @@ public class ItemDescription : MonoBehaviour{
         }
 
         im.sl.UpdateStats();
+        // Update player sprites after equpping/unequipping
+        im.player.SM.SetCharacter(im.player);
 
     }
 
