@@ -29,7 +29,6 @@ public class StatsHandler : MonoBehaviour {
         strengthText.text = "<color=red>Strength:\t" + player.Strength + "\t+" + strengthIncrease + "</color>";
         magicText.text = "<color=blue>Magic:\t" + player.Magic + "\t+" + magicIncrease + "</color>";
         statPointsText.text = "Stat Points: " + statPoints;
-        print(expText);
         expText.text = $"EXP: {player.CurrentExp}/{player.ExpToNextLevel}";
         levelText.text = $"Level: {player.CurrentLevel}";
 
