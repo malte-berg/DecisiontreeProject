@@ -149,11 +149,14 @@ public class Combat : MonoBehaviour{
 
                 }
 
+
                 Destroy(target.bars.gameObject);
                 Destroy(target.gameObject);
 
                 //All enemies are dead: Change to the "Win Screen".
                 if (enemies.Count == 0){
+                    player.AddExp(25);          // Give EXP for winning the battle
+                    player.Gold += 15;          // Give Gold for winning the battle
                     SceneManager.LoadScene("DemoWinScreen");
                     player.HidePlayer();
                 }
