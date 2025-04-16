@@ -2,8 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneSwitch : MonoBehaviour
-{
+public class SceneSwitch : MonoBehaviour{
+
+    int withCutscene = -1;
+    public int WithCutSCene{ set{ this.withCutscene = value; }}
 
     // A check to see if we need to go to title screen
     void Awake(){
@@ -14,7 +16,6 @@ public class SceneSwitch : MonoBehaviour
         GameObject p = GameObject.Find("Player");
 
         if(p == null)
-
             LoadScene(0);
         else
             p.GetComponent<Player>().HidePlayer();
@@ -23,11 +24,11 @@ public class SceneSwitch : MonoBehaviour
 
     public void SwitchScene(int sceneIndex){
 
-        StartCoroutine(LoadScene(sceneIndex));
+        StartCoroutine(LoadScene(sceneIndex, withCutscene));
 
     }
 
-    public IEnumerator LoadScene(int sceneIndex) {
+    public IEnumerator LoadScene(int sceneIndex, int cutscene = -1) {
 
         // Add cutscene and next scene to load queue
         int from = SceneManager.GetActiveScene().buildIndex;
@@ -40,7 +41,7 @@ public class SceneSwitch : MonoBehaviour
         SceneManager.SetActiveScene(cs);
         GameObject[] GOs = cs.GetRootGameObjects();
         CutsceneManager CM = GOs[1].GetComponent<CutsceneManager>();
-        CM.SwitchScene(from, sceneIndex, 0);
+        CM.SwitchScene(from, sceneIndex, cutscene);
 
     }
 
