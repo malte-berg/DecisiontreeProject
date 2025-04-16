@@ -116,8 +116,8 @@ TextureImporter:
       name: hikingBoots_Icon_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 40
+        x: 8
+        y: 16
         width: 32
         height: 16
       alignment: 0

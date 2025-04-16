@@ -119,8 +119,8 @@ TextureImporter:
       name: brassKnuckles_Icon_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 42
+        x: 12
+        y: 18
         width: 12
         height: 12
       alignment: 0
@@ -141,8 +141,8 @@ TextureImporter:
       name: brassKnuckles_Icon_1
       rect:
         serializedVersion: 2
-        x: 37
-        y: 42
+        x: 25
+        y: 18
         width: 11
         height: 10
       alignment: 0

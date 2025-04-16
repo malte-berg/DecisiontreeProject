@@ -116,8 +116,8 @@ TextureImporter:
       name: workerBoots_Icon_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 40
+        x: 8
+        y: 16
         width: 31
         height: 17
       alignment: 0

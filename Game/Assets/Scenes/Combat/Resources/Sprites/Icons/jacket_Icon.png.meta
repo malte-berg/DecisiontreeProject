@@ -116,9 +116,9 @@ TextureImporter:
       name: jacket_Icon_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 29
-        width: 35
+        x: 7
+        y: 5
+        width: 34
         height: 39
       alignment: 0
       pivot: {x: 0, y: 0}

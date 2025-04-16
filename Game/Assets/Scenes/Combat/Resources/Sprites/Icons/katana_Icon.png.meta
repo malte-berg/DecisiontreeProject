@@ -116,8 +116,8 @@ TextureImporter:
       name: katana_Icon_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 25
+        x: 4
+        y: 1
         width: 40
         height: 47
       alignment: 0
