@@ -35,7 +35,8 @@ public class ItemButton : MonoBehaviour
 
     void DisplayItemDetail()
     {   
-        detailPanel.text = currentItem.Name + "\n\n" + "The item's story or attributes can displayed here."; 
+        detailPanel.text = currentItem.Name + "\n\n" + currentItem.Description;
+        //"The item's story or attributes can displayed here."; 
     }
 
     public void ButtonClose()

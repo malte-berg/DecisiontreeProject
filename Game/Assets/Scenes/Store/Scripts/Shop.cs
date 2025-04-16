@@ -81,7 +81,8 @@ public class Shop : MonoBehaviour
             UpdateGoldText();
         }
     }
-    void TestItems()
+    
+    /* void TestItems()
     {
         onSaleItems[0] = new Weapon(
             null,
@@ -97,7 +98,7 @@ public class Shop : MonoBehaviour
             0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f
         );
 
-    }
+    } */
 
     void UpdateGoldText()
     {
