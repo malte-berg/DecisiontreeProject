@@ -5,6 +5,7 @@ public class BrassKnuckles : Weapon{
 
     public BrassKnuckles() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/brassKnuckles_Icon"),
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/brassKnuckles")},
         name: "Brass Knuckles",
         value: 40,

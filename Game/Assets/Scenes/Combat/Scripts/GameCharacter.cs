@@ -43,6 +43,7 @@ public class GameCharacter : MonoBehaviour{
 
     // to change sprite
     SpriteManager spriteManager;
+    public SpriteManager SM{ get { return spriteManager; }}
     Transform moveCharacterSprite;
     public List<Sprite> sprites;
     private readonly float CHARACTER_SCALE = 2.4f;
@@ -81,7 +82,6 @@ public class GameCharacter : MonoBehaviour{
         spriteManager.SetCharacter(this);
         moveCharacterSprite = gameObject.transform.GetChild(0);
         moveCharacterSprite.localScale = new Vector3(CHARACTER_SCALE,CHARACTER_SCALE,CHARACTER_SCALE);
-
     }
 
     public void Moved(){
@@ -127,9 +127,7 @@ public class GameCharacter : MonoBehaviour{
 
         Vector3 posOfTarget = target.transform.GetChild(0).position;
         if (spriteManager != null && skill) {
-            Debug.Log(gameObject.name);
-            spriteManager.AttackAnimation(gameObject.name, this);
-            spriteManager.AbilityAnimation(posOfTarget, this, selectedSkill, 5);
+            skills[selectedSkill].SkillAnimation(posOfTarget, this, spriteManager);
         }
 
         return skill;

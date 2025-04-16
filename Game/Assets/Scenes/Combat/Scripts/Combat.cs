@@ -48,10 +48,10 @@ public class Combat : MonoBehaviour{
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
-
+      
         // Spawn enemies
         for (int i = 0; i < 4; i++)
-            SpawnEnemy(enemyPrefabs[0]);
+            SpawnEnemy(enemyPrefabs[player.CurrentAreaIndex-1]);
 
         GetCurrentCharacter();
 
@@ -72,7 +72,8 @@ public class Combat : MonoBehaviour{
         who.manaBar = mb;
 
         // Setup text
-        t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{(who as Enemy)?.level}";
+        string levelText = who is Player player ? player.CurrentLevel.ToString() : (who as Enemy)?.level.ToString();
+        t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{levelText}";
 
         return t.transform;
 
@@ -81,12 +82,6 @@ public class Combat : MonoBehaviour{
     void Awake(){
 
         Init();
-
-    }
-
-    void FixedUpdate(){
-
-        print($"{player?.bars.name}");
 
     }
 
@@ -155,11 +150,14 @@ public class Combat : MonoBehaviour{
 
                 }
 
+
                 Destroy(target.bars.gameObject);
                 Destroy(target.gameObject);
 
                 //All enemies are dead: Change to the "Win Screen".
                 if (enemies.Count == 0){
+                    player.AddExp(25);          // Give EXP for winning the battle
+                    player.Gold += 15;          // Give Gold for winning the battle
                     SceneManager.LoadScene("DemoWinScreen");
                     player.HidePlayer();
                 }

@@ -1,8 +1,12 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class MilitaryJacket : Torso{
 
     public MilitaryJacket() : base(
 
-        sprite: null,
+        icon: Resources.Load<Sprite>("Sprites/Icons/militaryJacket_Icon"),
+        sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/militaryJacket1"), Resources.Load<Sprite>("Sprites/Items/militaryJacket2")}, 
         name: "Military Jacket",
         value: 320,
         description: "Gathered from the armies of the dead.",

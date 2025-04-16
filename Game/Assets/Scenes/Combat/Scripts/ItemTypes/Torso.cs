@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Torso : Item{
@@ -27,9 +28,10 @@ public class Torso : Item{
     public int ManaAdd{ get{ return manaAdd; } }
     public float ManaMult{ get{ return manaMult; } }
 
-    public Torso(Sprite sprite, string name, int value, string description, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value, description){
+    public Torso(Sprite icon, List<Sprite> sprites, string name, int value, string description, int vitalityAdd, float vitalityMult, int armorAdd, float armorMult, int strengthAdd, float strengthMult, int magicAdd, float magicMult, int manaAdd, float manaMult) : base(name, value, description){
 
-        this.sprite = sprite;
+        this.icon = icon;
+        this.sprites = sprites;
         this.vitalityAdd = vitalityAdd;
         this.vitalityMult = vitalityMult;
         this.armorAdd = armorAdd;

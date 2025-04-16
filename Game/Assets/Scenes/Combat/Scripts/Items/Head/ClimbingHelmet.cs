@@ -1,8 +1,11 @@
+using UnityEngine;
+
 public class ClimbingHelmet : Head{
 
     public ClimbingHelmet() : base(
 
-        sprite: null,
+        icon: Resources.Load<Sprite>("Sprites/Icons/climbingHelmet_Icon"),
+        sprite: Resources.Load<Sprite>("Sprites/Items/climbingHelmet"),
         name: "Climbing Helmet",
         value: 18,
         description: "Good protection in case you bang your head against a hard place.",

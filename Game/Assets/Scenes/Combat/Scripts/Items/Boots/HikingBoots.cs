@@ -1,8 +1,11 @@
+using UnityEngine;
+
 public class HikingBoots : Boots{
 
     public HikingBoots() : base(
 
-        sprite: null,
+        icon: Resources.Load<Sprite>("Sprites/Icons/hikingBoots_Icon"),
+        sprite: Resources.Load<Sprite>("Sprites/Items/hikingBoots"),
         name: "Hiking Boots",
         value: 36,
         description: "Made for the distances, these boots will take you places.",

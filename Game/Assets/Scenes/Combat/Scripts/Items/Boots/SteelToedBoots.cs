@@ -1,8 +1,11 @@
+using UnityEngine;
+
 public class SteelToedBoots : Boots{
 
     public SteelToedBoots() : base(
 
-        sprite: null,
+        icon: Resources.Load<Sprite>("Sprites/Icons/steelToedBoots_Icon"),
+        sprite: Resources.Load<Sprite>("Sprites/Items/steelToedBoots"),
         name: "Steel Toed Boots",
         value: 102,
         description: "To protect you from the annoying kick to the smallest toe, now with protection of steel.",

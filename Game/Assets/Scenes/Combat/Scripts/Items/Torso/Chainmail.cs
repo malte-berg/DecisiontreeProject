@@ -1,8 +1,12 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 public class Chainmail : Torso{
 
     public Chainmail() : base(
 
-        sprite: null,
+        icon: Resources.Load<Sprite>("Sprites/Icons/chainmail_Icon"),
+        sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/chainmail1"), Resources.Load<Sprite>("Sprites/Items/chainmail2")},
         name: "Chainmail",
         value: 60,
         description: "A slightly heavy piece of armor that works wonders against slashes.",

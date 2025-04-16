@@ -1,24 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class NewGame : MonoBehaviour{
 
     public GameObject playerPrefab;
+    public AreaInitializer a;
 
     public void StartNewGame() {
 
-        // For test
-        Item[] regionItems = new Item[]{
-            new Knife(),
-            new Pipe(),
-            new BrassKnuckles(),
-            new Jacket(),
-            new CombatJacket(),
-            new Bucket(),
-            new BicycleHelmet(),
-            new WorkerBoots()
-        };
-        AreaDataLoader.InitAreaRegionItems(1,regionItems);
+        a = GetComponent<AreaInitializer>();
+        // Initialize regionItems in AreaData
+        a.Init(); 
 
         // Try to find player game object
         GameObject playerObject = GameObject.Find("Player");
@@ -28,7 +18,8 @@ public class NewGame : MonoBehaviour{
             Instantiate(playerPrefab).GetComponent<Player>().Init();
         } // Else, just continue with already created player
         
-        SceneManager.LoadScene("InGameMenu");
+        GetComponent<SceneSwitch>().WithCutscene = 0;
+        GetComponent<SceneSwitch>().SwitchScene(1);
 
     }
     

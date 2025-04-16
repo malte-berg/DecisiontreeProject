@@ -1,8 +1,11 @@
+using UnityEngine;
+
 public class CombatHelmet : Head{
 
     public CombatHelmet() : base(
 
-        sprite: null,
+        icon: Resources.Load<Sprite>("Sprites/Icons/CombatHelmet_Icon"),
+        sprite: Resources.Load<Sprite>("Sprites/Items/combatHelmet"),
         name: "Combat Helmet",
         value: 50,
         description: "Now this could perhaps even stop shrapnel.",

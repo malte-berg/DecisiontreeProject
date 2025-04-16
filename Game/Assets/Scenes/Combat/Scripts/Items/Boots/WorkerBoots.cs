@@ -1,8 +1,11 @@
+using UnityEngine;
+
 public class WorkerBoots : Boots{
 
     public WorkerBoots() : base(
 
-        sprite: null,
+        icon: Resources.Load<Sprite>("Sprites/Icons/workerBoots_Icon"),
+        sprite: Resources.Load<Sprite>("Sprites/Items/workerBoots"),
         name: "Worker Boots",
         value: 12,
         description: "Worn and used, these boots should protect you from the weathers.",
