@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Player : GameCharacter {
 
     // PLAYER STATS
@@ -89,4 +91,12 @@ public class Player : GameCharacter {
             SkillPoints += 1;     // Reward skill points for every new level reached
         }
     }
+
+    public Save CreateSave(){
+
+        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, new int[0], new int[0], new Type[0], new int[0], new Type[0]);
+        return s;
+
+    }
+
 }
