@@ -83,3 +83,7 @@ crashlytics-build.properties
 # vsconfig
 */.vsconfig/
 *.vsconfig
+
+# savefiles
+Game/Saves/*
+!Game/Saves/.gitkeep
