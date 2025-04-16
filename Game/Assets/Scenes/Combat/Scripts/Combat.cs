@@ -48,7 +48,7 @@ public class Combat : MonoBehaviour{
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
-
+      
         // Spawn enemies
         for (int i = 0; i < 4; i++)
             SpawnEnemy(enemyPrefabs[player.CurrentAreaIndex-1]);

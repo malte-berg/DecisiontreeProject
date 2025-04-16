@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
+using System;
 
 public class Shop : MonoBehaviour
 {
@@ -11,25 +11,26 @@ public class Shop : MonoBehaviour
     public TextMeshProUGUI GoldText;
     public Button buyButton;
     public Transform content;
-    ItemButton itemButton;
+    private ItemButton itemButton;
 
+    private int inventoryIndex;
     // Data
-    Player player;
-    int playerGold;
+    private Player player;
+    private int playerGold;
 
     // Test Demo använder först tillfälliga item. I den färdig versionen skulle man kunna sälja den givna itemarrayen enligt spelets framsteg.
-    private Item[] onSaleItems = new Item[2]; // 2 item för test
-    private Item selectedItem;
+    public Item[] onSaleItems; // 2 item för test
+    // private Item selectedItem;
 
     void Awake()
     {
-        SetGold();
+        DataFromPlayer();
         Init();
     }
 
     void Init()
     {
-        TestItems();
+        // TestItems();
         LoadItems();
 
         buyButton.onClick.RemoveAllListeners();
@@ -39,18 +40,35 @@ public class Shop : MonoBehaviour
         UpdateGoldText();
     }
     
-     void SetGold(){
+     void DataFromPlayer(){
         player = GameObject.Find("Player").GetComponent<Player>(); // finns kanske utrymme för optimering
         player.HidePlayer();
-        playerGold = player.Gold; 
+        playerGold = player.Gold;
+        inventoryIndex = 0;
+        while (inventoryIndex < player.inventory.Length && player.inventory[inventoryIndex] != null)
+        {
+            inventoryIndex++;
+        }
+        Debug.Log("inventoryIndex: "+inventoryIndex);
     }
 
     void LoadItems()
     {
+        onSaleItems = AreaDataLoader.GetAreaItems(player.CurrentAreaIndex);
+        
+        if (onSaleItems == null) {
+            Debug.Log("onSaleItems is null");
+            return; 
+        }
+
         for (int i = 0; i < onSaleItems.Length; i++)
         {
             itemButton = Instantiate(itemButtonPrefabs, content).GetComponent<ItemButton>();
             itemButton.Init(onSaleItems[i], this);
+            if (IsItemPurchased(itemButton.currentItem))
+            {
+                itemButton.ButtonClose();
+            }
         }
     }
     void TryBuyItem()
@@ -58,15 +76,33 @@ public class Shop : MonoBehaviour
         if (itemButton == null) return;
         int value = itemButton.currentItem.Value;
 
-        if (playerGold >= value)
+        if (playerGold >= value )//&& inventoryIndex < player.inventory.Length)
         {
             playerGold -= value;
             player.Gold = playerGold;
+            player.inventory[inventoryIndex++] = itemButton.currentItem;
             itemButton.ButtonClose();
             UpdateGoldText();
         }
     }
-    void TestItems()
+    
+    Boolean IsItemPurchased(Item selectItem)
+    {
+        // itemButton.currentItem.Name;
+        int i = 0;
+        while (player.inventory[i] != null)
+        {
+            if (player.inventory[i].Name == selectItem.Name)
+            {
+                return false;
+            }
+            i++;
+        }
+
+        return true;
+    }
+
+    /* void TestItems()
     {
         onSaleItems[0] = new Weapon(
             null,
@@ -82,7 +118,7 @@ public class Shop : MonoBehaviour
             0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f
         );
 
-    }
+    } */
 
     void UpdateGoldText()
     {

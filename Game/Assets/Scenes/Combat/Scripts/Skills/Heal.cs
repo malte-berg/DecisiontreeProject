@@ -1,10 +1,12 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Heal : Skill {
     
     public Heal() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Heal_Icon"),
-        sprites: null,
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/heal")},
         gc: null,
         name: "Heal",
         power: 0,
@@ -13,7 +15,6 @@ public class Heal : Skill {
         description: "Regain some lost health."
         
         ){
-
     }
 
     public override bool Effect(GameCharacter target){
@@ -34,5 +35,20 @@ public class Heal : Skill {
 
         return true;
     }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm) {
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+
+        sm.SetSprite(this.sprites[0], AbilityRenderer);        
+        sm.HideSprite(AbilityRenderer);
+        sm.SetScale(AbilityRenderer.transform, 1.6f);
+
+        sm.ChangeOpacity(AbilityRenderer, 1f);
+
+        Transform tr = AbilityRenderer.gameObject.transform;
+
+        sm.RollScales(tr, Vector3.zero, 10, 0.4f, false, true, true);
+    }
+
 
 }
