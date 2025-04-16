@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneSwitch : MonoBehaviour{
 
     int withCutscene = -1;
-    public int WithCutSCene{ set{ this.withCutscene = value; }}
+    public int WithCutscene{ set{ this.withCutscene = value; }}
 
     // A check to see if we need to go to title screen
     void Awake(){
