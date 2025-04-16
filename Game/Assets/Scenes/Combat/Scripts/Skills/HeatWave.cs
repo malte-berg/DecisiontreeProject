@@ -30,8 +30,8 @@ public class HeatWave : Skill {
         Combat combat = target.c;
         List<Enemy> enemies = combat.Enemies;
 
-        foreach (GameCharacter enemy in enemies){
-            enemy.TakeDamage(Mathf.FloorToInt(damageDealt));
+        for (int i = enemies.Count - 1; i >= 0; i--) {
+            enemies[i].TakeDamage(Mathf.FloorToInt(damageDealt));
         }
 
         return true;
