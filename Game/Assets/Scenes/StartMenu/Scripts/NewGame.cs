@@ -4,12 +4,13 @@ using UnityEngine.SceneManagement;
 public class NewGame : MonoBehaviour{
 
     public GameObject playerPrefab;
-    public AreaInitializer ai;
+    public AreaInitializer a;
 
     public void StartNewGame() {
 
-        ai = GetComponent<AreaInitializer>();
-        ai.Init();
+        a = GetComponent<AreaInitializer>();
+        /* Blir fel efter pull, ska fixa */
+        // a.Init(); 
 
         // Try to find player game object
         GameObject playerObject = GameObject.Find("Player");

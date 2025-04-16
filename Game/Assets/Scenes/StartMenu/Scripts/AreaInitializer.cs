@@ -8,11 +8,11 @@ public class AreaInitializer : MonoBehaviour
     public void Init()
     {
         ReligionItemsInit();
-        // AreaDictionaryInit();       
+        AreaDictionaryInit();       
     }
 
     void ReligionItemsInit(){
-        // religionItems[0] = new Item[] {}; // tutorial area
+        religionItems[0] = new Item[] {}; // tutorial area
         religionItems[1] = new Item[] {
             new Knife(),
             new Pipe(),
@@ -36,9 +36,9 @@ public class AreaInitializer : MonoBehaviour
             new Chainmail()
         };
 
-        AreaDataLoader.InitAreaRegionItems(1, religionItems[1]);
+        /* AreaDataLoader.InitAreaRegionItems(1, religionItems[1]);
         AreaDataLoader.InitAreaRegionItems(2, religionItems[2]);
-        AreaDataLoader.InitAreaRegionItems(3, religionItems[3]);
+        AreaDataLoader.InitAreaRegionItems(3, religionItems[3]); */
     }
 
     void AreaDictionaryInit()
@@ -50,7 +50,7 @@ public class AreaInitializer : MonoBehaviour
         }
     }
 
-    public Item[] GetAreaItems(int key)
+    Item[] GetAreaItems(int key)
     {
         if (religionItems.TryGetValue(key, out var array))
             return array;
