@@ -10,7 +10,7 @@ public class NewGame : MonoBehaviour{
 
         a = GetComponent<AreaInitializer>();
         /* Blir fel efter pull, ska fixa */
-        // a.Init(); 
+        a.Init(); 
 
         // Try to find player game object
         GameObject playerObject = GameObject.Find("Player");
