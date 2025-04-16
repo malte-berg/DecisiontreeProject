@@ -8,14 +8,17 @@ public class Player : GameCharacter {
     int skillPoints;    //For unlocking new abilities in the skill tree window.
     int statPoints;     //For increasing stats in the stats window.
     int currentAreaIndex; //For record the current area of ​​the role
+    int currentLevel;
+    int currentExp;
+    int expToNextLevel;
 
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
     public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
-    public int CurrentLevel { get; private set; } = 0;
-    public int CurrentExp { get; private set; } = 0;
-    public int ExpToNextLevel { get; private set; } = 100;
+    public int CurrentLevel { get { return currentLevel; } set { this.currentLevel = value; } }
+    public int CurrentExp { get { return currentExp; } set { this.currentExp = value; } }
+    public int ExpToNextLevel { get { return expToNextLevel; } set { this.expToNextLevel = value; } }
 
     public Player() : base(
 
@@ -34,7 +37,9 @@ public class Player : GameCharacter {
         skillPoints = 10;
         statPoints = 25;
         currentAreaIndex = 1; // save index(0) for tutorial Area
-
+        currentLevel = 0;
+        currentExp = 0;
+        expToNextLevel = 100;
     }
     
     public override void Init(){

@@ -531,8 +531,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: dfc7885214f0aaa469184dfbf0ce1f1c, type: 3}
-  m_Type: 3
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -582,9 +582,6 @@ MonoBehaviour:
   strengthText: {fileID: 728269636}
   magicText: {fileID: 1503022311}
   statPointsText: {fileID: 178138154}
-  expText: {fileID: 542097944}
-  levelText: {fileID: 1068846325}
-  expBar: {fileID: 201465556}
   player: {fileID: 7782686661791039865, guid: 86422ab414f0293409b6742ab03c10f4, type: 3}
 --- !u!4 &260007622
 Transform:
@@ -3783,9 +3780,6 @@ MonoBehaviour:
   strengthText: {fileID: 728269636}
   magicText: {fileID: 1503022311}
   statPointsText: {fileID: 178138154}
-  expText: {fileID: 542097944}
-  levelText: {fileID: 1068846325}
-  expBar: {fileID: 0}
   player: {fileID: 7782686661791039865, guid: 86422ab414f0293409b6742ab03c10f4, type: 3}
 --- !u!1 &1999484717
 GameObject:

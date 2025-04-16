@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Xml.Linq;
 
 public class StatsHandler : MonoBehaviour {
 
@@ -13,9 +12,9 @@ public class StatsHandler : MonoBehaviour {
     public TextMeshProUGUI strengthText;
     public TextMeshProUGUI magicText;
     public TextMeshProUGUI statPointsText;
-    public TextMeshProUGUI expText;
-    public TextMeshProUGUI levelText;
-    public Image expBar;
+    private TextMeshProUGUI expText;
+    private TextMeshProUGUI levelText;
+    private Image expBar;
     public Player player;
     
     void Start() {
