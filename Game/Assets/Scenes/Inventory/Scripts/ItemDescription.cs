@@ -63,6 +63,7 @@ public class ItemDescription : MonoBehaviour{
                 break;
 
         }
+        description += $"\n<i>{target.Description}</i>";
 
         slide.transform.GetChild(1).GetComponent<TMP_Text>().text = description;
         currentDisplay = target;
