@@ -92,6 +92,7 @@ public class SkillButtonNode : MonoBehaviour
             child.offsetX = this.offsetX + this.offsetX / 2;
             child.offsetY = this.offsetY - 100;
             child.MoveNode();
+            child.DrawLine();
             return true;
         } 
         if (right == null){
@@ -100,6 +101,7 @@ public class SkillButtonNode : MonoBehaviour
             child.offsetX = this.offsetX + this.offsetX / 2;
             child.offsetY = this.offsetY - 100;
             child.MoveNode();
+            child.DrawLine();
             return true;
         }
 
@@ -115,12 +117,14 @@ public class SkillButtonNode : MonoBehaviour
         left = child;
         child.parent = this;
         child.MoveNode();
+        child.DrawLine();
     }
 
     public void AddRightChild(SkillButtonNode child) {
         right = child;
         child.parent = this;
         child.MoveNode();
+        child.DrawLine();
     }
 
     public string ToString() {
@@ -136,5 +140,17 @@ public class SkillButtonNode : MonoBehaviour
 
     public void MoveNode() {
         self.transform.position = new Vector3(offsetX + self.transform.position.x, offsetY + self.transform.position.y, 0);
+    }
+
+    public void DrawLine() {
+        Debug.Log("Drawing line from " + self.name + " to " + (parent != null ? parent.self.name : "null"));
+        if (parent != null) {
+            LineRenderer lineRenderer = self.AddComponent<LineRenderer>();
+            lineRenderer.startWidth = 0.1f;
+            lineRenderer.endWidth = 0.1f;
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPosition(0, self.transform.position);
+            lineRenderer.SetPosition(1, parent.self.transform.position);
+        }
     }
 }
