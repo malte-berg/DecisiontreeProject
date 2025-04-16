@@ -53,9 +53,6 @@ public class Combat : MonoBehaviour{
             // SpawnEnemy(enemyPrefabs[i]); // To spawn all different types of enemy
             SpawnEnemy(enemyPrefabs[0]);
 
-        // Spawn enemies
-        // for (int i = 0; i < 4; i++)
-
         GetCurrentCharacter();
 
     }

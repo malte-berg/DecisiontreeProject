@@ -4,6 +4,7 @@ public class ClimbingHelmet : Head{
 
     public ClimbingHelmet() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/climbingHelmet_Icon"),
         sprite: Resources.Load<Sprite>("Sprites/Items/climbingHelmet"),
         name: "Climbing Helmet",
         value: 18,

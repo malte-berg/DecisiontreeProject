@@ -1,9 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Rendering;
-using UnityEngine.Scripting.APIUpdating;
-using Unity.VisualScripting;
 
 public class SpriteManager : MonoBehaviour
 {
@@ -50,7 +47,7 @@ public class SpriteManager : MonoBehaviour
             if(equipment.head != null) {
                 if(equipment.head.sprite != null)
                     SetSprite(equipment.head.sprite, spriteLayers["Head"]); 
-            }
+            }else SetSprite(null, spriteLayers["Head"]);
             if(equipment.torso != null) {
                 if(equipment.torso.sprites != null)
                     SetSprite(equipment.torso.sprites[0], spriteLayers["Torso"]); 
@@ -119,24 +116,17 @@ public class SpriteManager : MonoBehaviour
         }
     }
 
-    public void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, bool isReverse, bool fade, bool fadeUp) {
-        float scale = frames;
+    public void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, float scale, bool fade, bool fadeUp, bool slice, int stopAt) {
         Vector3 originalPos = tr.position;
         tr.position += toTarget * 0.9f;
-        for(int i = 0; i <= frames; i++){
-            float newScale;
-            int frameIndex = i;
-            if(isReverse){
-                newScale = (float)frameIndex * 1.1f;
-            }else{
-                newScale = (float)(scale-frameIndex) * 0.8f;
-            }
 
-            DelayedAction(() => SetScale(tr, newScale, originalPos, frames, frameIndex, fade, fadeUp), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
+        for(int i = 0; i <= frames; i++){
+            int frameIndex = i;
+            DelayedAction(() => SetScale(tr, originalPos, frameIndex, frames, scale, fade, fadeUp, slice, stopAt), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
         }   
     }
 
-    private void SetScale(Transform tr, float scale, Vector3 originalPos, int frames, int frameIndex, bool fade, bool fadeUp) {
+    private void SetScale(Transform tr, Vector3 originalPos, int frameIndex, int frames, float scale, bool fade, bool fadeUp, bool slice, int stopAt) {
         SpriteRenderer sr = tr.GetComponent<SpriteRenderer>();
         if(frameIndex >= frames) {
             sr.enabled = false;
@@ -144,22 +134,27 @@ public class SpriteManager : MonoBehaviour
         }else {
             if(!sr.enabled) 
                 sr.enabled = true;
+
+            if(frameIndex <= stopAt) {
+                tr.localScale *= scale;
+                if(slice) {
+                    if(frameIndex == 0) tr.position += new Vector3(-0.2f, 0.5f, 0f);
+                    tr.position += new Vector3(0.07f, -0.15f, 0f);
+                }
+            }
+
             if(fade) {
-                // tr.Rotate(0f, 0f, 90f);
+                ChangeOpacity(sr, 1f/(float)frameIndex);
                 if(fadeUp) {
                     tr.position += new Vector3(0f, 0.015f, 0f);
                 }
-                ChangeOpacity(sr, 1f/(float)frameIndex);
-                tr.localScale *= 0.98f;
-            }else {
-                tr.localScale = new Vector3(scale, scale, scale);
             }
         }
     }
 
     public void ChangeOpacity(SpriteRenderer sr, float opacity) {
         Color color = sr.color;
-        color.a = 0.6f;
+        color.a = opacity;
         sr.color = color;
     }
 
