@@ -107,6 +107,8 @@ public class ItemDescription : MonoBehaviour{
         }
 
         im.sl.UpdateStats();
+        // Update player sprites after equpping/unequipping
+        im.player.SM.SetCharacter(im.player);
 
     }
 
