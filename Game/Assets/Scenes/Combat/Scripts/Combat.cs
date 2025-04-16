@@ -84,6 +84,12 @@ public class Combat : MonoBehaviour{
 
     }
 
+    void FixedUpdate(){
+
+        print($"{player?.bars.name}");
+
+    }
+
     GameCharacter GetCurrentCharacter(){
 
         GameCharacter current;

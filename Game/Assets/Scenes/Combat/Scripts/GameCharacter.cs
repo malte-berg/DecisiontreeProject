@@ -66,7 +66,9 @@ public class GameCharacter : MonoBehaviour{
     }
 
     public virtual void Init(){
+
         equipment = gameObject.GetComponent<Equipment>();
+        
     }
 
     public void SetSprite() {

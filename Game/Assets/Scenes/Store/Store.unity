@@ -242,7 +242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.012809948}
+  m_AnchoredPosition: {x: 0, y: 0.1922533}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &71790593
@@ -1277,12 +1277,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1448128834}
         m_TargetAssemblyTypeName: SceneSwitch, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: SwitchScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: InGameMenu
           m_BoolArgument: 0
@@ -1912,7 +1912,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 789917521}
   m_HandleRect: {fileID: 789917520}
   m_Direction: 2
-  m_Value: 0.99935913
+  m_Value: 0.9903854
   m_Size: 0.93333334
   m_NumberOfSteps: 0
   m_OnValueChanged:
