@@ -5,6 +5,7 @@ public class Jacket : Torso{
 
     public Jacket() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/Jacket_Icon"),
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/jacket1"), Resources.Load<Sprite>("Sprites/Items/jacket2")},
         name: "Jacket",
         value: 20,

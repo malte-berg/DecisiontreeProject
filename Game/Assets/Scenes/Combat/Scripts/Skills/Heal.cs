@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Heal : Skill {
@@ -41,13 +40,13 @@ public class Heal : Skill {
 
         sm.SetSprite(this.sprites[0], AbilityRenderer);        
         sm.HideSprite(AbilityRenderer);
-        sm.SetScale(AbilityRenderer.transform, 1.6f);
 
+        sm.SetScale(AbilityRenderer.transform, 1.6f);
         sm.ChangeOpacity(AbilityRenderer, 1f);
 
         Transform tr = AbilityRenderer.gameObject.transform;
 
-        sm.RollScales(tr, Vector3.zero, 10, 0.4f, false, true, true);
+        sm.RollScales(tr, Vector3.zero, 10, 0.4f, 0.96f, true, true, false, 10);
     }
 
 

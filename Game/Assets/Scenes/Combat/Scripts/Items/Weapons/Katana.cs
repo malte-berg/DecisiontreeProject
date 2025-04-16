@@ -5,6 +5,7 @@ public class Katana : Weapon{
 
     public Katana() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/katana_Icon"),
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/katana1"), Resources.Load<Sprite>("Sprites/Items/katana2")},
         name: "Katana",
         value: 110,

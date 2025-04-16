@@ -12,6 +12,7 @@ public abstract class Item{
     public string Description{ get { return description; } }
     public List<Sprite> sprites;
     public Sprite sprite;
+    public Sprite icon;
 
     public Item(string name, int value, string description){
 

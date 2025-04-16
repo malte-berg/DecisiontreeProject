@@ -4,6 +4,7 @@ using UnityEngine;
 public class Bucket : Head{
     public Bucket() : base(
         
+        icon: Resources.Load<Sprite>("Sprites/Icons/bucket_Icon"),
         sprite: Resources.Load<Sprite>("Sprites/Items/Bucket"),
         name: "Bucket",
         value: 2,

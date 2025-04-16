@@ -5,6 +5,7 @@ public class Pipe : Weapon{
 
     public Pipe() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/pipe_Icon"),
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/pipe1"), Resources.Load<Sprite>("Sprites/Items/pipe2")},
         name: "Pipe",
         value: 5,

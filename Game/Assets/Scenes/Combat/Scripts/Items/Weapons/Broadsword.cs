@@ -4,6 +4,7 @@ using UnityEngine;
 public class Broadsword : Weapon{
     public Broadsword() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/broadSword_Icon"),
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/sword1"), Resources.Load<Sprite>("Sprites/Items/sword2")},
         name: "Broadsword",
         value: 70,

@@ -5,6 +5,7 @@ public class MilitaryJacket : Torso{
 
     public MilitaryJacket() : base(
 
+        icon: Resources.Load<Sprite>("Sprites/Icons/militaryJacket_Icon"),
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/militaryJacket1"), Resources.Load<Sprite>("Sprites/Items/militaryJacket2")}, 
         name: "Military Jacket",
         value: 320,
