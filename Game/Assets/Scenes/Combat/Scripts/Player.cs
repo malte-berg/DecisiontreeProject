@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Player : GameCharacter {
 
     // PLAYER STATS
@@ -10,6 +9,11 @@ public class Player : GameCharacter {
     int skillPoints;            //For unlocking new abilities in the skill tree window.
     int statPoints;             //For increasing stats in the stats window.
     int currentAreaIndex;       //For record the current area of ​​the role
+    int[] combatsWon = {
+        0,
+        0,
+        0
+    };
     int currentLevel;
     int currentExp;
     int expToNextLevel;
@@ -19,6 +23,7 @@ public class Player : GameCharacter {
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
     public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
+    public int CombatsWon{ get{ return combatsWon[currentAreaIndex]; } set {combatsWon[currentAreaIndex] = value;}}
     public int CurrentLevel { get { return currentLevel; } set { this.currentLevel = value; }}
     public int CurrentExp { get { return currentExp; } set { this.currentExp = value; }}
     public int ExpToNextLevel { get { return expToNextLevel; } set { this.expToNextLevel = value; }}
@@ -94,7 +99,7 @@ public class Player : GameCharacter {
 
     public Save CreateSave(){
 
-        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, new int[0], new int[0], new Type[0], new int[0], new Type[0]);
+        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, new int[0], new Type[0], new int[0], new Type[0]);
         return s;
 
     }
