@@ -24,12 +24,13 @@ public class ItemButton : MonoBehaviour
         // för att kunna använda funktion från Shop
         this.s = s;
 
-        /* if (s.IsItemPurchased(currentItem))
-        {
-            ButtonClose();  
-        } */
         currentItem = item;
         priceText.text = item.Value.ToString();
+
+        if (s.IsItemPurchased(currentItem))
+        {
+            ButtonClose();
+        }
 
         // iconImage.sprite = ...
 
@@ -38,19 +39,20 @@ public class ItemButton : MonoBehaviour
     }
 
     void DisplayItemDetail()
-    {   
+    {
         detailPanel.text = currentItem.Name + "\n\n" + currentItem.Description;
         //"The item's story or attributes can displayed here."; 
     }
 
     public void ButtonClose()
     {
-        this.GetComponent<Button>().interactable = false; 
+        this.GetComponent<Button>().interactable = false;
     }
+
     private void OnItemClicked()
     {
         DisplayItemDetail();
-        s.ShowDetailPanel(true,this);
-    } 
+        s.ShowDetailPanel(true, this);
+    }
 
 }
