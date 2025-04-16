@@ -18,8 +18,8 @@ public class StatsList : MonoBehaviour {
 
         string text = "";
         if(im.player.equipment.weaponLeft != null)
-            text += $"<size=70%><color=black>Weapon: \t{im.player.equipment.weaponLeft.Name}\n";
-        else text += "<size=70%><color=black>Weapon: \tN/A\n";
+            text += $"<size=70%><color=white>Weapon: \t{im.player.equipment.weaponLeft.Name}\n";
+        else text += "<size=70%><color=white>Weapon: \tN/A\n";
         if(im.player.equipment.head != null)
             text += $"Head: \t{im.player.equipment.head.Name}\n";
         else text += "Head: \tN/A\n";
