@@ -108,14 +108,14 @@ public class Player : GameCharacter {
         /// TEMP ///
 
         int[] equipped = new int[7];
-        Type[] items = new Type[inventory.Length];
+        string[] items = new string[inventory.Length];
 
         for(int i = 0; i < inventory.Length; i++){
 
             if(inventory[i] == null)
                 break;
 
-            items[i] = inventory[i].GetType();
+            items[i] = inventory[i].GetType().FullName;
 
             switch(inventory[i]){
 
@@ -152,8 +152,8 @@ public class Player : GameCharacter {
 
         }
 
-
-        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, equipped, items, new int[0], new Type[0]);
+        // TODO SKILLS (waiting for skilltree)
+        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, equipped, items, new int[0], new string[0]);
         return s;
 
     }

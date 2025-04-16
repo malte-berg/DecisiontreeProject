@@ -35,4 +35,6 @@ public class CutsceneManager : MonoBehaviour{
 
     }
 
+    // TODO create save using AsyncOperation
+
 }

@@ -22,13 +22,13 @@ public class Save{
 
     // Items
     [SerializeField] int[] equipped;
-    [SerializeField] Type[] inventory;
+    [SerializeField] string[] inventory;
 
     // Skills
     [SerializeField] int[] levels;
-    [SerializeField] Type[] skills;
+    [SerializeField] string[] skills;
 
-    public Save(int level, int xp, int gold, int skillPoints, int area, int[] combats, int[] equipped, Type[] inventory, int[] levels, Type[] skills){
+    public Save(int level, int xp, int gold, int skillPoints, int area, int[] combats, int[] equipped, string[] inventory, int[] levels, string[] skills){
 
         created = DateTime.Now.ToString("O");
         System.Random random = new System.Random();
