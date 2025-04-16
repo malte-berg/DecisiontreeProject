@@ -60,4 +60,6 @@ public abstract class Skill{
 
     public abstract bool Effect(GameCharacter target);
 
+    public abstract void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm);
+
 }

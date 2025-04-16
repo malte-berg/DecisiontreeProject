@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Heal : Skill {
@@ -34,5 +35,17 @@ public class Heal : Skill {
 
         return true;
     }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm) {
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+
+        sm.SetSprite(this.sprites[0], AbilityRenderer);
+        sm.ChangeOpacity(AbilityRenderer, 1f);
+
+        Transform tr = AbilityRenderer.gameObject.transform;
+
+        sm.RollScales(tr, Vector3.zero, 10, 0.7f, false, true, true);
+    }
+
 
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class Sacrifice : Skill {
 
@@ -7,7 +8,7 @@ public class Sacrifice : Skill {
 
     public Sacrifice() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Sacrifice_Icon"),
-        sprites: null,
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation")},
         gc: null, 
         name: "Sacrifice", 
         power: 0, 
@@ -38,5 +39,16 @@ public class Sacrifice : Skill {
         target.HP -= Mathf.FloorToInt(selfDamage/(gc.Strength * power));
 
         return true;
+    }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm) {
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+        Transform AbilityContainer = AbilityRenderer.gameObject.transform;
+
+        sm.SetSprite(this.sprites[0], AbilityRenderer);
+        sm.ChangeOpacity(AbilityRenderer, 1f);
+
+        sm.AttackAnimation(sender);
+        sm.RollScales(AbilityContainer, Vector3.zero, 10, 0.1f, false, false, false);
     }
 }

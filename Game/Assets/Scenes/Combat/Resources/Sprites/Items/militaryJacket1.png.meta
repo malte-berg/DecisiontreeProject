@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 25da47a753fc55c4fae8d70afe81cb1a
+guid: a42f9e394de4c2c46bcca916347acc54
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8944633762887253246
-    second: Rifle not aimed_0
-  - first:
-      213: -4725127217908977251
-    second: Rifle not aimed_1
+      213: 7645186806803619636
+    second: militaryJacket1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rifle not aimed_0
+      name: militaryJacket1_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 34
-        width: 22
-        height: 19
+        x: 20
+        y: 36
+        width: 35
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 203c32dbbf64ed380800000000000000
-      internalID: -8944633762887253246
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rifle not aimed_1
-      rect:
-        serializedVersion: 2
-        x: 28
-        y: 21
-        width: 12
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d91710284d9fc6eb0800000000000000
-      internalID: -4725127217908977251
+      spriteID: 43f580515e8291a60800000000000000
+      internalID: 7645186806803619636
       vertices: []
       indices: 
       edges: []
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Rifle not aimed_0: -8944633762887253246
-      Rifle not aimed_1: -4725127217908977251
+      militaryJacket1_0: 7645186806803619636
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

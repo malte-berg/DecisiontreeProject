@@ -37,4 +37,18 @@ public class HeatWave : Skill {
         return true;
     }
 
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm) {
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+        Transform AbilityContainer = AbilityRenderer.gameObject.transform;
+
+        sm.SetSprite(this.sprites[0], AbilityRenderer);
+        sm.ChangeOpacity(AbilityRenderer, 1f);
+
+        Vector3 toTarget = targetPos - sender.transform.position; 
+
+        sm.AttackAnimation(sender);
+        sm.LungeTo(sender, toTarget * 0.05f, 0.2f);
+        sm.RollScales(AbilityContainer, toTarget * 0.95f, 10, 0.4f, true, false, false);
+    }
+
 }

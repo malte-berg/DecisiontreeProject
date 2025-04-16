@@ -7,10 +7,10 @@ using Unity.VisualScripting;
 
 public class SpriteManager : MonoBehaviour
 {
-    private Transform spriteContainer;
-    private Transform abilityContainer;
+    public Transform spriteContainer;
+    public Transform abilityContainer;
     public SpriteRenderer spriteRenderer;
-    private Dictionary<string, SpriteRenderer> spriteLayers = new Dictionary<string, SpriteRenderer>();
+    public Dictionary<string, SpriteRenderer> spriteLayers = new Dictionary<string, SpriteRenderer>();
 
     private readonly float ATTACK_TIME = 0.35f; 
     private readonly float DINSTANCE_TO_LUNGE = 0.7f; 
@@ -53,6 +53,14 @@ public class SpriteManager : MonoBehaviour
                 if(equipment.head.sprite != null)
                     SetSprite(equipment.head.sprite, spriteLayers["Head"]); 
             }
+            if(equipment.torso != null) {
+                if(equipment.torso.sprites != null)
+                    SetSprite(equipment.torso.sprites[0], spriteLayers["Torso"]); 
+            }
+            if(equipment.boots != null) {
+                if(equipment.boots.sprite != null)
+                    SetSprite(equipment.boots.sprite, spriteLayers["Boots"]); 
+            }
             if(equipment.weaponLeft != null) {
                 if(equipment.weaponLeft.sprites != null)
                     SetSprite(equipment.weaponLeft.sprites[0], spriteLayers["Weapon"]); 
@@ -61,7 +69,12 @@ public class SpriteManager : MonoBehaviour
         if(!(thisCharacter is Player)){
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-        // continue this pattern when we have more item sprites
+
+        AddShadow();
+    }
+
+    public void SetSprite(Sprite sprite, SpriteRenderer sr) {
+        sr.sprite = sprite;
     }
 
     public void AddShadow() {
@@ -79,12 +92,8 @@ public class SpriteManager : MonoBehaviour
         shadowGroundRenderer.color = new Color(0f, 0f, 0f, 0.6f);
     }
 
-    private void SetSprite(Sprite sprite, SpriteRenderer sr) {
-        sr.sprite = sprite;
-    }
-
     // invoke a number of SetSprites after delays
-    private void RollSprites(List<Sprite> sprites, SpriteRenderer sr, float delay){
+    public void RollSprites(List<Sprite> sprites, SpriteRenderer sr, float delay){
         int l = sprites.Count;
         for(int i = 1; i <= l; i++){
             int frameIndex = i;
@@ -92,67 +101,19 @@ public class SpriteManager : MonoBehaviour
         }
     }
 
-    //new attack animation
-    public void AttackAnimation(string type, GameCharacter thisCharacter) {
-        string characterType = thisCharacter.GetType().Name;
+    public void AttackAnimation(GameCharacter thisCharacter) {
         Equipment equipment = thisCharacter.equipment;
-        if(equipment.weaponLeft != null) {
+        if(equipment.weaponLeft != null && !(equipment.weaponLeft is BrassKnuckles)) {
             RollSprites(thisCharacter.sprites, spriteLayers["Character"], CHANGE_SPRITE_TIME);
-            if(equipment.weaponLeft.sprites != null)
+            if(equipment.weaponLeft.sprites != null) {
                 RollSprites(equipment.weaponLeft.sprites, spriteLayers["Weapon"], CHANGE_SPRITE_TIME);
+                if(equipment.torso.sprites != null)
+                    RollSprites(equipment.torso.sprites, spriteLayers["Torso"], CHANGE_SPRITE_TIME);
+            }
         }
     }
 
-    public void AbilityAnimation(Vector3 targetPos, GameCharacter sender, int selectedSkill, int frames) {
-        
-        Transform pos = spriteLayers["Ability"].gameObject.transform;
-        pos.position += Vector3.forward;
-        Vector3 toTarget = targetPos - pos.position;
-        float attackTime = ATTACK_TIME/2f + Mathf.Abs(toTarget.x) / 40f;
-
-        Skill skillToUse = sender.skills[selectedSkill];
-
-        if(!(skillToUse is Heal || skillToUse is Sacrifice)) {
-            Vector3 lungeOffset = toTarget * DINSTANCE_TO_LUNGE;
-            if(skillToUse is HeatWave) {
-                lungeOffset /= 20f;
-                attackTime /= 2f;
-            }
-            LungeTo(sender, lungeOffset, attackTime); 
-        }
-
-        if (skillToUse.sprites == null){
-            return;
-        }
-        Sprite sprite = sender.skills[selectedSkill].sprites[0];
-
-        if(sprite != null) {
-            pos.GetComponent<SpriteRenderer>().enabled = false;
-            pos.GetComponent<SpriteRenderer>().sprite = sprite;
-
-            bool fade = false;
-            bool isReverse = false;
-            float animationTime = ABILITY_ANIMATION_TIME/2f;
-            if(skillToUse is HeatWave) {
-                isReverse = true;
-                animationTime *= 4f;
-                ChangeOpacity(spriteLayers["Ability"], 0.8f);
-            }
-            if(skillToUse is Heal) {
-                toTarget = Vector3.zero;
-                fade = true;
-                frames *= 2;
-                animationTime *= 6f;
-                pos.localScale = new Vector3(1.3f,1.3f,1.3f);
-                // pos.position += new Vector3(0f,0.2f,0f);
-                ChangeOpacity(spriteLayers["Ability"], 1f);
-            }
-             
-            RollScales(pos, toTarget, frames, animationTime, isReverse, fade);
-        }
-    }
-
-    private void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, bool isReverse, bool fade) {
+    public void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, bool isReverse, bool fade, bool fadeUp) {
         float scale = frames;
         Vector3 originalPos = tr.position;
         tr.position += toTarget * 0.9f;
@@ -165,11 +126,11 @@ public class SpriteManager : MonoBehaviour
                 newScale = (float)(scale-frameIndex) * 0.8f;
             }
 
-            DelayedAction(() => SetScale(tr, newScale, originalPos, frames, frameIndex, fade), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
+            DelayedAction(() => SetScale(tr, newScale, originalPos, frames, frameIndex, fade, fadeUp), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
         }   
     }
 
-    private void SetScale(Transform tr, float scale, Vector3 originalPos, int frames, int frameIndex, bool fade) {
+    private void SetScale(Transform tr, float scale, Vector3 originalPos, int frames, int frameIndex, bool fade, bool fadeUp) {
         SpriteRenderer sr = tr.GetComponent<SpriteRenderer>();
         if(frameIndex >= frames) {
             sr.enabled = false;
@@ -179,7 +140,9 @@ public class SpriteManager : MonoBehaviour
                 sr.enabled = true;
             if(fade) {
                 // tr.Rotate(0f, 0f, 90f);
-                tr.position += new Vector3(0f, 0.015f, 0f);
+                if(fadeUp) {
+                    tr.position += new Vector3(0f, 0.015f, 0f);
+                }
                 ChangeOpacity(sr, 1f/(float)frameIndex);
                 tr.localScale *= 0.98f;
             }else {
@@ -188,8 +151,15 @@ public class SpriteManager : MonoBehaviour
         }
     }
 
+    public void ChangeOpacity(SpriteRenderer sr, float opacity) {
+        Color color = sr.color;
+        color.a = 0.6f;
+        sr.color = color;
+    }
+
+
     // make a character lugne smoothly to the target and back
-    private void LungeTo(GameCharacter thisCharacter, Vector3 offset, float duration) {
+    public void LungeTo(GameCharacter thisCharacter, Vector3 offset, float duration) {
         StartCoroutine(LungeCoroutine(thisCharacter.transform.GetChild(0).transform, offset, duration));
     }
     private IEnumerator LungeCoroutine(Transform t, Vector3 offset, float duration) {
@@ -215,11 +185,7 @@ public class SpriteManager : MonoBehaviour
         t.position = start;
     }
 
-    private void ChangeOpacity(SpriteRenderer sr, float opacity) {
-        Color color = sr.color;
-        color.a = 0.6f;
-        sr.color = color;
-    }
+
 
     // methods for running a certain function after a delay
     // with: "DelayedAction(() => FunctionToRunAfterDelay(Args), 2f);"

@@ -1,8 +1,10 @@
+using UnityEngine;
+
 public class BicycleHelmet : Head{
 
     public BicycleHelmet() : base(
 
-        sprite: null,
+        sprite: Resources.Load<Sprite>("Sprites/Items/bicycleHelmet"),
         name: "Bicycle Helmet",
         value: 12,
         description: "It was a long time ago you last rode a bike, but the protective gear is still here.",
