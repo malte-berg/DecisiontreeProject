@@ -30,6 +30,23 @@ public class SkillTreeTree {
         GetAllNodeRecursive(node.right, nodes);
     }
 
+    public List<Skill> GetUnlocked() {
+        List<Skill> unlockedSkills = new List<Skill>();
+        GetUnlockedRecursive(root, unlockedSkills);
+        return unlockedSkills;
+    }
+
+    void GetUnlockedRecursive(SkillButtonNode node, List<Skill> unlockedSkills) {
+        if (node == null) {
+            return;
+        }
+        if (node.skill.unlocked) {
+            unlockedSkills.Add(node.skill);
+        }
+        GetUnlockedRecursive(node.left, unlockedSkills);
+        GetUnlockedRecursive(node.right, unlockedSkills);
+    }
+
     public SkillButtonNode FindSkill(string skillName) {
         return FindSkillRecursive(root, skillName);
     }
