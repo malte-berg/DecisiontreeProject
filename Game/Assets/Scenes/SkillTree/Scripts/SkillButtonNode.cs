@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class SkillButtonNode : MonoBehaviour
 {
@@ -143,14 +144,43 @@ public class SkillButtonNode : MonoBehaviour
     }
 
     public void DrawLine() {
-        Debug.Log("Drawing line from " + self.name + " to " + (parent != null ? parent.self.name : "null"));
         if (parent != null) {
-            LineRenderer lineRenderer = self.AddComponent<LineRenderer>();
-            lineRenderer.startWidth = 0.1f;
-            lineRenderer.endWidth = 0.1f;
-            lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, self.transform.position);
-            lineRenderer.SetPosition(1, parent.self.transform.position);
+            GameObject rect = new GameObject("Line");
+            rect.layer = LayerMask.NameToLayer("UI");
+            RectTransform rectTransform = rect.AddComponent<RectTransform>();
+
+            float startRadius = self.GetComponent<RectTransform>().sizeDelta.x / 2;
+            float endRadius = parent.GetComponent<RectTransform>().sizeDelta.x / 2;
+
+            Canvas canvas = GetComponentInParent<Canvas>();
+            if (canvas == null) {
+                Debug.LogError("Canvas not found in parent.");
+                return;
+            }
+            rectTransform.SetParent(canvas.transform, false);
+
+            Vector3 startPos = self.transform.position;
+            Vector3 endPos = parent.transform.position;
+            startPos.z = -1;
+            endPos.z = -1;
+
+            Vector3 direction = (endPos - startPos).normalized;
+
+            startPos -= (Vector3) (direction * startRadius);
+            endPos += (Vector3) (direction * endRadius);
+
+            Vector3 midPos = (startPos + endPos) / 2;
+
+            float distance = Vector3.Distance(startPos, endPos);
+            float angle = Mathf.Atan2(endPos.y - startPos.y, endPos.x - startPos.x) * Mathf.Rad2Deg;
+
+            rectTransform.sizeDelta = new Vector2(distance, 5f);
+            rectTransform.position = midPos;
+            rectTransform.rotation = Quaternion.Euler(0, 0, angle);
+
+            Image lineImage = rect.AddComponent<Image>();
+            lineImage.color = Color.white;
+            rectTransform.SetAsFirstSibling();
         }
     }
 }
