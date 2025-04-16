@@ -1069,6 +1069,7 @@ MonoBehaviour:
   - {fileID: 1906170488}
   - {fileID: 1302235440}
   - {fileID: 949225363}
+  skillButtonPrefab: {fileID: 6454624238827218289, guid: d288f55924b10edbeb8206ce4251cd98, type: 3}
 --- !u!1 &838583530
 GameObject:
   m_ObjectHideFlags: 0
@@ -3209,7 +3210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1948196091
 RectTransform:
   m_ObjectHideFlags: 0
