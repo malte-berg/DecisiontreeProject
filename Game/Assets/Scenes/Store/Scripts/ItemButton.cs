@@ -6,8 +6,8 @@ public class ItemButton : MonoBehaviour
     Shop s;
 
     public Button btn;
-    private TextMeshProUGUI detailPanel;
     // item information
+    private TextMeshProUGUI detailPanel;
     public Item currentItem;
     private TextMeshProUGUI priceText;
     // private Image iconImage;
@@ -27,6 +27,11 @@ public class ItemButton : MonoBehaviour
         currentItem = item;
         priceText.text = item.Value.ToString();
 
+        if (s.IsItemPurchased(currentItem))
+        {
+            ButtonClose();
+        }
+
         // iconImage.sprite = ...
 
         //GetComponent<Button>().onClick.AddListener(OnItemClicked);
@@ -34,19 +39,20 @@ public class ItemButton : MonoBehaviour
     }
 
     void DisplayItemDetail()
-    {   
+    {
         detailPanel.text = currentItem.Name + "\n\n" + currentItem.Description;
         //"The item's story or attributes can displayed here."; 
     }
 
     public void ButtonClose()
     {
-        this.GetComponent<Button>().interactable = false; 
+        this.GetComponent<Button>().interactable = false;
     }
+
     private void OnItemClicked()
     {
         DisplayItemDetail();
-        s.ShowDetailPanel(true,this);
-    } 
+        s.ShowDetailPanel(true, this);
+    }
 
 }

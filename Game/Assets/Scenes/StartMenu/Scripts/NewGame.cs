@@ -7,7 +7,7 @@ public class NewGame : MonoBehaviour{
     public void StartNewGame() {
 
         a = GetComponent<AreaInitializer>();
-        /* Blir fel efter pull, ska fixa */
+        // Initialize regionItems in AreaData
         a.Init(); 
 
         // Try to find player game object
