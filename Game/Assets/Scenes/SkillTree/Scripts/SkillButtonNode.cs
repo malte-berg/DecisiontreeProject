@@ -77,7 +77,7 @@ public class SkillButtonNode : MonoBehaviour
             player.SkillPoints -= skill.skillCost;
             Debug.Log($"Upgraded {skill.Name}!");
         } 
-        if (!skill.unlocked && (parent.skill.unlocked || parent == null)) {
+        if (!skill.unlocked && (parent == null || parent.skill.unlocked)) {
             skill.UnlockSkill(player);
             player.AddSkill(skill);
             player.SkillPoints -= skill.skillCost;
