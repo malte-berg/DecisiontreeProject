@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
+using System;
 
 public class Shop : MonoBehaviour
 {
@@ -65,6 +65,10 @@ public class Shop : MonoBehaviour
         {
             itemButton = Instantiate(itemButtonPrefabs, content).GetComponent<ItemButton>();
             itemButton.Init(onSaleItems[i], this);
+            if (IsItemPurchased(itemButton.currentItem))
+            {
+                itemButton.ButtonClose();
+            }
         }
     }
     void TryBuyItem()
@@ -82,6 +86,22 @@ public class Shop : MonoBehaviour
         }
     }
     
+    Boolean IsItemPurchased(Item selectItem)
+    {
+        // itemButton.currentItem.Name;
+        int i = 0;
+        while (player.inventory[i] != null)
+        {
+            if (player.inventory[i].Name == selectItem.Name)
+            {
+                return false;
+            }
+            i++;
+        }
+
+        return true;
+    }
+
     /* void TestItems()
     {
         onSaleItems[0] = new Weapon(

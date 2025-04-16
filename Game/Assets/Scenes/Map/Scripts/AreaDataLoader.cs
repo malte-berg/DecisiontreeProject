@@ -13,7 +13,7 @@ public static class AreaDataLoader
         }
         else
         {
-            Debug.Log("Not found: " + fileName);
+            Debug.LogError("Not found: " + fileName);
             return null;
         }
     }
@@ -44,7 +44,7 @@ public static class AreaDataLoader
     }
 
     public static Item[] GetAreaItems(int areaIndex)
-    {    
+    {
         return Load(areaIndex).RegionItems;
     }
     public static void InitAreaRegionItems(int areaIndex, Item[] regionItems)
