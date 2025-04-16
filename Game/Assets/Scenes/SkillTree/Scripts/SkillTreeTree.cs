@@ -52,13 +52,6 @@ public class SkillTreeTree {
         if (root == null) {
             root = newNode;
         }
-        SkillButtonNode newNode = new SkillButtonNode(skill, null);
-        if (skillType == SkillType.Attack) {
-            if(root.left != null) root.left.AddChild(newNode);
-            else root.AddLeftChild(newNode);
-        } else if (skillType == SkillType.Defense){
-            if (root.right != null) root.right.AddChild(newNode);
-            else root.AddRightChild(newNode);
-        }
+        root.AddChild(newNode);
     }
 }

@@ -1,22 +1,88 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SkillButtonNode : MonoBehaviour
 {
-    public GameObject thisNode;
+    GameObject self;
+    public GameObject skillName;
+    public GameObject skillLevel;
+    public Player player;
     public Skill skill;
     public SkillButtonNode parent;
     public SkillButtonNode right;
     public SkillButtonNode left;
 
-    public void Init(Skill skill, SkillButtonNode parent) {
+    public void Init(GameObject node, Player player, Skill skill, SkillButtonNode parent) {
+        self = node;
+        this.player = player;
         this.skill = skill;
         this.parent = parent;
         this.right = null;
         this.left = null;
+
+        SetNode();
+    }
+
+    public void SetNode() {
+        Image imageComponent = self.GetComponent<Image>();
+        Text textComponent = self.GetComponent<Text>();
+        TMP_Text skillLevelText = self.GetComponent<TMP_Text>();
+
+        if (imageComponent == null) {
+            imageComponent = self.AddComponent<Image>();
+        }
+
+        if (textComponent == null) {
+            textComponent = self.AddComponent<Text>();
+        }
+
+        if (skillLevelText == null) {
+            skillLevelText = self.AddComponent<TMP_Text>();
+        }
+
+        if (imageComponent != null) {
+            if (skill.unlocked) {
+                imageComponent.color = Color.green;
+            } else {
+                imageComponent.color = Color.gray;
+            }
+        }
+
+        if (skillLevelText != null && skill.unlocked) {
+            skillLevelText.text = skill.SkillLevel.ToString();
+        }
+
+        if (skillLevelText != null && !skill.unlocked) {
+            skillLevelText.text = "Unlock";
+        }
+
+        if (textComponent != null){
+            textComponent.text = skill.Name;
+        }
     }
 
     public void OnClick(){
-        // TODO: Implement OnClick
+        GetComponent<AllSkills>().SetPointCounter();
+        if (skill == null) {
+            Debug.Log("Skill not found");
+            return;
+        }
+        if (skill.skillCost > player.SkillPoints) {
+            Debug.Log("Not enough skill points!");
+            return;
+        }
+        if (skill.unlocked) {
+            skill.UpgradeSkill();
+            player.SkillPoints -= skill.skillCost;
+            Debug.Log($"Upgraded {skill.Name}!");
+        } else {
+            skill.UnlockSkill(player);
+            player.AddSkill(skill);
+            player.SkillPoints -= skill.skillCost;
+            Debug.Log($"Unlocked {skill.Name}!");
+        }
+        SetNode();
     }
 
     public void AddChild(SkillButtonNode child) {

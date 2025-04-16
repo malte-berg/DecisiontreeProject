@@ -32,7 +32,11 @@ public class AllSkills : MonoBehaviour {
         */
 
         foreach (Skill skill in allSkills){
-            stt.AddNode(skill, skillButtonPrefab);
+            GameObject skillButton = Instantiate(skillButtonPrefab, transform);
+            SkillButtonNode node = skillButton.GetComponent<SkillButtonNode>();
+            node.Init(skillButton, player, skill, null);
+
+            stt.AddNode(node);
         }
     }
 
