@@ -31,12 +31,12 @@ public class StatsHandler : MonoBehaviour {
 
     //Update the player stats and show the new stats.
     public void UpdateStats(){
-        int newVitality = player.Vitality + vitalityIncrease;
-        int newStrength = player.Strength + strengthIncrease;
-        int newMagic = player.Magic + magicIncrease;
-        player.UpdateStats(newVitality, newStrength, newMagic, statPoints);
+
+        player.UpdateStats(vitalityIncrease, strengthIncrease, magicIncrease);
+        player.StatPoints = statPoints;
         vitalityIncrease = 0; strengthIncrease = 0; magicIncrease = 0;  //Set "+ [number]" to "+ 0" again.
         DisplayStatText();  //Change the stat texts in the windows again.
+        
     }
 
     public void IncreaseStat(string stat){
