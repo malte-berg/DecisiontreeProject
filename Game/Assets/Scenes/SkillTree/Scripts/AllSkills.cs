@@ -10,14 +10,9 @@ public class AllSkills : MonoBehaviour {
     Player player;
     SkillTreeTree stt;
 
-    public Skill[] allSkills;
-
     public void Init() {
         player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
         player.HidePlayer();
-
-        SkillBook sb = new SkillBook();
-        allSkills = sb.CreateSkillBook();
 
         // Initialize the skill tree with the skills
         stt = new SkillTreeTree(player);
