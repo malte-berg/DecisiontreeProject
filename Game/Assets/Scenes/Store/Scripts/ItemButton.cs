@@ -6,8 +6,8 @@ public class ItemButton : MonoBehaviour
     Shop s;
 
     public Button btn;
-    private TextMeshProUGUI detailPanel;
     // item information
+    private TextMeshProUGUI detailPanel;
     public Item currentItem;
     private TextMeshProUGUI priceText;
     // private Image iconImage;

@@ -74,7 +74,7 @@ public class Shop : MonoBehaviour
         if (itemButton == null) return;
         int value = itemButton.currentItem.Value;
 
-        if (playerGold >= value && inventoryIndex < player.inventory.Length)//&& inventoryIndex < player.inventory.Length)
+        if (playerGold >= value && inventoryIndex < player.inventory.Length)
         {
             playerGold -= value;
             player.Gold = playerGold;
