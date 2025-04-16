@@ -51,7 +51,7 @@ public class Combat : MonoBehaviour{
 
         // Spawn enemies
         for (int i = 0; i < 4; i++)
-            SpawnEnemy(enemyPrefabs[0]);
+            SpawnEnemy(enemyPrefabs[player.CurrentAreaIndex-1]);
 
         GetCurrentCharacter();
 
