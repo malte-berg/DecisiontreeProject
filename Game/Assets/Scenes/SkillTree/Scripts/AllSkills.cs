@@ -15,11 +15,8 @@ public class AllSkills : MonoBehaviour {
         player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
         player.HidePlayer();
 
-        allSkills = new Skill[8];
-        allSkills[0] = new Punch(player);
-        allSkills[1] = new HeatWave(player);
-        allSkills[2] = new Heal(player);
-        allSkills[3] = new Sacrifice(player);
+        SkillBook sb = new SkillBook();
+        allSkills = sb.CreateSkillBook();
 
         SetSkillLevelCounters();
         SetSkillColors();

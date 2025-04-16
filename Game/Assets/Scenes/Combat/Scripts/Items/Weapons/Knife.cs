@@ -8,7 +8,7 @@ public class Knife : Weapon{
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/knife1"), Resources.Load<Sprite>("Sprites/Items/knife2")},
         name: "Knife",
         value: 15,
-        description: "A slightly blunt kitchen knife that has been used many times for multiple things..",
+        description: "A slightly blunt kitchen knife that has been used many times for multiple things.",
         vitalityAdd: 0,
         vitalityMult: 1,
         armorAdd: 0,

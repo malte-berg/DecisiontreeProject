@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class Skill{
     public List<Sprite> sprites;
 
-    GameCharacter gc;
+    public GameCharacter gc;
     string name;
     public float power;
     public int manaCost;
@@ -20,8 +20,8 @@ public abstract class Skill{
     public string DescriptionPanel { 
         get {
             return description +
-                   "Skill level: —-\n" + // vissa skill level istället för power?
-                   "Mana Cost: " + manaCost.ToString() + "\n" +  
+                   //"Skill level: —-\n" + // vissa skill level istället för power?
+                   "\nMana Cost: " + manaCost.ToString() + "\n" +  
                    "Cooldown: —-\n"; 
         } 
     }
@@ -43,11 +43,13 @@ public abstract class Skill{
         this.skillLevel = 0;
     }
 
-    public void UnlockSkill() {
+    public void UnlockSkill(GameCharacter who) {
 
+        MonoBehaviour.print($"{who.CName} unlocked: {Name}");
         power = 1;
         skillLevel = 1;
         unlocked = true;
+        gc = who;
 
     }
 

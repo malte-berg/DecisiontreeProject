@@ -1,12 +1,11 @@
 using UnityEngine;
 
 public class Heal : Skill {
-    GameCharacter gc;
     
-    public Heal(GameCharacter gc) : base(
+    public Heal() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Heal_Icon"),
         sprites: null,
-        gc: gc,
+        gc: null,
         name: "Heal",
         power: 0,
         manaCost: 0,
@@ -15,8 +14,6 @@ public class Heal : Skill {
         
         ){
 
-        this.gc = gc;
-        
     }
 
     public override bool Effect(GameCharacter target){

@@ -32,7 +32,7 @@ public class AbilityManager : MonoBehaviour {
         Skill playerSkill = GetPlayerSkillByName(skill.Name);
 
         if (playerSkill == null) {
-            skill.UnlockSkill();
+            skill.UnlockSkill(player);
             player.AddSkill(skill);
             player.SkillPoints -= skill.skillCost;
             Debug.Log($"Unlocked {skill.Name}!");

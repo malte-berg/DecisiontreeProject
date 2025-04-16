@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03413086a039f47a2837ef7e6a2fa232, type: 3}
+  m_Script: {fileID: 11500000, guid: 20e5dd351d6f4a243b4e49bff767acf2, type: 3}
   m_Name: Area1
   m_EditorClassIdentifier: 
   areaIndex: 1
   areaName: Area1
-  backgroundImage: {fileID: 2979148220289618135, guid: 098ea4e274cd94e4eb53d42e8ed9c94d, type: 3}
+  backgroundImage: {fileID: 2979148220289618135, guid: 49a0a314a0f49504286984d924596d12, type: 3}
   bgm: {fileID: 0}
   unlock: 1

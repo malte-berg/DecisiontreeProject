@@ -11,8 +11,16 @@ public class NewGame : MonoBehaviour{
         ai = GetComponent<AreaInitializer>();
         ai.Init();
 
-        Instantiate(playerPrefab).GetComponent<Player>().Init();
-        SceneManager.LoadScene("InGameMenu");
+        // Try to find player game object
+        GameObject playerObject = GameObject.Find("Player");
+
+        // If player game object does not exist, create it
+        if (playerObject == null) {
+            Instantiate(playerPrefab).GetComponent<Player>().Init();
+        } // Else, just continue with already created player
+        
+        GetComponent<SceneSwitch>().WithCutscene = 0;
+        GetComponent<SceneSwitch>().SwitchScene(1);
 
     }
     

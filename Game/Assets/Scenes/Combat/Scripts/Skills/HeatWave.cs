@@ -2,12 +2,11 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class HeatWave : Skill {
-    GameCharacter gc;
 
-    public HeatWave(GameCharacter gc) : base(
+    public HeatWave() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/HeatWave_Icon"),
         sprites: null,
-        gc: gc, 
+        gc: null, 
         name: "Heat Wave", 
         power: 0, 
         manaCost: 0, 
@@ -16,8 +15,6 @@ public class HeatWave : Skill {
         
         ){
 
-        this.gc = gc;
-        
     }
 
     public override bool Effect(GameCharacter target) {
@@ -33,8 +30,8 @@ public class HeatWave : Skill {
         Combat combat = target.c;
         List<Enemy> enemies = combat.Enemies;
 
-        foreach (GameCharacter enemy in enemies){
-            enemy.TakeDamage(Mathf.FloorToInt(damageDealt));
+        for (int i = enemies.Count - 1; i >= 0; i--) {
+            enemies[i].TakeDamage(Mathf.FloorToInt(damageDealt));
         }
 
         return true;

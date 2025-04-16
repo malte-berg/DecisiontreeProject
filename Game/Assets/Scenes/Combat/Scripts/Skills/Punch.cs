@@ -1,26 +1,21 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Punch : Skill
 {
 
-    GameCharacter gc;
-
-    public Punch(GameCharacter gc) : base(
+    public Punch() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Punch_Icon"),
         sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation")},
-        gc: gc, 
+        gc: null,
         name: "Punch", 
         power: 0, 
-        manaCost: 0, 
+        manaCost: 0,
         skillCost: 1,
         description: "Perform a basic attack on one enemy."
         
         ){
 
-        this.gc = gc;
-        
     }
 
     public override bool Effect(GameCharacter target)
