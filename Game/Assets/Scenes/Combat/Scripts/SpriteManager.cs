@@ -47,7 +47,7 @@ public class SpriteManager : MonoBehaviour
             if(equipment.head != null) {
                 if(equipment.head.sprite != null)
                     SetSprite(equipment.head.sprite, spriteLayers["Head"]); 
-            }else SetSprite(null, spriteLayers["Head"]);
+            }
             if(equipment.torso != null) {
                 if(equipment.torso.sprites != null)
                     SetSprite(equipment.torso.sprites[0], spriteLayers["Torso"]); 
