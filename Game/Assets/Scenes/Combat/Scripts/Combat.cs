@@ -48,13 +48,10 @@ public class Combat : MonoBehaviour{
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
-
-        for (int i = 0; i < 4; i++) 
-            // SpawnEnemy(enemyPrefabs[i]); // To spawn all different types of enemy
-            SpawnEnemy(enemyPrefabs[0]);
-
+      
         // Spawn enemies
-        // for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
+            SpawnEnemy(enemyPrefabs[player.CurrentAreaIndex-1]);
 
         GetCurrentCharacter();
 

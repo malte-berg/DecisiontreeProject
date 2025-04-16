@@ -549,55 +549,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201465554}
   m_CullTransparentMesh: 1
---- !u!1 &260007620
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 260007622}
-  - component: {fileID: 260007621}
-  m_Layer: 0
-  m_Name: StatsHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &260007621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260007620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b491b43f3153c4a8f837afcb86d749ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vitalityText: {fileID: 270071696}
-  strengthText: {fileID: 728269636}
-  magicText: {fileID: 1503022311}
-  statPointsText: {fileID: 178138154}
-  player: {fileID: 7782686661791039865, guid: 86422ab414f0293409b6742ab03c10f4, type: 3}
---- !u!4 &260007622
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260007620}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 552.36005, y: 321.4796, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &270071694
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +768,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260007621}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: DecreaseStat
         m_Mode: 5
@@ -950,7 +901,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260007621}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: DecreaseStat
         m_Mode: 5
@@ -1772,7 +1723,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260007621}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: IncreaseStat
         m_Mode: 5
@@ -1905,7 +1856,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260007621}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: DecreaseStat
         m_Mode: 5
@@ -2850,7 +2801,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260007621}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: IncreaseStat
         m_Mode: 5
@@ -3126,7 +3077,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260007621}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: IncreaseStat
         m_Mode: 5
@@ -3780,6 +3731,9 @@ MonoBehaviour:
   strengthText: {fileID: 728269636}
   magicText: {fileID: 1503022311}
   statPointsText: {fileID: 178138154}
+  expText: {fileID: 542097944}
+  levelText: {fileID: 1068846325}
+  expBar: {fileID: 201465556}
   player: {fileID: 7782686661791039865, guid: 86422ab414f0293409b6742ab03c10f4, type: 3}
 --- !u!1 &1999484717
 GameObject:
@@ -3864,7 +3818,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 260007621}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StatsHandler, Assembly-CSharp
         m_MethodName: UpdateStats
         m_Mode: 1
@@ -4205,4 +4159,3 @@ SceneRoots:
   - {fileID: 1102938999}
   - {fileID: 1746211055}
   - {fileID: 360335222}
-  - {fileID: 260007622}
