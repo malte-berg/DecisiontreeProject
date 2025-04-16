@@ -24,51 +24,50 @@ public class Shop : MonoBehaviour
 
     void Awake()
     {
-        DataFromPlayer();
         Init();
     }
 
     void Init()
     {
         // TestItems();
+        DataFromPlayer();
         LoadItems();
 
         buyButton.onClick.RemoveAllListeners();
         buyButton.onClick.AddListener(OnBuyButtonClick);
-        
+
         ShowDetailPanel(false, null);
         UpdateGoldText();
     }
-    
-     void DataFromPlayer(){
+
+    void DataFromPlayer()
+    {
         player = GameObject.Find("Player").GetComponent<Player>(); // finns kanske utrymme för optimering
         player.HidePlayer();
         playerGold = player.Gold;
         inventoryIndex = 0;
+        // find the first empty space of the player inventory (array)
         while (inventoryIndex < player.inventory.Length && player.inventory[inventoryIndex] != null)
         {
             inventoryIndex++;
         }
-        Debug.Log("inventoryIndex: "+inventoryIndex);
+        Debug.Log("inventoryIndex: " + inventoryIndex);
     }
 
     void LoadItems()
     {
         onSaleItems = AreaDataLoader.GetAreaItems(player.CurrentAreaIndex);
-        
-        if (onSaleItems == null) {
+
+        if (onSaleItems == null)
+        {
             Debug.Log("onSaleItems is null");
-            return; 
+            return;
         }
 
         for (int i = 0; i < onSaleItems.Length; i++)
         {
             itemButton = Instantiate(itemButtonPrefabs, content).GetComponent<ItemButton>();
             itemButton.Init(onSaleItems[i], this);
-            if (IsItemPurchased(itemButton.currentItem))
-            {
-                itemButton.ButtonClose();
-            }
         }
     }
     void TryBuyItem()
@@ -76,17 +75,20 @@ public class Shop : MonoBehaviour
         if (itemButton == null) return;
         int value = itemButton.currentItem.Value;
 
-        if (playerGold >= value )//&& inventoryIndex < player.inventory.Length)
+        if (playerGold >= value && inventoryIndex < player.inventory.Length)
         {
             playerGold -= value;
             player.Gold = playerGold;
+            // the player inventory is a fixed-size array
             player.inventory[inventoryIndex++] = itemButton.currentItem;
             itemButton.ButtonClose();
+            // close buyButton
+            buyButton.interactable = false;
             UpdateGoldText();
         }
     }
-    
-    Boolean IsItemPurchased(Item selectItem)
+
+    public Boolean IsItemPurchased(Item selectItem)
     {
         // itemButton.currentItem.Name;
         int i = 0;
@@ -94,31 +96,13 @@ public class Shop : MonoBehaviour
         {
             if (player.inventory[i].Name == selectItem.Name)
             {
-                return false;
+                return true;
             }
             i++;
         }
 
-        return true;
+        return false;
     }
-
-    /* void TestItems()
-    {
-        onSaleItems[0] = new Weapon(
-            null,
-            "Sword",
-            450, "swrd", 
-            0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f 
-        );
-
-        onSaleItems[1] = new Head(
-            null,
-            "Head",
-            300, "hed",
-            0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f, 0, 1.0f
-        );
-
-    } */
 
     void UpdateGoldText()
     {
@@ -128,6 +112,8 @@ public class Shop : MonoBehaviour
     public void ShowDetailPanel(bool show, ItemButton btn)
     {
         detailPanel.SetActive(show);
+        // activate buyButton
+        buyButton.interactable = true;
         itemButton = btn;
     }
 
