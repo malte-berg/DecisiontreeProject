@@ -11,7 +11,7 @@ public class AllSkills : MonoBehaviour {
     SkillTreeTree stt;
 
     public void Init() {
-        player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); // bad practice
         player.HidePlayer();
 
         // Initialize the skill tree with the skills
