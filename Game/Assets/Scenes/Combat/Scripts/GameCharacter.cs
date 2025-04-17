@@ -22,24 +22,72 @@ public class GameCharacter : MonoBehaviour{
 
     public string CName{get { return cName; } set {this.cName = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
-    public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentSum(0)) * GetEquipmentMult(0)); } set{ this.vitality = value; }}
-    public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentSum(1)) * GetEquipmentMult(1)); } set { this.armor = value; }}
-    public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentSum(2)) * GetEquipmentMult(2)); } set{ this.strength = value; }}
-    public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentSum(3)) * GetEquipmentMult(3)); } set{ this.magic = value; }}
-    public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentSum(4)) * GetEquipmentMult(4)); } set{ this.mana = value; }}
+    
+    public int Vitality{ get {
+        return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // VITALITY CALCULATED
+                    (vitality + GetEquipmentSum(0)) * GetEquipmentMult(0)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(0) * GetEffectFactor(0)
+            );
+    } set{ this.vitality = value; }}
+
+    public int Armor{ get {
+         return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // ARMOR CALCULATED
+                    (armor + GetEquipmentSum(1)) * GetEquipmentMult(1)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(1) * GetEffectFactor(1)
+            );
+    } set { this.armor = value; }}
+
+    public int Strength{get {
+        return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // STRENGTH CALCULATED
+                    (strength + GetEquipmentSum(2)) * GetEquipmentMult(2)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(2) * GetEffectFactor(2)
+            );
+    } set{ this.strength = value; }}
+
+    public int Magic{get {
+         return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // MAGIC CALCULATED
+                    (magic + GetEquipmentSum(3)) * GetEquipmentMult(3)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(3) * GetEffectFactor(3)
+            );
+    } set{ this.magic = value; }}
+
+    public int Mana{get{
+         return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // MANA CALCULATED
+                    (mana + GetEquipmentSum(4)) * GetEquipmentMult(4)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(4) * GetEffectFactor(4)
+            );
+    } set{ this.mana = value; }}
+    
     public int MaxMana{get{ return maxMana; } set {this.maxMana = value; }}
 
     // SKILLS
     public Skill[] skills;
-
+    public List<Skill> unlockedSkills = new List<Skill>();
     int skillCount;
     public int SkillCount{ get{ return skillCount; }}
-
     int selectedSkill = 0;
 
     // INVENTORY
     public Equipment equipment;
     public Item[] inventory;
+
+    // STATUS EFFECT
+    public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
     // to change sprite
     SpriteManager spriteManager;
@@ -184,6 +232,49 @@ public class GameCharacter : MonoBehaviour{
         vitality += vitDelta;
         strength += strDelta;
         magic += magDelta;
+    }
+
+    public int[] GetBaseStats(){
+
+        int[] temp = {
+            vitality,
+            armor,
+            strength,
+            magic,
+            mana
+        };
+
+        return temp;
+    }
+
+    int GetEffectSum(int type){
+
+        int sum = 0;
+
+        for(int i = 0; i < statusEffects.Count; i++){
+
+            if(statusEffects[i].EffectType == type)
+                sum += statusEffects[i].Delta;
+
+        }
+
+        return sum;
+
+    }
+
+    float GetEffectFactor(int type){
+
+        float factor = 0;
+
+        for(int i = 0; i < statusEffects.Count; i++){
+
+            if(statusEffects[i].EffectType == type)
+                factor *= statusEffects[i].DeltaF;
+
+        }
+
+        return factor;
+
     }
 
     public float GetEquipmentMult(int type){

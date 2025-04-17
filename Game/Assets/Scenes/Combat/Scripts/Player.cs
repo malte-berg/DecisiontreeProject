@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Player : GameCharacter {
 
+    // GAME STATS
+    long seed;
+    public long Seed{ get { return seed; }}
+
     // PLAYER STATS
     int gold;                   //For buying items in the store window.
     int skillPoints;            //For unlocking new abilities in the skill tree window.
     int statPoints;             //For increasing stats in the stats window.
     int currentAreaIndex;       //For record the current area of ​​the role
-    int[] combatsWon = new int[3];
+    int[] combatsWon = new int[4];
     int currentLevel;
     int currentExp;
     int expToNextLevel;
@@ -108,12 +112,12 @@ public class Player : GameCharacter {
         /// TEMP ///
 
         int[] equipped = new int[7];
-        string[] items = new string[inventory.Length];
 
-        for(int i = 0; i < inventory.Length; i++){
+        int inventoryCount = 0;
+        for(; inventoryCount < inventory.Length && inventory[inventoryCount] != null; ++inventoryCount);
+        string[] items = new string[inventoryCount];
 
-            if(inventory[i] == null)
-                break;
+        for(int i = 0; i < inventory.Length && inventory[i] != null; i++){
 
             items[i] = inventory[i].GetType().FullName;
 
@@ -152,8 +156,26 @@ public class Player : GameCharacter {
 
         }
 
-        // TODO SKILLS (waiting for skilltree)
-        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, equipped, items, new int[0], new string[0]);
+        string[] unlocked = new string[unlockedSkills.Count];
+        int[] selected = new int[skills.Length];
+
+        for(int i = 0; i < selected.Length; i++)
+            selected[i] = -1;
+
+        int[] levels = new int[unlockedSkills.Count];
+
+        for(int i = 0; i < unlocked.Length; i++){
+            unlocked[i] = unlockedSkills[i].GetType().FullName;
+            levels[i] = unlockedSkills[i].SkillLevel;
+            for(int ii = 0; ii < skills.Length; ii++){
+                if(skills[ii] == unlockedSkills[i])
+                    selected[ii] = i;
+            }
+        }
+
+        int[] stats = GetBaseStats();
+
+        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, stats, equipped, items, levels, selected, unlocked);
         return s;
 
     }
