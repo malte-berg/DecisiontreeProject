@@ -46,6 +46,7 @@ public class AllSkills : MonoBehaviour {
         sacrifice.Init(skillButton, player, new Sacrifice(), heal, pointCounterText);
 
         heal.AddChild(sacrifice);
+        stt.UpdateNodes(punch);
     }
 
     void Awake() {
