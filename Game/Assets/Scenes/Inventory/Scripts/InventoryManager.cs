@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour{
 
     public void Init(){
 
-        player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); // bad practice
 
         // Show and position player above stats
         player.ShowPlayer();

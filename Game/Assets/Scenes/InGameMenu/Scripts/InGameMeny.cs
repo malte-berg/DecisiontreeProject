@@ -11,7 +11,7 @@ public class TEMP : MonoBehaviour{
 
     void Awake() {
         
-        player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         player.HidePlayer();
 
         // try to avoid unnecessary performance overhead
