@@ -31,6 +31,7 @@ public class GameCharacter : MonoBehaviour{
 
     // SKILLS
     public Skill[] skills;
+    public List<Skill> unlockedSkills = new List<Skill>();
 
     int skillCount;
     public int SkillCount{ get{ return skillCount; }}

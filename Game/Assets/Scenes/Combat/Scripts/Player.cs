@@ -152,8 +152,24 @@ public class Player : GameCharacter {
 
         }
 
-        // TODO SKILLS (waiting for skilltree)
-        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, equipped, items, new int[0], new string[0]);
+        string[] unlocked = new string[unlockedSkills.Count];
+        int[] selected = new int[skills.Length];
+
+        for(int i = 0; i < selected.Length; i++)
+            selected[i] = -1;
+
+        int[] levels = new int[unlockedSkills.Count];
+
+        for(int i = 0; i < unlocked.Length; i++){
+            unlocked[i] = unlockedSkills[i].GetType().FullName;
+            levels[i] = unlockedSkills[i].SkillLevel;
+            for(int ii = 0; ii < skills.Length; ii++){
+                if(skills[ii] == unlockedSkills[i])
+                    selected[ii] = i;
+            }
+        }
+
+        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, equipped, items, levels, selected, unlocked);
         return s;
 
     }

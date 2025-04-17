@@ -6,6 +6,7 @@ public class Save{
     
     // Save specific
     [SerializeField] string created;
+    [SerializeField] int version;
     [SerializeField] long seed;
 
     // Experience
@@ -26,11 +27,13 @@ public class Save{
 
     // Skills
     [SerializeField] int[] levels;
+    [SerializeField] int[] selected;
     [SerializeField] string[] skills;
 
-    public Save(int level, int xp, int gold, int skillPoints, int area, int[] combats, int[] equipped, string[] inventory, int[] levels, string[] skills){
+    public Save(int level, int xp, int gold, int skillPoints, int area, int[] combats, int[] equipped, string[] inventory, int[] levels, int[] selected, string[] skills){
 
         created = DateTime.Now.ToString("O");
+        version = 3;
         System.Random random = new System.Random();
         byte[] buffer = new byte[8];
         random.NextBytes(buffer);
@@ -44,6 +47,7 @@ public class Save{
         this.equipped = equipped;
         this.inventory = inventory;
         this.levels = levels;
+        this.selected = selected;
         this.skills = skills;
     
     }
