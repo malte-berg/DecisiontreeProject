@@ -949,6 +949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 1131403951}
   dialogueText: {fileID: 925601937}
+  dialogueActive: 1
 --- !u!114 &925601937 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7263969493407637892, guid: 2ae028b9aaeec14498078b7f0c8cb0d7, type: 3}
@@ -1841,7 +1842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5591877132276562588, guid: 2ae028b9aaeec14498078b7f0c8cb0d7, type: 3}
       propertyPath: m_text
-      value: 
+      value: Name
       objectReference: {fileID: 0}
     - target: {fileID: 6517285546821349484, guid: 2ae028b9aaeec14498078b7f0c8cb0d7, type: 3}
       propertyPath: m_Name
@@ -1849,7 +1850,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7263969493407637892, guid: 2ae028b9aaeec14498078b7f0c8cb0d7, type: 3}
       propertyPath: m_text
-      value: 
+      value: This is where the dialogue text will go.
       objectReference: {fileID: 0}
     - target: {fileID: 7594531234322362982, guid: 2ae028b9aaeec14498078b7f0c8cb0d7, type: 3}
       propertyPath: m_Pivot.x
@@ -2136,7 +2137,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 84207846}
+  - {fileID: 892806592}
   - {fileID: 5559760933540300019}
   - {fileID: 1107364425}
   - {fileID: 963447663}
-  - {fileID: 892806592}
