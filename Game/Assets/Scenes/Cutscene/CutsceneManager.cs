@@ -22,13 +22,14 @@ public class CutsceneManager : MonoBehaviour{
         AsyncOperation arrivingSceneOp = SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         arrivingSceneOp.allowSceneActivation = false;
 
-        if(cutscene >= 0 && cutscene < sceneScripts.Length){
+        if(cutscene >= 0 && cutscene < sceneScripts.Length) {
 
             sceneScripts[cutscene].LoadCutscene(dialogueBoxGO);
             yield return sceneScripts[cutscene].RunAnimation();
 
         }
 
+        Destroy(GameObject.Find("Canvas"));
         arrivingSceneOp.allowSceneActivation = true;
 
         while(!arrivingSceneOp.isDone)
