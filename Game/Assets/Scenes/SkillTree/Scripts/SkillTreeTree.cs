@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SkillTreeTree {
     public SkillButtonNode root;
@@ -73,4 +74,21 @@ public class SkillTreeTree {
 
         root.AddChild(newNode);
     }
+
+    public void UpdateNodes(SkillButtonNode node) {
+        
+        if (node == null)
+            return;
+        Skill found = player.skills.FirstOrDefault(s => s?.Name == node.skill?.Name);
+
+        if (found != null)
+            node.skill = found;
+
+        node.SetNode();
+        
+        UpdateNodes(node.left);
+        UpdateNodes(node.right);
+
+    }
+
 }
