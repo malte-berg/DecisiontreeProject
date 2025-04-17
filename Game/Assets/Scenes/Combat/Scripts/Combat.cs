@@ -204,8 +204,46 @@ public class Combat : MonoBehaviour{
             return;
         }
 
-        turn = (turn + 1) % (enemies.Count + 1);
+        NewTurn();
+
+    }
+
+    void NewTurn(){
+
         currentC = GetCurrentCharacter();
+        List<StatusEffect> se = currentC.statusEffects;
+
+        // Decrement and remove status effects
+        for(int i = 0; i < se.Count; i++){
+
+            if(se[i].Turns == 0){
+
+                se.RemoveAt(i);
+                i--;
+                continue;
+
+            }
+
+            se[i].DecrementEffect();
+
+        }
+
+        // Calculate next turn index
+        turn = (turn + 1) % (enemies.Count + 1);
+
+        currentC = GetCurrentCharacter();
+        se = currentC.statusEffects;
+
+        for(int i = 0; i < se.Count; i++){
+
+            if(se[i].EffectType == 5){ // Stunned skipping turn
+
+                NewTurn();
+                return;
+                
+            }
+
+        }
 
         if(currentC is Enemy)
             new Task(async () => { (currentC as Enemy).AI(this, player);}).Start();
