@@ -37,7 +37,8 @@ But it didn't matter.
         Narrator§Anyone can enter the Arena, and the final victor is deemed the “strongest“, and thus is granted the right to lead everyone else in power.
         ");
 
-        db.ContinueDialouge();
+        db.ContinueDialogue();
+        waitingForDialogue = true;
 
         while(waitingForDialogue)
             yield return null;

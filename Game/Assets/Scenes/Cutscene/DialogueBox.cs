@@ -19,9 +19,7 @@ public class DialogueBox : MonoBehaviour{
 
     public void Enqueue(string dialogue){
 
-        sc.waitingForDialogue = true;
         queue.Add(dialogue);
-        print(queue.Count);
 
     }
 
@@ -39,13 +37,17 @@ public class DialogueBox : MonoBehaviour{
 
     }
 
-    public void ContinueDialouge(){
+    public void ContinueDialogue(){
 
         if(queue.Count > 0)
             DisplayNext();
 
-        transform.GetChild(0).gameObject.SetActive(false);
-        sc.waitingForDialogue = false;
+        else {
+
+            transform.GetChild(0).gameObject.SetActive(false);
+            sc.waitingForDialogue = false;
+
+        }
 
     }
 
