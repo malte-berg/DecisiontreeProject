@@ -25,15 +25,17 @@ public class AreaInitializer : MonoBehaviour
          };
         // currently it is just a test, specific items need to be conceived
         religionItems[2] = new Item[] {
-            new Excalibur(),
-            new BicycleHelmet(),
+            new SteelToedBoots(),
+            new ClimbingHelmet(),
             new Chainmail(),
-            new Katana()
+            new BrassKnuckles(),
+            new Broadsword()
         };
         religionItems[3] = new Item[] { 
             new MilitaryJacket(),
             new Katana(),
-            new Chainmail()
+            new SteelToedBoots(),
+            new CombatHelmet()
         };
 
         /* AreaDataLoader.InitAreaRegionItems(1, religionItems[1]);
