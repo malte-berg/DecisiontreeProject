@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
     //FIFO - First in, First out. Contains the sentences to show for the dialogue.
     private Queue<string> sentences;
 
+    public bool dialogueActive = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Init()
     {
@@ -19,6 +21,7 @@ public class DialogueManager : MonoBehaviour
 
     //Starts the dialogue for this screen.
     public void StartDialogue (Dialogue dialogue){
+        dialogueActive = true;
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -48,6 +51,7 @@ public class DialogueManager : MonoBehaviour
         // // Make the text inside the dialogue window empty.
         // dialogueText.text = null;
         // nameText.text = null;
+        dialogueActive = false;
         Debug.Log("End of convo");
     }
 }
