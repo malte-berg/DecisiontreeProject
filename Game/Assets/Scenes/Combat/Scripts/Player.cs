@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : GameCharacter {
 
+    // GAME STATS
+    long seed;
+    public long Seed{ get { return seed; }}
+
     // PLAYER STATS
     int gold;                   //For buying items in the store window.
     int skillPoints;            //For unlocking new abilities in the skill tree window.
@@ -108,12 +112,12 @@ public class Player : GameCharacter {
         /// TEMP ///
 
         int[] equipped = new int[7];
-        string[] items = new string[inventory.Length];
 
-        for(int i = 0; i < inventory.Length; i++){
+        int inventoryCount = 0;
+        for(; inventoryCount < inventory.Length && inventory[inventoryCount] != null; ++inventoryCount);
+        string[] items = new string[inventoryCount];
 
-            if(inventory[i] == null)
-                break;
+        for(int i = 0; i < inventory.Length && inventory[i] != null; i++){
 
             items[i] = inventory[i].GetType().FullName;
 
@@ -169,7 +173,9 @@ public class Player : GameCharacter {
             }
         }
 
-        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, equipped, items, levels, selected, unlocked);
+        int[] stats = GetBaseStats();
+
+        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, stats, equipped, items, levels, selected, unlocked);
         return s;
 
     }

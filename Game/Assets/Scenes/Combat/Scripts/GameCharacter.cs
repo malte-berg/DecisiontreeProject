@@ -187,6 +187,19 @@ public class GameCharacter : MonoBehaviour{
         magic += magDelta;
     }
 
+    public int[] GetBaseStats(){
+        
+        int[] temp = {
+            vitality,
+            armor,
+            strength,
+            magic,
+            mana
+        };
+
+        return temp;
+    }
+
     public float GetEquipmentMult(int type){
 
         float factor = 1;
