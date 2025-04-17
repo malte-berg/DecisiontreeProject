@@ -13,7 +13,7 @@ public class SceneSwitch : MonoBehaviour{
         if(SceneManager.GetActiveScene().buildIndex == 0)
             return;
 
-        GameObject p = GameObject.Find("Player");
+        GameObject p = GameObject.FindGameObjectWithTag("Player");
 
         if(p == null)
             LoadScene(0);

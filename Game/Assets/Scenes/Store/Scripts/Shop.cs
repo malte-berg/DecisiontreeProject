@@ -42,7 +42,7 @@ public class Shop : MonoBehaviour
 
     void DataFromPlayer()
     {
-        player = GameObject.Find("Player").GetComponent<Player>(); // finns kanske utrymme för optimering
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); // finns kanske utrymme för optimering
         player.HidePlayer();
         playerGold = player.Gold;
         inventoryIndex = 0;

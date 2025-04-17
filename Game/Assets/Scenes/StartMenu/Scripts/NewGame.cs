@@ -11,7 +11,7 @@ public class NewGame : MonoBehaviour{
         a.Init(); 
 
         // Try to find player game object
-        GameObject playerObject = GameObject.Find("Player");
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         // If player game object does not exist, create it
         if (playerObject == null){

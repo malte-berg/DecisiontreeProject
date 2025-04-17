@@ -11,14 +11,14 @@ public class Intro : SceneScript {
 
     public override IEnumerator RunAnimation() {
         //Add dialogue box to scene inside of "Canvas" object.
-        dialogueBox = Instantiate(dialogueBox, GameObject.Find("Canvas").transform);
+        dialogueBox = Instantiate(dialogueBox, GameObject.FindGameObjectWithTag("Canvas").transform);
 
         //Get name and dialogue text components.
         nameText = dialogueBox.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         dialogueText = dialogueBox.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
         //Set some public attributes of the dialogue manager.
-        DialogueManager dialogueManager = GameObject.Find("DialogueManager").GetComponent<DialogueManager>();
+        DialogueManager dialogueManager = GameObject.FindGameObjectWithTag("DialogueManager").GetComponent<DialogueManager>();
         dialogueManager.nameText = nameText;
         dialogueManager.dialogueText = dialogueText;
 
@@ -27,7 +27,7 @@ public class Intro : SceneScript {
 
         //Set dialogue box "continue" button to the correct onClick functionality
         dialogueBox.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => dialogueManager.DisplayNextSentence());
-        
+
         while(dialogueManager.dialogueActive){
             yield return null;
         }

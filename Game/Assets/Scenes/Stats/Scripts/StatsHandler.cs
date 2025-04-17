@@ -18,7 +18,7 @@ public class StatsHandler : MonoBehaviour {
     public Player player;
     
     void Start() {
-        player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this (TAGET FRÅN Combat.cs)
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         this.statPoints = player.StatPoints;    //Get player's current amount of stat points.
         DisplayStatText(); //Make sure the stat texts show the correct player stats.
     }

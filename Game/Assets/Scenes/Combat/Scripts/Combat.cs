@@ -30,7 +30,7 @@ public class Combat : MonoBehaviour{
         markerT = marker.transform;
         targeting = Instantiate(targeting);
 
-        player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         // Fix player positioning
         player.c = this;
@@ -59,7 +59,7 @@ public class Combat : MonoBehaviour{
 
     Transform CreateBars(GameCharacter who){
 
-        GameObject t = Instantiate(barPrefab, GameObject.Find("Canvas").transform);
+        GameObject t = Instantiate(barPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
 
         // Setup healthBar
         Bar hb = t.transform.GetChild(0).GetChild(0).GetComponent<Bar>();
