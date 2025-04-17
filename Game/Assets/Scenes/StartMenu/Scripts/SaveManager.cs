@@ -13,4 +13,22 @@ public class SaveManager : MonoBehaviour{
 
     }
 
+    public Save ReadSave(string name){
+
+        string path = $"Saves/{name}.txt";
+
+        if (File.Exists(path)) {
+
+            string content = File.ReadAllText(path);
+            return JsonUtility.FromJson<Save>(content);
+
+        } else {
+
+            Debug.LogError("File not found!");
+            return null;
+
+        }
+
+    }
+
 }

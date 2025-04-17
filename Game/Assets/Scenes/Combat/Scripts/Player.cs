@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : GameCharacter {
@@ -175,8 +176,44 @@ public class Player : GameCharacter {
 
         int[] stats = GetBaseStats();
 
-        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, stats, equipped, items, levels, selected, unlocked);
+        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, statPoints, stats, equipped, items, levels, selected, unlocked);
         return s;
+
+    }
+
+    public void LoadPlayer(Save save){
+
+        if(save.version != Save.latestVersion){
+
+            Debug.LogError("Wrong save version");
+            return;
+
+        }
+
+        seed = save.seed;
+        currentLevel = save.level;
+        currentExp = save.xp;
+        gold = save.gold;
+        skillPoints = save.skillPoints;
+        currentAreaIndex = save.area;
+        combatsWon = save.combats; // this might be an issue due to save instance instead of player instance of arrays
+        statPoints = save.statPoints;
+        Vitality = save.stats[0];
+        Armor = save.stats[1];
+        Strength = save.stats[2];
+        Magic = save.stats[3];
+        Mana = save.stats[4];
+        MaxMana = save.stats[4];
+
+        for(int i = 0; i < save.inventory.Length; i++){
+
+            Type type = Type.GetType(save.inventory[i]);
+            inventory[i] = Activator.CreateInstance(type) as Item;
+
+            if(save.equipped.Contains(i))
+                equipment.Equip(inventory[i]);
+
+        }
 
     }
 
