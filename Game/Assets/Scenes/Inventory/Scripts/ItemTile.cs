@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemTile : MonoBehaviour{
 
@@ -19,6 +20,7 @@ public class ItemTile : MonoBehaviour{
     public void UpdateVisuals(){
 
         gameObject.GetComponentInChildren<TMP_Text>().text = item.Name;
+        gameObject.transform.GetChild(0).GetComponent<Image>().sprite = item.icon;
 
     }
 
