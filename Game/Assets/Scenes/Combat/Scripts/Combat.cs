@@ -30,7 +30,7 @@ public class Combat : MonoBehaviour{
         markerT = marker.transform;
         targeting = Instantiate(targeting);
 
-        player = GameObject.Find("Player").GetComponent<Player>(); //horrible way of doing this
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         // Fix player positioning
         player.c = this;
@@ -59,7 +59,7 @@ public class Combat : MonoBehaviour{
 
     Transform CreateBars(GameCharacter who){
 
-        GameObject t = Instantiate(barPrefab, GameObject.Find("Canvas").transform);
+        GameObject t = Instantiate(barPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
 
         // Setup healthBar
         Bar hb = t.transform.GetChild(0).GetChild(0).GetComponent<Bar>();
@@ -105,7 +105,7 @@ public class Combat : MonoBehaviour{
 
         // Create enemy
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
-        cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4), "Street Thug");
+        cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4) + player.CombatsWon, "Street Thug");
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.c = this;
         cEnemy.Init();
@@ -140,6 +140,7 @@ public class Combat : MonoBehaviour{
 
         if(target is Enemy){
 
+            int enemyCount = enemies.Count;
             if(enemies.Remove(target as Enemy)){
 
                 while(time > 0){
@@ -155,7 +156,8 @@ public class Combat : MonoBehaviour{
                 Destroy(target.gameObject);
 
                 //All enemies are dead: Change to the "Win Screen".
-                if (enemies.Count == 0){
+                if (enemyCount == 1){
+                    player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle
                     SceneManager.LoadScene("DemoWinScreen");
@@ -178,7 +180,7 @@ public class Combat : MonoBehaviour{
 
         // GAME OVER (Player died)
         SceneManager.LoadScene("DemoLoseScreen");
-        Debug.LogError("Main character died lol");
+        Debug.LogWarning("Main character died lol");
 
     }
 
@@ -202,8 +204,46 @@ public class Combat : MonoBehaviour{
             return;
         }
 
-        turn = (turn + 1) % (enemies.Count + 1);
+        NewTurn();
+
+    }
+
+    void NewTurn(){
+
         currentC = GetCurrentCharacter();
+        List<StatusEffect> se = currentC.statusEffects;
+
+        // Decrement and remove status effects
+        for(int i = 0; i < se.Count; i++){
+
+            if(se[i].Turns == 0){
+
+                se.RemoveAt(i);
+                i--;
+                continue;
+
+            }
+
+            se[i].DecrementEffect();
+
+        }
+
+        // Calculate next turn index
+        turn = (turn + 1) % (enemies.Count + 1);
+
+        currentC = GetCurrentCharacter();
+        se = currentC.statusEffects;
+
+        for(int i = 0; i < se.Count; i++){
+
+            if(se[i].EffectType == 5){ // Stunned skipping turn
+
+                NewTurn();
+                return;
+                
+            }
+
+        }
 
         if(currentC is Enemy)
             new Task(async () => { (currentC as Enemy).AI(this, player);}).Start();

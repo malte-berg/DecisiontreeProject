@@ -20,7 +20,7 @@ public class SkillSelection : MonoBehaviour
         SelectBordInit();
         DescriptionPanelInit();
 
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         skills = player.skills;
 
         for (int i = 0; i < skills.Length; i++)

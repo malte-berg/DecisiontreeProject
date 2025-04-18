@@ -11,13 +11,15 @@ public class NewGame : MonoBehaviour{
         a.Init(); 
 
         // Try to find player game object
-        GameObject playerObject = GameObject.Find("Player");
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         // If player game object does not exist, create it
-        if (playerObject == null) {
-            Instantiate(playerPrefab).GetComponent<Player>().Init();
-        } // Else, just continue with already created player
+        if (playerObject == null){
+            playerObject = Instantiate(playerPrefab);
+            playerObject.GetComponent<Player>().Init();
+        }
         
+        GetComponent<SaveManager>().CreateSave(playerObject.GetComponent<Player>());
         GetComponent<SceneSwitch>().WithCutscene = 0;
         GetComponent<SceneSwitch>().SwitchScene(1);
 

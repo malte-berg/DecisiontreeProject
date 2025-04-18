@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f0a61e64b6a8a474fa1e0f3e6bb14dd6
+guid: dc5b4ccebfa7b49c18bb85d6ca8955d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8258893090209942929
-    second: bucket_Icon_0
+      213: 5839820706974066888
+    second: cross_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bucket_Icon_0
+      name: cross_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 13
-        width: 23
-        height: 23
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 19d44ef028b7d9270800000000000000
-      internalID: 8258893090209942929
+      spriteID: 8c8e8270ef53b0150800000000000000
+      internalID: 5839820706974066888
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bucket_Icon_0: 8258893090209942929
+      cross_0: 5839820706974066888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -22,24 +22,72 @@ public class GameCharacter : MonoBehaviour{
 
     public string CName{get { return cName; } set {this.cName = value; }}
     public int HP{get{ return hp; } set{ this.hp = value; }}
-    public int Vitality{ get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set{ this.vitality = value; }}
-    public int Armor{ get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); } set { this.armor = value; }}
-    public int Strength{get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set{ this.strength = value; }}
-    public int Magic{get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set{ this.magic = value; }}
-    public int Mana{get{ return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set{ this.mana = value; }}
+    
+    public int Vitality{ get {
+        return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // VITALITY CALCULATED
+                    (vitality + GetEquipmentSum(0)) * GetEquipmentMult(0)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(0) * GetEffectFactor(0)
+            );
+    } set{ this.vitality = value; }}
+
+    public int Armor{ get {
+         return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // ARMOR CALCULATED
+                    (armor + GetEquipmentSum(1)) * GetEquipmentMult(1)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(1) * GetEffectFactor(1)
+            );
+    } set { this.armor = value; }}
+
+    public int Strength{get {
+        return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // STRENGTH CALCULATED
+                    (strength + GetEquipmentSum(2)) * GetEquipmentMult(2)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(2) * GetEffectFactor(2)
+            );
+    } set{ this.strength = value; }}
+
+    public int Magic{get {
+         return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // MAGIC CALCULATED
+                    (magic + GetEquipmentSum(3)) * GetEquipmentMult(3)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(3) * GetEffectFactor(3)
+            );
+    } set{ this.magic = value; }}
+
+    public int Mana{get{
+         return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // MANA CALCULATED
+                    (mana + GetEquipmentSum(4)) * GetEquipmentMult(4)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(4) * GetEffectFactor(4)
+            );
+    } set{ this.mana = value; }}
+    
     public int MaxMana{get{ return maxMana; } set {this.maxMana = value; }}
 
     // SKILLS
     public Skill[] skills;
-
+    public List<Skill> unlockedSkills = new List<Skill>();
     int skillCount;
     public int SkillCount{ get{ return skillCount; }}
-
     int selectedSkill = 0;
 
     // INVENTORY
     public Equipment equipment;
     public Item[] inventory;
+
+    // STATUS EFFECT
+    public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
     // to change sprite
     SpriteManager spriteManager;
@@ -186,153 +234,263 @@ public class GameCharacter : MonoBehaviour{
         magic += magDelta;
     }
 
-    public float GetEquipmentVitalityMult(){
+    public int[] GetBaseStats(){
 
-        float factor = 1;
-        if(equipment.head != null)
-            factor *= equipment.head.VitalityMult;
-        if(equipment.torso != null)
-            factor *= equipment.torso.VitalityMult;
-        if(equipment.boots != null)
-            factor *= equipment.boots.VitalityMult;
-        if(equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.VitalityMult;
-        return factor;
+        int[] temp = {
+            vitality,
+            armor,
+            strength,
+            magic,
+            mana
+        };
 
+        return temp;
     }
 
-    public int GetEquipmentVitalitySum(){
+    int GetEffectSum(int type){
 
         int sum = 0;
-        if(equipment.head != null)
-            sum += equipment.head.VitalityAdd;
-        if(equipment.torso != null)
-            sum += equipment.torso.VitalityAdd;
-        if(equipment.boots != null)
-            sum += equipment.boots.VitalityAdd;
-        if(equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.VitalityAdd;
+
+        for(int i = 0; i < statusEffects.Count; i++){
+
+            if(statusEffects[i].EffectType == type)
+                sum += statusEffects[i].Delta;
+
+        }
+
         return sum;
 
     }
 
-    public float GetEquipmentArmorMult(){
+    float GetEffectFactor(int type){
 
-        float factor = 1;
-        if(equipment.head != null)
-            factor *= equipment.head.ArmorMult;
-        if(equipment.torso != null)
-            factor *= equipment.torso.ArmorMult;
-        if(equipment.boots != null)
-            factor *= equipment.boots.ArmorMult;
-        if(equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.ArmorMult;
+        float factor = 0;
+
+        for(int i = 0; i < statusEffects.Count; i++){
+
+            if(statusEffects[i].EffectType == type)
+                factor *= statusEffects[i].DeltaF;
+
+        }
+
         return factor;
 
     }
 
-    public int GetEquipmentArmorSum(){
-
-        int sum = 0;
-        if(equipment.head != null)
-            sum += equipment.head.ArmorAdd;
-        if(equipment.torso != null)
-            sum += equipment.torso.ArmorAdd;
-        if(equipment.boots != null)
-            sum += equipment.boots.ArmorAdd;
-        if(equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.ArmorAdd;
-        return sum;
-
-    }
-
-    public float GetEquipmentStrengthMult(){
+    public float GetEquipmentMult(int type){
 
         float factor = 1;
-        if(equipment.head != null)
-            factor *= equipment.head.StrengthMult;
-        if(equipment.torso != null)
-            factor *= equipment.torso.StrengthMult;
-        if(equipment.boots != null)
-            factor *= equipment.boots.StrengthMult;
-        if(equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.StrengthMult;
+
+        if(equipment.head != null){
+            switch(type){
+                case 0:
+                    factor *= equipment.head.VitalityMult;
+                    break;
+                case 1:
+                    factor *= equipment.head.ArmorMult;
+                    break;
+                case 2:
+                    factor *= equipment.head.StrengthMult;
+                    break;
+                case 3:
+                    factor *= equipment.head.MagicMult;
+                    break;
+                case 4:
+                    factor *= equipment.head.ManaMult;
+                    break;
+            }
+        }
+
+        if(equipment.torso != null){
+            switch(type){
+                case 0:
+                    factor *= equipment.torso.VitalityMult;
+                    break;
+                case 1:
+                    factor *= equipment.torso.ArmorMult;
+                    break;
+                case 2:
+                    factor *= equipment.torso.StrengthMult;
+                    break;
+                case 3:
+                    factor *= equipment.torso.MagicMult;
+                    break;
+                case 4:
+                    factor *= equipment.torso.ManaMult;
+                    break;
+            }
+        }
+
+        if(equipment.boots != null){
+            switch(type){
+                case 0:
+                    factor *= equipment.boots.VitalityMult;
+                    break;
+                case 1:
+                    factor *= equipment.boots.ArmorMult;
+                    break;
+                case 2:
+                    factor *= equipment.boots.StrengthMult;
+                    break;
+                case 3:
+                    factor *= equipment.boots.MagicMult;
+                    break;
+                case 4:
+                    factor *= equipment.boots.ManaMult;
+                    break;
+            }
+        }
+
+        if(equipment.weaponLeft != null){
+            switch(type){
+                case 0:
+                    factor *= equipment.weaponLeft.VitalityMult;
+                    break;
+                case 1:
+                    factor *= equipment.weaponLeft.ArmorMult;
+                    break;
+                case 2:
+                    factor *= equipment.weaponLeft.StrengthMult;
+                    break;
+                case 3:
+                    factor *= equipment.weaponLeft.MagicMult;
+                    break;
+                case 4:
+                    factor *= equipment.weaponLeft.ManaMult;
+                    break;
+            }
+        }
+
+        if(equipment.weaponRight != null){
+                switch(type){
+                case 0:
+                    factor *= equipment.head.VitalityMult;
+                    break;
+                case 1:
+                    factor *= equipment.head.ArmorMult;
+                    break;
+                case 2:
+                    factor *= equipment.head.StrengthMult;
+                    break;
+                case 3:
+                    factor *= equipment.head.MagicMult;
+                    break;
+                case 4:
+                    factor *= equipment.head.ManaMult;
+                    break;
+            }
+        }
+
         return factor;
 
     }
 
-    public int GetEquipmentStrengthSum(){
+    public int GetEquipmentSum(int type){
 
-        int sum = 0;
-        if(equipment.head != null)
-            sum += equipment.head.StrengthAdd;
-        if(equipment.torso != null)
-            sum += equipment.torso.StrengthAdd;
-        if(equipment.boots != null)
-            sum += equipment.boots.StrengthAdd;
-        if(equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.StrengthAdd;
+        int sum = 1;
+
+        if(equipment.head != null){
+            switch(type){
+                case 0:
+                    sum += equipment.head.VitalityAdd;
+                    break;
+                case 1:
+                    sum += equipment.head.ArmorAdd;
+                    break;
+                case 2:
+                    sum += equipment.head.StrengthAdd;
+                    break;
+                case 3:
+                    sum += equipment.head.MagicAdd;
+                    break;
+                case 4:
+                    sum += equipment.head.ManaAdd;
+                    break;
+            }
+        }
+
+        if(equipment.torso != null){
+            switch(type){
+                case 0:
+                    sum += equipment.torso.VitalityAdd;
+                    break;
+                case 1:
+                    sum += equipment.torso.ArmorAdd;
+                    break;
+                case 2:
+                    sum += equipment.torso.StrengthAdd;
+                    break;
+                case 3:
+                    sum += equipment.torso.MagicAdd;
+                    break;
+                case 4:
+                    sum += equipment.torso.ManaAdd;
+                    break;
+            }
+        }
+
+        if(equipment.boots != null){
+            switch(type){
+                case 0:
+                    sum += equipment.boots.VitalityAdd;
+                    break;
+                case 1:
+                    sum += equipment.boots.ArmorAdd;
+                    break;
+                case 2:
+                    sum += equipment.boots.StrengthAdd;
+                    break;
+                case 3:
+                    sum += equipment.boots.MagicAdd;
+                    break;
+                case 4:
+                    sum += equipment.boots.ManaAdd;
+                    break;
+            }
+        }
+
+        if(equipment.weaponLeft != null){
+            switch(type){
+                case 0:
+                    sum += equipment.weaponLeft.VitalityAdd;
+                    break;
+                case 1:
+                    sum += equipment.weaponLeft.ArmorAdd;
+                    break;
+                case 2:
+                    sum += equipment.weaponLeft.StrengthAdd;
+                    break;
+                case 3:
+                    sum += equipment.weaponLeft.MagicAdd;
+                    break;
+                case 4:
+                    sum += equipment.weaponLeft.ManaAdd;
+                    break;
+            }
+        }
+
+        if(equipment.weaponRight != null){
+                switch(type){
+                case 0:
+                    sum += equipment.head.VitalityAdd;
+                    break;
+                case 1:
+                    sum += equipment.head.ArmorAdd;
+                    break;
+                case 2:
+                    sum += equipment.head.StrengthAdd;
+                    break;
+                case 3:
+                    sum += equipment.head.MagicAdd;
+                    break;
+                case 4:
+                    sum += equipment.head.ManaAdd;
+                    break;
+            }
+        }
+
         return sum;
 
     }
 
-    public float GetEquipmentMagicMult(){
-
-        float factor = 1;
-        if(equipment.head != null)
-            factor *= equipment.head.MagicMult;
-        if(equipment.torso != null)
-            factor *= equipment.torso.MagicMult;
-        if(equipment.boots != null)
-            factor *= equipment.boots.MagicMult;
-        if(equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.MagicMult;
-        return factor;
-
-    }
-
-    public int GetEquipmentMagicSum(){
-
-        int sum = 0;
-        if(equipment.head != null)
-            sum += equipment.head.MagicAdd;
-        if(equipment.torso != null)
-            sum += equipment.torso.MagicAdd;
-        if(equipment.boots != null)
-            sum += equipment.boots.MagicAdd;
-        if(equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.MagicAdd;
-        return sum;
-
-    }
-
-    public float GetEquipmentManaMult(){
-
-        float factor = 1;
-        if(equipment.head != null)
-            factor *= equipment.head.ManaMult;
-        if(equipment.torso != null)
-            factor *= equipment.torso.ManaMult;
-        if(equipment.boots != null)
-            factor *= equipment.boots.ManaMult;
-        if(equipment.weaponLeft != null)
-            factor *= equipment.weaponLeft.ManaMult;
-        return factor;
-
-    }
-
-    public int GetEquipmentManaSum(){
-
-        int sum = 0;
-        if(equipment.head != null)
-            sum += equipment.head.ManaAdd;
-        if(equipment.torso != null)
-            sum += equipment.torso.ManaAdd;
-        if(equipment.boots != null)
-            sum += equipment.boots.ManaAdd;
-        if(equipment.weaponLeft != null)
-            sum += equipment.weaponLeft.ManaAdd;
-        return sum;
-
-    }
 }

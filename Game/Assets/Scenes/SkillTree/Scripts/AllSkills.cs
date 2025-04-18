@@ -4,100 +4,52 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class AllSkills : MonoBehaviour {
-    [SerializeField] private TMP_Text pointCounterText;
-    [SerializeField] private TMP_Text[] skillLevelTexts;
-    [SerializeField] private GameObject[] skillNodes;
-    Player player;
+    public TMP_Text pointCounterText;
 
-    public Skill[] allSkills;
+    public GameObject skillButtonPrefab;
+    Player player;
+    SkillTreeTree stt;
 
     public void Init() {
-        player = GameObject.Find("Player").GetComponent<Player>(); // bad practice
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); // bad practice
         player.HidePlayer();
 
-        SkillBook sb = new SkillBook();
-        allSkills = sb.CreateSkillBook();
+        // Initialize the skill tree with the skills
+        stt = new SkillTreeTree(player);
 
-        SetSkillLevelCounters();
-        SetSkillColors();
-        SetPointCounter();
+        GameObject skillButton = Instantiate(skillButtonPrefab, transform);
+        SkillButtonNode punch = skillButton.GetComponent<SkillButtonNode>();
+        punch.Init(skillButton, player, player.skills[0], null, pointCounterText);
+        punch.offsetX = 0;
+        punch.offsetY = -200;
+        punch.MoveNode();
+
+        stt.AddNode(punch);
+
+        skillButton = Instantiate(skillButtonPrefab, transform);
+        SkillButtonNode heatWave = skillButton.GetComponent<SkillButtonNode>();
+        heatWave.Init(skillButton, player, new HeatWave(), punch, pointCounterText);
+        heatWave.offsetX = -240;
+        heatWave.offsetY = punch.offsetY - 100;
+        punch.AddLeftChild(heatWave);
+
+        skillButton = Instantiate(skillButtonPrefab, transform);
+        SkillButtonNode heal = skillButton.GetComponent<SkillButtonNode>();
+        heal.Init(skillButton, player, new Heal(), punch, pointCounterText);
+        heal.offsetX = 240;
+        heal.offsetY = punch.offsetY - 100;
+        
+        punch.AddRightChild(heal);
+        
+        skillButton = Instantiate(skillButtonPrefab, transform);
+        SkillButtonNode sacrifice = skillButton.GetComponent<SkillButtonNode>();
+        sacrifice.Init(skillButton, player, new Sacrifice(), heal, pointCounterText);
+
+        heal.AddChild(sacrifice);
+        stt.UpdateNodes(punch);
     }
 
     void Awake() {
-
         Init();
-
-    }
-
-    /*
-        AllSkills is placed on Canvas. On each skill button, the onClick() can be bound to the Canvas, with the AllSkills method 
-        SkillTreeClick, taking in the name of the skill (as described in the skill). This will send the skill to unlock/upgrade
-        in the AbilityManager, taking in a skill and deciding what to do based on what is sent in.
-    */
-    public void SkillTreeClick(int index) {
-        Skill skill = allSkills[index];
-        GetComponent<AbilityManager>().HandleSkill(skill);
-
-        SetPointCounter();
-        SetSkillLevelCounters();
-        SetSkillColors();
-    }
-
-    public void SetSkillLevelCounters() {
-        for (int i = 0; i < skillLevelTexts.Length; i++) {
-            if (allSkills[i] == null) {
-                continue;
-            }
-            TMP_Text skillLevelText = skillLevelTexts[i];
-
-            Skill playerSkill = GetComponent<AbilityManager>().GetPlayerSkillByName(allSkills[i].Name);
-            if (playerSkill != null) {
-                allSkills[i] = playerSkill;
-            }
-            if (skillLevelText != null && allSkills[i].unlocked) {
-                skillLevelText.text = allSkills[i].SkillLevel.ToString();
-            }
-
-            if (skillLevelText != null && !allSkills[i].unlocked) {
-                skillLevelText.text = "Unlock";
-            }
-        }
-    }
-
-    public void SetSkillColors() {
-        for (int i = 0; i < skillNodes.Length; i++) {
-            if (allSkills[i] == null) {
-                continue;
-            }
-            GameObject skillNode = skillNodes[i];
-            Image imageComponent = skillNode.GetComponent<Image>();
-
-            Skill playerSkill = GetComponent<AbilityManager>().GetPlayerSkillByName(allSkills[i].Name);
-            if (playerSkill != null) {
-                allSkills[i] = playerSkill;
-            }
-
-            if (imageComponent != null) {
-                if (allSkills[i].unlocked) {
-                    imageComponent.color = Color.green;
-                } else {
-                    imageComponent.color = Color.gray;
-                }
-            }
-        }
-    }
-
-    public void SetPointCounter() {
-        int points = player.SkillPoints;
-        try
-        {
-            pointCounterText.text = points.ToString();
-            
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError("Error setting point counter: " + e.Message);
-        }
-        
     }
 }

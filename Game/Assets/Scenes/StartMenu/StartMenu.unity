@@ -277,6 +277,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1454699689775860163, guid: 6145b272a4f738a4d9d7909f9d878bc1, type: 3}
+    - target: {fileID: 4867904425068513691, guid: d1aca80d78f2ca44094ad46ff8a5dee7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6045747352194488846, guid: d1aca80d78f2ca44094ad46ff8a5dee7, type: 3}
       propertyPath: m_Name
       value: BackgroundCanvas
@@ -440,7 +444,7 @@ GameObject:
   - component: {fileID: 920552010}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -544,6 +548,7 @@ GameObject:
   - component: {fileID: 1043080643}
   - component: {fileID: 1043080645}
   - component: {fileID: 1043080644}
+  - component: {fileID: 1043080646}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -745,6 +750,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: abffa639a098b43ca8b47a862ba11df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1043080646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043080638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291a8f40d994f6f4d85f84110e2762e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1341453924
