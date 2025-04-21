@@ -13,7 +13,7 @@ public class Punch : Skill
         gc: gc,
         name: "Punch",
         power: 0,
-        manaCost: 0,
+        manaCost: 1,
         skillCost: 1,
         description: "Perform a basic attack on one enemy."
 
@@ -29,13 +29,14 @@ public class Punch : Skill
 
         if (target == gc)
             return false;
-        if (gc.Mana < manaCost)
+        //if (gc.Mana < manaCost)
+        Debug.Log("Mana of person using punch: " + gc.Mana + "Name: " + gc.CName + " and its used on: " + target.CName);
+        if (!gc.SpendMana(manaCost))
             return false;
 
-        gc.Mana -= manaCost;
+        //gc.Mana -= manaCost;
 
         int damageDealt = Mathf.FloorToInt(gc.Strength * power);
-
         target.TakeDamage(damageDealt);
 
         return true;

@@ -9,7 +9,7 @@ public class Zap : Skill
         sprites: null,
         gc: gc,
         name: "Zap",
-        power: 0,
+        power: 1,
         manaCost: 30,
         skillCost: 1,
         description: "Steals enemy's health while dealing damage"
@@ -25,14 +25,15 @@ public class Zap : Skill
 
         if (target == gc)
             return false;
-        if (gc.Mana < manaCost)
-            return false;
 
-        gc.Mana -= manaCost;
+        if (!gc.SpendMana(manaCost))
+            return false;
 
 
         // Add 10% of enemies health to player.
         int healAmount = (int)Math.Floor(target.HP * 0.1 * power);
+
+        Debug.Log("HP before: " + gc.HP + " and health added: " + healAmount);
 
         if (gc.HP + healAmount > gc.Vitality)
             gc.HP = gc.Vitality;
@@ -43,7 +44,7 @@ public class Zap : Skill
         //Target takes damage.
         int damageDealt = Mathf.FloorToInt(gc.Strength * power);
 
-        Debug.Log(target.HP);
+        Debug.Log("HP after: " + gc.HP);
 
         target.TakeDamage(Mathf.FloorToInt(damageDealt));
 

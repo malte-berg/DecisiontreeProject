@@ -8,12 +8,11 @@ public class Drain : Skill
         sprites: null,
         gc: gc,
         name: "Drain",
-        power: 0,
-        manaCost: 100,
+        power: 1,
+        manaCost: 0,
         skillCost: 1,
-        description: "Reduces enemy's Mana to zero"
+        description: "Reduces enemy's Mana"
     )
-    //public Drain(GameCharacter gc) : base(gc, "Drain", 1, 0, 1)
     {
         this.gc = gc;
     }
@@ -22,14 +21,27 @@ public class Drain : Skill
     {
         if (target == gc)
             return false;
-        if (gc.Mana < manaCost)
+        if (!gc.SpendMana(manaCost))
             return false;
 
-        gc.Mana -= manaCost;
+        int manaDrained = Mathf.FloorToInt(10 * power); // amount of armor lost temporarily
 
-        Debug.Log("Drain: Target mana first: " + target.Mana);
-        target.Mana = 0;
-        Debug.Log("Drain: Target mana after: " + target.Mana);
+        // Debug.Log("Raw mana base: " + target.mana);
+        Debug.Log("Equip sum: " + target.GetEquipmentManaSum());
+        Debug.Log("Equip mult: " + target.GetEquipmentManaMult());
+        Debug.Log("Debuff: " + target.GetDebuffAdd("mana"));
+        Debug.Log("Final mana: " + target.Mana);
+
+        //target.effects["mana"] = new Debuff(-manaDrained);
+        Debuff.DebuffStat(target, "mana", -manaDrained);
+
+
+        //Debug.Log("Raw mana base: " + target.mana);
+        Debug.Log("Equip sum: " + target.GetEquipmentManaSum());
+        Debug.Log("Equip mult: " + target.GetEquipmentManaMult());
+        Debug.Log("Debuff: " + target.GetDebuffAdd("mana"));
+        Debug.Log("Final mana: " + target.Mana);
+
 
 
         return true;

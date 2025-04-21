@@ -87,7 +87,7 @@ public class Combat : MonoBehaviour
         int i = enemies.Count;
 
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
-        cEnemy.CreateEnemy(new Item[0], 40, "Street Thug " + i.ToString());      //TODO TEMP //jag(Arvin) la till numrering på enemy namn för att testa mind control
+        cEnemy.CreateEnemy(new Item[0], 40, "Street Thug " + i.ToString());      //TODO TEMP 
         enemies.Add(cEnemy);
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.Init();
@@ -192,6 +192,7 @@ public class Combat : MonoBehaviour
         if (currentC == null)
             currentC = GetCurrentCharacter();
 
+
         if (!currentC.UseSkill(clicked))
         {
             print("it failed :(");
@@ -206,6 +207,7 @@ public class Combat : MonoBehaviour
             //ActivatePassiveEffect();  //Runs potential passive effects.
             new Task(async () => { (currentC as Enemy).AI(this, player); }).Start();
         }
+
 
     }
 

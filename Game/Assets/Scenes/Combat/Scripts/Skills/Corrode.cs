@@ -8,8 +8,8 @@ public class Corrode : Skill
         sprites: null,
         gc: gc,
         name: "Corrode",
-        power: 0,
-        manaCost: 25,
+        power: 1,
+        manaCost: 0,
         skillCost: 1,
         description: "Reduces enemy armor"
         )
@@ -17,10 +17,6 @@ public class Corrode : Skill
         this.gc = gc;
     }
 
-    //public Corrode(GameCharacter gc) : base(gc, "Corrode", 0, 25, 1)
-    //{
-    //    this.gc = gc;
-    //}
 
     public override bool Effect(GameCharacter target)
     {
@@ -33,13 +29,29 @@ public class Corrode : Skill
         gc.Mana -= manaCost;
 
         //Target's "Armor" stat decreases.
-        if (target.Armor - manaCost < 0)
-            target.Armor = 0;
-        else
-            target.Armor -= manaCost;
+        int armorCorroded = Mathf.FloorToInt(5 * power); // amount of armor lost temporarily
+        //Debug.Log("Raw armor base: " + target.armor);
+        Debug.Log("Equip sum: " + target.GetEquipmentArmorSum());
+        Debug.Log("Equip mult: " + target.GetEquipmentArmorMult());
+        Debug.Log("Debuff: " + target.GetDebuffAdd("armor"));
+        Debug.Log("Final Armor: " + target.Armor);
 
-        Debug.Log("Corrode gives target an armor of: " + target.Armor);
+
+        Debuff.DebuffStat(target, "armor", -20);
+
+        //Debug.Log("Raw armor base: " + target.armor);
+        Debug.Log("Equip sum: " + target.GetEquipmentArmorSum());
+        Debug.Log("Equip mult: " + target.GetEquipmentArmorMult());
+        Debug.Log("Debuff: " + target.GetDebuffAdd("armor"));
+        Debug.Log("Final Armor: " + target.Armor);
+
+        //Debug.Log("Corrode gives target an armor of: " + target.Armor);
 
         return true;
     }
 }
+
+
+
+
+

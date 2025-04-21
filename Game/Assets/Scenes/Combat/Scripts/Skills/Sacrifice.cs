@@ -31,6 +31,9 @@ public class Sacrifice : Skill
             return false;
         }
 
+        if (!gc.SpendMana(manaCost))
+            return false;
+
         if (target.HP < selfDamage)
             return false;
 

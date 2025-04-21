@@ -8,19 +8,14 @@ public class Shield : Skill
          sprites: null,
          gc: gc,
          name: "Shield",
-         power: 20,
-         manaCost: 20,
+         power: 1,
+         manaCost: 0,
          skillCost: 1,
          description: "Add some armor to player"
          )
     {
         this.gc = gc;
     }
-
-    //public Shield(GameCharacter gc) : base(gc, "Shield", 20, 20, 1)
-    //{
-    //    this.gc = gc;
-    //}
 
     public override bool Effect(GameCharacter target)
     {
@@ -29,16 +24,15 @@ public class Shield : Skill
         {
             return false;
         }
-
-        if (target.Mana < manaCost)
+        if (!gc.SpendMana(manaCost))
             return false;
 
-        target.Mana -= manaCost;
+        int shieldAdded = Mathf.FloorToInt(30 * power); // amount of armor gained temporarily
 
         //Add armor to the player character.
         Debug.Log("Shield: Before: " + target.Armor);
 
-        target.Armor += Mathf.FloorToInt(10 * power);
+        Debuff.DebuffStat(target, "armor", shieldAdded);
 
         Debug.Log("Shield: After: " + target.Armor);
 

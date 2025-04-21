@@ -102,6 +102,7 @@ public class Enemy : GameCharacter
         {
             target = targetedByControlled;
             controlledTurns--;
+            targetedByControlled = MindControl.GetRandomEnemy(this, this.c.Enemies);
         }
 
         if (controlledTurns < 0)

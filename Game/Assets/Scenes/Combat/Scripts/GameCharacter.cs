@@ -20,13 +20,15 @@ public class GameCharacter : MonoBehaviour
     public HealthBar healthBar;
     public ManaBar manaBar;
 
+    public Dictionary<string, Debuff> effects = new Dictionary<string, Debuff>();
+
     public string CName { get { return cName; } set { this.cName = value; } }
     public int HP { get { return hp; } set { this.hp = value; } }
     public int Vitality { get { return Mathf.RoundToInt((vitality + GetEquipmentVitalitySum()) * GetEquipmentVitalityMult()); } set { this.vitality = value; } }
-    public int Armor { get { return Mathf.RoundToInt((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()); } set { this.armor = value; } }
+    public int Armor { get { return Mathf.Max(0, Mathf.RoundToInt(((armor + GetEquipmentArmorSum()) * GetEquipmentArmorMult()) + GetDebuffAdd("armor"))); } set { this.armor = value; } }
     public int Strength { get { return Mathf.RoundToInt((strength + GetEquipmentStrengthSum()) * GetEquipmentStrengthMult()); } set { this.strength = value; } }
     public int Magic { get { return Mathf.RoundToInt((magic + GetEquipmentMagicSum()) * GetEquipmentMagicMult()); } set { this.magic = value; } }
-    public int Mana { get { return Mathf.RoundToInt((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()); } set { this.mana = value; } }
+    public int Mana { get { return Mathf.Max(0, Mathf.RoundToInt(((mana + GetEquipmentManaSum()) * GetEquipmentManaMult()) + GetDebuffAdd("mana"))); } set { this.mana = value; } }
     public int MaxMana { get { return maxMana; } set { this.maxMana = value; } }
 
     // SKILLS
@@ -123,7 +125,10 @@ public class GameCharacter : MonoBehaviour
     public bool UseSkill(GameCharacter target)
     {
 
+        Debug.Log(" Manacost: " + skills[selectedSkill].manaCost);
+
         bool skill = skills[selectedSkill].Effect(target);
+
         healthBar.UpdateHealthBar(HP, Vitality);
 
         if (spriteManager != null && skill)
@@ -140,6 +145,8 @@ public class GameCharacter : MonoBehaviour
     public void TakeDamage(int dmg)
     {
 
+        Debug.Log(" DMG ENEMY 0 MANA: " + c.Enemies[0].Mana);
+
         print($"{cName} is attacked with {dmg} damage and has {Armor} armor");
 
         if (dmg <= Armor)
@@ -153,6 +160,7 @@ public class GameCharacter : MonoBehaviour
             c.KillCharacter(this);
         else
             DamageEffect();
+
 
     }
 
@@ -346,4 +354,54 @@ public class GameCharacter : MonoBehaviour
         return sum;
 
     }
+
+    public int GetDebuffAdd(string stat)
+    {
+        int debuffAmount = 0;
+        if (effects.ContainsKey(stat))
+        {
+            debuffAmount = effects[stat].amount;
+            //effects.Remove(stat);
+        }
+        return debuffAmount;
+    }
+
+    public bool SpendMana(int manaCost)
+
+    {
+
+        Debug.Log("Name: " + CName + " Mana: " + this.Mana + " raw mana: " + this.mana);
+
+        Debug.Log("Mana: " + Mana + " Manacost: " + manaCost);
+        if (Mana < manaCost)
+        {
+            Debug.Log("brokey");
+            return false;
+        }
+
+
+
+        int newMana = Mana - manaCost;
+
+        float multiplier = GetEquipmentManaMult();
+        int additive = GetEquipmentManaSum();
+        int debuffAdd = GetDebuffAdd("mana");
+
+        if (Mathf.Approximately(multiplier, 0f))
+        {
+            Debug.Log("0 division");
+            return false;
+        }
+
+
+        float rawMana = ((newMana - debuffAdd) / multiplier) - additive;
+        Mana = Mathf.Max(0, Mathf.RoundToInt(rawMana));
+
+        return true;
+    }
+
+
+
+
+
 }

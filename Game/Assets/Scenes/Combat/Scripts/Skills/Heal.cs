@@ -44,11 +44,3 @@ public class Heal : Skill
     }
 
 }
-
-
-//public Heal(GameCharacter gc) : base(gc, "Heal", 1, 0, 1)
-//{
-
-//  this.gc = gc;
-
-//}
