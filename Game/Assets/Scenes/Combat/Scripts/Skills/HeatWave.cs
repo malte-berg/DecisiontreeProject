@@ -1,18 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
-
 public class HeatWave : Skill
 {
-    GameCharacter gc;
 
-
-    //public HeatWave(GameCharacter gc) : base(gc, "Heat Wave", 1, 0, 1)
-    //{
-
-    public HeatWave(GameCharacter gc) : base(
-
-        sprites: null,
-        gc: gc,
+    public HeatWave() : base(
+        icon: Resources.Load<Sprite>("Sprites/Abilities/HeatWave_Icon"),
+        sprites: new List<Sprite> { Resources.Load<Sprite>("Sprites/Abilities/heatwave") },
+        gc: null,
         name: "Heat Wave",
         power: 0,
         manaCost: 0,
@@ -21,8 +15,6 @@ public class HeatWave : Skill
 
         )
     {
-
-        this.gc = gc;
 
     }
 
@@ -41,12 +33,28 @@ public class HeatWave : Skill
         Combat combat = target.c;
         List<Enemy> enemies = combat.Enemies;
 
-        foreach (GameCharacter enemy in enemies)
+        for (int i = enemies.Count - 1; i >= 0; i--)
         {
-            enemy.TakeDamage(Mathf.FloorToInt(damageDealt));
+            enemies[i].TakeDamage(Mathf.FloorToInt(damageDealt));
         }
 
         return true;
     }
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
+    {
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+        Transform AbilityContainer = AbilityRenderer.gameObject.transform;
 
+        sm.SetSprite(this.sprites[0], AbilityRenderer);
+        sm.HideSprite(AbilityRenderer);
+
+        sm.ChangeOpacity(AbilityRenderer, 1f);
+        sm.SetScale(AbilityRenderer.transform, 1.5f);
+
+        Vector3 toTarget = targetPos - sender.transform.position;
+
+        sm.AttackAnimation(sender);
+        sm.LungeTo(sender, toTarget * 0.05f, 0.2f);
+        sm.RollScales(AbilityContainer, toTarget * 0.95f, 10, 0.5f, 1.15f, false, false, false, 8);
+    }
 }

@@ -15,6 +15,7 @@ public class Enemy : GameCharacter
     public Enemy targetedByControlled = null; // which target the mind controlled enemy targets
     public int controlledTurns = 0; // How many turns enemy is controlled when mindcontrol is activated.
 
+    public int level;
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
     public Enemy() : base(
@@ -31,11 +32,12 @@ public class Enemy : GameCharacter
     )
     { }
 
-    public void CreateEnemy(Item[] availableItems, int enemyPower, string cName)
+    public void CreateEnemy(Item[] availableItems, int levelDelta, string cName)
     {
 
         this.availableItems = availableItems;
-        this.enemyPower = enemyPower;
+        level += levelDelta;
+        if (level < 1) level = 1;
         CName = cName;
 
     }
@@ -43,21 +45,24 @@ public class Enemy : GameCharacter
     public override void Init()
     {
 
-        sprites = new List<Sprite> { Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2") };
+        if (sprites[0] == null)
+        {
+            sprites = new List<Sprite> { Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2") };
+        }
 
         equipment = gameObject.GetComponent<Equipment>();
 
-        // have stats based on enemyPower
-        Vitality = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(80, 121);
-        Armor = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(1, 5);
-        Strength = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(8, 16);
-        Magic = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(2, 16);
-        MaxMana = (int)(MathF.Log(enemyPower, MathF.E) + 1) * UnityEngine.Random.Range(5, 16);
+        // have stats based on level
+        Vitality = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(80, 121);
+        Armor = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(1, 5);
+        Strength = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(8, 16);
+        Magic = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(2, 16);
+        MaxMana = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(5, 16);
         HP = Vitality;
         Mana = MaxMana;
 
-        Punch punch = new Punch(this);
-        punch.UnlockSkill();
+        Punch punch = new Punch();
+        punch.UnlockSkill(this);
         AddSkill(punch);
 
         // temp
@@ -79,9 +84,11 @@ public class Enemy : GameCharacter
         availableItems[14] = new WorkerBoots();
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
-        GatherItems(enemyPower);
+        GatherItems((level - 1) * 10 + 1);
+        GatherSkills(level / 3);
+        equipment.PrintEquipment();
 
-        SetSprite("Enemy");
+        SetSprite();
 
     }
 
@@ -167,6 +174,37 @@ public class Enemy : GameCharacter
                     equipment.Equip(availableItems[i]);
 
             }
+
+        }
+
+    }
+
+    void GatherSkills(int skillPower)
+    {
+
+        SkillBook sb = new SkillBook();
+        skillPower = Math.Clamp(skillPower, 0, sb.Count - 1);
+
+        while (skillPower > 0)
+        {
+
+            Skill potential = sb.ReadPage(skillPower);
+
+            // add fun skills
+            if (SkillCount < skills.Length - 2)
+                potential.UnlockSkill(this);
+
+            // last skill has to have no cooldown or mana cost
+            else if (SkillCount < skills.Length - 1)
+            {
+
+                if (potential.Cooldown == 0 && potential.manaCost == 0)
+                    potential.UnlockSkill(this);
+
+            }
+            else return; // no more skills
+
+            skillPower--;
 
         }
 

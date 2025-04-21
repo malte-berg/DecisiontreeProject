@@ -1,14 +1,27 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class NewGame : MonoBehaviour{
 
     public GameObject playerPrefab;
+    public AreaInitializer a;
 
     public void StartNewGame() {
 
-        Instantiate(playerPrefab).GetComponent<Player>().Init();
-        SceneManager.LoadScene("InGameMenu");
+        a = GetComponent<AreaInitializer>();
+        // Initialize regionItems in AreaData
+        a.Init(); 
+
+        // Try to find player game object
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+        // If player game object does not exist, create it
+        if (playerObject == null){
+            playerObject = Instantiate(playerPrefab);
+            playerObject.GetComponent<Player>().Init();
+        }
+        
+        GetComponent<SaveManager>().CreateSave(playerObject.GetComponent<Player>());
+        GetComponent<SceneSwitch>().WithCutscene = 0;
+        GetComponent<SceneSwitch>().SwitchScene(1);
 
     }
     

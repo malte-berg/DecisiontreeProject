@@ -6,11 +6,11 @@ public class ItemButton : MonoBehaviour
     Shop s;
 
     public Button btn;
-    private TextMeshProUGUI detailPanel;
     // item information
+    private TextMeshProUGUI detailPanel;
     public Item currentItem;
     private TextMeshProUGUI priceText;
-    // private Image iconImage;
+    private Sprite iconImage;
 
     void Awake()
     {
@@ -21,31 +21,38 @@ public class ItemButton : MonoBehaviour
 
     public void Init(Item item, Shop s)
     {
-        // för att kunna använda funktion från Shop
+        // to use feature from shop
         this.s = s;
 
         currentItem = item;
         priceText.text = item.Value.ToString();
 
-        // iconImage.sprite = ...
+        if (s.IsItemPurchased(currentItem))
+        {
+            ButtonClose();
+        }
+        // set icon for items
+        gameObject.transform.GetChild(1).GetComponent<Image>().sprite = item.icon;
 
         //GetComponent<Button>().onClick.AddListener(OnItemClicked);
         btn.onClick.AddListener(OnItemClicked);
     }
 
     void DisplayItemDetail()
-    {   
-        detailPanel.text = currentItem.Name + "\n\n" + "The item's story or attributes can displayed here."; 
+    {
+        detailPanel.text = "<size=18><u>" + currentItem.Name + "</u></size><br>"+ currentItem.Description;
+        //"The item's story or attributes can displayed here."; 
     }
 
     public void ButtonClose()
     {
-        this.GetComponent<Button>().interactable = false; 
+        this.GetComponent<Button>().interactable = false;
     }
+
     private void OnItemClicked()
     {
         DisplayItemDetail();
-        s.ShowDetailPanel(true,this);
-    } 
+        s.ShowDetailPanel(true, this);
+    }
 
 }

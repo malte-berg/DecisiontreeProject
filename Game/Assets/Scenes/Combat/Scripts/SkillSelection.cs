@@ -20,7 +20,7 @@ public class SkillSelection : MonoBehaviour
         SelectBordInit();
         DescriptionPanelInit();
 
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         skills = player.skills;
 
         for (int i = 0; i < skills.Length; i++)
@@ -35,7 +35,7 @@ public class SkillSelection : MonoBehaviour
 
     void DescriptionPanelInit()
     {
-        AbilityDescriptionPanel.SetActive(false);
+        //AbilityDescriptionPanel.SetActive(false);
         AbilityDescriptionText = AbilityDescriptionPanel.GetComponentInChildren<TextMeshProUGUI>(false);
     }
 
@@ -49,6 +49,7 @@ public class SkillSelection : MonoBehaviour
         for (int i = 0; i < skillButtons.Length; i++)
         {
             skillButtons[i].interactable = player.skills.Length > i && player.skills[i] != null;
+            skillButtons[i].GetComponent<Image>().sprite = player.skills.Length > i && player.skills[i] != null ? player.skills[i].Icon : null;
         }
     }
 
@@ -62,15 +63,14 @@ public class SkillSelection : MonoBehaviour
         ShowSelect();
         UpdateAbilityText(skillIndex);
         imageRect.anchoredPosition = buttonTransforms[skillIndex].anchoredPosition;;
-        //player.SetSelectedSkill(skillIndex);  //ADD THE FUNCTION ALREADY IN GAMECHARACTER
         player.SelectSkill(skillIndex); 
         Debug.Log($"Selected skill: {player.skills[skillIndex]?.Name}");
     }
 
     void UpdateAbilityText(int skillIndex)
     {
-        AbilityDescriptionPanel.SetActive(true);
-        AbilityDescriptionText.text = skills[skillIndex].Name + "\n" + skills[skillIndex].DescriptionPanel;
+        //AbilityDescriptionPanel.SetActive(true);
+        AbilityDescriptionText.text = skills[skillIndex].Name + " Lvl. " + skills[skillIndex].SkillLevel + "\n" + skills[skillIndex].DescriptionPanel;
     }
 
     void ShowSelect()

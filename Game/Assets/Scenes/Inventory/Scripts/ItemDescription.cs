@@ -1,18 +1,21 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemDescription : MonoBehaviour{
 
     InventoryManager im;
     GameObject slide;
     Item currentDisplay;
+    TMP_Text equipButtonText;
 
     public void Init(InventoryManager im){
 
         this.im = im;
         slide = transform.GetChild(1).gameObject;
         slide.SetActive(false);
+        equipButtonText = slide.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
 
     }
 
@@ -21,52 +24,74 @@ public class ItemDescription : MonoBehaviour{
         slide.transform.GetChild(2).GetComponent<TMP_Text>().text = target.Name;
         string description = "";
 
-        switch(target.GetType()){
+        switch(target){
 
-            case Type headType when headType == typeof(Head):
+            case Head:
                 Head head = target as Head;
-                description += $"<color=green>Vitality: \t+{head.VitalityAdd} (+{Mathf.RoundToInt(head.VitalityMult*100)-100}%)</color>\n";
-                description += $"<color=orange>Armor: \t+{head.ArmorAdd} (+{Mathf.RoundToInt(head.ArmorMult*100)-100}%)</color>\n";
-                description += $"<color=red>Strength: \t+{head.StrengthAdd} (+{Mathf.RoundToInt(head.StrengthMult*100)-100}%)</color>\n";
-                description += $"<color=blue>Magic: \t+{head.MagicAdd} (+{Mathf.RoundToInt(head.MagicMult*100)-100}%)</color>\n";
-                description += $"<color=purple>Mana: \t+{head.ManaAdd} (+{Mathf.RoundToInt(head.ManaMult*100)-100}%)</color>\n";
+                description += $"<color=green>Vitality: \t{CalcAdd(head.VitalityAdd)} ({CalcMult(head.VitalityMult)})</color>\n";
+                description += $"<color=orange>Armor: \t{CalcAdd(head.ArmorAdd)} ({CalcMult(head.ArmorMult)})</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(head.StrengthAdd)} ({CalcMult(head.StrengthMult)})</color>\n";
+                description += $"<color=blue>Magic: \t{CalcAdd(head.MagicAdd)} ({CalcMult(head.MagicMult)})</color>\n";
+                description += $"<color=purple>Mana: \t{CalcAdd(head.ManaAdd)} ({CalcMult(head.ManaMult)})</color>\n";
+
+                equipButtonText.text = (im.player.equipment.head == head) ? "Unequip" : "Equip";
+
                 break;
-            case Type torsoType when torsoType == typeof(Torso):
+            case Torso:
                 Torso torso = target as Torso;
-                description += $"<color=green>Vitality: \t+{torso.VitalityAdd} (+{Mathf.RoundToInt(torso.VitalityMult*100)-100}%)</color>\n";
-                description += $"<color=orange>Armor: \t+{torso.ArmorAdd} (+{Mathf.RoundToInt(torso.ArmorMult*100)-100}%)</color>\n";
-                description += $"<color=red>Strength: \t+{torso.StrengthAdd} (+{Mathf.RoundToInt(torso.StrengthMult*100)-100}%)</color>\n";
-                description += $"<color=blue>Magic: \t+{torso.MagicAdd} (+{Mathf.RoundToInt(torso.MagicMult*100)-100}%)</color>\n";
-                description += $"<color=purple>Mana: \t+{torso.ManaAdd} (+{Mathf.RoundToInt(torso.ManaMult*100)-100}%)</color>\n";
+                description += $"<color=green>Vitality: \t{CalcAdd(torso.VitalityAdd)} ({CalcMult(torso.VitalityMult)})</color>\n";
+                description += $"<color=orange>Armor: \t{CalcAdd(torso.ArmorAdd)} ({CalcMult(torso.ArmorMult)})</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(torso.StrengthAdd)} ({CalcMult(torso.StrengthMult)})</color>\n";
+                description += $"<color=blue>Magic: \t{CalcAdd(torso.MagicAdd)} ({CalcMult(torso.MagicMult)})</color>\n";
+                description += $"<color=purple>Mana: \t{CalcAdd(torso.ManaAdd)} ({CalcMult(torso.ManaMult)})</color>\n";
+
+                equipButtonText.text = (im.player.equipment.torso == torso) ? "Unequip" : "Equip";
                 break;
-            case Type bootsType when bootsType == typeof(Boots):
+            case Boots:
                 Boots boots = target as Boots;
-                description += $"<color=green>Vitality: \t+{boots.VitalityAdd} (+{Mathf.RoundToInt(boots.VitalityMult*100)-100}%)</color>\n";
-                description += $"<color=orange>Armor: \t+{boots.ArmorAdd} (+{Mathf.RoundToInt(boots.ArmorMult*100)-100}%)</color>\n";
-                description += $"<color=red>Strength: \t+{boots.StrengthAdd} (+{Mathf.RoundToInt(boots.StrengthMult*100)-100}%)</color>\n";
-                description += $"<color=blue>Magic: \t+{boots.MagicAdd} (+{Mathf.RoundToInt(boots.MagicMult*100)-100}%)</color>\n";
-                description += $"<color=purple>Mana: \t+{boots.ManaAdd} (+{Mathf.RoundToInt(boots.ManaMult*100)-100}%)</color>\n";
+                description += $"<color=green>Vitality: \t{CalcAdd(boots.VitalityAdd)} ({CalcMult(boots.VitalityMult)})</color>\n";
+                description += $"<color=orange>Armor: \t{CalcAdd(boots.ArmorAdd)} ({CalcMult(boots.ArmorMult)})</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(boots.StrengthAdd)} ({CalcMult(boots.StrengthMult)})</color>\n";
+                description += $"<color=blue>Magic: \t{CalcAdd(boots.MagicAdd)} ({CalcMult(boots.MagicMult)})</color>\n";
+                description += $"<color=purple>Mana: \t{CalcAdd(boots.ManaAdd)} ({CalcMult(boots.ManaMult)})</color>\n";
+
+                equipButtonText.text = (im.player.equipment.boots == boots) ? "Unequip" : "Equip";
                 break;
-            case Type weaponType when weaponType == typeof(Weapon):
+            case Weapon:
                 Weapon weapon = target as Weapon;
-                description += $"<color=green>Vitality: \t+{weapon.VitalityAdd} (+{Mathf.RoundToInt(weapon.VitalityMult*100)-100}%)</color>\n";
-                description += $"<color=orange>Armor: \t+{weapon.ArmorAdd} (+{Mathf.RoundToInt(weapon.ArmorMult*100)-100}%)</color>\n";
-                description += $"<color=red>Strength: \t+{weapon.StrengthAdd} (+{Mathf.RoundToInt(weapon.StrengthMult*100)-100}%)</color>\n";
-                description += $"<color=blue>Magic: \t+{weapon.MagicAdd} (+{Mathf.RoundToInt(weapon.MagicMult*100)-100}%)</color>\n";
-                description += $"<color=purple>Mana: \t+{weapon.ManaAdd} (+{Mathf.RoundToInt(weapon.ManaMult*100)-100}%)</color>\n";
+                description += $"<color=green>Vitality: \t{CalcAdd(weapon.VitalityAdd)} ({CalcMult(weapon.VitalityMult)})</color>\n";
+                description += $"<color=orange>Armor: \t{CalcAdd(weapon.ArmorAdd)} ({CalcMult(weapon.ArmorMult)})</color>\n";
+                description += $"<color=red>Strength: \t{CalcAdd(weapon.StrengthAdd)} ({CalcMult(weapon.StrengthMult)})</color>\n";
+                description += $"<color=blue>Magic: \t{CalcAdd(weapon.MagicAdd)} ({CalcMult(weapon.MagicMult)})</color>\n";
+                description += $"<color=purple>Mana: \t{CalcAdd(weapon.ManaAdd)} ({CalcMult(weapon.ManaMult)})</color>\n";
+
+                equipButtonText.text = (im.player.equipment.weaponLeft == weapon) ? "Unequip" : "Equip";
                 break;
-            case Type consumableType when consumableType == typeof(Consumable):
+            case Consumable:
+                // TODO
                 break;
             default:
+                Debug.LogError("No item type found");
                 break;
 
         }
+        
+        description += $"\n<i><size=75%>{target.Description}</size></i>";
 
+        slide.transform.GetChild(0).GetComponent<Image>().sprite = target.icon;
         slide.transform.GetChild(1).GetComponent<TMP_Text>().text = description;
         currentDisplay = target;
         
         slide.SetActive(true);
 
+    }
+
+    private string CalcAdd(int statAdd) {
+        return $"{(statAdd < 0 ? "" : "+")}{statAdd}";
+    }
+
+    private string CalcMult(float statMult) {
+        return $"{(statMult < 1 ? "" : "+")}{statMult*100-100:F1}%";
     }
 
     public void Equip(){
@@ -75,7 +100,17 @@ public class ItemDescription : MonoBehaviour{
             return;
 
         im.player.equipment.Equip(currentDisplay);
+
+        // Update button
+        if (equipButtonText.text == "Equip") {
+            equipButtonText.text = "Unequip";
+        } else {
+            equipButtonText.text = "Equip";
+        }
+
         im.sl.UpdateStats();
+        // Update player sprites after equpping/unequipping
+        im.player.SM.SetCharacter(im.player);
 
     }
 

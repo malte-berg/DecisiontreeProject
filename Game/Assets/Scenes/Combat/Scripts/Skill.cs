@@ -5,7 +5,7 @@ public abstract class Skill
 {
     public List<Sprite> sprites;
 
-    GameCharacter gc;
+    public GameCharacter gc;
     string name;
     public float power;
     public int manaCost;
@@ -15,6 +15,7 @@ public abstract class Skill
     int cooldown = 0;
 
     private string description;
+<<<<<<< HEAD
     public string Name { get { return name; } }
     // lägg till beskrivning när man skapar skills/ability
     public string DescriptionPanel
@@ -34,6 +35,26 @@ public abstract class Skill
     public Skill(List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description)
     {
 
+=======
+    private Sprite icon;
+    public string Name{ get { return name; } }
+    // lägg till beskrivning när man skapar skills/ability
+    public string DescriptionPanel { 
+        get {
+            return description +
+                   //"Skill level: —-\n" + // vissa skill level istället för power?
+                   "\nMana Cost: " + manaCost.ToString() + "\n" +  
+                   "Cooldown: —-\n"; 
+        } 
+    }
+    public int Cooldown{ get { return cooldown; } }
+    public string Description{ get { return description; } }
+    public int SkillLevel{ get { return skillLevel; } }
+    public Sprite Icon{ get { return icon; } }
+
+    public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
+        this.icon = icon;
+>>>>>>> upstream/main
         this.sprites = sprites;
         this.gc = gc;
         this.name = name;
@@ -45,12 +66,19 @@ public abstract class Skill
         this.skillLevel = 0;
     }
 
+<<<<<<< HEAD
     public void UnlockSkill()
     {
+=======
+    public void UnlockSkill(GameCharacter who) {
+>>>>>>> upstream/main
 
+        MonoBehaviour.print($"{who.CName} unlocked: {Name}");
+        who?.unlockedSkills.Add(this);
         power = 1;
         skillLevel = 1;
         unlocked = true;
+        gc = who;
 
     }
 
@@ -61,5 +89,7 @@ public abstract class Skill
     }
 
     public abstract bool Effect(GameCharacter target);
+
+    public abstract void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm);
 
 }

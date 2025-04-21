@@ -1,15 +1,16 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class Sacrifice : Skill
 {
-    GameCharacter gc;
+
     int selfDamage;
 
-    public Sacrifice(GameCharacter gc) : base(
-
-        sprites: null,
-        gc: gc,
+    public Sacrifice() : base(
+        icon: Resources.Load<Sprite>("Sprites/Abilities/Sacrifice_Icon"),
+        sprites: new List<Sprite> { Resources.Load<Sprite>("Sprites/Abilities/sacrifice") },
+        gc: null,
         name: "Sacrifice",
         power: 0,
         manaCost: 0,
@@ -19,7 +20,6 @@ public class Sacrifice : Skill
         )
     {
 
-        this.gc = gc;
         this.selfDamage = 10;
 
     }
@@ -30,7 +30,6 @@ public class Sacrifice : Skill
         {
             return false;
         }
-
         if (!gc.SpendMana(manaCost))
             return false;
 
@@ -47,5 +46,19 @@ public class Sacrifice : Skill
         target.HP -= Mathf.FloorToInt(selfDamage / (gc.Strength * power));
 
         return true;
+    }
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
+    {
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+        Transform AbilityContainer = AbilityRenderer.gameObject.transform;
+
+        sm.SetSprite(this.sprites[0], AbilityRenderer);
+        sm.HideSprite(AbilityRenderer);
+
+        sm.ChangeOpacity(AbilityRenderer, 1f);
+        sm.SetScale(AbilityRenderer.transform, 1.3f);
+
+        sm.AttackAnimation(sender);
+        sm.RollScales(AbilityContainer, Vector3.zero, 15, 0.4f, 1.25f, false, false, true, 4);
     }
 }
