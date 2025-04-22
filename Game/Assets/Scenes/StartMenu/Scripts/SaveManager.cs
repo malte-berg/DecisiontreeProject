@@ -9,13 +9,13 @@ public class SaveManager : MonoBehaviour{
         Save s = player.CreateSave();
         string json = JsonUtility.ToJson(s, true);
         print($"JSON_DATA:\n{json}");
-        File.WriteAllText($"Saves/{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt", json);
+        File.WriteAllText($"Saves/{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt", json); // TODO json
 
     }
 
     public Save ReadSave(string name){
 
-        string path = $"Saves/{name}.txt";
+        string path = $"Saves/{name}.txt"; // TODO json
 
         if (File.Exists(path)) {
 

@@ -54,8 +54,8 @@ public abstract class Skill{
 
     }
 
-    public void UpgradeSkill() {
-        skillLevel++;
+    public void UpgradeSkill(int count = 1) {
+        skillLevel += count;
         power = System.MathF.Log(skillLevel, System.MathF.E) + 1;
     }
 

@@ -36,7 +36,7 @@ public class NewGame : MonoBehaviour{
         }
 
         // TODO make this load latest save
-        Save temp = GetComponent<SaveManager>().ReadSave("20250417165118");
+        Save temp = GetComponent<SaveManager>().ReadSave("20250417165550");
         playerObject.GetComponent<Player>().LoadPlayer(temp);
         GetComponent<SceneSwitch>().SwitchScene(1);
 
