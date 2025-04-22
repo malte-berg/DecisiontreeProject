@@ -7,7 +7,7 @@ public abstract class SceneScript : MonoBehaviour {
     [HideInInspector] public GameObject dialogueBoxGO;
     [HideInInspector] public bool waitingForDialogue;
 
-    public abstract void LoadCutscene(GameObject dbgo);
+    public abstract void LoadCutscene(GameObject dbgo, Transform canvas);
     public abstract IEnumerator RunAnimation();
 
 }

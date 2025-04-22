@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Intro : SceneScript {
 
-    public override void LoadCutscene(GameObject dbgo){
+    public override void LoadCutscene(GameObject dbgo, Transform canvas){
         
-        db = Instantiate(dbgo, GameObject.Find("Canvas").transform).GetComponent<DialogueBox>();
+        db = Instantiate(dbgo, canvas).GetComponent<DialogueBox>();
         db.Init(this);
 
     }
