@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using UnityEngine;
 
 public class Player : GameCharacter {
 
     // GAME STATS
     long seed;
-    public long Seed{ get { return seed; }}
+    public long Seed{ get { return seed; } set{ this.seed = value; }}
 
     // PLAYER STATS
     int gold;                   //For buying items in the store window.
@@ -165,7 +164,7 @@ public class Player : GameCharacter {
 
         int[] stats = GetBaseStats();
 
-        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, statPoints, stats, equipped, items, levels, selected, unlocked);
+        Save s = new Save(seed, currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, statPoints, stats, equipped, items, levels, selected, unlocked);
         return s;
 
     }

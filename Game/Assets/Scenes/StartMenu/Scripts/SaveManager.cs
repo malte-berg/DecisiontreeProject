@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class SaveManager {
 
-    public void CreateSave(Player player){
+    public Save CreateSave(Player player){
 
         Save s = player.CreateSave();
         string json = JsonUtility.ToJson(s, true);
         File.WriteAllText($"Saves/{DateTime.Now.ToString("yyyyMMddHHmmss")}.json", json);
+        return s;
 
     }
 

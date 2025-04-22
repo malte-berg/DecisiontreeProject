@@ -35,7 +35,7 @@ public class Save{
     [SerializeField] public int[] selected;
     [SerializeField] public string[] skills;
 
-    public Save(int level, int xp, int gold, int skillPoints, int area, int[] combats, int statPoints, int[] stats, int[] equipped, string[] inventory, int[] levels, int[] selected, string[] skills, long seed = 0){
+    public Save(long seed, int level, int xp, int gold, int skillPoints, int area, int[] combats, int statPoints, int[] stats, int[] equipped, string[] inventory, int[] levels, int[] selected, string[] skills){
 
         created = DateTime.Now.ToString("O");
         version = latestVersion;
