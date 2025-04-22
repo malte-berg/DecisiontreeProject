@@ -13,6 +13,7 @@ public class CutsceneManager : MonoBehaviour{
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         AsyncOperation departingOp = SceneManager.UnloadSceneAsync(from);
         StartCoroutine(DoCutscene(departingOp, to, cutscene));
+        new SaveManager().CreateSave(GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>());
 
     }
 
@@ -26,6 +27,7 @@ public class CutsceneManager : MonoBehaviour{
 
         if(cutscene >= 0 && cutscene < sceneScripts.Length) {
 
+            if(canvas == null) canvas = GameObject.FindGameObjectWithTag("Canvas");
             sceneScripts[cutscene].LoadCutscene(dialogueBoxGO, canvas.transform);
             yield return sceneScripts[cutscene].RunAnimation();
 
