@@ -5,7 +5,7 @@ using UnityEngine;
 public class Save{
     
     // Save specific
-    public static int latestVersion = 7;
+    public static int latestVersion = 8;
     [SerializeField] public string created;
     [SerializeField] public int version;
     [SerializeField] public long seed;
