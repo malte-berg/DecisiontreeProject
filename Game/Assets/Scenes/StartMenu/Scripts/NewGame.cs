@@ -24,5 +24,22 @@ public class NewGame : MonoBehaviour{
         GetComponent<SceneSwitch>().SwitchScene(1);
 
     }
+
+    public void Continue(){
+
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
+        // If player game object does not exist, create it
+        if (playerObject == null){
+            playerObject = Instantiate(playerPrefab);
+            playerObject.GetComponent<Player>().Init();
+        }
+
+        // TODO make this load latest save
+        Save temp = GetComponent<SaveManager>().ReadSave("20250417165118");
+        playerObject.GetComponent<Player>().LoadPlayer(temp);
+        GetComponent<SceneSwitch>().SwitchScene(1);
+
+    }
     
 }
