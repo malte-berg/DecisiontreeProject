@@ -160,7 +160,7 @@ public class GameCharacter : MonoBehaviour{
         if(index > skillCount - 1)
             return false;
 
-        if(skills[index].Cooldown > 0)
+        if(skills[index].cooldownCount > 0)
             return false;
 
         selectedSkill = index;
@@ -170,7 +170,8 @@ public class GameCharacter : MonoBehaviour{
 
     public bool UseSkill(GameCharacter target){
 
-        bool skill = target != null && skills[selectedSkill].Effect(target);
+        print($"Selected skill is {selectedSkill}");
+        bool skill = skills[selectedSkill].TrySkill(target);
         healthBar.UpdateBar(HP, Vitality);
 
         Vector3 posOfTarget = target.transform.GetChild(0).position;

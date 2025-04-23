@@ -228,6 +228,16 @@ public class Combat : MonoBehaviour{
 
         }
 
+        // Decrement cooldown
+        for(int i = 0; i < currentC.skills.Length; i++){
+
+            if(currentC.skills[i] == null)
+                break;
+            
+            currentC.skills[i].cooldownCount--;
+
+        }
+
         // Calculate next turn index
         turn = (turn + 1) % (enemies.Count + 1);
 

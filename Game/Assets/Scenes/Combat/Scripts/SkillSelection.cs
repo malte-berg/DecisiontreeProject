@@ -55,16 +55,12 @@ public class SkillSelection : MonoBehaviour
 
     public void SelectSkill(int skillIndex)
     {
-        if (player.skills == null || player.skills.Length <= skillIndex || player.skills[skillIndex] == null)
-        {
-            Debug.LogWarning($"Skill selection failed: Index {skillIndex} is out of bounds or skill is null.");
-            return;
+        if(player.SelectSkill(skillIndex)){
+            ShowSelect();
+            UpdateAbilityText(skillIndex);
+            imageRect.anchoredPosition = buttonTransforms[skillIndex].anchoredPosition;;
+            Debug.Log($"Selected skill: {player.skills[skillIndex]?.Name}");
         }
-        ShowSelect();
-        UpdateAbilityText(skillIndex);
-        imageRect.anchoredPosition = buttonTransforms[skillIndex].anchoredPosition;;
-        player.SelectSkill(skillIndex); 
-        Debug.Log($"Selected skill: {player.skills[skillIndex]?.Name}");
     }
 
     void UpdateAbilityText(int skillIndex)
