@@ -6,6 +6,15 @@ public class NewGame : MonoBehaviour{
     public GameObject playerPrefab;
     public AreaInitializer a;
 
+    void Awake(){
+
+        GameObject p = GameObject.FindGameObjectWithTag("Player");
+        
+        if(p != null)
+            Destroy(p);
+
+    }
+
     public void StartNewGame() {
 
         a = GetComponent<AreaInitializer>();
