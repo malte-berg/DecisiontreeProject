@@ -21,8 +21,7 @@ public class NewGame : MonoBehaviour{
             playerObject.GetComponent<Player>().Init();
         }
         
-        Save tSave = new SaveManager().CreateSave(playerObject.GetComponent<Player>());
-        playerObject.GetComponent<Player>().Seed = tSave.seed;
+        new SaveManager().CreateSave(playerObject.GetComponent<Player>());
         GetComponent<SceneSwitch>().WithCutscene = 0;
         GetComponent<SceneSwitch>().SwitchScene(1);
 

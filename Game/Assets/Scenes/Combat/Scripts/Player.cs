@@ -7,7 +7,7 @@ public class Player : GameCharacter {
 
     // GAME STATS
     long seed;
-    public long Seed{ get { return seed; } set{ this.seed = value; }}
+    public long Seed{ get { return seed; }}
 
     // PLAYER STATS
     int gold;                   //For buying items in the store window.
@@ -53,6 +53,13 @@ public class Player : GameCharacter {
     }
     
     public override void Init(){
+
+        if(seed == 0){
+            System.Random random = new System.Random();
+            byte[] buffer = new byte[8];
+            random.NextBytes(buffer);
+            seed = BitConverter.ToInt64(buffer, 0);
+        }
 
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2")};
 
