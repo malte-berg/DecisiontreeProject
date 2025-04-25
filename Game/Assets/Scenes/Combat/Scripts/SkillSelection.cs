@@ -48,8 +48,26 @@ public class SkillSelection : MonoBehaviour
     {
         for (int i = 0; i < skillButtons.Length; i++)
         {
-            skillButtons[i].interactable = player.skills.Length > i && player.skills[i] != null;
-            skillButtons[i].GetComponent<Image>().sprite = player.skills.Length > i && player.skills[i] != null ? player.skills[i].Icon : null;
+            skillButtons[i].interactable = false;
+            skillButtons[i].GetComponent<Image>().sprite = null;
+            skillButtons[i].transform.GetChild(0).gameObject.SetActive(false);
+
+            if(player.skills.Length > i){
+
+                if(player.skills[i] != null){
+
+                    skillButtons[i].interactable = true;
+                    skillButtons[i].GetComponent<Image>().sprite = player.skills[i].Icon;
+
+                    if(player.skills[i].cooldownCount <= 0)
+                        continue;
+
+                    skillButtons[i].transform.GetChild(0).gameObject.SetActive(true);
+                    skillButtons[i].transform.GetChild(0).GetChild(1).GetComponent<TMP_Text>().text = $"{player.skills[i].cooldownCount}";
+
+                }
+
+            }
         }
     }
 

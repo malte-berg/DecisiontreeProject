@@ -238,6 +238,8 @@ public class Combat : MonoBehaviour{
 
         }
 
+        GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(1).GetChild(0).GetComponent<SkillSelection>().UpdateSkillButtons();
+
         // Calculate next turn index
         turn = (turn + 1) % (enemies.Count + 1);
 
