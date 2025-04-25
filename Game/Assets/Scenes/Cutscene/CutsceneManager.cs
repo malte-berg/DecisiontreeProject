@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class CutsceneManager : MonoBehaviour{
 
     public GameObject dialogueBoxGO;
+    public GameObject backgroundGO;
+    public Sprite[] backgrounds;
     public SceneScript[] sceneScripts;
     GameObject canvas;
 
@@ -28,7 +30,11 @@ public class CutsceneManager : MonoBehaviour{
         if(cutscene >= 0 && cutscene < sceneScripts.Length) {
 
             if(canvas == null) canvas = GameObject.FindGameObjectWithTag("Canvas");
-            sceneScripts[cutscene].LoadCutscene(dialogueBoxGO, canvas.transform);
+            Backgrounds bg = Instantiate(backgroundGO, canvas.transform).GetComponent<Backgrounds>();
+            bg.Init(backgrounds);
+            DialogueBox db = Instantiate(dialogueBoxGO, canvas.transform).GetComponent<DialogueBox>();
+            db.Init(sceneScripts[cutscene]);
+            sceneScripts[cutscene].LoadCutscene(db, bg);
             yield return sceneScripts[cutscene].RunAnimation();
 
         }

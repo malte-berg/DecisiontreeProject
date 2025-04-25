@@ -4,10 +4,16 @@ using UnityEngine;
 public abstract class SceneScript : MonoBehaviour {
 
     [HideInInspector] public DialogueBox db;
-    [HideInInspector] public GameObject dialogueBoxGO;
+    [HideInInspector] public Backgrounds bg;
     [HideInInspector] public bool waitingForDialogue;
 
-    public abstract void LoadCutscene(GameObject dbgo, Transform canvas);
+    public void LoadCutscene(DialogueBox db, Backgrounds bg){
+
+        this.db = db;
+        this.bg = bg;
+
+    }
+
     public abstract IEnumerator RunAnimation();
 
 }
