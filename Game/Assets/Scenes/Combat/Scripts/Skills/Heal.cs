@@ -9,7 +9,7 @@ public class Heal : Skill {
         gc: null,
         name: "Heal",
         power: 0,
-        manaCost: 0,
+        manaCost: 15,
         skillCost: 1,
         description: "Regain some lost health."
         

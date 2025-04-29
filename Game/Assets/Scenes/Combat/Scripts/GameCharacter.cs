@@ -63,17 +63,17 @@ public class GameCharacter : MonoBehaviour{
             );
     } set{ this.magic = value; }}
 
-    public int Mana{get{
+    public int Mana{get{ return mana; } set{ this.mana = value; }}
+    
+    public int MaxMana{get{
          return 
             Mathf.RoundToInt(
                 Mathf.RoundToInt( // MANA CALCULATED
-                    (mana + GetEquipmentSum(4)) * GetEquipmentMult(4)
+                    (maxMana + GetEquipmentSum(4)) * GetEquipmentMult(4)
                 ) // EFFECTS APPLIED
                 - GetEffectSum(4) * GetEffectFactor(4)
             );
-    } set{ this.mana = value; }}
-    
-    public int MaxMana{get{ return maxMana; } set {this.maxMana = value; }}
+    } set {this.maxMana = value; }}
 
     // SKILLS
     public Skill[] skills;
@@ -172,6 +172,7 @@ public class GameCharacter : MonoBehaviour{
 
         bool skill = target != null && skills[selectedSkill].Effect(target);
         healthBar.UpdateBar(HP, Vitality);
+        manaBar.UpdateBar(mana, MaxMana);
 
         Vector3 posOfTarget = target.transform.GetChild(0).position;
         if (spriteManager != null && skill) {

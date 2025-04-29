@@ -2,20 +2,20 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class SaveManager : MonoBehaviour{
+public class SaveManager {
 
-    public void CreateSave(Player player){
+    public Save CreateSave(Player player){
 
         Save s = player.CreateSave();
         string json = JsonUtility.ToJson(s, true);
-        print($"JSON_DATA:\n{json}");
-        File.WriteAllText($"Saves/{DateTime.Now.ToString("yyyyMMddHHmmss")}.txt", json);
+        File.WriteAllText($"Saves/{DateTime.Now.ToString("yyyyMMddHHmmss")}.json", json);
+        return s;
 
     }
 
     public Save ReadSave(string name){
 
-        string path = $"Saves/{name}.txt";
+        string path = $"Saves/{name}";
 
         if (File.Exists(path)) {
 
@@ -24,7 +24,7 @@ public class SaveManager : MonoBehaviour{
 
         } else {
 
-            Debug.LogError("File not found!");
+            Debug.LogError($"File not found! {name}");
             return null;
 
         }
