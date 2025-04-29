@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class Intro : SceneScript {
 
-    public override void LoadCutscene(GameObject dbgo, Transform canvas){
-        
-        db = Instantiate(dbgo, canvas).GetComponent<DialogueBox>();
-        db.Init(this);
-
-    }
-
     public override IEnumerator RunAnimation() {
 
         int frame = 300;
@@ -17,6 +10,7 @@ public class Intro : SceneScript {
         while(frame-- > 0)
             yield return new WaitForSeconds(1/60);
 
+        bg.SetBG(0);
         db.Enqueue(@"
         Narrator§It all started that day. The 12th of March, 2078. Some call it “The Miracle”, while others call it “The Disaster”.
         ");
@@ -42,7 +36,8 @@ But it didn't matter.
 
         while(waitingForDialogue)
             yield return null;
-
+            
+        bg.SetBG(1);
         frame = 300;
 
         while(frame-- > 0)
