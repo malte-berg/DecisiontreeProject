@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameCharacter : MonoBehaviour{
 
     public Combat c;
-    public Transform bars;
+    public RectTransform bars;
 
     // STATS
     string cName;
@@ -134,7 +134,18 @@ public class GameCharacter : MonoBehaviour{
 
     public void Moved(){
 
-        bars.position = Camera.main.WorldToScreenPoint(transform.position*0.73f);
+        if(bars == null)
+            return;
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        RectTransform canvasRect = GameObject.FindGameObjectWithTag("Canvas")?.GetComponent<RectTransform>();
+        Vector2 localPos;
+
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPos, Camera.main, out localPos)) {
+
+            bars.localPosition = localPos;
+
+        }
 
     }
 
