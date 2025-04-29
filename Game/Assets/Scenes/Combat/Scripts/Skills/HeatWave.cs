@@ -11,6 +11,8 @@ public class HeatWave : Skill {
         power: 0, 
         manaCost: 20, 
         skillCost: 1,
+        cooldown: 3,
+        attack: true,
         description: "Deal Fire Damage to all enemies."
         
         ){
@@ -18,12 +20,6 @@ public class HeatWave : Skill {
     }
 
     public override bool Effect(GameCharacter target) {
-        if(target == gc)
-            return false;
-        if(gc.Mana < manaCost)
-            return false;
-
-        gc.Mana -= manaCost;
 
         int damageDealt = Mathf.FloorToInt(gc.Magic * power);
 
