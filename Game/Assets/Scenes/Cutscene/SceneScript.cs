@@ -16,4 +16,11 @@ public abstract class SceneScript : MonoBehaviour {
 
     public abstract IEnumerator RunAnimation();
 
+    public IEnumerator WaitForDialogue(){
+
+        while(waitingForDialogue)
+            yield return null;
+
+    }
+
 }
