@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Shield : Skill
 {
-    GameCharacter gc;
 
-    public Shield(GameCharacter gc) : base(
+    public Shield() : base(
+         icon: null,
          sprites: null,
-         gc: gc,
+         gc: null,
          name: "Shield",
          power: 1,
          manaCost: 0,
@@ -14,7 +14,7 @@ public class Shield : Skill
          description: "Add some armor to player"
          )
     {
-        this.gc = gc;
+
     }
 
     public override bool Effect(GameCharacter target)
@@ -27,16 +27,24 @@ public class Shield : Skill
         if (!gc.SpendMana(manaCost))
             return false;
 
-        int shieldAdded = Mathf.FloorToInt(30 * power); // amount of armor gained temporarily
+        int shieldAdded = 30; // amount of armor gained temporarily
+
+        int shieldTurns = Mathf.FloorToInt(power); // made this for clarity purpose, power decides turns for now.
 
         //Add armor to the player character.
         Debug.Log("Shield: Before: " + target.Armor);
 
-        Debuff.DebuffStat(target, "armor", shieldAdded);
+        target.statusEffects.Add(new StatusEffect(shieldTurns, shieldAdded, power, 1));
 
         Debug.Log("Shield: After: " + target.Armor);
 
         return true;
+    }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
+    {
+        // Optional: put animation logic here
+        Debug.Log("Corrode animation not implemented yet.");
     }
 
 }

@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Drain : Skill
 {
-    GameCharacter gc;
 
-    public Drain(GameCharacter gc) : base(
+
+    public Drain() : base(
+        icon: null,
         sprites: null,
-        gc: gc,
+        gc: null,
         name: "Drain",
         power: 1,
         manaCost: 0,
@@ -14,7 +15,7 @@ public class Drain : Skill
         description: "Reduces enemy's Mana"
     )
     {
-        this.gc = gc;
+
     }
 
     public override bool Effect(GameCharacter target)
@@ -24,28 +25,26 @@ public class Drain : Skill
         if (!gc.SpendMana(manaCost))
             return false;
 
-        int manaDrained = Mathf.FloorToInt(10 * power); // amount of armor lost temporarily
 
-        // Debug.Log("Raw mana base: " + target.mana);
-        Debug.Log("Equip sum: " + target.GetEquipmentManaSum());
-        Debug.Log("Equip mult: " + target.GetEquipmentManaMult());
-        Debug.Log("Debuff: " + target.GetDebuffAdd("mana"));
-        Debug.Log("Final mana: " + target.Mana);
+        int manaDrained = 10 ; // amount of armor lost temporarily
 
-        //target.effects["mana"] = new Debuff(-manaDrained);
-        Debuff.DebuffStat(target, "mana", -manaDrained);
+        int drainTurns = Mathf.FloorToInt(power); // made this for clarity purpose, power decides turns for now.
 
+        Debug.Log("Before MANA: " + target.Mana);
+        
+        target.statusEffects.Add(new StatusEffect(drainTurns, manaDrained, power, 4)); 
 
-        //Debug.Log("Raw mana base: " + target.mana);
-        Debug.Log("Equip sum: " + target.GetEquipmentManaSum());
-        Debug.Log("Equip mult: " + target.GetEquipmentManaMult());
-        Debug.Log("Debuff: " + target.GetDebuffAdd("mana"));
-        Debug.Log("Final mana: " + target.Mana);
-
+        Debug.Log("After MANA: " + target.Mana);
 
 
         return true;
 
+    }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
+    {
+        // Optional: put animation logic here
+        Debug.Log("Corrode animation not implemented yet.");
     }
 
 }

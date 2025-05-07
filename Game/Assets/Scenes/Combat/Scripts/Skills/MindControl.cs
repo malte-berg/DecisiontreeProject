@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 public class MindControl : Skill
 {
-    GameCharacter gc;
 
     public static System.Random rand = new System.Random();
 
-    public MindControl(GameCharacter gc) : base(
+    public MindControl() : base(
+        icon: null,
         sprites: null,
-        gc: gc,
+        gc: null,
         name: "Mind Control",
-        power: 2,
+        power: 3,
         manaCost: 0,
         skillCost: 1,
         description: "Makes enemy attack other enemies"
         )
     {
-        this.gc = gc;
+
     }
 
     public static Enemy GetRandomEnemy(Enemy currentEnemy, List<Enemy> Enemies)
@@ -47,6 +47,7 @@ public class MindControl : Skill
 
         if (!gc.SpendMana(manaCost))
             return false;
+
 
         //Enemy targets another enemy, instead of the player.
         var enemies = target.c.Enemies;
@@ -83,4 +84,11 @@ public class MindControl : Skill
         return true;
 
     }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
+    {
+
+        Debug.Log("Animation not implemented yet.");
+    }
+
 }

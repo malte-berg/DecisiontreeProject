@@ -15,46 +15,27 @@ public abstract class Skill
     int cooldown = 0;
 
     private string description;
-<<<<<<< HEAD
+    private Sprite icon;
     public string Name { get { return name; } }
     // lägg till beskrivning när man skapar skills/ability
     public string DescriptionPanel
     {
         get
         {
-            return description + "\n" +
-                   "Skill level: —-\n" + // vissa skill level istället för power?
-                   "Mana Cost: " + manaCost.ToString() + "\n" +
+            return description +
+                   //"Skill level: —-\n" + // vissa skill level istället för power?
+                   "\nMana Cost: " + manaCost.ToString() + "\n" +
                    "Cooldown: —-\n";
         }
     }
     public int Cooldown { get { return cooldown; } }
     public string Description { get { return description; } }
     public int SkillLevel { get { return skillLevel; } }
+    public Sprite Icon { get { return icon; } }
 
-    public Skill(List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description)
+    public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description)
     {
-
-=======
-    private Sprite icon;
-    public string Name{ get { return name; } }
-    // lägg till beskrivning när man skapar skills/ability
-    public string DescriptionPanel { 
-        get {
-            return description +
-                   //"Skill level: —-\n" + // vissa skill level istället för power?
-                   "\nMana Cost: " + manaCost.ToString() + "\n" +  
-                   "Cooldown: —-\n"; 
-        } 
-    }
-    public int Cooldown{ get { return cooldown; } }
-    public string Description{ get { return description; } }
-    public int SkillLevel{ get { return skillLevel; } }
-    public Sprite Icon{ get { return icon; } }
-
-    public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description){
         this.icon = icon;
->>>>>>> upstream/main
         this.sprites = sprites;
         this.gc = gc;
         this.name = name;
@@ -66,12 +47,8 @@ public abstract class Skill
         this.skillLevel = 0;
     }
 
-<<<<<<< HEAD
-    public void UnlockSkill()
+    public void UnlockSkill(GameCharacter who)
     {
-=======
-    public void UnlockSkill(GameCharacter who) {
->>>>>>> upstream/main
 
         MonoBehaviour.print($"{who.CName} unlocked: {Name}");
         who?.unlockedSkills.Add(this);
@@ -91,5 +68,25 @@ public abstract class Skill
     public abstract bool Effect(GameCharacter target);
 
     public abstract void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm);
+
+
+    public static void ModifyStatusEffect(List<StatusEffect> statuses, int turns, int delta, float deltaF, int type)
+    {
+        for(int i = 0; i < statuses.Count; i++)
+        {
+            if(statuses[i].EffectType == type)
+            {
+                statuses[i].Turns = turns;
+                statuses[i].Delta += delta;
+                statuses[i].DeltaF = deltaF;
+                return;
+
+                Debug.Log("Adding onto existing stat effects");
+            }
+        }
+
+        statuses.Add(new StatusEffect(turns, delta, deltaF, type));
+        Debug.Log("Adding new stat effects");
+    }
 
 }

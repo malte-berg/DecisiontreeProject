@@ -57,7 +57,13 @@ public class Combat : MonoBehaviour
 
         // Spawn enemies
         for (int i = 0; i < 4; i++)
-            SpawnEnemy(enemyPrefabs[player.CurrentAreaIndex - 1]);
+        {
+            Enemy newEnemy = SpawnEnemy(enemyPrefabs[player.CurrentAreaIndex - 1]);
+            newEnemy.CName += " " + i.ToString();
+        }
+
+
+
 
         GetCurrentCharacter();
 
@@ -242,7 +248,8 @@ public class Combat : MonoBehaviour
     {
 
         currentC = GetCurrentCharacter();
-        List<StatusEffect> se = currentC.statusEffects;
+        
+        List <StatusEffect> se = currentC.statusEffects;
 
         // Decrement and remove status effects
         for (int i = 0; i < se.Count; i++)

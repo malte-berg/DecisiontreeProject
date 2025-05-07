@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-
-//  This will not work until we have implemented passive effects.
+// ----------------------------------------------------------------------------
+//  This will not work until we have implemented passive effects. Dont mind it.
+//-------------------------------------------------------------------------------
 public class Poison : Skill
 {
     GameCharacter gc;
@@ -15,7 +16,7 @@ public class Poison : Skill
     //}
 
     public Poison(GameCharacter gc) : base(
-
+         icon: null,
          sprites: null,
          gc: gc,
          name: "Poison",
@@ -35,6 +36,7 @@ public class Poison : Skill
         //     return false;
         // if (gc.Mana < manaCost)
         //     return false;
+
 
         // active = target.c.passiveIsActive;
 
@@ -71,7 +73,16 @@ public class Poison : Skill
         //     active = false;
         // }
 
+
+
         return true;
 
     }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
+    {
+        // Optional: put animation logic here
+        Debug.Log("Corrode animation not implemented yet.");
+    }
+
 }

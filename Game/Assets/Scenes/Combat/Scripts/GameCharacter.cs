@@ -51,6 +51,7 @@ public class GameCharacter : MonoBehaviour
                        (armor + GetEquipmentSum(1)) * GetEquipmentMult(1)
                    ) // EFFECTS APPLIED
                    - GetEffectSum(1) * GetEffectFactor(1)
+                   //+ GetDebuffAdd("armor")
                );
         }
         set { this.armor = value; }
@@ -96,6 +97,7 @@ public class GameCharacter : MonoBehaviour
                        (mana + GetEquipmentSum(4)) * GetEquipmentMult(4)
                    ) // EFFECTS APPLIED
                    - GetEffectSum(4) * GetEffectFactor(4)
+                   //+ GetDebuffAdd("mana")
                );
         }
         set { this.mana = value; }
@@ -292,7 +294,7 @@ public class GameCharacter : MonoBehaviour
         return temp;
     }
 
-    int GetEffectSum(int type)
+    public int GetEffectSum(int type) // temp made public remove later
     {
 
         int sum = 0;
@@ -308,10 +310,10 @@ public class GameCharacter : MonoBehaviour
 
     }
 
-    float GetEffectFactor(int type)
+    public float GetEffectFactor(int type) // temp made public remove later
     {
 
-        float factor = 0;
+        float factor = 1;
 
         for (int i = 0; i < statusEffects.Count; i++)
         {
@@ -570,31 +572,40 @@ public class GameCharacter : MonoBehaviour
         if (effects.ContainsKey(stat))
         {
             debuffAmount = effects[stat].amount;
-            //effects.Remove(stat);
         }
         return debuffAmount;
     }
 
     public bool SpendMana(int manaCost)
-
     {
-
+        // Drar bort mana kostnad från total mana och beräknar sedan hur mycket base mana som korresponderar mot nya totala mängden
         Debug.Log("Name: " + CName + " Mana: " + this.Mana + " raw mana: " + this.mana);
-
         Debug.Log("Mana: " + Mana + " Manacost: " + manaCost);
+
         if (Mana < manaCost)
         {
-            Debug.Log("brokey");
+            Debug.Log("too broke");
             return false;
         }
 
-
-
         int newMana = Mana - manaCost;
 
-        float multiplier = GetEquipmentManaMult();
-        int additive = GetEquipmentManaSum();
+        float multiplier = GetEquipmentMult(4);
+        int additive = GetEquipmentSum(4);
+        // int debuffAdd = GetDebuffAdd("mana");
+        int effectSum = GetEffectSum(4);
+        float effectFactor = GetEffectFactor(4);
         int debuffAdd = GetDebuffAdd("mana");
+
+        Debug.Log("equipmult: " + multiplier);
+
+        Debug.Log("equipsum: " + additive);
+
+        Debug.Log("effect sum: " + effectSum);
+
+        Debug.Log("effect factor: " + effectFactor);
+
+        Debug.Log("debuff sum: " + debuffAdd);
 
         if (Mathf.Approximately(multiplier, 0f))
         {
@@ -602,12 +613,18 @@ public class GameCharacter : MonoBehaviour
             return false;
         }
 
-
-        float rawMana = ((newMana - debuffAdd) / multiplier) - additive;
-        Mana = Mathf.Max(0, Mathf.RoundToInt(rawMana));
+        // Reverse the getter
+        float rawMana = ((newMana - debuffAdd + effectSum * effectFactor) / multiplier) - additive;
+        //float rawMana = ((newMana - +effectSum * effectFactor) / multiplier) - additive;
+        Debug.Log("calculated new mana: " + rawMana);
+        //Mana = Mathf.Max(0, Mathf.RoundToInt(rawMana));
+        Mana = Mathf.RoundToInt(rawMana);
+        Debug.Log("Mana set to: " + Mana);
+        Debug.Log("raw Mana set to: " + mana);
 
         return true;
     }
+
 
 
 

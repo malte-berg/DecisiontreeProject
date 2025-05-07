@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Disarm : Skill
 {
-    GameCharacter gc;
 
-    public Disarm(GameCharacter gc) : base(
+    public Disarm() : base(
+         icon: null,
          sprites: null,
-         gc: gc,
+         gc: null,
          name: "Disarm",
          power: 10,
          manaCost: 40,
@@ -15,7 +15,6 @@ public class Disarm : Skill
          )
     {
 
-        this.gc = gc;
     }
 
     public override bool Effect(GameCharacter target)
@@ -50,5 +49,11 @@ public class Disarm : Skill
 
         return true;
 
+    }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
+    {
+        // Optional: put animation logic here
+        Debug.Log("Corrode animation not implemented yet.");
     }
 }

@@ -3,21 +3,19 @@ using System;
 
 public class Zap : Skill
 {
-    GameCharacter gc;
 
-    public Zap(GameCharacter gc) : base(
+    public Zap() : base(
+        icon: null,
         sprites: null,
-        gc: gc,
+        gc: null,
         name: "Zap",
         power: 1,
         manaCost: 30,
         skillCost: 1,
         description: "Steals enemy's health while dealing damage"
         )
-
-    //public Zap(GameCharacter gc) : base(gc, "Zap", 2, 30, 1)
     {
-        this.gc = gc;
+
     }
 
     public override bool Effect(GameCharacter target)
@@ -52,5 +50,11 @@ public class Zap : Skill
 
         return true;
 
+    }
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
+    {
+        // Optional: put animation logic here
+        Debug.Log("Corrode animation not implemented yet.");
     }
 }

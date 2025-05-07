@@ -7,17 +7,9 @@ public class Player : GameCharacter
 
     // GAME STATS
     long seed;
-    public long Seed{ get { return seed; }}
+    public long Seed { get { return seed; } }
 
     // PLAYER STATS
-<<<<<<< HEAD
-    int gold;           //For buying items in the store window.
-    int skillPoints;    //For unlocking new abilities in the skill tree window.
-    int statPoints;     //For increasing stats in the stats window.
-    public int StatPoints { get { return statPoints; } set { this.statPoints = value; } }
-    public int SkillPoints { get { return skillPoints; } set { this.skillPoints = value; } }
-    public int Gold { get { return gold; } set { this.gold = value; } }
-=======
     int gold;                   //For buying items in the store window.
     int skillPoints;            //For unlocking new abilities in the skill tree window.
     int statPoints;             //For increasing stats in the stats window.
@@ -28,16 +20,15 @@ public class Player : GameCharacter
     int expToNextLevel;
     int cutscene = -1;          // For telling cutscene scene to run animation
 
-    public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
-    public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
-    public int Gold{ get{ return gold; } set{ this.gold = value; }}
-    public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
-    public int CombatsWon{ get{ return combatsWon[currentAreaIndex]; } set {combatsWon[currentAreaIndex] = value;}}
-    public int CurrentLevel { get { return currentLevel; } set { this.currentLevel = value; }}
-    public int CurrentExp { get { return currentExp; } set { this.currentExp = value; }}
-    public int ExpToNextLevel { get { return expToNextLevel; } set { this.expToNextLevel = value; }}
-    public int Cutscene{ get{ return cutscene; }}
->>>>>>> upstream/main
+    public int StatPoints { get { return statPoints; } set { this.statPoints = value; } }
+    public int SkillPoints { get { return skillPoints; } set { this.skillPoints = value; } }
+    public int Gold { get { return gold; } set { this.gold = value; } }
+    public int CurrentAreaIndex { get { return currentAreaIndex; } set { this.currentAreaIndex = value; } }
+    public int CombatsWon { get { return combatsWon[currentAreaIndex]; } set { combatsWon[currentAreaIndex] = value; } }
+    public int CurrentLevel { get { return currentLevel; } set { this.currentLevel = value; } }
+    public int CurrentExp { get { return currentExp; } set { this.currentExp = value; } }
+    public int ExpToNextLevel { get { return expToNextLevel; } set { this.expToNextLevel = value; } }
+    public int Cutscene { get { return cutscene; } }
 
     public Player() : base(
 
@@ -46,7 +37,7 @@ public class Player : GameCharacter
         armor: 0,
         strength: 10,
         magic: 0,
-        mana: 0,
+        mana: 100,
         maxSkill: 8,
         inventorySize: 20
 
@@ -73,24 +64,43 @@ public class Player : GameCharacter
         gameObject.name = "Player";
         HidePlayer();
         DontDestroyOnLoad(gameObject);
-<<<<<<< HEAD
 
-        Skill punch = new Punch(this);
-        punch.UnlockSkill();
-        AddSkill(punch);
-
-
-        // OP dev privilege
-        inventory[0] = new Knife();
-        inventory[1] = new Pipe();
-
-=======
-      
         Skill punch = new Punch();
         punch.UnlockSkill(this);
         AddSkill(punch);
 
->>>>>>> upstream/main
+        Skill mindControl = new MindControl();
+        mindControl.UnlockSkill(this);
+        AddSkill(mindControl);
+
+        Skill disarm = new Disarm();
+        disarm.UnlockSkill(this);
+        AddSkill(disarm);
+
+        //Skill shield = new Shield();
+        //shield.UnlockSkill(this);
+        //AddSkill(shield);
+
+        Skill drain = new Drain();
+        drain.UnlockSkill(this);
+        AddSkill(drain);
+
+        Skill zap = new Zap();
+        zap.UnlockSkill(this);
+        AddSkill(zap);
+
+        Skill corrode = new Corrode();
+        corrode.UnlockSkill(this);
+        AddSkill(corrode);
+
+        
+        Skill shield = new Shield();
+        shield.UnlockSkill(this);
+        AddSkill(shield);
+
+
+        Debug.Log("Raw Mana set to: " + Mana);           // this.mana
+
     }
 
     //Hide the player model.
@@ -109,17 +119,7 @@ public class Player : GameCharacter
         SetSprite();
 
     }
-<<<<<<< HEAD
 
-    //Update the player stats (permanently).
-    public void UpdateStats(int newVitality, int newStrength, int newMagic, int newStatPoints)
-    {
-        Vitality = newVitality;
-        Strength = newStrength;
-        Magic = newMagic;
-        statPoints = newStatPoints;
-=======
-    
     public void AddExp(int amount)
     {
         CurrentExp += amount;
@@ -133,10 +133,10 @@ public class Player : GameCharacter
             StatPoints += 5;      // Reward stat points for every new level reached
             SkillPoints += 1;     // Reward skill points for every new level reached
         }
->>>>>>> upstream/main
     }
 
-    public Save CreateSave(){
+    public Save CreateSave()
+    {
 
         /// TEMP ///
         inventory[0] = new Knife();
@@ -153,41 +153,43 @@ public class Player : GameCharacter
         int[] equipped = new int[7];
 
         int inventoryCount = 0;
-        for(; inventoryCount < inventory.Length && inventory[inventoryCount] != null; ++inventoryCount);
+        for (; inventoryCount < inventory.Length && inventory[inventoryCount] != null; ++inventoryCount) ;
         string[] items = new string[inventoryCount];
 
-        for(int i = 0; i < inventory.Length && inventory[i] != null; i++){
+        for (int i = 0; i < inventory.Length && inventory[i] != null; i++)
+        {
 
             items[i] = inventory[i].GetType().FullName;
 
-            switch(inventory[i]){
+            switch (inventory[i])
+            {
 
                 case Head:
-                    if(equipment.head == inventory[i])
+                    if (equipment.head == inventory[i])
                         equipped[0] = i;
                     break;
 
                 case Torso:
-                    if(equipment.torso == inventory[i])
+                    if (equipment.torso == inventory[i])
                         equipped[1] = i;
                     break;
 
                 case Boots:
-                    if(equipment.boots == inventory[i])
+                    if (equipment.boots == inventory[i])
                         equipped[2] = i;
                     break;
 
                 case Weapon:
-                    if(equipment.weaponLeft == inventory[i])
+                    if (equipment.weaponLeft == inventory[i])
                         equipped[3] = i;
-                    else if(equipment.weaponRight == inventory[i])
+                    else if (equipment.weaponRight == inventory[i])
                         equipped[4] = i;
                     break;
 
                 case Consumable:
-                    if(equipment.consumableLeft == inventory[i])
+                    if (equipment.consumableLeft == inventory[i])
                         equipped[5] = i;
-                    else if(equipment.consumableRight == inventory[i])
+                    else if (equipment.consumableRight == inventory[i])
                         equipped[6] = i;
                     break;
 
@@ -198,16 +200,18 @@ public class Player : GameCharacter
         string[] unlocked = new string[unlockedSkills.Count];
         int[] selected = new int[skills.Length];
 
-        for(int i = 0; i < selected.Length; i++)
+        for (int i = 0; i < selected.Length; i++)
             selected[i] = -1;
 
         int[] levels = new int[unlockedSkills.Count];
 
-        for(int i = 0; i < unlocked.Length; i++){
+        for (int i = 0; i < unlocked.Length; i++)
+        {
             unlocked[i] = unlockedSkills[i].GetType().FullName;
             levels[i] = unlockedSkills[i].SkillLevel;
-            for(int ii = 0; ii < skills.Length; ii++){
-                if(skills[ii] == unlockedSkills[i])
+            for (int ii = 0; ii < skills.Length; ii++)
+            {
+                if (skills[ii] == unlockedSkills[i])
                     selected[ii] = i;
             }
         }
