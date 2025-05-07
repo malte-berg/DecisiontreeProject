@@ -180,7 +180,7 @@ public class SkillButtonNode : MonoBehaviour
 
             Image lineImage = rect.AddComponent<Image>();
             lineImage.color = Color.white;
-            rectTransform.SetAsFirstSibling();
+            rectTransform.SetSiblingIndex(1);
         }
     }
 }
