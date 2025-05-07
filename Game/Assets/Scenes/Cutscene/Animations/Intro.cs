@@ -5,12 +5,13 @@ public class Intro : SceneScript {
 
     public override IEnumerator RunAnimation() {
 
-        int frame = 300;
-
-        while(frame-- > 0)
-            yield return new WaitForSeconds(1/60);
-
+        yield return new WaitForSeconds(5);
         bg.SetBG(0);
+        yield return new WaitForSeconds(1);
+        bg.SetBG(6);
+        yield return new WaitForSeconds(1);
+        bg.SetBG(5);
+
         db.Enqueue(@"
         Narrator§It all started that day. The 12th of March, 2078. Some call it “The Miracle”, while others call it “The Disaster”.
         ");
@@ -20,6 +21,13 @@ public class Intro : SceneScript {
         db.Enqueue(@"
         Narrator§The most powerful among them became eager to use their own powers. As a result, the biggest revolution in human history began. It was complete anarchy. 
         ");
+
+        db.ContinueDialogue();
+        yield return WaitForDialogue();
+        yield return new WaitForSeconds(2);
+        bg.SetBG(4);
+        yield return new WaitForSeconds(1);
+
         db.Enqueue(@"
         Narrator§All the countries in the world tried to stop it. Air raids were called, giant battlefields were erected, and many lives were lost. After the entirety of France was taken over, the first nuke was launched. Then came another. And another.
 But it didn't matter.
@@ -32,16 +40,10 @@ But it didn't matter.
         ");
 
         db.ContinueDialogue();
-        waitingForDialogue = true;
-
-        while(waitingForDialogue)
-            yield return null;
-            
-        bg.SetBG(1);
-        frame = 300;
-
-        while(frame-- > 0)
-            yield return new WaitForSeconds(1/60);
+        yield return WaitForDialogue();
+        yield return new WaitForSeconds(2);
+        bg.SetBG(2);
+        yield return new WaitForSeconds(5);
 
     }
 
