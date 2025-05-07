@@ -55,6 +55,6 @@ public class Zap : Skill
     public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
     {
         // Optional: put animation logic here
-        Debug.Log("Corrode animation not implemented yet.");
+        Debug.Log("Zap animation not implemented yet.");
     }
 }

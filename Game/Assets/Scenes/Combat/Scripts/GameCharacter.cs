@@ -21,8 +21,6 @@ public class GameCharacter : MonoBehaviour
     public Bar healthBar;
     public Bar manaBar;
 
-    public Dictionary<string, Debuff> effects = new Dictionary<string, Debuff>();
-
     public string CName { get { return cName; } set { this.cName = value; } }
     public int HP { get { return hp; } set { this.hp = value; } }
 
@@ -51,7 +49,6 @@ public class GameCharacter : MonoBehaviour
                        (armor + GetEquipmentSum(1)) * GetEquipmentMult(1)
                    ) // EFFECTS APPLIED
                    - GetEffectSum(1) * GetEffectFactor(1)
-                   //+ GetDebuffAdd("armor")
                );
         }
         set { this.armor = value; }
@@ -97,7 +94,6 @@ public class GameCharacter : MonoBehaviour
                        (mana + GetEquipmentSum(4)) * GetEquipmentMult(4)
                    ) // EFFECTS APPLIED
                    - GetEffectSum(4) * GetEffectFactor(4)
-                   //+ GetDebuffAdd("mana")
                );
         }
         set { this.mana = value; }
@@ -294,7 +290,7 @@ public class GameCharacter : MonoBehaviour
         return temp;
     }
 
-    public int GetEffectSum(int type) // temp made public remove later
+    int GetEffectSum(int type) 
     {
 
         int sum = 0;
@@ -310,7 +306,7 @@ public class GameCharacter : MonoBehaviour
 
     }
 
-    public float GetEffectFactor(int type) // temp made public remove later
+    float GetEffectFactor(int type)
     {
 
         float factor = 1;
@@ -564,18 +560,6 @@ public class GameCharacter : MonoBehaviour
 
     }
 
-
-
-    public int GetDebuffAdd(string stat)
-    {
-        int debuffAmount = 0;
-        if (effects.ContainsKey(stat))
-        {
-            debuffAmount = effects[stat].amount;
-        }
-        return debuffAmount;
-    }
-
     public bool SpendMana(int manaCost)
     {
         // Drar bort mana kostnad från total mana och beräknar sedan hur mycket base mana som korresponderar mot nya totala mängden
@@ -592,20 +576,8 @@ public class GameCharacter : MonoBehaviour
 
         float multiplier = GetEquipmentMult(4);
         int additive = GetEquipmentSum(4);
-        // int debuffAdd = GetDebuffAdd("mana");
         int effectSum = GetEffectSum(4);
         float effectFactor = GetEffectFactor(4);
-        int debuffAdd = GetDebuffAdd("mana");
-
-        Debug.Log("equipmult: " + multiplier);
-
-        Debug.Log("equipsum: " + additive);
-
-        Debug.Log("effect sum: " + effectSum);
-
-        Debug.Log("effect factor: " + effectFactor);
-
-        Debug.Log("debuff sum: " + debuffAdd);
 
         if (Mathf.Approximately(multiplier, 0f))
         {
@@ -614,10 +586,8 @@ public class GameCharacter : MonoBehaviour
         }
 
         // Reverse the getter
-        //float rawMana = ((newMana - debuffAdd + effectSum * effectFactor) / multiplier) - additive;
         float rawMana = ((newMana + effectSum * effectFactor) / multiplier) - additive;
         Debug.Log("calculated new mana: " + rawMana);
-        //Mana = Mathf.Max(0, Mathf.RoundToInt(rawMana));
         Mana = Mathf.RoundToInt(rawMana);
         Debug.Log("Mana set to: " + Mana);
         Debug.Log("raw Mana set to: " + mana);
