@@ -275,7 +275,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -470,10 +470,10 @@ MonoBehaviour:
   dialogueBoxGO: {fileID: 1865955322492675835, guid: d46b05e4d21f2f746a234925dff7b6ec, type: 3}
   backgroundGO: {fileID: 1539637375803097306, guid: 25b5ffd4fce63024ab5160f66a544bdd, type: 3}
   backgrounds:
-  - {fileID: 1451904613459109000, guid: f9812555787231d4581008734faeb3e9, type: 3}
-  - {fileID: 714630580662734479, guid: 3e8536313e1c3d346b600e5fce18bc6b, type: 3}
-  - {fileID: 3192242410833566051, guid: 2d7787b7585a13c44a36d014d67c4887, type: 3}
-  - {fileID: 526390277147090598, guid: e52b56f9ed6f1234eb614fa998c4907a, type: 3}
+  - {fileID: 7257504660712027832, guid: 222a3027efb0bf744a0796d1efde0405, type: 3}
+  - {fileID: -777477828699139927, guid: 49e86b0e93cf5ea48abb142f9dbe6bed, type: 3}
+  - {fileID: -5240219478762855054, guid: 79189c9859bc60b4191ef0c7a2bb2935, type: 3}
+  - {fileID: -9001879066851352877, guid: e81c68e391ac56e4cba9907ad925f0be, type: 3}
   - {fileID: 2979148220289618135, guid: 49a0a314a0f49504286984d924596d12, type: 3}
   - {fileID: 3116867862431625320, guid: 08b6dd593176ec34ba2c1d8d0929b839, type: 3}
   - {fileID: -308409591812723033, guid: 3e7fe4d95752ba848b612936efbbb814, type: 3}

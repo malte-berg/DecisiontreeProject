@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 49a0a314a0f49504286984d924596d12
+guid: 222a3027efb0bf744a0796d1efde0405
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2979148220289618135
-    second: 45908_0
+      213: 7257504660712027832
+    second: TheMiracle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 45908_0
+      name: TheMiracle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 7760
-        height: 4751
+        width: 512
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d0999ba58f085920800000000000000
-      internalID: 2979148220289618135
+      spriteID: 8b67b797906d7b460800000000000000
+      internalID: 7257504660712027832
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      45908_0: 2979148220289618135
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
