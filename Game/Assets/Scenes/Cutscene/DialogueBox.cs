@@ -39,6 +39,8 @@ public class DialogueBox : MonoBehaviour{
 
     public void ContinueDialogue(){
 
+        sc.waitingForDialogue = true;
+
         if(queue.Count > 0)
             DisplayNext();
 

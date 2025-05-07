@@ -24,6 +24,13 @@ public class SceneSwitch : MonoBehaviour{
 
     public void SwitchScene(int sceneIndex){
 
+        if(sceneIndex == 4){
+
+            if(GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>().CombatsWon == 10)
+                withCutscene = 1;
+
+        }
+
         StartCoroutine(LoadScene(sceneIndex, withCutscene));
 
     }
