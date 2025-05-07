@@ -5,40 +5,43 @@ using UnityEngine;
 public class Save{
     
     // Save specific
-    [SerializeField] string created;
-    [SerializeField] int version;
-    [SerializeField] long seed;
+    public static int latestVersion = 8;
+    [SerializeField] public string created;
+    [SerializeField] public int version;
+    [SerializeField] public long seed;
 
     // Experience
-    [SerializeField] int level;
-    [SerializeField] int xp;
+    [SerializeField] public int level;
+    [SerializeField] public int xp;
 
     // Resources
-    [SerializeField] int gold;
-    [SerializeField] int skillPoints;
+    [SerializeField] public int gold;
+    [SerializeField] public int skillPoints;
     
     // Progression
-    [SerializeField] int area;
-    [SerializeField] int[] combats;
+    [SerializeField] public int area;
+    [SerializeField] public int[] combats;
 
     // Stats
-    [SerializeField] int[] stats;
+    [SerializeField] public int statPoints;
+    [SerializeField] public int[] stats;
 
     // Items
-    [SerializeField] int[] equipped;
-    [SerializeField] string[] inventory;
+    [SerializeField] public int[] equipped;
+    [SerializeField] public string[] inventory;
 
     // Skills
-    [SerializeField] int[] levels;
-    [SerializeField] int[] selected;
-    [SerializeField] string[] skills;
+    [SerializeField] public int[] levels;
+    [SerializeField] public int[] selected;
+    [SerializeField] public string[] skills;
 
-    public Save(int level, int xp, int gold, int skillPoints, int area, int[] combats, int[] stats, int[] equipped, string[] inventory, int[] levels, int[] selected, string[] skills, long seed = 0){
+    public Save(long seed, int level, int xp, int gold, int skillPoints, int area, int[] combats, int statPoints, int[] stats, int[] equipped, string[] inventory, int[] levels, int[] selected, string[] skills){
 
         created = DateTime.Now.ToString("O");
-        version = 6;
+        version = latestVersion;
         this.seed = seed;
 
+        // No seed => randomize seed
         if(seed == 0){
             System.Random random = new System.Random();
             byte[] buffer = new byte[8];
@@ -52,6 +55,7 @@ public class Save{
         this.skillPoints = skillPoints;
         this.area = area;
         this.combats = combats;
+        this.statPoints = statPoints;
         this.stats = stats;
         this.equipped = equipped;
         this.inventory = inventory;

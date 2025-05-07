@@ -9,22 +9,16 @@ public class Heal : Skill {
         gc: null,
         name: "Heal",
         power: 0,
-        manaCost: 0,
+        manaCost: 15,
         skillCost: 1,
+        cooldown: 2,
+        attack: false,
         description: "Regain some lost health."
         
         ){
     }
 
     public override bool Effect(GameCharacter target){
-        if (target != gc) {
-            return false;
-        }
-
-        if(target.Mana < manaCost)
-            return false;
-
-        target.Mana -= manaCost;
 
         target.HP += Mathf.FloorToInt(gc.Magic * power);
 

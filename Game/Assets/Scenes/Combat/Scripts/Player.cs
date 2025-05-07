@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : GameCharacter {
@@ -53,6 +54,13 @@ public class Player : GameCharacter {
     
     public override void Init(){
 
+        if(seed == 0){
+            System.Random random = new System.Random();
+            byte[] buffer = new byte[8];
+            random.NextBytes(buffer);
+            seed = BitConverter.ToInt64(buffer, 0);
+        }
+
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2")};
 
         SetSprite();
@@ -98,18 +106,6 @@ public class Player : GameCharacter {
     }
 
     public Save CreateSave(){
-
-        /// TEMP ///
-        inventory[0] = new Knife();
-        inventory[1] = new BrassKnuckles();
-        inventory[2] = new Jacket();
-        inventory[3] = new Bucket();
-        inventory[4] = new WorkerBoots();
-        equipment.Equip(inventory[0]);
-        equipment.Equip(inventory[2]);
-        equipment.Equip(inventory[3]);
-        equipment.Equip(inventory[4]);
-        /// TEMP ///
 
         int[] equipped = new int[7];
 
@@ -175,8 +171,67 @@ public class Player : GameCharacter {
 
         int[] stats = GetBaseStats();
 
-        Save s = new Save(currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, stats, equipped, items, levels, selected, unlocked);
+        Save s = new Save(seed, currentLevel, currentExp, gold, skillPoints, currentAreaIndex, combatsWon, statPoints, stats, equipped, items, levels, selected, unlocked);
         return s;
+
+    }
+
+    public void LoadPlayer(Save save){
+
+        if(save.version != Save.latestVersion){
+
+            Debug.LogError("Wrong save version");
+            return;
+
+        }
+
+        seed = save.seed;
+        currentLevel = save.level;
+        currentExp = save.xp;
+        gold = save.gold;
+        skillPoints = save.skillPoints;
+        currentAreaIndex = save.area;
+        combatsWon = save.combats; // this might be an issue due to save instance instead of player instance of arrays
+        statPoints = save.statPoints;
+        Vitality = save.stats[0];
+        Armor = save.stats[1];
+        Strength = save.stats[2];
+        Magic = save.stats[3];
+        Mana = save.stats[4];
+        MaxMana = save.stats[4];
+
+        for(int i = 0; i < save.inventory.Length; i++){
+
+            Type type = Type.GetType(save.inventory[i]);
+            inventory[i] = (Item)Activator.CreateInstance(type);
+
+            if(save.equipped.Contains(i))
+                equipment.Equip(inventory[i]);
+
+        }
+
+        unlockedSkills = new List<Skill>();
+
+        for(int i = 0; i < save.skills.Length; i++){
+
+            Type type = Type.GetType(save.skills[i]);
+            Skill tSkill = (Skill)Activator.CreateInstance(type);
+            tSkill.UnlockSkill(this);
+            tSkill.UpgradeSkill(save.levels[i] - 1);
+            AddSkill(tSkill);
+
+        }
+
+        skills = new Skill[save.selected.Length];
+
+        for(int i = 0; i < save.selected.Length; i++){
+
+            if(save.selected[i] == -1)
+                break;
+
+            skills[i] = unlockedSkills[save.selected[i]];
+
+        }
 
     }
 
