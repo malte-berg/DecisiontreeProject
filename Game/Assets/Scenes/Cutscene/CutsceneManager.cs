@@ -4,12 +4,18 @@ using UnityEngine.SceneManagement;
 
 public class CutsceneManager : MonoBehaviour{
 
+    public GameObject dialogueBoxGO;
+    public GameObject backgroundGO;
+    public Sprite[] backgrounds;
     public SceneScript[] sceneScripts;
+    GameObject canvas;
 
     public void SwitchScene(int from, int to, int cutscene){
 
+        canvas = GameObject.FindGameObjectWithTag("Canvas");
         AsyncOperation departingOp = SceneManager.UnloadSceneAsync(from);
         StartCoroutine(DoCutscene(departingOp, to, cutscene));
+        new SaveManager().CreateSave(GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>());
 
     }
 
@@ -21,9 +27,19 @@ public class CutsceneManager : MonoBehaviour{
         AsyncOperation arrivingSceneOp = SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         arrivingSceneOp.allowSceneActivation = false;
 
-        if(cutscene >= 0 && cutscene < sceneScripts.Length)
+        if(cutscene >= 0 && cutscene < sceneScripts.Length) {
+
+            if(canvas == null) canvas = GameObject.FindGameObjectWithTag("Canvas");
+            Backgrounds bg = Instantiate(backgroundGO, canvas.transform).GetComponent<Backgrounds>();
+            bg.Init(backgrounds);
+            DialogueBox db = Instantiate(dialogueBoxGO, canvas.transform).GetComponent<DialogueBox>();
+            db.Init(sceneScripts[cutscene]);
+            sceneScripts[cutscene].LoadCutscene(db, bg);
             yield return sceneScripts[cutscene].RunAnimation();
 
+        }
+
+        Destroy(canvas);
         arrivingSceneOp.allowSceneActivation = true;
 
         while(!arrivingSceneOp.isDone)

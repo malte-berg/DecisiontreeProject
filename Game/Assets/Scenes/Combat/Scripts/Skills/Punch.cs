@@ -12,6 +12,8 @@ public class Punch : Skill
         power: 0,
         manaCost: 1,
         skillCost: 1,
+        cooldown: 0,
+        attack: true,
         description: "Perform a basic attack on one enemy."
 
         )
@@ -19,6 +21,7 @@ public class Punch : Skill
 
     }
 
+<<<<<<< HEAD
     public override bool Effect(GameCharacter target)
     {
 
@@ -31,6 +34,9 @@ public class Punch : Skill
 
         //gc.Mana -= manaCost;
         Debug.Log("Mana of person using punch: " + gc.Mana + "Name: " + gc.CName + " and its used on: " + target.CName);
+=======
+    public override bool Effect(GameCharacter target) {
+>>>>>>> upstream/main
 
         int damageDealt = Mathf.FloorToInt(gc.Strength * power);
         target.TakeDamage(damageDealt);

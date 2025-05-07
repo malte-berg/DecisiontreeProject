@@ -1,23 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using System;
 
-public class SkillButtonNode : MonoBehaviour
+public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     GameObject self;
     public GameObject skillName;
     public GameObject skillLevel;
+    public GameObject hoverPanelPrefab;
     private TMP_Text pointsCounter;
     public Player player;
     public Skill skill;
     public SkillButtonNode parent;
     public SkillButtonNode right;
     public SkillButtonNode left;
-
     public int offsetX;
     public int offsetY;
 
+    GameObject hoverPanelInstance;
+    Vector2 toolTipOffset;
     public void Init(GameObject node, Player player, Skill skill, SkillButtonNode parent, TMP_Text pointsCounter) {
         self = node;
         this.player = player;
@@ -28,6 +31,8 @@ public class SkillButtonNode : MonoBehaviour
         this.offsetX = 0;
         this.offsetY = 0;
         this.pointsCounter = pointsCounter;
+        toolTipOffset.x = 40;
+        toolTipOffset.y = 135;
 
         MoveNode();
         SetNode();
@@ -180,7 +185,38 @@ public class SkillButtonNode : MonoBehaviour
 
             Image lineImage = rect.AddComponent<Image>();
             lineImage.color = Color.white;
-            rectTransform.SetAsFirstSibling();
+            rectTransform.SetSiblingIndex(1);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+
+        if (hoverPanelPrefab != null && hoverPanelInstance == null) {
+
+            hoverPanelInstance = Instantiate(hoverPanelPrefab, transform);
+            hoverPanelInstance.transform.GetChild(1).GetComponent<TMP_Text>().text = skill.Name;
+            hoverPanelInstance.transform.GetChild(2).GetComponent<TMP_Text>().text = skill.Description;
+
+            RectTransform buttonRectTransform = GetComponent<RectTransform>();
+            RectTransform toolTipTransform = hoverPanelInstance.GetComponent<RectTransform>();
+
+            Vector3[] buttonCorners = new Vector3[4];
+            buttonRectTransform.GetWorldCorners(buttonCorners);
+
+            Vector3 targetPos = buttonCorners[0] + new Vector3(toolTipOffset.x, toolTipOffset.y, 0);
+
+            toolTipTransform.position = targetPos;
+        }
+
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+
+        if (hoverPanelInstance != null) {
+
+            Destroy(hoverPanelInstance);
+
+        }
+
     }
 }

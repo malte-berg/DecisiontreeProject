@@ -181,8 +181,8 @@ public class Combat : MonoBehaviour
                     player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle
-                    SceneManager.LoadScene("DemoWinScreen");
                     player.HidePlayer();
+                    SceneManager.LoadScene("DemoWinScreen");
                 }
 
                 return;
@@ -267,6 +267,18 @@ public class Combat : MonoBehaviour
             se[i].DecrementEffect();
 
         }
+
+        // Decrement cooldown
+        for(int i = 0; i < currentC.skills.Length; i++){
+
+            if(currentC.skills[i] == null)
+                break;
+            
+            currentC.skills[i].cooldownCount--;
+
+        }
+
+        GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(1).GetChild(0).GetComponent<SkillSelection>().UpdateSkillButtons();
 
         // Calculate next turn index
         turn = (turn + 1) % (enemies.Count + 1);
