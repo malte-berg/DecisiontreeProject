@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 using System;
+using UnityEditor.ShaderGraph;
 
 public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -44,11 +45,13 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         TMP_Text skillLevelText = skillLevel.GetComponent<TMP_Text>();
 
         if (imageComponent != null) {
+            imageComponent.sprite = skill.Icon;
             if (skill.unlocked) {
-                imageComponent.color = Color.green;
+                imageComponent.color = Color.white;
             } else {
-                imageComponent.color = Color.gray;
-            }
+                imageComponent.color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                imageComponent.material = Resources.Load<Material>("BlackAndWhiteFilter");
+            } 
         }
 
         if (skillLevelText != null && skill.unlocked) {
@@ -133,11 +136,8 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         child.DrawLine();
     }
 
-    public string ToString() {
+    override public string ToString() {
         string result = "SkillButtonNode: " + skill.Name + "\n";
-        //result += "Skill Level: " + skill.SkillLevel + "\n";
-        //result += "Skill Cost: " + skill.skillCost + "\n";
-        //result += "Skill Points: " + player.SkillPoints + "\n";
         result += "Parent: " + (parent != null ? parent.skill.Name : "null") + "\n";
         result += "Left Child: " + (left != null ? left.skill.Name : "null") + "\n";
         result += "Right Child: " + (right != null ? right.skill.Name : "null") + "\n";
