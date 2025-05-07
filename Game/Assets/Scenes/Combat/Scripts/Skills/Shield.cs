@@ -27,14 +27,14 @@ public class Shield : Skill
         if (!gc.SpendMana(manaCost))
             return false;
 
-        int shieldAdded = 30; // amount of armor gained temporarily
+        int shieldAdded = -30; // amount of armor gained temporarily
 
         int shieldTurns = Mathf.FloorToInt(power); // made this for clarity purpose, power decides turns for now.
 
         //Add armor to the player character.
         Debug.Log("Shield: Before: " + target.Armor);
 
-        target.statusEffects.Add(new StatusEffect(shieldTurns, shieldAdded, power, 1));
+        ModifyStatusEffect(target.statusEffects, shieldTurns, shieldAdded, power, 1);
 
         Debug.Log("Shield: After: " + target.Armor);
 
@@ -44,7 +44,7 @@ public class Shield : Skill
     public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
     {
         // Optional: put animation logic here
-        Debug.Log("Corrode animation not implemented yet.");
+        Debug.Log("Shield animation not implemented yet.");
     }
 
 }

@@ -26,13 +26,19 @@ public class Drain : Skill
             return false;
 
 
-        int manaDrained = 10 ; // amount of armor lost temporarily
+        int manaDrained = 10 ; // amount of mana lost temporarily
+
+        if(manaDrained > target.Mana)
+        {
+            manaDrained = target.Mana;
+        }
 
         int drainTurns = Mathf.FloorToInt(power); // made this for clarity purpose, power decides turns for now.
 
         Debug.Log("Before MANA: " + target.Mana);
         
-        target.statusEffects.Add(new StatusEffect(drainTurns, manaDrained, power, 4)); 
+        //target.statusEffects.Add(new StatusEffect(drainTurns, manaDrained, power, 4));
+        ModifyStatusEffect(target.statusEffects, drainTurns, manaDrained, power, 4); 
 
         Debug.Log("After MANA: " + target.Mana);
 
@@ -44,7 +50,7 @@ public class Drain : Skill
     public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
     {
         // Optional: put animation logic here
-        Debug.Log("Corrode animation not implemented yet.");
+        Debug.Log("Drain animation not implemented yet.");
     }
 
 }

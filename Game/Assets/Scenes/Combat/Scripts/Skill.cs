@@ -76,17 +76,16 @@ public abstract class Skill
         {
             if(statuses[i].EffectType == type)
             {
-                statuses[i].Turns = turns;
+                statuses[i].Turns += turns;
                 statuses[i].Delta += delta;
                 statuses[i].DeltaF = deltaF;
-                return;
 
-                Debug.Log("Adding onto existing stat effects");
+                Debug.Log("Adding onto existing stat effects"); 
+                return;
             }
         }
 
         statuses.Add(new StatusEffect(turns, delta, deltaF, type));
-        Debug.Log("Adding new stat effects");
     }
 
 }

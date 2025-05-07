@@ -614,8 +614,8 @@ public class GameCharacter : MonoBehaviour
         }
 
         // Reverse the getter
-        float rawMana = ((newMana - debuffAdd + effectSum * effectFactor) / multiplier) - additive;
-        //float rawMana = ((newMana - +effectSum * effectFactor) / multiplier) - additive;
+        //float rawMana = ((newMana - debuffAdd + effectSum * effectFactor) / multiplier) - additive;
+        float rawMana = ((newMana + effectSum * effectFactor) / multiplier) - additive;
         Debug.Log("calculated new mana: " + rawMana);
         //Mana = Mathf.Max(0, Mathf.RoundToInt(rawMana));
         Mana = Mathf.RoundToInt(rawMana);

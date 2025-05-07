@@ -69,37 +69,30 @@ public class Player : GameCharacter
         punch.UnlockSkill(this);
         AddSkill(punch);
 
-        Skill mindControl = new MindControl();
-        mindControl.UnlockSkill(this);
-        AddSkill(mindControl);
+        //Skill mindControl = new MindControl();
+        //mindControl.UnlockSkill(this);
+        //AddSkill(mindControl);
 
-        Skill disarm = new Disarm();
-        disarm.UnlockSkill(this);
-        AddSkill(disarm);
+        //Skill disarm = new Disarm();
+        //disarm.UnlockSkill(this);
+        //AddSkill(disarm);
 
+        //Skill drain = new Drain();
+        //drain.UnlockSkill(this);
+        //AddSkill(drain);
+
+        //Skill zap = new Zap();
+        //zap.UnlockSkill(this);
+        //AddSkill(zap);
+
+        //Skill corrode = new Corrode();
+        //corrode.UnlockSkill(this);
+        //AddSkill(corrode);
+
+        
         //Skill shield = new Shield();
         //shield.UnlockSkill(this);
         //AddSkill(shield);
-
-        Skill drain = new Drain();
-        drain.UnlockSkill(this);
-        AddSkill(drain);
-
-        Skill zap = new Zap();
-        zap.UnlockSkill(this);
-        AddSkill(zap);
-
-        Skill corrode = new Corrode();
-        corrode.UnlockSkill(this);
-        AddSkill(corrode);
-
-        
-        Skill shield = new Shield();
-        shield.UnlockSkill(this);
-        AddSkill(shield);
-
-
-        Debug.Log("Raw Mana set to: " + Mana);           // this.mana
 
     }
 
