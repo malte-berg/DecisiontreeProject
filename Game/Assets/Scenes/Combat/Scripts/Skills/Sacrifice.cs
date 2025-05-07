@@ -14,6 +14,8 @@ public class Sacrifice : Skill {
         power: 0, 
         manaCost: 0, 
         skillCost: 1,
+        cooldown: 0,
+        attack: false,
         description: "Inflict damage on yourself to gain mana"
         
         ){
@@ -23,9 +25,6 @@ public class Sacrifice : Skill {
     }
 
     public override bool Effect(GameCharacter target){
-        if (target != gc) {
-            return false;
-        }
 
         if(target.HP < selfDamage)
             return false;
