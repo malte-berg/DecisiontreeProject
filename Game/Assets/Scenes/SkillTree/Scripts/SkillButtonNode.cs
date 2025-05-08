@@ -2,13 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using System;
 
 public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     GameObject self;
     public GameObject skillName;
-    public GameObject skillLevel;
     public GameObject hoverPanelPrefab;
     private TMP_Text pointsCounter;
     public Player player;
@@ -42,22 +40,14 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void SetNode() {
         Image imageComponent = self.GetComponent<Image>();
         TMP_Text skillNameText = skillName.GetComponent<TMP_Text>();
-        TMP_Text skillLevelText = skillLevel.GetComponent<TMP_Text>();
 
         if (imageComponent != null) {
+            imageComponent.sprite = skill.Icon;
             if (skill.unlocked) {
-                imageComponent.color = Color.green;
+                imageComponent.color = Color.white;
             } else {
-                imageComponent.color = Color.gray;
-            }
-        }
-
-        if (skillLevelText != null && skill.unlocked) {
-            skillLevelText.text = skill.SkillLevel.ToString();
-        }
-
-        if (skillLevelText != null && !skill.unlocked) {
-            skillLevelText.text = "Unlock";
+                imageComponent.color = new Color(0.3f, 0.3f, 0.3f, 1f);
+            } 
         }
 
         if (skillNameText != null){
@@ -90,6 +80,7 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
             Debug.Log($"Unlocked {skill.Name}!");
         }
         SetNode();
+        UpdateToolTip();
     }
 
     public bool AddChild(SkillButtonNode child) {
@@ -134,11 +125,8 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         child.DrawLine();
     }
 
-    public string ToString() {
+    override public string ToString() {
         string result = "SkillButtonNode: " + skill.Name + "\n";
-        //result += "Skill Level: " + skill.SkillLevel + "\n";
-        //result += "Skill Cost: " + skill.skillCost + "\n";
-        //result += "Skill Points: " + player.SkillPoints + "\n";
         result += "Parent: " + (parent != null ? parent.skill.Name : "null") + "\n";
         result += "Left Child: " + (left != null ? left.skill.Name : "null") + "\n";
         result += "Right Child: " + (right != null ? right.skill.Name : "null") + "\n";
@@ -195,8 +183,8 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (hoverPanelPrefab != null && hoverPanelInstance == null) {
 
             hoverPanelInstance = Instantiate(hoverPanelPrefab, transform);
-            hoverPanelInstance.transform.GetChild(1).GetComponent<TMP_Text>().text = skill.Name;
-            hoverPanelInstance.transform.GetChild(2).GetComponent<TMP_Text>().text = skill.Description;
+            
+            UpdateToolTip();
 
             RectTransform buttonRectTransform = GetComponent<RectTransform>();
             RectTransform toolTipTransform = hoverPanelInstance.GetComponent<RectTransform>();
@@ -217,5 +205,21 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         }
 
+    }
+
+    void UpdateToolTip() {
+        if (hoverPanelInstance != null) {
+            hoverPanelInstance.transform.GetChild(1).GetComponent<TMP_Text>().text = skill.Name;
+            hoverPanelInstance.transform.GetChild(2).GetComponent<TMP_Text>().text = skill.Description;
+            TMP_Text levelText = hoverPanelInstance.transform.GetChild(3).GetComponent<TMP_Text>();
+
+            if (skill.unlocked) {
+                levelText.text = "Level: " + skill.SkillLevel.ToString();
+            } else if (parent != null && !parent.skill.unlocked) {
+                levelText.text = "Unlock " + parent.skill.Name + " first!";
+            } else {
+                levelText.text = "Unlock";
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@ public class Sacrifice : Skill {
         skillCost: 1,
         cooldown: 0,
         attack: false,
-        description: "Inflict damage on yourself to gain mana"
+        description: "Inflict damage on yourself to gain mana."
         
         ){
 
