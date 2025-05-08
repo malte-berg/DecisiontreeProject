@@ -19,6 +19,7 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public SkillButtonNode left;
     public int offsetX;
     public int offsetY;
+    RectTransform rt;
 
     GameObject hoverPanelInstance;
     Vector2 toolTipOffset;
@@ -34,8 +35,8 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         this.pointsCounter = pointsCounter;
         toolTipOffset.x = 40;
         toolTipOffset.y = 135;
-
-        MoveNode();
+        rt = GetComponent<RectTransform>();
+        
         SetNode();
     }
 
@@ -144,7 +145,7 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
 
     public void MoveNode() {
-        self.transform.position = new Vector3(offsetX + self.transform.position.x, offsetY + self.transform.position.y, 0);
+        rt.anchoredPosition = new Vector2(offsetX, offsetY);
     }
 
     public void DrawLine() {
@@ -156,35 +157,35 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
             float startRadius = self.GetComponent<RectTransform>().sizeDelta.x / 2;
             float endRadius = parent.GetComponent<RectTransform>().sizeDelta.x / 2;
 
-            Canvas canvas = GetComponentInParent<Canvas>();
-            if (canvas == null) {
-                Debug.LogError("Canvas not found in parent.");
-                return;
-            }
-            rectTransform.SetParent(canvas.transform, false);
+            rectTransform.SetParent(transform, false);
 
-            Vector3 startPos = self.transform.position;
-            Vector3 endPos = parent.transform.position;
-            startPos.z = -1;
-            endPos.z = -1;
+            Vector2 startPos = rt.anchoredPosition;
+            Vector2 endPos = parent.rt.anchoredPosition;
 
-            Vector3 direction = (endPos - startPos).normalized;
+            Vector2 direction = (endPos - startPos).normalized;
 
-            startPos -= (Vector3) (direction * startRadius);
-            endPos += (Vector3) (direction * endRadius);
+            startPos -= (Vector2) (direction * startRadius);
+            endPos += (Vector2) (direction * endRadius);
+            float xDelta = endPos.x - startPos.x;
+            float yDelta = endPos.y - startPos.y;
 
-            Vector3 midPos = (startPos + endPos) / 2;
+            startPos = new Vector2(0, 0);
+            endPos = new Vector2(xDelta, yDelta);
 
-            float distance = Vector3.Distance(startPos, endPos);
+            Vector2 midPos = (startPos + endPos) / 2;
+
+            float distance = Vector2.Distance(startPos, endPos);
             float angle = Mathf.Atan2(endPos.y - startPos.y, endPos.x - startPos.x) * Mathf.Rad2Deg;
 
             rectTransform.sizeDelta = new Vector2(distance, 5f);
-            rectTransform.position = midPos;
+            rectTransform.anchoredPosition = midPos;
             rectTransform.rotation = Quaternion.Euler(0, 0, angle);
 
             Image lineImage = rect.AddComponent<Image>();
             lineImage.color = Color.white;
-            rectTransform.SetSiblingIndex(1);
+            
+            rectTransform.SetParent(transform.parent.transform);
+            rectTransform.SetSiblingIndex(0);
         }
     }
 
@@ -202,9 +203,7 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
             Vector3[] buttonCorners = new Vector3[4];
             buttonRectTransform.GetWorldCorners(buttonCorners);
 
-            Vector3 targetPos = buttonCorners[0] + new Vector3(toolTipOffset.x, toolTipOffset.y, 0);
-
-            toolTipTransform.position = targetPos;
+            toolTipTransform.anchoredPosition = toolTipOffset;
         }
 
     }

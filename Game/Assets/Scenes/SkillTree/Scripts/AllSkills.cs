@@ -9,44 +9,52 @@ public class AllSkills : MonoBehaviour {
     public GameObject skillButtonPrefab;
     Player player;
     SkillTreeTree stt;
+    public GameObject skillTreePanel;
 
     public void Init() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); // bad practice
         player.HidePlayer();
+        RectTransform panelRect = skillTreePanel.GetComponent<RectTransform>();
 
         // Initialize the skill tree with the skills
         stt = new SkillTreeTree(player);
 
-        GameObject skillButton = Instantiate(skillButtonPrefab, transform);
+        GameObject skillButton = Instantiate(skillButtonPrefab, panelRect);
         SkillButtonNode punch = skillButton.GetComponent<SkillButtonNode>();
         punch.Init(skillButton, player, player.skills[0], null, pointCounterText);
         punch.offsetX = 0;
-        punch.offsetY = -200;
+        punch.offsetY = getYFromDepth(1);
         punch.MoveNode();
 
         stt.AddNode(punch);
 
-        skillButton = Instantiate(skillButtonPrefab, transform);
+        skillButton = Instantiate(skillButtonPrefab, panelRect);
         SkillButtonNode heatWave = skillButton.GetComponent<SkillButtonNode>();
         heatWave.Init(skillButton, player, new HeatWave(), punch, pointCounterText);
-        heatWave.offsetX = -240;
-        heatWave.offsetY = punch.offsetY - 100;
+        heatWave.offsetX = -160;
+        heatWave.offsetY = getYFromDepth(2);
         punch.AddLeftChild(heatWave);
 
-        skillButton = Instantiate(skillButtonPrefab, transform);
+        skillButton = Instantiate(skillButtonPrefab, panelRect);
         SkillButtonNode heal = skillButton.GetComponent<SkillButtonNode>();
         heal.Init(skillButton, player, new Heal(), punch, pointCounterText);
-        heal.offsetX = 240;
-        heal.offsetY = punch.offsetY - 100;
+        heal.offsetX = 160;
+        heal.offsetY = getYFromDepth(2);
         
         punch.AddRightChild(heal);
         
-        skillButton = Instantiate(skillButtonPrefab, transform);
+        skillButton = Instantiate(skillButtonPrefab, panelRect);
         SkillButtonNode sacrifice = skillButton.GetComponent<SkillButtonNode>();
         sacrifice.Init(skillButton, player, new Sacrifice(), heal, pointCounterText);
+        sacrifice.offsetX = 240;
+        sacrifice.offsetY = getYFromDepth(3);
 
         heal.AddChild(sacrifice);
         stt.UpdateNodes(punch);
+    }
+
+    private int getYFromDepth(int depth) {
+        return depth * -100;
     }
 
     void Awake() {
