@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   areaIndex: 3
   areaName: Area3
-  backgroundImage: {fileID: -308409591812723033, guid: 3e7fe4d95752ba848b612936efbbb814, type: 3}
+  backgroundImage: {fileID: -1521487376802658841, guid: 385eeb3bf0d7d482a983a5d050804606, type: 3}
   bgm: {fileID: 0}
   unlock: 1
