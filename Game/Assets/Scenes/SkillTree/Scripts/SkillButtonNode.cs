@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using System;
-using UnityEditor.ShaderGraph;
 
 public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -82,6 +80,7 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
             Debug.Log($"Unlocked {skill.Name}!");
         }
         SetNode();
+        UpdateToolTip();
     }
 
     public bool AddChild(SkillButtonNode child) {
@@ -184,17 +183,8 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (hoverPanelPrefab != null && hoverPanelInstance == null) {
 
             hoverPanelInstance = Instantiate(hoverPanelPrefab, transform);
-            hoverPanelInstance.transform.GetChild(1).GetComponent<TMP_Text>().text = skill.Name;
-            hoverPanelInstance.transform.GetChild(2).GetComponent<TMP_Text>().text = skill.Description;
-            TMP_Text levelText = hoverPanelInstance.transform.GetChild(3).GetComponent<TMP_Text>();
-
-            if (skill.unlocked) {
-                levelText.text = "Level: " + skill.SkillLevel.ToString();
-            } else if (parent != null && !parent.skill.unlocked) {
-                levelText.text = "Unlock " + parent.skill.Name + " first!";
-            } else {
-                levelText.text = "Unlock";
-            }
+            
+            UpdateToolTip();
 
             RectTransform buttonRectTransform = GetComponent<RectTransform>();
             RectTransform toolTipTransform = hoverPanelInstance.GetComponent<RectTransform>();
@@ -215,5 +205,21 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         }
 
+    }
+
+    void UpdateToolTip() {
+        if (hoverPanelInstance != null) {
+            hoverPanelInstance.transform.GetChild(1).GetComponent<TMP_Text>().text = skill.Name;
+            hoverPanelInstance.transform.GetChild(2).GetComponent<TMP_Text>().text = skill.Description;
+            TMP_Text levelText = hoverPanelInstance.transform.GetChild(3).GetComponent<TMP_Text>();
+
+            if (skill.unlocked) {
+                levelText.text = "Level: " + skill.SkillLevel.ToString();
+            } else if (parent != null && !parent.skill.unlocked) {
+                levelText.text = "Unlock " + parent.skill.Name + " first!";
+            } else {
+                levelText.text = "Unlock";
+            }
+        }
     }
 }
