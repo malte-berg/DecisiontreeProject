@@ -315,7 +315,9 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   manaBar: {fileID: 0}
   equipment: {fileID: 0}
-  sprites: []
+  sprites:
+  - {fileID: -4398183398628465896, guid: e08ab9a9fa2838e4f905c8dedb3ab9c9, type: 3}
+  - {fileID: 0}
 --- !u!114 &4291114191027114424
 MonoBehaviour:
   m_ObjectHideFlags: 0
