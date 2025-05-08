@@ -132,7 +132,6 @@ public class TutorialMainMenuManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-
-        yield break;
+        yield return new WaitForSeconds(2);
     }
 }

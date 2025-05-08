@@ -481,6 +481,8 @@ MonoBehaviour:
   - {fileID: 675572097527560571, guid: fff43c3fd387ae445b05a91839488122, type: 3}
   - {fileID: 6126377646543813152, guid: 937c4c8e6c7b2a945b9483ea2c7135ad, type: 3}
   - {fileID: 136827229706474802, guid: 8fd0d9dccbe82684d8db9eb4cc8cf178, type: 3}
+  - {fileID: 4132672945359934719, guid: 63c804f88dc960445877184a76bd3d95, type: 3}
+  - {fileID: 1654137549141888747, guid: 304203ff06cbe924d8a6ed5c8879eaad, type: 3}
   sceneScripts:
   - {fileID: 1948377406}
   - {fileID: 1948377407}
