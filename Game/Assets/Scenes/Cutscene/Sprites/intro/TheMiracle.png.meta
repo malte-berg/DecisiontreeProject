@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 08438b495842dda428945931f593a1b0
+guid: 2413c70d14c0747afbf79a9fb8ea5569
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4434694416204750802
-    second: slumsRobedConversation_0
+      213: 7257504660712027832
+    second: TheMiracle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slumsRobedConversation_0
+      name: TheMiracle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1571
-        height: 854
+        width: 512
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2025baacecc472c0800000000000000
-      internalID: -4434694416204750802
+      spriteID: 8b67b797906d7b460800000000000000
+      internalID: 7257504660712027832
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      slumsRobedConversation_0: -4434694416204750802
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
