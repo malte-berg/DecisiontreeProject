@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      slumsRaid_0: -5240219478762855054
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
