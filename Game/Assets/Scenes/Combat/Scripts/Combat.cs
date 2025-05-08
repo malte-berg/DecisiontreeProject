@@ -64,8 +64,7 @@ public class Combat : MonoBehaviour
 
     }
 
-    Transform CreateBars(GameCharacter who)
-    {
+    RectTransform CreateBars(GameCharacter who){
 
         GameObject t = Instantiate(barPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
 
@@ -83,7 +82,7 @@ public class Combat : MonoBehaviour
         string levelText = who is Player player ? player.CurrentLevel.ToString() : (who as Enemy)?.level.ToString();
         t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{levelText}";
 
-        return t.transform;
+        return t.GetComponent<RectTransform>();
 
     }
 

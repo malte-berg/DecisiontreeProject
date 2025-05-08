@@ -45,9 +45,10 @@ public class Enemy : GameCharacter
     public override void Init()
     {
 
-        if (sprites[0] == null)
-        {
-            sprites = new List<Sprite> { Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2") };
+        StartCoroutine(FixBars());
+
+        if(sprites[0] == null) {
+            sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2")};
         }
 
         equipment = gameObject.GetComponent<Equipment>();

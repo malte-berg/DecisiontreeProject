@@ -77,13 +77,14 @@ public class Player : GameCharacter
         Skill punch = new Punch();
         punch.UnlockSkill(this);
         AddSkill(punch);
+        StartCoroutine(FixBars());
 
 
         //Below is to temporary test different skills. Can be removed
 
-        Skill mindControl = new MindControl();
-        mindControl.UnlockSkill(this);
-        AddSkill(mindControl);
+        //Skill mindControl = new MindControl();
+        //mindControl.UnlockSkill(this);
+        //AddSkill(mindControl);
 
         //Skill disarm = new Disarm();
         //disarm.UnlockSkill(this);
@@ -102,9 +103,9 @@ public class Player : GameCharacter
         //AddSkill(corrode);
 
         
-        Skill shield = new Shield();
-        shield.UnlockSkill(this);
-        AddSkill(shield);
+        //Skill shield = new Shield();
+        //shield.UnlockSkill(this);
+        //AddSkill(shield);
 
     }
 
