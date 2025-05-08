@@ -471,7 +471,7 @@ MonoBehaviour:
   dialogueBoxGO: {fileID: 1865955322492675835, guid: d46b05e4d21f2f746a234925dff7b6ec, type: 3}
   backgroundGO: {fileID: 1539637375803097306, guid: 25b5ffd4fce63024ab5160f66a544bdd, type: 3}
   backgrounds:
-  - {fileID: 7257504660712027832, guid: 222a3027efb0bf744a0796d1efde0405, type: 3}
+  - {fileID: 7257504660712027832, guid: 1f3137a52ddfa4524be362c1c4a80f63, type: 3}
   - {fileID: -777477828699139927, guid: 49e86b0e93cf5ea48abb142f9dbe6bed, type: 3}
   - {fileID: -5240219478762855054, guid: 79189c9859bc60b4191ef0c7a2bb2935, type: 3}
   - {fileID: -9001879066851352877, guid: e81c68e391ac56e4cba9907ad925f0be, type: 3}
