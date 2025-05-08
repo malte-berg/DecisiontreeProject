@@ -154,7 +154,7 @@ public class Enemy : GameCharacter {
         string enemyName = this.gameObject.name;
         Item item = availableItems[i];
         
-        if(!(enemyName.Contains("Thug"))) {
+        if(!(enemyName.Contains("Thug") || enemyName.Contains("Addict"))) {
             if(item is Torso) return false;
         }
         if(enemyName.Contains("Mage")) {

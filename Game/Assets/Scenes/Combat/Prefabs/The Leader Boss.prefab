@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 5856306505403405232}
   - component: {fileID: 1226910073971303688}
   m_Layer: 0
-  m_Name: TheLeaderBoss
+  m_Name: The Leader Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
