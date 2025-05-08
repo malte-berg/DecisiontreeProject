@@ -76,13 +76,11 @@ public class SpriteManager : MonoBehaviour
 
         if(shadowRenderer == null) return;
 
-        shadowRenderer.sprite = spriteLayers["Character"].sprite;
-        shadowRenderer.color = new Color(0f, 0f, 0f, 0.8f);
-        shadowRenderer.transform.localScale = Vector3.one * 1.02f;
+        shadowRenderer.sprite = Resources.Load<Sprite>("Sprites/Characters/ShadowBehind");
         shadowGroundRenderer.sprite = Resources.Load<Sprite>("Sprites/Characters/ShadowGround");
         shadowGroundRenderer.transform.localPosition = new Vector3(0f, -0.46f, 0f);
-        shadowGroundRenderer.transform.localScale = Vector3.one * 0.7f;
-        shadowGroundRenderer.color = new Color(0f, 0f, 0f, 0.6f);
+        shadowGroundRenderer.transform.localScale = Vector3.one * 0.5f;
+        shadowGroundRenderer.color = new Color(0f, 0f, 0f, 0.8f);
     }
 
     // invoke a number of SetSprites after delays
@@ -106,17 +104,17 @@ public class SpriteManager : MonoBehaviour
         }
     }
 
-    public void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, float scale, bool fade, bool fadeUp, bool slice, int stopAt) {
+    public void RollScales(Transform tr, Vector3 toTarget, int frames, float delay, float scale, bool fade, bool fadeUp, int stopAt) {
         Vector3 originalPos = tr.position;
         tr.position += toTarget * 0.9f;
 
         for(int i = 0; i <= frames; i++){
             int frameIndex = i;
-            DelayedAction(() => SetScale(tr, originalPos, frameIndex, frames, scale, fade, fadeUp, slice, stopAt), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
+            DelayedAction(() => SetScale(tr, originalPos, frameIndex, frames, scale, fade, fadeUp, stopAt), frameIndex * (delay/frames) + ATTACK_TIME/1.5f);
         }   
     }
 
-    private void SetScale(Transform tr, Vector3 originalPos, int frameIndex, int frames, float scale, bool fade, bool fadeUp, bool slice, int stopAt) {
+    private void SetScale(Transform tr, Vector3 originalPos, int frameIndex, int frames, float scale, bool fade, bool fadeUp, int stopAt) {
         SpriteRenderer sr = tr.GetComponent<SpriteRenderer>();
         if(frameIndex >= frames) {
             sr.enabled = false;
@@ -127,10 +125,6 @@ public class SpriteManager : MonoBehaviour
 
             if(frameIndex <= stopAt) {
                 tr.localScale *= scale;
-                if(slice) {
-                    if(frameIndex == 0) tr.position += new Vector3(-0.2f, 0.5f, 0f);
-                    tr.position += new Vector3(0.07f, -0.15f, 0f);
-                }
             }
 
             if(fade) {

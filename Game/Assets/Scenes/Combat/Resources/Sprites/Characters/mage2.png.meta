@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 222a3027efb0bf744a0796d1efde0405
+guid: 911a593d96a39284abea59cadc49f06f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7257504660712027832
-    second: TheMiracle_0
+      213: 2308948708146198443
+    second: mage2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TheMiracle_0
+      name: mage2_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 8
         y: 0
-        width: 512
-        height: 256
+        width: 55
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b67b797906d7b460800000000000000
-      internalID: 7257504660712027832
+      spriteID: ba7b6a1ed980b0020800000000000000
+      internalID: 2308948708146198443
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TheMiracle_0: 7257504660712027832
+      mage2_0: 2308948708146198443
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
