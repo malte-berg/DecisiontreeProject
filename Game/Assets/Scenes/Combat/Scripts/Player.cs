@@ -73,6 +73,7 @@ public class Player : GameCharacter {
         Skill punch = new Punch();
         punch.UnlockSkill(this);
         AddSkill(punch);
+        StartCoroutine(FixBars());
 
     }
     //Hide the player model.
