@@ -8,15 +8,15 @@ public class MageHat : Head{
         name: "Mage Hat",
         value: 40,
         description: "Now you just need a wand",
-        vitalityAdd: 1,
+        vitalityAdd: 5,
         vitalityMult: 1f,
-        armorAdd: 7,
+        armorAdd: 3,
         armorMult: 1f,
-        strengthAdd: -2,
+        strengthAdd: 0,
         strengthMult: 0.9f,
-        magicAdd: 0,
+        magicAdd: 8,
         magicMult: 1f,
-        manaAdd: 0,
+        manaAdd: 20,
         manaMult: 1f
         
     ) {

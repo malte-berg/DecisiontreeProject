@@ -8,15 +8,15 @@ public class GladiatorHelmet : Head{
         name: "Warrior Helmet",
         value: 200,
         description: "SPARTAA!!",
-        vitalityAdd: 1,
-        vitalityMult: 1f,
-        armorAdd: 7,
+        vitalityAdd: 26,
+        vitalityMult: 1.008f,
+        armorAdd: 10,
         armorMult: 1f,
-        strengthAdd: -2,
-        strengthMult: 0.9f,
-        magicAdd: 0,
+        strengthAdd: 5,
+        strengthMult: 1.01f,
+        magicAdd: 4,
         magicMult: 1f,
-        manaAdd: 0,
+        manaAdd: 6,
         manaMult: 1f
         
     ) {
