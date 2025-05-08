@@ -12,21 +12,15 @@ public class Punch : Skill
         power: 0, 
         manaCost: 0,
         skillCost: 1,
+        cooldown: 0,
+        attack: true,
         description: "Perform a basic attack on one enemy."
         
         ){
 
     }
 
-    public override bool Effect(GameCharacter target)
-    {
-
-        if (target == gc)
-            return false;
-        if (gc.Mana < manaCost)
-            return false;
-            
-        gc.Mana -= manaCost;
+    public override bool Effect(GameCharacter target) {
 
         int damageDealt = Mathf.FloorToInt(gc.Strength * power);
 

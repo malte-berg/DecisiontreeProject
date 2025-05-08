@@ -26,6 +26,8 @@ public class Enemy : GameCharacter {
 
     public void CreateEnemy(Item[] availableItems, double rnd, string cName){
 
+        StartCoroutine(FixBars());
+
         if(sprites[0] == null) {
             sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2")};
         }

@@ -69,7 +69,7 @@ public class Combat : MonoBehaviour{
 
     }
 
-    Transform CreateBars(GameCharacter who){
+    RectTransform CreateBars(GameCharacter who){
 
         GameObject t = Instantiate(barPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
 
@@ -87,7 +87,7 @@ public class Combat : MonoBehaviour{
         string levelText = who is Player player ? player.CurrentLevel.ToString() : (who as Enemy)?.level.ToString();
         t.transform.GetChild(0).GetChild(2).GetComponent<TMP_Text>().text = $"{who.CName} LV.{levelText}";
 
-        return t.transform;
+        return t.GetComponent<RectTransform>();
 
     }
 
@@ -241,6 +241,18 @@ public class Combat : MonoBehaviour{
             se[i].DecrementEffect();
 
         }
+
+        // Decrement cooldown
+        for(int i = 0; i < currentC.skills.Length; i++){
+
+            if(currentC.skills[i] == null)
+                break;
+            
+            currentC.skills[i].cooldownCount--;
+
+        }
+
+        GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(1).GetChild(0).GetComponent<SkillSelection>().UpdateSkillButtons();
 
         // Calculate next turn index
         turn = (turn + 1) % (enemies.Count + 1);

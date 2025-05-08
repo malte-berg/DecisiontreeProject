@@ -47,7 +47,7 @@ public class NewGame : MonoBehaviour{
         }
 
         string[] files = Directory.GetFiles("Saves");
-        Save temp = new SaveManager().ReadSave(files[files.Length-1].Split('\\')[1]); // Load latest save
+        Save temp = new SaveManager().ReadSave(files[files.Length-1].Substring(6)); // Load latest save
         playerObject.GetComponent<Player>().LoadPlayer(temp);
         GetComponent<SceneSwitch>().SwitchScene(1);
 

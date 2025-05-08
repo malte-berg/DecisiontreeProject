@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: {fileID: 3434369163840255688}
   skillLevel: {fileID: 6714491611294402308}
+  hoverPanelPrefab: {fileID: 151395221466177006, guid: df7f9b1d8c26b4314a3b24cde784f363, type: 3}
   player: {fileID: 0}
   parent: {fileID: 0}
   right: {fileID: 0}
