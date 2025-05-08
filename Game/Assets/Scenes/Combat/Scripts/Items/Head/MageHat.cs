@@ -6,7 +6,7 @@ public class MageHat : Head{
         icon: Resources.Load<Sprite>("Sprites/Icons/mageHat_Icon"),
         sprite: Resources.Load<Sprite>("Sprites/Items/mageHat"),
         name: "Mage Hat",
-        value: 70,
+        value: 40,
         description: "Now you just need a wand",
         vitalityAdd: 1,
         vitalityMult: 1f,

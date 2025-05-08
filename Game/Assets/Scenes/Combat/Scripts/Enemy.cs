@@ -46,7 +46,7 @@ public class Enemy : GameCharacter {
         AddSkill(punch);
 
         // TODO TEMP REMOVE
-        availableItems = new Item[17];
+        availableItems = new Item[20];
         availableItems[0] = new Pipe();
         availableItems[1] = new Knife();
         availableItems[2] = new Katana();
@@ -64,6 +64,10 @@ public class Enemy : GameCharacter {
         availableItems[14] = new WorkerBoots();
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
+        availableItems[17] = new GladiatorHelmet();
+        availableItems[18] = new EnforcerHelmet();
+        availableItems[19] = new MageHat();
+
 
         this.availableItems = availableItems;
         level += (int)(7 * rnd) - 3;
@@ -101,6 +105,7 @@ public class Enemy : GameCharacter {
 
     void GatherItems(int purchasingPower, double thresh){
 
+        Debug.Log("Random threshhold is: " + thresh);
         for(int i = 0; i < availableItems.Length; i++){
 
             int mine = 0, available = availableItems[i].Value;
@@ -153,7 +158,7 @@ public class Enemy : GameCharacter {
         if(!(enemyName.Contains("Thug"))) {
             if(item is Torso) return false;
         }
-        else if(enemyName.Contains("Mage")) {
+        if(enemyName.Contains("Mage")) {
             if(item is Weapon) return false;
             else if(item is Head && !(item is MageHat)) return false;
         }
