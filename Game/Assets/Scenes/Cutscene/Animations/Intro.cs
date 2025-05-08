@@ -9,6 +9,8 @@ public class Intro : SceneScript {
         //"TheMiracle" image is set.
         bg.SetBG(0);
 
+        db.MoveDialogueBox(-350, 150);
+
         db.Enqueue(@"
         Narrator§It all started that day. The 12th of March, 2078. Some call it “The Miracle”, while others call it “The Disaster”.
         ");
@@ -23,7 +25,7 @@ public class Intro : SceneScript {
         yield return WaitForDialogue();
         yield return new WaitForSeconds(2);
 
-
+        
         //"TheNuke" image is set.
         bg.SetBG(1);
         yield return new WaitForSeconds(1);
@@ -33,11 +35,8 @@ public class Intro : SceneScript {
         But it didn't matter.
         ");
         db.Enqueue(@"
-        Narrator§In today's society, 1000 years after that day, some order has managed to take root in the world. The “Law of the Jungle“ is still very much in effect, but instead of allowing just anyone to go and kill the leader of a country, regular “Arena“ battles are held. ");
-        /*
-        db.Enqueue(@"
-        Narrator§The “Law of the Jungle“ is still very much in effect, but instead of allowing just anyone to go and remove the leader of a country, regular “Arena“ battles are held. 
-        ");*/
+        Narrator§In today's society, 1000 years after that day, some order has managed to take root in the world. The “Law of the Jungle“ is still very much in effect, but instead of allowing just anyone to go and kill the leader of a country, regular “Arena“ battles are held. 
+        ");
         db.Enqueue(@"
         Narrator§Anyone can enter the Arena, and the final victor is deemed the “strongest“, and thus is granted the right to lead everyone else in power.
         ");
@@ -49,12 +48,18 @@ public class Intro : SceneScript {
 
         //"raidSlums" image is set.
         bg.SetBG(2);
+        db.MoveDialogueBox(0, 0);
         yield return new WaitForSeconds(1);
 
         db.Enqueue(@"
-        Narrator§On one fateful day, Ynnos and his family were having dinner in their home at “The Slums”, inside the capital of “Kirderf”.");
+        Narrator§On one fateful day, Ynnos and his family were having dinner in their home at “The Slums”, inside the capital of “Kirderf”.
+        ");
         db.Enqueue(@"
-        Narrator§Suddenly, a raid began, where the highest brass of the city swarmed through The Slums to gather more (involuntary) workers for their own secret operations. Among them, Ynnos’ parents were both taken, leaving him and his younger sister to fend for themselves.");
+        Narrator§Suddenly, a raid began, where the highest brass of the city swarmed through The Slums to gather more (involuntary) workers for their own secret operations.
+        ");
+        db.Enqueue(@"
+        Narrator§Among them, Ynnos’ parents were both taken, leaving him and his younger sister to fend for themselves.
+        ");
 
         db.ContinueDialogue();
 
@@ -66,9 +71,14 @@ public class Intro : SceneScript {
         yield return new WaitForSeconds(1);
 
         db.Enqueue(@"
-        Narrator§Now, 10 years later, Ynnos had become a ‘Fighter’; One who fights in the Arena not for prestige or for power, but simply for the money. After all, when spectators bet on who wins a fight, the fighter who wins gets a cut of the profits.");
+        Narrator§Now, 10 years later, Ynnos had become a ‘Fighter’; One who fights in the Arena not for prestige or for power, but simply for the money. 
+        ");
         db.Enqueue(@"
-        Narrator§Thus began the adventure of “Ynnos”, the one who would eventually become the “Ekamer”.....");
+        Narrator§After all, when spectators bet on who wins a fight, the fighter who wins gets a cut of the profits.
+        ");
+        db.Enqueue(@"
+        Narrator§Thus began the adventure of “Ynnos”, the one who would eventually become the “Ekamer”.....
+        ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
         yield return new WaitForSeconds(2);

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Canvas
   - DialogueManager
+  - DialogueBox
   layers:
   - Default
   - TransparentFX

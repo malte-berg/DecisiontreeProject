@@ -5,7 +5,6 @@ public class MusicSwitch : MonoBehaviour
     public AudioClip musicToPlay;
     private AudioSource playerMusic;
 
-    //For each scene with a "MusicManager" in it, this function is called.
     public void Start()
     {
         //Get the "Audio Source" component of the "Player" object.
@@ -15,6 +14,7 @@ public class MusicSwitch : MonoBehaviour
         //...change it to "whichMusic".
         if (playerMusic.clip != musicToPlay){
             playerMusic.clip = musicToPlay;
+            playerMusic.Play();
         }
 
     }
