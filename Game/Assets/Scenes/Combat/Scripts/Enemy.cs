@@ -46,7 +46,7 @@ public class Enemy : GameCharacter {
         AddSkill(punch);
 
         // TODO TEMP REMOVE
-        availableItems = new Item[17];
+        availableItems = new Item[20];
         availableItems[0] = new Pipe();
         availableItems[1] = new Knife();
         availableItems[2] = new Katana();
@@ -64,6 +64,10 @@ public class Enemy : GameCharacter {
         availableItems[14] = new WorkerBoots();
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
+        availableItems[17] = new GladiatorHelmet();
+        availableItems[18] = new EnforcerHelmet();
+        availableItems[19] = new MageHat();
+
 
         this.availableItems = availableItems;
         level += (int)(7 * rnd) - 3;
@@ -136,12 +140,34 @@ public class Enemy : GameCharacter {
                 float rnd = (float)purchasingPower / available;
 
                 if(rnd > thresh)
-                    equipment.Equip(availableItems[i]);
+                    if(CanBeWorn(i))
+                        equipment.Equip(availableItems[i]);
 
             }
 
         }
 
+    }
+
+    // will expand on this later
+    bool CanBeWorn(int i) {
+        string enemyName = this.gameObject.name;
+        Item item = availableItems[i];
+        
+        if(!(enemyName.Contains("Thug"))) {
+            if(item is Torso) return false;
+        }
+        if(enemyName.Contains("Mage")) {
+            if(item is Weapon) return false;
+            else if(item is Head && !(item is MageHat)) return false;
+        }
+        else if(enemyName.Contains("Gladiator")) {
+            if(item is Head && !(item is GladiatorHelmet)) return false;
+        }
+        else if(enemyName.Contains("Leader")) {
+            if(item is Head) return false;
+        }
+        return true;
     }
 
     void GatherSkills(int skillPower){

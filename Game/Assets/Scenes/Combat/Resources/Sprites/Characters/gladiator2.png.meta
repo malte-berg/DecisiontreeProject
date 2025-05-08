@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7e7d89f2b193fe3448fa00f3ee0e6fe5
+guid: 2f2501fd9118abf42a96295fc007a97d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4125413241406679993
-    second: gladiator2_0
+      213: -2170190288568420371
+    second: gladiator2 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gladiator2_0
+      name: gladiator2 1_0
       rect:
         serializedVersion: 2
-        x: 17
+        x: 15
         y: 0
-        width: 42
+        width: 46
         height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9bbecb55c79604930800000000000000
-      internalID: 4125413241406679993
+      spriteID: de770e24e6fe1e1e0800000000000000
+      internalID: -2170190288568420371
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      gladiator2_0: 4125413241406679993
+      gladiator2 1_0: -2170190288568420371
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
