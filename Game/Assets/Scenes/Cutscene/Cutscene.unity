@@ -448,6 +448,7 @@ GameObject:
   - component: {fileID: 1948377404}
   - component: {fileID: 1948377406}
   - component: {fileID: 1948377407}
+  - component: {fileID: 1948377408}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -474,12 +475,14 @@ MonoBehaviour:
   - {fileID: -777477828699139927, guid: 49e86b0e93cf5ea48abb142f9dbe6bed, type: 3}
   - {fileID: -5240219478762855054, guid: 79189c9859bc60b4191ef0c7a2bb2935, type: 3}
   - {fileID: -9001879066851352877, guid: e81c68e391ac56e4cba9907ad925f0be, type: 3}
-  - {fileID: 2979148220289618135, guid: 49a0a314a0f49504286984d924596d12, type: 3}
-  - {fileID: 3116867862431625320, guid: 08b6dd593176ec34ba2c1d8d0929b839, type: 3}
-  - {fileID: -308409591812723033, guid: 3e7fe4d95752ba848b612936efbbb814, type: 3}
+  - {fileID: 4577158519236252286, guid: f5cab8663f87ee5438d75e9235d2f331, type: 3}
+  - {fileID: -7341702200950535478, guid: 606fcc79392ae004da3bf70706f2637e, type: 3}
+  - {fileID: -4434694416204750802, guid: 08438b495842dda428945931f593a1b0, type: 3}
+  - {fileID: 675572097527560571, guid: fff43c3fd387ae445b05a91839488122, type: 3}
   sceneScripts:
   - {fileID: 1948377406}
   - {fileID: 1948377407}
+  - {fileID: 1948377408}
 --- !u!4 &1948377405
 Transform:
   m_ObjectHideFlags: 0
@@ -520,6 +523,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7af35d7e02518a40946e2a634a7d14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  db: {fileID: 0}
+  bg: {fileID: 0}
+  waitingForDialogue: 0
+--- !u!114 &1948377408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948377403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54c3880cbac3774a8ed77cfdf0b8d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   db: {fileID: 0}
