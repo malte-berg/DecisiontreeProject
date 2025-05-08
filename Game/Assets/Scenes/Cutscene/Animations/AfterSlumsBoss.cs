@@ -5,8 +5,9 @@ public class AfterSlumsBoss : SceneScript
 {
     public override IEnumerator RunAnimation() {
 
-        //"..." image is set.
+        //"guardsEnterSlumsArena" image is set.
         bg.SetBG(4);
+        db.MoveDialogueBox(0, -150);
 
         db.Enqueue(@"
         Narrator§As Ynnos strikes down the last man, more guards storm into the Arena.
@@ -22,8 +23,9 @@ public class AfterSlumsBoss : SceneScript
         yield return WaitForDialogue();
 
 
-        //"..." image is set.
+        //"slumsArenaEscape" image is set.
         bg.SetBG(5);
+        db.MoveDialogueBox(-150, 0);
         yield return new WaitForSeconds(1);
 
         db.Enqueue(@"
@@ -37,8 +39,9 @@ public class AfterSlumsBoss : SceneScript
         yield return WaitForDialogue();
 
 
-        //
+        //"slumsRobedConversation" image is set.
         bg.SetBG(6);
+        db.MoveDialogueBox(-350, 0);
         yield return new WaitForSeconds(1);
 
         db.Enqueue(@"
@@ -68,8 +71,9 @@ public class AfterSlumsBoss : SceneScript
         yield return WaitForDialogue();
         yield return new WaitForSeconds(1);
 
-        //"commonersBackground" image is set.
+        //"ynnosEntersCommQuart" image is set.
         bg.SetBG(7);
+        db.MoveDialogueBox(0,0);
         yield return new WaitForSeconds(1);
 
         db.Enqueue(@"

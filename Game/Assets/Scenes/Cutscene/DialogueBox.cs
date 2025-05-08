@@ -53,4 +53,10 @@ public class DialogueBox : MonoBehaviour{
 
     }
 
+    //Used for moving the dialogue box during cutscenes.
+    public void MoveDialogueBox(float positionX, float positionY){
+        RectTransform rect = gameObject.transform.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(positionX, positionY);
+    }
+
 }

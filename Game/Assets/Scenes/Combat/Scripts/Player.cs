@@ -25,6 +25,7 @@ public class Player : GameCharacter {
     public int Gold{ get{ return gold; } set{ this.gold = value; }}
     public int CurrentAreaIndex{ get{ return currentAreaIndex; } set{ this.currentAreaIndex = value; }}
     public int CombatsWon{ get{ return combatsWon[currentAreaIndex]; } set {combatsWon[currentAreaIndex] = value;}}
+    public int[] CombatsArr{ get{return combatsWon;}}
     public int CurrentLevel { get { return currentLevel; } set { this.currentLevel = value; }}
     public int CurrentExp { get { return currentExp; } set { this.currentExp = value; }}
     public int ExpToNextLevel { get { return expToNextLevel; } set { this.expToNextLevel = value; }}
