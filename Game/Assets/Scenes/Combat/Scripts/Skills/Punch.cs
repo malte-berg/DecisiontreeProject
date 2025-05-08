@@ -21,22 +21,7 @@ public class Punch : Skill
 
     }
 
-<<<<<<< HEAD
-    public override bool Effect(GameCharacter target)
-    {
-
-        if (target == gc)
-            return false;
-        //if (gc.Mana < manaCost)
-        Debug.Log("Mana of person using punch: " + gc.Mana + "Name: " + gc.CName + " and its used on: " + target.CName);
-        if (!gc.SpendMana(manaCost))
-            return false;
-
-        //gc.Mana -= manaCost;
-        Debug.Log("Mana of person using punch: " + gc.Mana + "Name: " + gc.CName + " and its used on: " + target.CName);
-=======
     public override bool Effect(GameCharacter target) {
->>>>>>> upstream/main
 
         int damageDealt = Mathf.FloorToInt(gc.Strength * power);
         target.TakeDamage(damageDealt);
@@ -49,7 +34,6 @@ public class Punch : Skill
     {
         SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
         Transform AbilityContainer = AbilityRenderer.gameObject.transform;
-
         sm.SetSprite(this.sprites[0], AbilityRenderer);
         sm.HideSprite(AbilityRenderer);
 

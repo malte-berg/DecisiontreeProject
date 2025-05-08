@@ -23,11 +23,6 @@ public class Combat : MonoBehaviour
 
     int turn = 0;
     GameCharacter currentC;
-
-    //For Passive Effects
-    //public Skill passiveEffect;
-    //public bool passiveIsActive = false;
-
     public void Init()
     {
 
@@ -217,16 +212,6 @@ public class Combat : MonoBehaviour
             UseTurnOn(clicked);
 
     }
-
-    //Makes sure the passive effect works during turns.
-    //WORK IN PROGRESS. We need some way to check what effect should be on what enemy.
-    // public void ActivatePassiveEffect()
-    // {
-    //     if (passiveIsActive == true)
-    //     {
-    //         passiveEffect.Effect(currentC);
-    //     }
-    // }
 
     public void UseTurnOn(GameCharacter clicked)
     {

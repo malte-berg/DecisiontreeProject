@@ -23,6 +23,8 @@ public class Poison : Skill
          power: 10,
          manaCost: 40,
          skillCost: 1,
+        cooldown: 0,
+        attack: true,
          description: "Deals poison damage for 3 turns"
          )
     {

@@ -10,6 +10,8 @@ public class Corrode : Skill
       power: 1,
       manaCost: 0,
       skillCost: 1,
+      cooldown: 0,
+      attack: true,
       description: "Reduces enemy armor"
       )
     {
@@ -19,11 +21,6 @@ public class Corrode : Skill
 
     public override bool Effect(GameCharacter target)
     {
-
-        if (target == gc)
-            return false;
-        if (!gc.SpendMana(manaCost))
-            return false;
 
         int armorCorroded = 5; // amount of armor lost temporarily
         

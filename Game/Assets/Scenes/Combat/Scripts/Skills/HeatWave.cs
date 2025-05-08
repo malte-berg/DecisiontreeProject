@@ -5,19 +5,11 @@ public class HeatWave : Skill
 
     public HeatWave() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/HeatWave_Icon"),
-<<<<<<< HEAD
-        sprites: new List<Sprite> { Resources.Load<Sprite>("Sprites/Abilities/heatwave") },
-        gc: null,
-        name: "Heat Wave",
-        power: 0,
-        manaCost: 0,
-=======
         sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/heatwave")},
         gc: null, 
         name: "Heat Wave", 
         power: 0, 
         manaCost: 20, 
->>>>>>> upstream/main
         skillCost: 1,
         cooldown: 3,
         attack: true,
@@ -28,19 +20,7 @@ public class HeatWave : Skill
 
     }
 
-<<<<<<< HEAD
-
-    public override bool Effect(GameCharacter target)
-    {
-        if (target == gc)
-            return false;
-        if (gc.Mana < manaCost)
-            return false;
-
-        gc.Mana -= manaCost;
-=======
     public override bool Effect(GameCharacter target) {
->>>>>>> upstream/main
 
         int damageDealt = Mathf.FloorToInt(gc.Magic * power);
 

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class GameCharacter : MonoBehaviour
-{
+public class GameCharacter : MonoBehaviour{
 
     public Combat c;
     public Transform bars;
@@ -21,87 +20,49 @@ public class GameCharacter : MonoBehaviour
     public Bar healthBar;
     public Bar manaBar;
 
-    public string CName { get { return cName; } set { this.cName = value; } }
-    public int HP { get { return hp; } set { this.hp = value; } }
+    public string CName{get { return cName; } set {this.cName = value; }}
+    public int HP{get{ return hp; } set{ this.hp = value; }}
+    
+    public int Vitality{ get {
+        return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // VITALITY CALCULATED
+                    (vitality + GetEquipmentSum(0)) * GetEquipmentMult(0)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(0) * GetEffectFactor(0)
+            );
+    } set{ this.vitality = value; }}
 
-    public int Vitality
-    {
-        get
-        {
-            return
-                Mathf.RoundToInt(
-                    Mathf.RoundToInt( // VITALITY CALCULATED
-                        (vitality + GetEquipmentSum(0)) * GetEquipmentMult(0)
-                    ) // EFFECTS APPLIED
-                    - GetEffectSum(0) * GetEffectFactor(0)
-                );
-        }
-        set { this.vitality = value; }
-    }
+    public int Armor{ get {
+         return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // ARMOR CALCULATED
+                    (armor + GetEquipmentSum(1)) * GetEquipmentMult(1)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(1) * GetEffectFactor(1)
+            );
+    } set { this.armor = value; }}
 
-    public int Armor
-    {
-        get
-        {
-            return
-               Mathf.RoundToInt(
-                   Mathf.RoundToInt( // ARMOR CALCULATED
-                       (armor + GetEquipmentSum(1)) * GetEquipmentMult(1)
-                   ) // EFFECTS APPLIED
-                   - GetEffectSum(1) * GetEffectFactor(1)
-               );
-        }
-        set { this.armor = value; }
-    }
+    public int Strength{get {
+        return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // STRENGTH CALCULATED
+                    (strength + GetEquipmentSum(2)) * GetEquipmentMult(2)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(2) * GetEffectFactor(2)
+            );
+    } set{ this.strength = value; }}
 
-    public int Strength
-    {
-        get
-        {
-            return
-                Mathf.RoundToInt(
-                    Mathf.RoundToInt( // STRENGTH CALCULATED
-                        (strength + GetEquipmentSum(2)) * GetEquipmentMult(2)
-                    ) // EFFECTS APPLIED
-                    - GetEffectSum(2) * GetEffectFactor(2)
-                );
-        }
-        set { this.strength = value; }
-    }
+    public int Magic{get {
+         return 
+            Mathf.RoundToInt(
+                Mathf.RoundToInt( // MAGIC CALCULATED
+                    (magic + GetEquipmentSum(3)) * GetEquipmentMult(3)
+                ) // EFFECTS APPLIED
+                - GetEffectSum(3) * GetEffectFactor(3)
+            );
+    } set{ this.magic = value; }}
 
-<<<<<<< HEAD
-    public int Magic
-    {
-        get
-        {
-            return
-               Mathf.RoundToInt(
-                   Mathf.RoundToInt( // MAGIC CALCULATED
-                       (magic + GetEquipmentSum(3)) * GetEquipmentMult(3)
-                   ) // EFFECTS APPLIED
-                   - GetEffectSum(3) * GetEffectFactor(3)
-               );
-        }
-        set { this.magic = value; }
-    }
-
-    public int Mana
-    {
-        get
-        {
-            return
-               Mathf.RoundToInt(
-                   Mathf.RoundToInt( // MANA CALCULATED
-                       (mana + GetEquipmentSum(4)) * GetEquipmentMult(4)
-                   ) // EFFECTS APPLIED
-                   - GetEffectSum(4) * GetEffectFactor(4)
-               );
-        }
-        set { this.mana = value; }
-    }
-
-    public int MaxMana { get { return maxMana; } set { this.maxMana = value; } }
-=======
     public int Mana{get{ return mana; } set{ this.mana = value; }}
     
     public int MaxMana{get{
@@ -113,29 +74,29 @@ public class GameCharacter : MonoBehaviour
                 - GetEffectSum(4) * GetEffectFactor(4)
             );
     } set {this.maxMana = value; }}
->>>>>>> upstream/main
 
     // SKILLS
     public Skill[] skills;
     public List<Skill> unlockedSkills = new List<Skill>();
     int skillCount;
-    public int SkillCount { get { return skillCount; } }
+    public int SkillCount{ get{ return skillCount; }}
     int selectedSkill = 0;
 
     // INVENTORY
     public Equipment equipment;
     public Item[] inventory;
+
     // STATUS EFFECT
     public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
     // to change sprite
     SpriteManager spriteManager;
-    public SpriteManager SM { get { return spriteManager; } }
+    public SpriteManager SM{ get { return spriteManager; }}
     Transform moveCharacterSprite;
     public List<Sprite> sprites;
     private readonly float CHARACTER_SCALE = 2.4f;
-    public GameCharacter(string cName, int vitality, int armor, int strength, int magic, int mana, int maxSkill, int inventorySize)
-    {
+
+    public GameCharacter(string cName, int vitality, int armor, int strength, int magic, int mana, int maxSkill, int inventorySize){
 
         this.cName = cName;
         c = null;
@@ -153,64 +114,53 @@ public class GameCharacter : MonoBehaviour
 
     }
 
-    public virtual void Init()
-    {
+    public virtual void Init(){
+
         equipment = gameObject.GetComponent<Equipment>();
-
-
+        
     }
 
-    public void SetSprite()
-    {
+    public void SetSprite() {
 
         spriteManager = GetComponentInChildren<SpriteManager>();
-        if (spriteManager == null)
-        {
+        if(spriteManager == null) {
             Debug.Log("spriteManager Not found");
             return;
         }
         spriteManager.SetCharacter(this);
         moveCharacterSprite = gameObject.transform.GetChild(0);
-        moveCharacterSprite.localScale = new Vector3(CHARACTER_SCALE, CHARACTER_SCALE, CHARACTER_SCALE);
+        moveCharacterSprite.localScale = new Vector3(CHARACTER_SCALE,CHARACTER_SCALE,CHARACTER_SCALE);
     }
 
-    public void Moved()
-    {
+    public void Moved(){
 
-        bars.position = Camera.main.WorldToScreenPoint(transform.position * 0.73f);
+        bars.position = Camera.main.WorldToScreenPoint(transform.position*0.73f);
 
     }
 
-    void OnMouseDown()
-    {
+    void OnMouseDown(){
 
-        if (c != null)
+        if(c != null)
             c.CharacterClicked(this);
 
     }
 
-    void OnMouseEnter()
-    {
-
-        if (c != null)
+    void OnMouseEnter(){
+        
+        if(c != null)
             c.CharacterHover(this);
 
     }
 
-    public bool SelectSkill(int index)
-    {
+    public bool SelectSkill(int index){
 
-        if (index < 0)
+        if(index < 0)
             return false;
 
-        if (index > skillCount - 1)
+        if(index > skillCount - 1)
             return false;
 
-<<<<<<< HEAD
-        if (skills[index].Cooldown > 0)
-=======
         if(skills[index].cooldownCount > 0)
->>>>>>> upstream/main
             return false;
 
         selectedSkill = index;
@@ -218,72 +168,59 @@ public class GameCharacter : MonoBehaviour
 
     }
 
-    public bool UseSkill(GameCharacter target)
-    {
+    public bool UseSkill(GameCharacter target){
 
-<<<<<<< HEAD
-        Debug.Log(" Manacost: " + skills[selectedSkill].manaCost);
-        bool skill = target != null && skills[selectedSkill].Effect(target);
-=======
         print($"Selected skill is {selectedSkill}");
         bool skill = skills[selectedSkill].TrySkill(target);
->>>>>>> upstream/main
         healthBar.UpdateBar(HP, Vitality);
         manaBar.UpdateBar(mana, MaxMana);
 
         Vector3 posOfTarget = target.transform.GetChild(0).position;
-        if (spriteManager != null && skill)
-        {
+        if (spriteManager != null && skill) {
             skills[selectedSkill].SkillAnimation(posOfTarget, this, spriteManager);
         }
 
         return skill;
 
     }
-
-    public void TakeDamage(int dmg)
-    {
+    
+    public void TakeDamage(int dmg){
 
         print($"{cName} is attacked with {dmg} damage and has {Armor} armor");
 
-        if (dmg <= Armor)
+        if(dmg <= Armor)
             return;
 
         hp -= dmg - Armor;
 
         healthBar.UpdateBar(hp, Vitality);
 
-        if (hp <= 0)
+        if(hp <= 0)
             c.KillCharacter(this);
         else
             DamageEffect();
 
-
     }
 
-    async Task DamageEffect()
-    {
+    async Task DamageEffect(){
 
         SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
         float time = 0.5f;
+        
+        while(time > 0){
 
-        while (time > 0)
-        {
-
-            sr.color = new Color(1, 1 - time, 1 - time);
+            sr.color = new Color(1,1-time,1-time);
             time -= Time.deltaTime;
             await Task.Yield();
 
         }
-
-        sr.color = new Color(1, 1, 1);
+            
+        sr.color = new Color(1,1,1);
 
     }
 
-    public void AddSkill(Skill newSkill)
-    {
-        if (skillCount == skills.Length)
-        {
+    public void AddSkill(Skill newSkill) {
+        if (skillCount == skills.Length) {
             Debug.Log("Not enough slots!!");
             return;
         }
@@ -293,15 +230,13 @@ public class GameCharacter : MonoBehaviour
     }
 
     //Update the player stats (permanently).
-    public void UpdateStats(int vitDelta, int strDelta, int magDelta)
-    {
+    public void UpdateStats(int vitDelta, int strDelta, int magDelta){
         vitality += vitDelta;
         strength += strDelta;
         magic += magDelta;
     }
 
-    public int[] GetBaseStats()
-    {
+    public int[] GetBaseStats(){
 
         int[] temp = {
             vitality,
@@ -314,31 +249,28 @@ public class GameCharacter : MonoBehaviour
         return temp;
     }
 
-    int GetEffectSum(int type) 
-    {
+    int GetEffectSum(int type){
 
         int sum = 0;
 
-        for (int i = 0; i < statusEffects.Count; i++)
-        {
+        for(int i = 0; i < statusEffects.Count; i++){
 
-            if (statusEffects[i].EffectType == type)
+            if(statusEffects[i].EffectType == type)
                 sum += statusEffects[i].Delta;
 
         }
+
         return sum;
 
     }
 
-    float GetEffectFactor(int type)
-    {
+    float GetEffectFactor(int type){
 
         float factor = 1;
 
-        for (int i = 0; i < statusEffects.Count; i++)
-        {
+        for(int i = 0; i < statusEffects.Count; i++){
 
-            if (statusEffects[i].EffectType == type)
+            if(statusEffects[i].EffectType == type)
                 factor *= statusEffects[i].DeltaF;
 
         }
@@ -347,15 +279,12 @@ public class GameCharacter : MonoBehaviour
 
     }
 
-    public float GetEquipmentMult(int type)
-    {
+    public float GetEquipmentMult(int type){
 
         float factor = 1;
 
-        if (equipment.head != null)
-        {
-            switch (type)
-            {
+        if(equipment.head != null){
+            switch(type){
                 case 0:
                     factor *= equipment.head.VitalityMult;
                     break;
@@ -374,10 +303,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-        if (equipment.torso != null)
-        {
-            switch (type)
-            {
+        if(equipment.torso != null){
+            switch(type){
                 case 0:
                     factor *= equipment.torso.VitalityMult;
                     break;
@@ -396,10 +323,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-        if (equipment.boots != null)
-        {
-            switch (type)
-            {
+        if(equipment.boots != null){
+            switch(type){
                 case 0:
                     factor *= equipment.boots.VitalityMult;
                     break;
@@ -418,10 +343,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-        if (equipment.weaponLeft != null)
-        {
-            switch (type)
-            {
+        if(equipment.weaponLeft != null){
+            switch(type){
                 case 0:
                     factor *= equipment.weaponLeft.VitalityMult;
                     break;
@@ -440,10 +363,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-        if (equipment.weaponRight != null)
-        {
-            switch (type)
-            {
+        if(equipment.weaponRight != null){
+                switch(type){
                 case 0:
                     factor *= equipment.head.VitalityMult;
                     break;
@@ -461,18 +382,17 @@ public class GameCharacter : MonoBehaviour
                     break;
             }
         }
+
         return factor;
 
     }
-    public int GetEquipmentSum(int type)
-    {
+
+    public int GetEquipmentSum(int type){
 
         int sum = 1;
 
-        if (equipment.head != null)
-        {
-            switch (type)
-            {
+        if(equipment.head != null){
+            switch(type){
                 case 0:
                     sum += equipment.head.VitalityAdd;
                     break;
@@ -491,10 +411,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-        if (equipment.torso != null)
-        {
-            switch (type)
-            {
+        if(equipment.torso != null){
+            switch(type){
                 case 0:
                     sum += equipment.torso.VitalityAdd;
                     break;
@@ -513,10 +431,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-        if (equipment.boots != null)
-        {
-            switch (type)
-            {
+        if(equipment.boots != null){
+            switch(type){
                 case 0:
                     sum += equipment.boots.VitalityAdd;
                     break;
@@ -535,10 +451,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-        if (equipment.weaponLeft != null)
-        {
-            switch (type)
-            {
+        if(equipment.weaponLeft != null){
+            switch(type){
                 case 0:
                     sum += equipment.weaponLeft.VitalityAdd;
                     break;
@@ -557,10 +471,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-        if (equipment.weaponRight != null)
-        {
-            switch (type)
-            {
+        if(equipment.weaponRight != null){
+                switch(type){
                 case 0:
                     sum += equipment.head.VitalityAdd;
                     break;
@@ -579,49 +491,8 @@ public class GameCharacter : MonoBehaviour
             }
         }
 
-
         return sum;
 
     }
-
-    public bool SpendMana(int manaCost)
-    {
-        // Drar bort mana kostnad från total mana och beräknar sedan hur mycket base mana som korresponderar mot nya totala mängden
-        Debug.Log("Name: " + CName + " Mana: " + this.Mana + " raw mana: " + this.mana);
-        Debug.Log("Mana: " + Mana + " Manacost: " + manaCost);
-
-        if (Mana < manaCost)
-        {
-            Debug.Log("too broke");
-            return false;
-        }
-
-        int newMana = Mana - manaCost;
-
-        float multiplier = GetEquipmentMult(4);
-        int additive = GetEquipmentSum(4);
-        int effectSum = GetEffectSum(4);
-        float effectFactor = GetEffectFactor(4);
-
-        if (Mathf.Approximately(multiplier, 0f))
-        {
-            Debug.Log("0 division");
-            return false;
-        }
-
-        // Reverse the getter
-        float rawMana = ((newMana + effectSum * effectFactor) / multiplier) - additive;
-        Debug.Log("calculated new mana: " + rawMana);
-        Mana = Mathf.RoundToInt(rawMana);
-        Debug.Log("Mana set to: " + Mana);
-        Debug.Log("raw Mana set to: " + mana);
-
-        return true;
-    }
-
-
-
-
-
 
 }

@@ -20,34 +20,17 @@ public abstract class Skill
     private Sprite icon;
     public string Name { get { return name; } }
     // lägg till beskrivning när man skapar skills/ability
-<<<<<<< HEAD
-    public string DescriptionPanel
-    {
-        get
-        {
-            return description +
-                   //"Skill level: —-\n" + // vissa skill level istället för power?
-                   "\nMana Cost: " + manaCost.ToString() + "\n" +
-                   "Cooldown: —-\n";
-        }
-=======
     public string DescriptionPanel { 
         get {
             return $"{description}\nSkill level: {skillLevel}\nMana Cost: {manaCost}\nCooldown: {cooldown}";
         } 
->>>>>>> upstream/main
     }
     public int Cooldown { get { return cooldown; } }
     public string Description { get { return description; } }
     public int SkillLevel { get { return skillLevel; } }
     public Sprite Icon { get { return icon; } }
 
-<<<<<<< HEAD
-    public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, string description)
-    {
-=======
     public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, int cooldown, bool attack, string description){
->>>>>>> upstream/main
         this.icon = icon;
         this.sprites = sprites;
         this.gc = gc;
@@ -74,14 +57,8 @@ public abstract class Skill
 
     }
 
-<<<<<<< HEAD
-    public void UpgradeSkill()
-    {
-        skillLevel++;
-=======
     public void UpgradeSkill(int count = 1) {
         skillLevel += count;
->>>>>>> upstream/main
         power = System.MathF.Log(skillLevel, System.MathF.E) + 1;
     }
 

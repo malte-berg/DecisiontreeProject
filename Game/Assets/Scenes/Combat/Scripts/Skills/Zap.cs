@@ -12,6 +12,8 @@ public class Zap : Skill
         power: 1,
         manaCost: 30,
         skillCost: 1,
+        cooldown: 0,
+        attack: true,
         description: "Steals enemy's health while dealing damage"
         )
     {
@@ -20,12 +22,6 @@ public class Zap : Skill
 
     public override bool Effect(GameCharacter target)
     {
-
-        if (target == gc)
-            return false;
-
-        if (!gc.SpendMana(manaCost))
-            return false;
 
 
         // Add 10% of enemies health to player.

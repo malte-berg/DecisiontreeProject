@@ -20,21 +20,7 @@ public class Heal : Skill
     {
     }
 
-<<<<<<< HEAD
-    public override bool Effect(GameCharacter target)
-    {
-        if (target != gc)
-        {
-            return false;
-        }
-
-        if (target.Mana < manaCost)
-            return false;
-
-        target.Mana -= manaCost;
-=======
     public override bool Effect(GameCharacter target){
->>>>>>> upstream/main
 
         target.HP += Mathf.FloorToInt(gc.Magic * power);
 

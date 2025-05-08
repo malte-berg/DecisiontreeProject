@@ -26,18 +26,7 @@ public class Sacrifice : Skill
 
     }
 
-<<<<<<< HEAD
-    public override bool Effect(GameCharacter target)
-    {
-        if (target != gc)
-        {
-            return false;
-        }
-        if (!gc.SpendMana(manaCost))
-            return false;
-=======
     public override bool Effect(GameCharacter target){
->>>>>>> upstream/main
 
         if (target.HP < selfDamage)
             return false;

@@ -11,7 +11,9 @@ public class Disarm : Skill
          power: 10,
          manaCost: 40,
          skillCost: 1,
-         description: "Enemy unequips weapon"
+         cooldown: 0,
+         attack: true,
+         description: "Removes enemy's weapons"
          )
     {
 
@@ -19,13 +21,7 @@ public class Disarm : Skill
 
     public override bool Effect(GameCharacter target)
     {
-
-        if (target == gc)
-            return false;
-
-        if (!gc.SpendMana(manaCost))
-            return false;
-
+        Debug.Log("mana: " + gc.Mana);
         //Removes the target's weapon equipment.
         if (target.equipment.weaponLeft != null || target.equipment.weaponRight != null)
         {
@@ -37,7 +33,7 @@ public class Disarm : Skill
         //If enemy has no weapon equipped, the mana cost is given back.
         else
         {
-            gc.SpendMana(-manaCost);
+            gc.Mana += manaCost;
             Debug.Log("Enemy is already unarmed!");
         }
 

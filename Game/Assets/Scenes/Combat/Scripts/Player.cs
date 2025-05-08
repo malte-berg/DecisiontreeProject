@@ -54,12 +54,10 @@ public class Player : GameCharacter
         expToNextLevel = 100;
     }
 
-<<<<<<< HEAD
     public override void Init()
     {
 
         sprites = new List<Sprite> { Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2") };
-=======
         if(seed == 0){
             System.Random random = new System.Random();
             byte[] buffer = new byte[8];
@@ -68,7 +66,6 @@ public class Player : GameCharacter
         }
 
         sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2")};
->>>>>>> upstream/main
 
         SetSprite();
 
@@ -81,9 +78,12 @@ public class Player : GameCharacter
         punch.UnlockSkill(this);
         AddSkill(punch);
 
-        //Skill mindControl = new MindControl();
-        //mindControl.UnlockSkill(this);
-        //AddSkill(mindControl);
+
+        //Below is to temporary test different skills. Can be removed
+
+        Skill mindControl = new MindControl();
+        mindControl.UnlockSkill(this);
+        AddSkill(mindControl);
 
         //Skill disarm = new Disarm();
         //disarm.UnlockSkill(this);
@@ -102,9 +102,9 @@ public class Player : GameCharacter
         //AddSkill(corrode);
 
         
-        //Skill shield = new Shield();
-        //shield.UnlockSkill(this);
-        //AddSkill(shield);
+        Skill shield = new Shield();
+        shield.UnlockSkill(this);
+        AddSkill(shield);
 
     }
 

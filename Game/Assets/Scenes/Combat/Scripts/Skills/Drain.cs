@@ -12,6 +12,8 @@ public class Drain : Skill
         power: 1,
         manaCost: 0,
         skillCost: 1,
+        cooldown: 0,
+        attack: true,
         description: "Reduces enemy's Mana"
     )
     {
@@ -20,11 +22,6 @@ public class Drain : Skill
 
     public override bool Effect(GameCharacter target)
     {
-        if (target == gc)
-            return false;
-        if (!gc.SpendMana(manaCost))
-            return false;
-
 
         int manaDrained = 10 ; // amount of mana lost temporarily
 

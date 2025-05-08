@@ -112,7 +112,7 @@ public class Enemy : GameCharacter
             targetedByControlled = MindControl.GetRandomEnemy(this, this.c.Enemies);
         }
 
-        if (controlledTurns < 0)
+        if (controlledTurns <= 0)
         {
             controlledTurns = 0; //just to be sure
             targetedByControlled = null;

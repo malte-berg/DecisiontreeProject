@@ -11,10 +11,12 @@ public class MindControl : Skill
         sprites: null,
         gc: null,
         name: "Mind Control",
-        power: 3,
+        power: 1,
         manaCost: 0,
         skillCost: 1,
-        description: "Makes enemy attack other enemies"
+        cooldown: 0,
+        attack: true,
+        description: "Hijacks enemy's mind, making them unable to tell friend from foe"
         )
     {
 
@@ -42,13 +44,7 @@ public class MindControl : Skill
 
     public override bool Effect(GameCharacter target)
     {
-        if (target == gc)
-            return false;
-
-        if (!gc.SpendMana(manaCost))
-            return false;
-
-
+  
         //Enemy targets another enemy instead of the player.
         var enemies = target.c.Enemies;
 
@@ -72,9 +68,9 @@ public class MindControl : Skill
             }
             e.targetedByControlled = enemyTarget;
 
-            int turn = 1; // how many turns enemy is mindcontrolled
+            int turn = 3; // how many turns enemy is mindcontrolled
             turn = Mathf.FloorToInt(turn * power);
-
+  
             e.controlledTurns = turn;
 
             Debug.Log(e.CName + " is now targeting " + enemyTarget.CName);

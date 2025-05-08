@@ -1,4 +1,4 @@
-using UnityEngine;
+/* using UnityEngine;
 using System.Collections.Generic;
 
 public class Debuff
@@ -31,7 +31,7 @@ public class Debuff
 
         Debug.Log("Final reduction to apply: " + reduction);
 
-        var debuffStatAmounts = debuffedCharacter.effects;
+        //var debuffStatAmounts = debuffedCharacter.effects;
 
         if (debuffStatAmounts.ContainsKey(stat))
         {
@@ -64,3 +64,4 @@ public class Debuff
 
 
 
+ */

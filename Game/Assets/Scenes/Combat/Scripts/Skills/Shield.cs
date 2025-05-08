@@ -11,6 +11,8 @@ public class Shield : Skill
          power: 1,
          manaCost: 0,
          skillCost: 1,
+         cooldown: 0,
+         attack: false,
          description: "Add some armor to player"
          )
     {
@@ -19,17 +21,10 @@ public class Shield : Skill
 
     public override bool Effect(GameCharacter target)
     {
-        //Only player character can be selected.
-        if (target != gc)
-        {
-            return false;
-        }
-        if (!gc.SpendMana(manaCost))
-            return false;
 
         int shieldAdded = -30; // amount of armor gained temporarily
 
-        int shieldTurns = Mathf.FloorToInt(power); // made this for clarity purpose, power decides turns for now.
+        int shieldTurns = Mathf.FloorToInt( power); // made this for clarity purpose, power decides turns for now.
 
         //Add armor to the player character.
         Debug.Log("Shield: Before: " + target.Armor);
