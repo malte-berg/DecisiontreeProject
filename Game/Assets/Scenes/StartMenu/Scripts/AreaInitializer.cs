@@ -29,13 +29,17 @@ public class AreaInitializer : MonoBehaviour
             new ClimbingHelmet(),
             new Chainmail(),
             new BrassKnuckles(),
-            new Broadsword()
+            new Broadsword(),
+            new EnforcerHelmet(),
+            new MageHat()
         };
         religionItems[3] = new Item[] { 
             new MilitaryJacket(),
             new Katana(),
             new SteelToedBoots(),
-            new CombatHelmet()
+            new CombatHelmet(),
+            new Excalibur(),
+            new GladiatorHelmet(),
         };
 
         /* AreaDataLoader.InitAreaRegionItems(1, religionItems[1]);

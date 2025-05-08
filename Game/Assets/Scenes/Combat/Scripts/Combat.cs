@@ -50,19 +50,23 @@ public class Combat : MonoBehaviour{
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
       
         // Spawn enemies
+        int spawnIndex = (player.CurrentAreaIndex-1) * 2;
+        int rnd = 0;
         if(player.CombatsWon == 10){
 
-            for (int i = 0; i < 2; i++)
-                SpawnEnemy(enemyPrefabs[player.CurrentAreaIndex-1]);
-
+            for (int i = 0; i < 2; i++) {
+                rnd = UnityEngine.Random.Range(0,2);
+                SpawnEnemy(enemyPrefabs[spawnIndex + rnd]);
+            }
             // TODO SPAWN BOSS
-            // SpawnEnemy(/*BOSS PREFAB[player.CurrentAreaIndex]*/);
+            // SpawnEnemy(/*BOSS PREFAB[spawnIndex]*/);
 
         } else {
 
-            for (int i = 0; i < 4; i++)
-                SpawnEnemy(enemyPrefabs[player.CurrentAreaIndex-1]);
-
+            for (int i = 0; i < 4; i++) {
+                rnd = UnityEngine.Random.Range(0,2);
+                SpawnEnemy(enemyPrefabs[spawnIndex + rnd]);
+            }
         }
 
         GetCurrentCharacter();
