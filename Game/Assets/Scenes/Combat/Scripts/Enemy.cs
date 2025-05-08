@@ -24,29 +24,18 @@ public class Enemy : GameCharacter {
 
     ){}
 
-    public void CreateEnemy(Item[] availableItems, int levelDelta, string cName){
-
-        this.availableItems = availableItems;
-        level += levelDelta;
-        if(level < 1) level = 1;
-        CName = cName;
-
-    }
-
-    public override void Init() {
+    public void CreateEnemy(Item[] availableItems, double rnd, string cName){
 
         if(sprites[0] == null) {
             sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2")};
         }
 
-        equipment = gameObject.GetComponent<Equipment>();
-
         // have stats based on level
-        Vitality = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(80,121);
-        Armor = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(1,5);
-        Strength = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(8,16);
-        Magic = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(2,16);
-        MaxMana = (int)(MathF.Log(level, MathF.E) + 1) * UnityEngine.Random.Range(5,16);
+        Vitality = (int)(MathF.Log(level, MathF.E) + 1) * (int)(80 + 40 * rnd);
+        Armor = (int)(MathF.Log(level, MathF.E) + 1) * (int)(1 + 3 * rnd);
+        Strength = (int)(MathF.Log(level, MathF.E) + 1) * (int)(8 + 8 * rnd);
+        Magic = (int)(MathF.Log(level, MathF.E) + 1) * (int)(2 + 14 * rnd);
+        MaxMana = (int)(MathF.Log(level, MathF.E) + 1) * (int)(5 + 11 * rnd);
         HP = Vitality;
         Mana = MaxMana;
 
@@ -54,7 +43,7 @@ public class Enemy : GameCharacter {
         punch.UnlockSkill(this);
         AddSkill(punch);
 
-        // temp
+        // TODO TEMP REMOVE
         availableItems = new Item[17];
         availableItems[0] = new Pipe();
         availableItems[1] = new Knife();
@@ -73,12 +62,18 @@ public class Enemy : GameCharacter {
         availableItems[14] = new WorkerBoots();
         availableItems[15] = new SteelToedBoots();
         availableItems[16] = new HikingBoots();
-        GatherItems((level - 1) * 10 + 1);
+
+        this.availableItems = availableItems;
+        level += (int)(7 * rnd) - 3;
+        if(level < 1) level = 1;
+        CName = cName;
+        
+        GatherItems((level - 1) * 10 + 1, rnd);
         GatherSkills(level / 3);
         equipment.PrintEquipment();
 
         SetSprite();
-        
+
     }
 
     void FixedUpdate(){ // kinda unnecessary updates
@@ -102,7 +97,7 @@ public class Enemy : GameCharacter {
 
     }
 
-    void GatherItems(int purchasingPower){
+    void GatherItems(int purchasingPower, double thresh){
 
         for(int i = 0; i < availableItems.Length; i++){
 
@@ -137,7 +132,6 @@ public class Enemy : GameCharacter {
 
             if(mine < available){
                 float rnd = (float)purchasingPower / available;
-                float thresh = UnityEngine.Random.value;
 
                 if(rnd > thresh)
                     equipment.Equip(availableItems[i]);
@@ -156,18 +150,7 @@ public class Enemy : GameCharacter {
         while(skillPower > 0){
 
             Skill potential = sb.ReadPage(skillPower);
-
-            // add fun skills
-            if(SkillCount < skills.Length - 2)
-                potential.UnlockSkill(this);
-
-            // last skill has to have no cooldown or mana cost
-            else if(SkillCount < skills.Length - 1){
-
-                if(potential.Cooldown == 0 && potential.manaCost == 0)
-                    potential.UnlockSkill(this);
-
-            } else return; // no more skills
+            potential.UnlockSkill(this);
 
             skillPower--;
 

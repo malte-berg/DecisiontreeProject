@@ -104,11 +104,13 @@ public class Combat : MonoBehaviour{
         int i = enemies.Count;
 
         // Create enemy
+        System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + i * 69 + player.CombatsWon * 1337);
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
-        cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4) + player.CombatsWon, "Street Thug");
+        cEnemy.Init();
+        cEnemy.CreateEnemy(new Item[0], rand.NextDouble(), "Street Thug");
+        // cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4) + player.CombatsWon, "Street Thug");
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.c = this;
-        cEnemy.Init();
 
         // Place enemy
         if(i % 2 == 0)
