@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -117,7 +118,16 @@ public class GameCharacter : MonoBehaviour{
     public virtual void Init(){
 
         equipment = gameObject.GetComponent<Equipment>();
+        StartCoroutine(FixBars());
         
+    }
+
+    public IEnumerator FixBars(){
+        
+        yield return new WaitForSeconds(1);
+        Moved();
+        StartCoroutine(FixBars());
+
     }
 
     public void SetSprite() {
