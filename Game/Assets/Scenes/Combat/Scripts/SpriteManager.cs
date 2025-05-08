@@ -76,13 +76,11 @@ public class SpriteManager : MonoBehaviour
 
         if(shadowRenderer == null) return;
 
-        shadowRenderer.sprite = spriteLayers["Character"].sprite;
-        shadowRenderer.color = new Color(0f, 0f, 0f, 0.8f);
-        shadowRenderer.transform.localScale = Vector3.one * 1.02f;
+        shadowRenderer.sprite = Resources.Load<Sprite>("Sprites/Characters/ShadowBehind");
         shadowGroundRenderer.sprite = Resources.Load<Sprite>("Sprites/Characters/ShadowGround");
         shadowGroundRenderer.transform.localPosition = new Vector3(0f, -0.46f, 0f);
-        shadowGroundRenderer.transform.localScale = Vector3.one * 0.7f;
-        shadowGroundRenderer.color = new Color(0f, 0f, 0f, 0.6f);
+        shadowGroundRenderer.transform.localScale = Vector3.one * 0.5f;
+        shadowGroundRenderer.color = new Color(0f, 0f, 0f, 0.8f);
     }
 
     // invoke a number of SetSprites after delays
