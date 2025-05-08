@@ -50,7 +50,6 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 imageComponent.color = Color.white;
             } else {
                 imageComponent.color = new Color(0.3f, 0.3f, 0.3f, 1f);
-                imageComponent.material = Resources.Load<Material>("BlackAndWhiteFilter");
             } 
         }
 
