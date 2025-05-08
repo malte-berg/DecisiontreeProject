@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class GladiatorHelmet : Head{
@@ -7,7 +6,7 @@ public class GladiatorHelmet : Head{
         icon: Resources.Load<Sprite>("Sprites/Icons/gladiatorHelmet_Icon"),
         sprite: Resources.Load<Sprite>("Sprites/Items/gladiatorHelmet"),
         name: "Warrior Helmet",
-        value: 2,
+        value: 200,
         description: "SPARTAA!!",
         vitalityAdd: 1,
         vitalityMult: 1f,

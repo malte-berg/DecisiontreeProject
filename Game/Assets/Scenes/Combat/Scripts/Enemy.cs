@@ -136,12 +136,34 @@ public class Enemy : GameCharacter {
                 float rnd = (float)purchasingPower / available;
 
                 if(rnd > thresh)
-                    equipment.Equip(availableItems[i]);
+                    if(CanBeWorn(i))
+                        equipment.Equip(availableItems[i]);
 
             }
 
         }
 
+    }
+
+    // will expand on this later
+    bool CanBeWorn(int i) {
+        string enemyName = this.gameObject.name;
+        Item item = availableItems[i];
+        
+        if(!(enemyName.Contains("Thug"))) {
+            if(item is Torso) return false;
+        }
+        else if(enemyName.Contains("Mage")) {
+            if(item is Weapon) return false;
+            else if(item is Head && !(item is MageHat)) return false;
+        }
+        else if(enemyName.Contains("Gladiator")) {
+            if(item is Head && !(item is GladiatorHelmet)) return false;
+        }
+        else if(enemyName.Contains("Leader")) {
+            if(item is Head) return false;
+        }
+        return true;
     }
 
     void GatherSkills(int skillPower){

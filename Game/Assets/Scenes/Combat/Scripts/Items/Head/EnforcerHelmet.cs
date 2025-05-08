@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class EnforcerHelmet : Head{
@@ -7,7 +6,7 @@ public class EnforcerHelmet : Head{
         icon: Resources.Load<Sprite>("Sprites/Icons/enforcerHelmet_Icon"),
         sprite: Resources.Load<Sprite>("Sprites/Items/enforcerHelmet"),
         name: "Guard Helmet",
-        value: 2,
+        value: 60,
         description: "Maybe you can blend in with the guards",
         vitalityAdd: 1,
         vitalityMult: 1f,

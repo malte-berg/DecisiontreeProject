@@ -855,4 +855,4 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 8e44c41664dd8a54d84898fabddd78e7, type: 3}
   - {fileID: 21300000, guid: 9cf7173250617bd47b43498e683007ef, type: 3}
-  level: 48
+  level: 1
