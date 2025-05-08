@@ -768,7 +768,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: d4eb1e7524088b648b083c7326805af5, type: 3}
   - {fileID: 21300000, guid: fe7f82672d4aebc44a081bd32e691c7a, type: 3}
-  level: 12
+  level: 60
 --- !u!1 &8651742638665687258
 GameObject:
   m_ObjectHideFlags: 0
