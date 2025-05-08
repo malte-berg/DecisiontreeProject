@@ -105,7 +105,6 @@ public class Enemy : GameCharacter {
 
     void GatherItems(int purchasingPower, double thresh){
 
-        Debug.Log("Random threshhold is: " + thresh);
         for(int i = 0; i < availableItems.Length; i++){
 
             int mine = 0, available = availableItems[i].Value;
