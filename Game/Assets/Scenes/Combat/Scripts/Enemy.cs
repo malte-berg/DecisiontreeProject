@@ -179,8 +179,8 @@ public class Enemy : GameCharacter {
         bool acceptAnyHat = false;
         if((rand % 2) == 1)
             acceptHat = false;
-        if((rand % 3) == 2)
-            acceptWeapon = false;
+        // if((rand % 3) == 2)
+        //     acceptWeapon = false; // always have a weapon?
         if((rand % 3) == 1)
             acceptTorso = false;
         if((rand % 7) == 6)
@@ -195,8 +195,14 @@ public class Enemy : GameCharacter {
             else return acceptTorso;
         }
         else if(item is Weapon) {
-            if(enemyName.Contains("Mage"))
-                return false;
+            if(enemyName.Contains("Mage")) {
+                if((item is Staff || item is Wand)) {
+                    return acceptWeapon;
+                }else {
+                    return false;
+                }
+            }
+
             else return acceptWeapon;
         }
         else if(item is Head) {
