@@ -49,26 +49,25 @@ public class Combat : MonoBehaviour{
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
       
-        // Spawn enemies
-        int spawnIndex = (player.CurrentAreaIndex-1);
-        int rnd = 0;
+        // Reset cooldown
+        for(int i = 0; i < player.SkillCount; i++)
+            player.skills[i].cooldownCount = 0;
 
-        // if(player.CombatsWon == 0) // to test boos battle
-        if(player.CombatsWon == 10)
-        {
+        // Spawn enemies
+        int spawnIndex = (player.CurrentAreaIndex-1) * 2;
+        System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
+        if(player.CombatsWon == 10){
+
             for (int i = 0; i < 2; i++) {
-                rnd = UnityEngine.Random.Range(0,2);
-                SpawnEnemy(enemyPrefabs[spawnIndex*2 + rnd]);
+                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
             }
             // spawn a boss!
-            SpawnEnemy(enemyPrefabs[spawnIndex + 6]);
+            SpawnEnemy(enemyPrefabs[spawnIndex + 6], rand);
 
         } else {
 
-            for (int i = 0; i < 4; i++) {
-                rnd = UnityEngine.Random.Range(0,2);
-                SpawnEnemy(enemyPrefabs[spawnIndex*2 + rnd]);
-            }
+            for (int i = 0; i < 4; i++)
+                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
         }
 
         GetCurrentCharacter();
@@ -117,21 +116,20 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public Enemy SpawnEnemy(GameObject prefab){
+    public Enemy SpawnEnemy(GameObject prefab, System.Random rand){
 
         int i = enemies.Count;
 
         // Create enemy
-        System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + i * 69 + player.CombatsWon * 1337);
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
         cEnemy.Init();
-        cEnemy.CreateEnemy(new Item[0], rand.NextDouble(), prefab.name);
-        // cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4) + player.CombatsWon, "Street Thug");
+        cEnemy.CreateEnemy(AreaDataLoader.GetAreaItems(player.CurrentAreaIndex), rand.NextDouble(), prefab.name);
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.c = this;
 
         if(prefab.name.Contains("Boss")) {
-            cEnemy.transform.position = Vector3.right * 6f;
+            cEnemy.transform.position = Vector3.right * 6.5f;
+            cEnemy.transform.position = Vector3.up * 1f;
             cEnemy.transform.localScale *= 1.3f;
             cEnemy.transform.GetChild(0).position += new Vector3(0f,0.24f,0f);
         }
@@ -192,6 +190,7 @@ public class Combat : MonoBehaviour{
                     player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle
+                    player.MaxMana = 10 * player.CurrentLevel;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
                 }
@@ -228,17 +227,18 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public void UseTurnOn(GameCharacter clicked){
+    public bool UseTurnOn(GameCharacter clicked){
 
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
         if(!currentC.UseSkill(clicked)){
             print("it failed :(");
-            return;
+            return false;
         }
 
         NewTurn();
+        return true;
 
     }
 

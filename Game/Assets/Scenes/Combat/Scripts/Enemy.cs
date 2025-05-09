@@ -38,6 +38,11 @@ public class Enemy : GameCharacter {
             sprites = new List<Sprite> {Resources.Load<Sprite>("Sprites/Characters/enemyTemp1"), Resources.Load<Sprite>("Sprites/Characters/enemyTemp2")};
         }
 
+        this.availableItems = availableItems;
+        level += (int)(7 * rnd) - 3;
+        if(level < 1) level = 1;
+        CName = cName;
+
         // have stats based on level
         Vitality = (int)(MathF.Log(level, MathF.E) + 1) * (int)(80 + 40 * rnd);
         Armor = (int)(MathF.Log(level, MathF.E) + 1) * (int)(1 + 3 * rnd);
@@ -50,37 +55,6 @@ public class Enemy : GameCharacter {
         Punch punch = new Punch();
         punch.UnlockSkill(this);
         AddSkill(punch);
-
-        // TODO TEMP REMOVE
-        availableItems = new Item[22];
-        availableItems[0] = new Pipe();
-        availableItems[1] = new Knife();
-        availableItems[2] = new Katana();
-        availableItems[3] = new Excalibur();
-        availableItems[4] = new Broadsword();
-        availableItems[5] = new BrassKnuckles();
-        availableItems[6] = new MilitaryJacket();
-        availableItems[7] = new Jacket();
-        availableItems[8] = new CombatJacket();
-        availableItems[9] = new Chainmail();
-        availableItems[10] = new CombatHelmet();
-        availableItems[11] = new ClimbingHelmet();
-        availableItems[12] = new Bucket();
-        availableItems[13] = new BicycleHelmet();
-        availableItems[14] = new WorkerBoots();
-        availableItems[15] = new SteelToedBoots();
-        availableItems[16] = new HikingBoots();
-        availableItems[17] = new GladiatorHelmet();
-        availableItems[18] = new EnforcerHelmet();
-        availableItems[19] = new MageHat();
-        availableItems[20] = new Wand();
-        availableItems[21] = new Staff();
-
-
-        this.availableItems = availableItems;
-        level += (int)(7 * rnd) - 3;
-        if(level < 1) level = 1;
-        CName = cName;
         
         GatherItems((level - 1) * 10 + 1, rnd);
         GatherSkills(level / 3);
@@ -112,13 +86,30 @@ public class Enemy : GameCharacter {
             targetedByControlled = null;
         }
 
-        int currentS = 2;
-        while(!SelectSkill(currentS-- % 3));
-
         // run on main thread (needed for component access)
         _mainThreadActions.Enqueue(() => {
-            c.UseTurnOn(target);
+            AttemptSkill(target);
         });
+
+    }
+
+    void AttemptSkill(GameCharacter target){
+
+        bool success;
+        bool self = false;
+        int currentS = 3;
+
+        do{
+
+            if(!self)
+                while(!SelectSkill(--currentS % 3));
+
+            if(c == null) return;
+
+            success = c.UseTurnOn(self ? this : target);
+            self = !self;
+        
+        } while(!success);
 
     }
 
@@ -238,9 +229,10 @@ public class Enemy : GameCharacter {
         while(skillPower > 0){
 
             Skill potential = sb.ReadPage(skillPower);
-            potential.UnlockSkill(this);
-
             skillPower--;
+            if(potential is Sacrifice) continue; // ignoring sacrifice to limit amount of self use abilities
+            potential.UnlockSkill(this);
+            AddSkill(potential);
 
         }
 
