@@ -96,6 +96,8 @@ public class Enemy : GameCharacter {
         int currentS = 2;
         while(!SelectSkill(currentS-- % 3));
 
+        if(c == null) return;
+
         // run on main thread (needed for component access)
         _mainThreadActions.Enqueue(() => {
             c.UseTurnOn(target);
