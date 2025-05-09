@@ -250,6 +250,20 @@ public class GameCharacter : MonoBehaviour{
         skillCount++;
     }
 
+    public void RemoveSkillAt(int index)
+    {
+        if (index < 0 || index >= skillCount)
+            return;
+
+        for (int i = index; i < skillCount - 1; i++)
+        {
+            skills[i] = skills[i + 1];
+        }
+
+        skills[skillCount - 1] = null;
+        skillCount--;
+    }
+
     //Update the player stats (permanently).
     public void UpdateStats(int vitDelta, int strDelta, int magDelta){
         vitality += vitDelta;

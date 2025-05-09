@@ -70,24 +70,27 @@ public class Player : GameCharacter {
         gameObject.name = "Player";
         HidePlayer();
         DontDestroyOnLoad(gameObject);
-      
-        Skill punch = new Punch();
-        punch.UnlockSkill(this);
-        AddSkill(punch);
 
         // Tutorial
         if (combatsWon[0] == 0)
         {
             combatsWon[1] = -1;
-            // More skills are added
+
+            Skill punch = new Punch();
+            punch.UnlockSkill(this);
+            AddSkill(punch);
+
             Skill heal = new Heal();
-            AddSkill(heal);
+            heal.UpgradeSkill(); // For tutorial to upgrade the skill to 1
+            AddSkill(heal); 
 
             Skill sacrifice = new Sacrifice();
+            sacrifice.UpgradeSkill(); // For tutorial to upgrade the skill to 1
             AddSkill(sacrifice);
 
             combatsWon[0] = 1;
         }
+
         StartCoroutine(FixBars());
     }
     //Hide the player model.

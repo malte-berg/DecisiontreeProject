@@ -196,13 +196,11 @@ public class Combat : MonoBehaviour{
 
         }
 
-        Debug.Log(player.CurrentAreaIndex);
-
-
         // GAME OVER (Player died)
-        if (player.CombatsWon == -1) //player.CurrentAreaIndex == 0
+        if (player.CombatsWon == -1)
         {
-            player.Init();
+            player.RemoveSkillAt(2);
+            player.RemoveSkillAt(1);
 
             //Switch Scene to the in game menu scene, with the Intro cutscene.
             GetComponent<SceneSwitch>().SwitchScene(1);
