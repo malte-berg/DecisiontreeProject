@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 63c804f88dc960445877184a76bd3d95
+guid: 4afe17928a6b4504f893d709e7aa8a1a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4132672945359934719
-    second: CombatScene_0
+      213: -8258907340148871043
+    second: CombatsScene_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CombatScene_0
+      name: CombatsScene_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 1919
-        height: 905
+        height: 901
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ff4db01e5243a5930800000000000000
-      internalID: 4132672945359934719
+      spriteID: d707f8d1887726d80800000000000000
+      internalID: -8258907340148871043
       vertices: []
       indices: 
       edges: []

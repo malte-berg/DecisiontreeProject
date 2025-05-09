@@ -11,7 +11,7 @@ public class DialogueBox : MonoBehaviour{
 
     public TMP_Text talkingName;
     public TMP_Text talkingText;
-    public float typeSpeed = 0.03f; // Speed of typewriter effect
+    public float typeSpeed = 0.1f; // Speed of typewriter effect
 
     public void Init(SceneScript sc){
 

@@ -22,8 +22,8 @@ public class NewGame : MonoBehaviour{
         prepPlayerAndArea();
         
         new SaveManager().CreateSave(playerObject.GetComponent<Player>());
-        GetComponent<SceneSwitch>().WithCutscene = 0;
-        GetComponent<SceneSwitch>().SwitchScene(1);
+        GetComponent<SceneSwitch>().WithCutscene = 1;
+        GetComponent<SceneSwitch>().SwitchScene(4);
 
     }
 

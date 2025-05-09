@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialBattleManager : SceneScript
 {
     public override IEnumerator RunAnimation()
     {
+        db.MoveDialogueBox(0, 0);
         bg.SetBG(10); // Set combat background
 
         db.Enqueue(@"
@@ -18,7 +18,7 @@ public class TutorialBattleManager : SceneScript
         yield return WaitForDialogue();
         yield return new WaitForSeconds(1);
 
-        db.MoveDialogueBox(100, 170);
+        db.MoveDialogueBox(100, 120);
 
         db.Enqueue(@"
         Tutorial§Each character has a 'Health Bar' (in green) and a 'Mana Bar' (in blue) above them.
@@ -49,7 +49,10 @@ public class TutorialBattleManager : SceneScript
         Tutorial§For example, using 'Punch' on an enemy would deal damage based on your character's stats.
         ");
         db.Enqueue(@"
-        Tutorial§Once a skill is executed, the enemy’s health bar will decrease accordingly.
+        Tutorial§Using 'Heal' on yourself restores some health to you.
+        ");
+        db.Enqueue(@"
+        Tutorial§Once a skill is executed and used on an enemy, the enemy’s health bar will decrease accordingly.
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();

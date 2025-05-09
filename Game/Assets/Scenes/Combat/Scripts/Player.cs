@@ -74,8 +74,21 @@ public class Player : GameCharacter {
         Skill punch = new Punch();
         punch.UnlockSkill(this);
         AddSkill(punch);
-        StartCoroutine(FixBars());
 
+        // Tutorial
+        if (combatsWon[0] == 0)
+        {
+            combatsWon[1] = -1;
+            // More skills are added
+            Skill heal = new Heal();
+            AddSkill(heal);
+
+            Skill sacrifice = new Sacrifice();
+            AddSkill(sacrifice);
+
+            combatsWon[0] = 1;
+        }
+        StartCoroutine(FixBars());
     }
     //Hide the player model.
     public void HidePlayer(){

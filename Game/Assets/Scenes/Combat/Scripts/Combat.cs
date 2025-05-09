@@ -196,10 +196,22 @@ public class Combat : MonoBehaviour{
 
         }
 
-        // GAME OVER (Player died)
-        SceneManager.LoadScene("DemoLoseScreen");
-        Debug.LogWarning("Main character died lol");
+        Debug.Log(player.CurrentAreaIndex);
 
+
+        // GAME OVER (Player died)
+        if (player.CombatsWon == -1) //player.CurrentAreaIndex == 0
+        {
+            player.Init();
+
+            //Switch Scene to the in game menu scene, with the Intro cutscene.
+            GetComponent<SceneSwitch>().SwitchScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene("DemoLoseScreen");
+            Debug.LogWarning("Main character died lol");
+        }
     }
 
     public void CharacterClicked(GameCharacter clicked){
