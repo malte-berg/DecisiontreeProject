@@ -21,7 +21,8 @@ public class AreaInitializer : MonoBehaviour
             new CombatJacket(),
             new Bucket(),
             new BicycleHelmet(),
-            new WorkerBoots()
+            new WorkerBoots(),
+            new Wand()
          };
         // currently it is just a test, specific items need to be conceived
         religionItems[2] = new Item[] {
@@ -31,7 +32,8 @@ public class AreaInitializer : MonoBehaviour
             new BrassKnuckles(),
             new Broadsword(),
             new EnforcerHelmet(),
-            new MageHat()
+            new MageHat(),
+            new Staff()
         };
         religionItems[3] = new Item[] { 
             new MilitaryJacket(),

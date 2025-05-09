@@ -58,10 +58,11 @@ public class Combat : MonoBehaviour{
         System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
         if(player.CombatsWon == 10){
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++) {
                 SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
-            // TODO SPAWN BOSS
-            // SpawnEnemy(/*BOSS PREFAB[spawnIndex]*/);
+            }
+            // spawn a boss!
+            SpawnEnemy(enemyPrefabs[spawnIndex + 6], rand);
 
         } else {
 
@@ -122,12 +123,19 @@ public class Combat : MonoBehaviour{
         // Create enemy
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
         cEnemy.Init();
-        cEnemy.CreateEnemy(AreaDataLoader.GetAreaItems(player.CurrentAreaIndex), rand.NextDouble(), "Street Thug");
+        cEnemy.CreateEnemy(AreaDataLoader.GetAreaItems(player.CurrentAreaIndex), rand.NextDouble(), prefab.name);
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.c = this;
 
+        if(prefab.name.Contains("Boss")) {
+            cEnemy.transform.position = Vector3.right * 6.5f;
+            cEnemy.transform.position = Vector3.up * 1f;
+            cEnemy.transform.localScale *= 1.3f;
+            cEnemy.transform.GetChild(0).position += new Vector3(0f,0.24f,0f);
+        }
+
         // Place enemy
-        if(i % 2 == 0)
+        else if(i % 2 == 0)
             cEnemy.transform.position = Vector3.right * (i+1) * 2 + (Vector3.up * i * 0.5f);
         else
             cEnemy.transform.position = Vector3.right * (i+1) * 2 - (Vector3.up * (i+1) * 0.25f);
@@ -151,7 +159,11 @@ public class Combat : MonoBehaviour{
 
     public async Task KillCharacter(GameCharacter target){
 
-        SpriteRenderer sr = target.gameObject.GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer[] sr = new SpriteRenderer[7];
+        Transform container = target.transform.GetChild(0);
+        for(int i = 0; i < sr.Length; i++) {
+            sr[i] = container.GetChild(i).GetComponent<SpriteRenderer>();
+        }
         float time = 1;
 
         if(target is Enemy){
@@ -161,7 +173,9 @@ public class Combat : MonoBehaviour{
 
                 while(time > 0){
 
-                    sr.color = new Color(time,time,time,time);
+                    foreach (SpriteRenderer s in sr) {
+                        s.color = new Color(time,time,time,time);                        
+                    }
                     time -= Time.deltaTime;
                     await Task.Yield();
 
@@ -189,7 +203,9 @@ public class Combat : MonoBehaviour{
 
         while(time > 0){
 
-            sr.color = new Color(time,time,time,time);
+            foreach (SpriteRenderer s in sr) {
+                s.color = new Color(time,time,time,time);
+            }           
             time -= Time.deltaTime;
             await Task.Yield();
 
