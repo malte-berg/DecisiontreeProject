@@ -8,6 +8,12 @@ using UnityEngine;
 public class Enemy : GameCharacter {
 
     Item[] availableItems;
+    int enemyPower;
+
+    //For mindcontrol ability
+    public Enemy targetedByControlled = null; // which target the mind controlled enemy targets
+    public int controlledTurns = 0; // How many turns enemy is controlled when mindcontrol is activated.
+
     public int level;
     static readonly ConcurrentQueue<Action> _mainThreadActions = new ConcurrentQueue<Action>();
 
@@ -86,12 +92,23 @@ public class Enemy : GameCharacter {
 
         while(_mainThreadActions.TryDequeue(out var action))
             action?.Invoke();
-        
+
     }
 
     public async Task AI(Combat c, GameCharacter target){
 
         Thread.Sleep(1000);
+
+        if (targetedByControlled != null){
+            target = targetedByControlled;
+            controlledTurns--;
+            targetedByControlled = MindControl.GetRandomEnemy(this, this.c.Enemies);
+        }
+
+        if (controlledTurns <= 0){
+            controlledTurns = 0; //just to be sure
+            targetedByControlled = null;
+        }
 
         int currentS = 2;
         while(!SelectSkill(currentS-- % 3));
