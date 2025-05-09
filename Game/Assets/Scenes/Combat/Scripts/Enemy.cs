@@ -105,6 +105,7 @@ public class Enemy : GameCharacter {
 
     void GatherItems(int purchasingPower, double thresh){
 
+        Debug.Log("item threshhold: "+ thresh);
         for(int i = 0; i < availableItems.Length; i++){
 
             int mine = 0, available = availableItems[i].Value;
@@ -140,7 +141,7 @@ public class Enemy : GameCharacter {
                 float rnd = (float)purchasingPower / available;
 
                 if(rnd > thresh)
-                    if(CanBeWorn(i))
+                    if(CanBeWorn(i, thresh))
                         equipment.Equip(availableItems[i]);
 
             }
@@ -149,23 +150,58 @@ public class Enemy : GameCharacter {
 
     }
 
-    // will expand on this later
-    bool CanBeWorn(int i) {
+    // come constrains on certaint enemies
+    // also randomises so each allowed equipment has a 2/3 chance to be equipped
+    bool CanBeWorn(int i, double thresh) {
+        int rand = (int)(thresh * 11337);
+        bool acceptWeapon = true;
+        bool acceptHat = true;
+        bool acceptTorso = true;
+        bool acceptAnyHat = false;
+        if((rand % 2) == 1)
+            acceptHat = false;
+        if((rand % 3) == 2)
+            acceptWeapon = false;
+        if((rand % 3) == 1)
+            acceptTorso = false;
+        if((rand % 7) == 6)
+            acceptAnyHat = true;
+
         string enemyName = this.gameObject.name;
         Item item = availableItems[i];
         
-        if(!(enemyName.Contains("Thug") || enemyName.Contains("Addict"))) {
-            if(item is Torso) return false;
+        if(item is Torso) {
+            if(!(enemyName.Contains("Thug") || enemyName.Contains("Addict")))
+                return false;
+            else return acceptTorso;
         }
-        if(enemyName.Contains("Mage")) {
-            if(item is Weapon) return false;
-            else if(item is Head && !(item is MageHat)) return false;
+        else if(item is Weapon) {
+            if(enemyName.Contains("Mage"))
+                return false;
+            else return acceptWeapon;
         }
-        else if(enemyName.Contains("Gladiator")) {
-            if(item is Head && !(item is GladiatorHelmet)) return false;
-        }
-        else if(enemyName.Contains("Leader")) {
-            if(item is Head) return false;
+        else if(item is Head) {
+            if(enemyName.Contains("Leader")) {
+                return false;
+            }
+            else if(acceptAnyHat) {
+                return true;
+            }
+            else if(enemyName.Contains("Gladiator")) {
+                if(item is GladiatorHelmet) return acceptTorso;
+                else return false;
+            }
+            else if(enemyName.Contains("Mage")) {
+                if(item is MageHat) return acceptTorso;
+                else return false;
+            }
+            else if(enemyName.Contains("Guard")){
+                if(item is EnforcerHelmet)
+                    return acceptTorso;
+            }
+            else {
+                return acceptHat;
+            }
         }
         return true;
     }
