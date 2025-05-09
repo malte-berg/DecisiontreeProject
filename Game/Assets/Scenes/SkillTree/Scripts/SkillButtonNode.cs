@@ -1,23 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
-using System;
 
-public class SkillButtonNode : MonoBehaviour
+public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     GameObject self;
     public GameObject skillName;
-    public GameObject skillLevel;
+    public GameObject hoverPanelPrefab;
     private TMP_Text pointsCounter;
     public Player player;
     public Skill skill;
     public SkillButtonNode parent;
     public SkillButtonNode right;
     public SkillButtonNode left;
-
     public int offsetX;
     public int offsetY;
+    RectTransform rt;
 
+    GameObject hoverPanelInstance;
+    Vector2 toolTipOffset;
     public void Init(GameObject node, Player player, Skill skill, SkillButtonNode parent, TMP_Text pointsCounter) {
         self = node;
         this.player = player;
@@ -28,30 +30,24 @@ public class SkillButtonNode : MonoBehaviour
         this.offsetX = 0;
         this.offsetY = 0;
         this.pointsCounter = pointsCounter;
-
-        MoveNode();
+        toolTipOffset.x = 40;
+        toolTipOffset.y = 135;
+        rt = GetComponent<RectTransform>();
+        
         SetNode();
     }
 
     public void SetNode() {
         Image imageComponent = self.GetComponent<Image>();
         TMP_Text skillNameText = skillName.GetComponent<TMP_Text>();
-        TMP_Text skillLevelText = skillLevel.GetComponent<TMP_Text>();
 
         if (imageComponent != null) {
+            imageComponent.sprite = skill.Icon;
             if (skill.unlocked) {
-                imageComponent.color = Color.green;
+                imageComponent.color = Color.white;
             } else {
-                imageComponent.color = Color.gray;
-            }
-        }
-
-        if (skillLevelText != null && skill.unlocked) {
-            skillLevelText.text = skill.SkillLevel.ToString();
-        }
-
-        if (skillLevelText != null && !skill.unlocked) {
-            skillLevelText.text = "Unlock";
+                imageComponent.color = new Color(0.3f, 0.3f, 0.3f, 1f);
+            } 
         }
 
         if (skillNameText != null){
@@ -84,6 +80,7 @@ public class SkillButtonNode : MonoBehaviour
             Debug.Log($"Unlocked {skill.Name}!");
         }
         SetNode();
+        UpdateToolTip();
     }
 
     public bool AddChild(SkillButtonNode child) {
@@ -128,11 +125,8 @@ public class SkillButtonNode : MonoBehaviour
         child.DrawLine();
     }
 
-    public string ToString() {
+    override public string ToString() {
         string result = "SkillButtonNode: " + skill.Name + "\n";
-        //result += "Skill Level: " + skill.SkillLevel + "\n";
-        //result += "Skill Cost: " + skill.skillCost + "\n";
-        //result += "Skill Points: " + player.SkillPoints + "\n";
         result += "Parent: " + (parent != null ? parent.skill.Name : "null") + "\n";
         result += "Left Child: " + (left != null ? left.skill.Name : "null") + "\n";
         result += "Right Child: " + (right != null ? right.skill.Name : "null") + "\n";
@@ -140,7 +134,7 @@ public class SkillButtonNode : MonoBehaviour
     }
 
     public void MoveNode() {
-        self.transform.position = new Vector3(offsetX + self.transform.position.x, offsetY + self.transform.position.y, 0);
+        rt.anchoredPosition = new Vector2(offsetX, offsetY);
     }
 
     public void DrawLine() {
@@ -152,35 +146,80 @@ public class SkillButtonNode : MonoBehaviour
             float startRadius = self.GetComponent<RectTransform>().sizeDelta.x / 2;
             float endRadius = parent.GetComponent<RectTransform>().sizeDelta.x / 2;
 
-            Canvas canvas = GetComponentInParent<Canvas>();
-            if (canvas == null) {
-                Debug.LogError("Canvas not found in parent.");
-                return;
-            }
-            rectTransform.SetParent(canvas.transform, false);
+            rectTransform.SetParent(transform, false);
 
-            Vector3 startPos = self.transform.position;
-            Vector3 endPos = parent.transform.position;
-            startPos.z = -1;
-            endPos.z = -1;
+            Vector2 startPos = rt.anchoredPosition;
+            Vector2 endPos = parent.rt.anchoredPosition;
 
-            Vector3 direction = (endPos - startPos).normalized;
+            Vector2 direction = (endPos - startPos).normalized;
 
-            startPos -= (Vector3) (direction * startRadius);
-            endPos += (Vector3) (direction * endRadius);
+            startPos -= (Vector2) (direction * startRadius);
+            endPos += (Vector2) (direction * endRadius);
+            float xDelta = endPos.x - startPos.x;
+            float yDelta = endPos.y - startPos.y;
 
-            Vector3 midPos = (startPos + endPos) / 2;
+            startPos = new Vector2(0, 0);
+            endPos = new Vector2(xDelta, yDelta);
 
-            float distance = Vector3.Distance(startPos, endPos);
+            Vector2 midPos = (startPos + endPos) / 2;
+
+            float distance = Vector2.Distance(startPos, endPos);
             float angle = Mathf.Atan2(endPos.y - startPos.y, endPos.x - startPos.x) * Mathf.Rad2Deg;
 
             rectTransform.sizeDelta = new Vector2(distance, 5f);
-            rectTransform.position = midPos;
+            rectTransform.anchoredPosition = midPos;
             rectTransform.rotation = Quaternion.Euler(0, 0, angle);
 
             Image lineImage = rect.AddComponent<Image>();
             lineImage.color = Color.white;
-            rectTransform.SetAsFirstSibling();
+            
+            rectTransform.SetParent(transform.parent.transform);
+            rectTransform.SetSiblingIndex(0);
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData) {
+
+        if (hoverPanelPrefab != null && hoverPanelInstance == null) {
+
+            hoverPanelInstance = Instantiate(hoverPanelPrefab, transform);
+            
+            UpdateToolTip();
+
+            RectTransform buttonRectTransform = GetComponent<RectTransform>();
+            RectTransform toolTipTransform = hoverPanelInstance.GetComponent<RectTransform>();
+
+            Vector3[] buttonCorners = new Vector3[4];
+            buttonRectTransform.GetWorldCorners(buttonCorners);
+
+            toolTipTransform.anchoredPosition = toolTipOffset;
+        }
+
+    }
+
+    public void OnPointerExit(PointerEventData eventData) {
+
+        if (hoverPanelInstance != null) {
+
+            Destroy(hoverPanelInstance);
+
+        }
+
+    }
+
+    void UpdateToolTip() {
+        if (hoverPanelInstance != null) {
+            hoverPanelInstance.transform.GetChild(1).GetComponent<TMP_Text>().text = skill.Name;
+            hoverPanelInstance.transform.GetChild(2).GetComponent<TMP_Text>().text = skill.Description;
+            TMP_Text levelText = hoverPanelInstance.transform.GetChild(3).GetComponent<TMP_Text>();
+
+            if (skill.unlocked) {
+                levelText.text = "Level: " + skill.SkillLevel.ToString();
+            } else if (parent != null && !parent.skill.unlocked) {
+                levelText.text = "Unlock " + parent.skill.Name + " first!";
+            } else {
+                levelText.text = "Unlock";
+            }
         }
     }
 }

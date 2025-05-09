@@ -39,6 +39,8 @@ public class DialogueBox : MonoBehaviour{
 
     public void ContinueDialogue(){
 
+        sc.waitingForDialogue = true;
+
         if(queue.Count > 0)
             DisplayNext();
 
@@ -49,6 +51,12 @@ public class DialogueBox : MonoBehaviour{
 
         }
 
+    }
+
+    //Used for moving the dialogue box during cutscenes.
+    public void MoveDialogueBox(float positionX, float positionY){
+        RectTransform rect = gameObject.transform.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(positionX, positionY);
     }
 
 }
