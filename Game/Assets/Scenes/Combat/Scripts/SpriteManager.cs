@@ -92,6 +92,15 @@ public class SpriteManager : MonoBehaviour
         }
     }
 
+    public void DisplaceSprite(Vector3 target, Transform tr, float delay) {
+        Vector3 start = tr.position;
+        SetPos(target, tr);
+        DelayedAction(() => SetPos(start, tr), delay);
+    }
+    public void SetPos(Vector3 targetPos, Transform tr) {
+        tr.position = targetPos;
+    }
+
     public void AttackAnimation(GameCharacter thisCharacter) {
         Equipment equipment = thisCharacter.equipment;
         if(equipment.weaponLeft != null && !(equipment.weaponLeft is BrassKnuckles)) {

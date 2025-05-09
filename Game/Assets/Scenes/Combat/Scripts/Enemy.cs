@@ -46,7 +46,7 @@ public class Enemy : GameCharacter {
         AddSkill(punch);
 
         // TODO TEMP REMOVE
-        availableItems = new Item[20];
+        availableItems = new Item[22];
         availableItems[0] = new Pipe();
         availableItems[1] = new Knife();
         availableItems[2] = new Katana();
@@ -67,6 +67,8 @@ public class Enemy : GameCharacter {
         availableItems[17] = new GladiatorHelmet();
         availableItems[18] = new EnforcerHelmet();
         availableItems[19] = new MageHat();
+        availableItems[20] = new Wand();
+        availableItems[21] = new Staff();
 
 
         this.availableItems = availableItems;
