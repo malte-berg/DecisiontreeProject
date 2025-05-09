@@ -21,9 +21,9 @@ public class Bar : MonoBehaviour
         current = Mathf.Clamp(current, 0, max); // To keep current between 0 and the max value
 
         float percentage = (float)current / max;
-        float colorValue = MapValue(current, 0f, max, 1.0f, 0f);
         slider.value = percentage;
         valueText.text = $"{current} / {max}";
+        float colorValue = MapValue(current, 0f, max, 1.0f, 0f);
         valueText.color = new Color(colorValue, colorValue, colorValue, 1f);
     }
 
