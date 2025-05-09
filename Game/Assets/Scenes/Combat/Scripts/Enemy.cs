@@ -171,11 +171,10 @@ public class Enemy : GameCharacter {
         while(skillPower > 0){
 
             Skill potential = sb.ReadPage(skillPower);
+            skillPower--;
             if(potential is Sacrifice) continue; // ignoring sacrifice to limit amount of self use abilities
             potential.UnlockSkill(this);
             AddSkill(potential);
-
-            skillPower--;
 
         }
 
