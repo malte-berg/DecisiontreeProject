@@ -59,14 +59,14 @@ public class Combat : MonoBehaviour{
         if(player.CombatsWon == 10){
 
             for (int i = 0; i < 2; i++)
-                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 3], rand);
+                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
             // TODO SPAWN BOSS
             // SpawnEnemy(/*BOSS PREFAB[spawnIndex]*/);
 
         } else {
 
             for (int i = 0; i < 4; i++)
-                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 3], rand);
+                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
         }
 
         GetCurrentCharacter();
