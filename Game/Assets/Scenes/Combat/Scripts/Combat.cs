@@ -211,17 +211,18 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public void UseTurnOn(GameCharacter clicked){
+    public bool UseTurnOn(GameCharacter clicked){
 
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
         if(!currentC.UseSkill(clicked)){
             print("it failed :(");
-            return;
+            return false;
         }
 
         NewTurn();
+        return true;
 
     }
 

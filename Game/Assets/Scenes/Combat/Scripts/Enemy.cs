@@ -69,15 +69,30 @@ public class Enemy : GameCharacter {
 
         Thread.Sleep(1000);
 
-        int currentS = 2;
-        while(!SelectSkill(currentS-- % 3));
-
-        if(c == null) return;
-
         // run on main thread (needed for component access)
         _mainThreadActions.Enqueue(() => {
-            c.UseTurnOn(target);
+            AttemptSkill(target);
         });
+
+    }
+
+    void AttemptSkill(GameCharacter target){
+
+        bool success;
+        bool self = false;
+        int currentS = 3;
+
+        do{
+
+            if(!self)
+                while(!SelectSkill(--currentS % 3));
+
+            if(c == null) return;
+
+            success = c.UseTurnOn(self ? this : target);
+            self = !self;
+        
+        } while(!success);
 
     }
 
@@ -156,7 +171,9 @@ public class Enemy : GameCharacter {
         while(skillPower > 0){
 
             Skill potential = sb.ReadPage(skillPower);
+            if(potential is Sacrifice) continue; // ignoring sacrifice to limit amount of self use abilities
             potential.UnlockSkill(this);
+            AddSkill(potential);
 
             skillPower--;
 
