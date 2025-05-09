@@ -27,14 +27,12 @@ public class Disarm : Skill
         {
             target.equipment.weaponLeft = null;
             target.equipment.weaponRight = null;
-            Debug.Log("Disarm: Enemy has been disarmed");
         }
 
         //If enemy has no weapon equipped, the mana cost is given back.
         else
         {
             gc.Mana += manaCost;
-            Debug.Log("Enemy is already unarmed!");
             return false;
         }
 
@@ -42,9 +40,5 @@ public class Disarm : Skill
 
     }
 
-    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
-    {
-        // Optional: put animation logic here
-        Debug.Log("Disarm animation not implemented yet.");
-    }
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){}
 }

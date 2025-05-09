@@ -27,26 +27,16 @@ public class Zap : Skill
         // Add 10% of enemies health to player.
         int healAmount = (int)Math.Floor(target.HP * 0.1 * power);
 
-        Debug.Log("HP before: " + gc.HP + " and health added: " + healAmount);
-
         gc.HP = Mathf.Clamp(gc.HP + healAmount, 0, gc.Vitality);
         
         //Target takes damage.
         int damageDealt = Mathf.FloorToInt(gc.Strength * power);
 
-        Debug.Log("HP after: " + gc.HP);
-
         target.TakeDamage(Mathf.FloorToInt(damageDealt));
-
-        Debug.Log("Zap has been activated.");
 
         return true;
 
     }
 
-    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
-    {
-        // Optional: put animation logic here
-        Debug.Log("Zap animation not implemented yet.");
-    }
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){}
 }

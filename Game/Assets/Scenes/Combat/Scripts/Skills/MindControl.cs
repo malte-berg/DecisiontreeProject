@@ -48,12 +48,8 @@ public class MindControl : Skill
         //Enemy targets another enemy instead of the player.
         List<Enemy> enemies = target.c.Enemies;
 
-        // Debug Check if we have enemies
-        Debug.Log("Enemies list count: " + enemies?.Count);
-
         if (enemies == null || enemies.Count <= 1) //just make sure we have more than 1 enemy
         {
-            Debug.Log("not enough enemies to control");
             return false;
         }
 
@@ -63,7 +59,6 @@ public class MindControl : Skill
             Enemy enemyTarget = GetRandomEnemy(e, enemies); // This is the enemy that the mindcontrolled enemy targets.
             if (enemyTarget == null)
             {
-                Debug.Log("could not choose random enemy");
                 return false;
             }
             e.targetedByControlled = enemyTarget;
@@ -72,8 +67,6 @@ public class MindControl : Skill
             turn = Mathf.Min(4, Mathf.RoundToInt(turn * power * 1.15f));
   
             e.controlledTurns = turn;
-
-            Debug.Log(e.CName + " is now targeting " + enemyTarget.CName);
         }
 
 
@@ -81,10 +74,6 @@ public class MindControl : Skill
 
     }
 
-    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
-    {
-
-        Debug.Log("Animation not implemented yet.");
-    }
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){}
 
 }

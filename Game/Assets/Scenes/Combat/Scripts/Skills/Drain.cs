@@ -37,10 +37,6 @@ public class Drain : Skill
 
     }
 
-    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
-    {
-        // Optional: put animation logic here
-        Debug.Log("Drain animation not implemented yet.");
-    }
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){}
 
 }
