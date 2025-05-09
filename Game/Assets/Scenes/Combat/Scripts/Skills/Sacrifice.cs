@@ -2,8 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class Sacrifice : Skill
-{
+public class Sacrifice : Skill {
 
     int selfDamage;
 
@@ -22,27 +21,26 @@ public class Sacrifice : Skill
         ){
 
         this.selfDamage = 10;
-
+        
     }
 
     public override bool Effect(GameCharacter target){
 
-        if (target.HP < selfDamage)
+        if(target.HP < selfDamage)
             return false;
 
         target.Mana += 10 + (int)Math.Floor((0.9 * gc.Strength) * (0.1 * gc.Magic) * power);
 
-        if (target.Mana > target.MaxMana)
-        {
+        if(target.Mana > target.MaxMana) {
             target.Mana = target.MaxMana;
         }
 
-        target.HP -= Mathf.FloorToInt(selfDamage / (gc.Strength * power));
+        target.HP -= Mathf.FloorToInt(selfDamage/(gc.Strength * power));
 
         return true;
     }
-    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm)
-    {
+
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm) {
         SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
         Transform AbilityContainer = AbilityRenderer.gameObject.transform;
 

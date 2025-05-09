@@ -35,6 +35,7 @@ public class Disarm : Skill
         {
             gc.Mana += manaCost;
             Debug.Log("Enemy is already unarmed!");
+            return false;
         }
 
         return true;

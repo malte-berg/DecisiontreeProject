@@ -5,8 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Combat : MonoBehaviour
-{
+public class Combat : MonoBehaviour{
 
     public GameObject[] enemyPrefabs;
     public GameObject playerPrefab;
@@ -17,14 +16,14 @@ public class Combat : MonoBehaviour
     Player player;
     List<Enemy> enemies = new List<Enemy>();
 
-    public List<Enemy> Enemies { get { return enemies; } }
+    public List<Enemy> Enemies{ get { return enemies; }}
 
     public SkillBook sb = new SkillBook();
 
     int turn = 0;
     GameCharacter currentC;
-    public void Init()
-    {
+
+    public void Init(){
 
         // Create markers
         marker = Instantiate(marker);
@@ -49,7 +48,7 @@ public class Combat : MonoBehaviour
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
-
+      
         // Spawn enemies
         int spawnIndex = (player.CurrentAreaIndex-1) * 2;
         int rnd = 0;
@@ -96,19 +95,17 @@ public class Combat : MonoBehaviour
 
     }
 
-    void Awake()
-    {
+    void Awake(){
 
         Init();
 
     }
 
-    GameCharacter GetCurrentCharacter()
-    {
+    GameCharacter GetCurrentCharacter(){
 
         GameCharacter current;
 
-        if (turn == 0)
+        if(turn == 0)
             current = player;
         else
             current = enemies[turn - 1];
@@ -118,8 +115,7 @@ public class Combat : MonoBehaviour
 
     }
 
-    public Enemy SpawnEnemy(GameObject prefab)
-    {
+    public Enemy SpawnEnemy(GameObject prefab){
 
         int i = enemies.Count;
 
@@ -133,10 +129,10 @@ public class Combat : MonoBehaviour
         cEnemy.c = this;
 
         // Place enemy
-        if (i % 2 == 0)
-            cEnemy.transform.position = Vector3.right * (i + 1) * 2 + (Vector3.up * i * 0.5f);
+        if(i % 2 == 0)
+            cEnemy.transform.position = Vector3.right * (i+1) * 2 + (Vector3.up * i * 0.5f);
         else
-            cEnemy.transform.position = Vector3.right * (i + 1) * 2 - (Vector3.up * (i + 1) * 0.25f);
+            cEnemy.transform.position = Vector3.right * (i+1) * 2 - (Vector3.up * (i+1) * 0.25f);
 
         // Create status bar
         cEnemy.bars = CreateBars(cEnemy);
@@ -155,23 +151,19 @@ public class Combat : MonoBehaviour
 
     }
 
-    public async Task KillCharacter(GameCharacter target)
-    {
+    public async Task KillCharacter(GameCharacter target){
 
         SpriteRenderer sr = target.gameObject.GetComponentInChildren<SpriteRenderer>();
         float time = 1;
 
-        if (target is Enemy)
-        {
+        if(target is Enemy){
 
             int enemyCount = enemies.Count;
-            if (enemies.Remove(target as Enemy))
-            {
+            if(enemies.Remove(target as Enemy)){
 
-                while (time > 0)
-                {
+                while(time > 0){
 
-                    sr.color = new Color(time, time, time, time);
+                    sr.color = new Color(time,time,time,time);
                     time -= Time.deltaTime;
                     await Task.Yield();
 
@@ -182,8 +174,7 @@ public class Combat : MonoBehaviour
                 Destroy(target.gameObject);
 
                 //All enemies are dead: Change to the "Win Screen".
-                if (enemyCount == 1)
-                {
+                if (enemyCount == 1){
                     player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle
@@ -194,14 +185,12 @@ public class Combat : MonoBehaviour
                 return;
             }
 
-        }
-        else if (target != player)
+        } else if (target != player)
             Debug.LogError("Something unknown died..");
 
-        while (time > 0)
-        {
+        while(time > 0){
 
-            sr.color = new Color(time, time, time, time);
+            sr.color = new Color(time,time,time,time);
             time -= Time.deltaTime;
             await Task.Yield();
 
@@ -213,25 +202,22 @@ public class Combat : MonoBehaviour
 
     }
 
-    public void CharacterClicked(GameCharacter clicked)
-    {
+    public void CharacterClicked(GameCharacter clicked){
 
-        if (currentC == null)
+        if(currentC == null)
             currentC = GetCurrentCharacter();
 
-        if (currentC == player)
+        if(currentC == player)
             UseTurnOn(clicked);
 
     }
 
-    public void UseTurnOn(GameCharacter clicked)
-    {
-        if (currentC == null)
+    public void UseTurnOn(GameCharacter clicked){
+
+        if(currentC == null)
             currentC = GetCurrentCharacter();
 
-
-        if (!currentC.UseSkill(clicked))
-        {
+        if(!currentC.UseSkill(clicked)){
             print("it failed :(");
             return;
         }
@@ -240,19 +226,15 @@ public class Combat : MonoBehaviour
 
     }
 
-    void NewTurn()
-    {
+    void NewTurn(){
 
         currentC = GetCurrentCharacter();
-        
-        List <StatusEffect> se = currentC.statusEffects;
+        List<StatusEffect> se = currentC.statusEffects;
 
         // Decrement and remove status effects
-        for (int i = 0; i < se.Count; i++)
-        {
+        for(int i = 0; i < se.Count; i++){
 
-            if (se[i].Turns == 0)
-            {
+            if(se[i].Turns == 0){
 
                 se.RemoveAt(i);
                 i--;
@@ -282,29 +264,23 @@ public class Combat : MonoBehaviour
         currentC = GetCurrentCharacter();
         se = currentC.statusEffects;
 
-        for (int i = 0; i < se.Count; i++)
-        {
+        for(int i = 0; i < se.Count; i++){
 
-            if (se[i].EffectType == 5)
-            { // Stunned skipping turn
+            if(se[i].EffectType == 5){ // Stunned skipping turn
 
                 NewTurn();
                 return;
-
+                
             }
 
         }
 
-        if (currentC is Enemy)
-        {
-            new Task(async () => { (currentC as Enemy).AI(this, player); }).Start();
-        }
-
+        if(currentC is Enemy)
+            new Task(async () => { (currentC as Enemy).AI(this, player);}).Start();
 
     }
 
-    public void CharacterHover(GameCharacter hover)
-    {
+    public void CharacterHover(GameCharacter hover){
 
         targeting.GetComponent<Targeting>().HoverOn(hover.transform);
 

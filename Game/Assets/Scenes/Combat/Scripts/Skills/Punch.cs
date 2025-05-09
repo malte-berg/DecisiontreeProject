@@ -10,7 +10,7 @@ public class Punch : Skill
         gc: null,
         name: "Punch",
         power: 0,
-        manaCost: 1,
+        manaCost: 0,
         skillCost: 1,
         cooldown: 0,
         attack: true,

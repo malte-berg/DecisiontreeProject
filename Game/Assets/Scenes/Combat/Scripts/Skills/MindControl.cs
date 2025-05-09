@@ -46,7 +46,7 @@ public class MindControl : Skill
     {
   
         //Enemy targets another enemy instead of the player.
-        var enemies = target.c.Enemies;
+        List<Enemy> enemies = target.c.Enemies;
 
         // Debug Check if we have enemies
         Debug.Log("Enemies list count: " + enemies?.Count);
