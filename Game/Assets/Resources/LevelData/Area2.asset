@@ -16,4 +16,4 @@ MonoBehaviour:
   areaName: Area2
   backgroundImage: {fileID: 7754591102586423400, guid: c6347a5af58eb45b5bfcb1563a2a523c, type: 3}
   bgm: {fileID: 0}
-  unlock: 0
+  unlock: 1
