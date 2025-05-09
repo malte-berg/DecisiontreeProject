@@ -5,8 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Enemy : GameCharacter
-{
+public class Enemy : GameCharacter {
 
     Item[] availableItems;
     int enemyPower;
@@ -29,8 +28,7 @@ public class Enemy : GameCharacter
         maxSkill: 8,
         inventorySize: 2
 
-    )
-    { }
+    ){}
 
     public void CreateEnemy(Item[] availableItems, double rnd, string cName){
 
@@ -90,38 +88,33 @@ public class Enemy : GameCharacter
 
     }
 
-    void FixedUpdate()
-    { // kinda unnecessary updates
+    void FixedUpdate(){ // kinda unnecessary updates
 
-        while (_mainThreadActions.TryDequeue(out var action))
+        while(_mainThreadActions.TryDequeue(out var action))
             action?.Invoke();
 
     }
 
-    public async Task AI(Combat c, GameCharacter target)
-    {
+    public async Task AI(Combat c, GameCharacter target){
 
         Thread.Sleep(1000);
 
-        if (targetedByControlled != null)
-        {
+        if (targetedByControlled != null){
             target = targetedByControlled;
             controlledTurns--;
             targetedByControlled = MindControl.GetRandomEnemy(this, this.c.Enemies);
         }
 
-        if (controlledTurns <= 0)
-        {
+        if (controlledTurns <= 0){
             controlledTurns = 0; //just to be sure
             targetedByControlled = null;
         }
 
         int currentS = 2;
-        while (!SelectSkill(currentS-- % 3)) ;
+        while(!SelectSkill(currentS-- % 3));
 
         // run on main thread (needed for component access)
-        _mainThreadActions.Enqueue(() =>
-        {
+        _mainThreadActions.Enqueue(() => {
             c.UseTurnOn(target);
         });
 
@@ -129,32 +122,30 @@ public class Enemy : GameCharacter
 
     void GatherItems(int purchasingPower, double thresh){
 
-        for (int i = 0; i < availableItems.Length; i++)
-        {
+        for(int i = 0; i < availableItems.Length; i++){
 
             int mine = 0, available = availableItems[i].Value;
 
-            switch (availableItems[i])
-            {
+            switch(availableItems[i]){
 
                 case Head:
-                    if (equipment.head != null)
+                    if(equipment.head != null)
                         mine = equipment.head.Value;
                     break;
                 case Torso:
-                    if (equipment.torso != null)
+                    if(equipment.torso != null)
                         mine = equipment.torso.Value;
                     break;
                 case Boots:
-                    if (equipment.boots != null)
+                    if(equipment.boots != null)
                         mine = equipment.boots.Value;
                     break;
                 case Weapon:
-                    if (equipment.weaponLeft != null)
+                    if(equipment.weaponLeft != null)
                         mine = equipment.weaponLeft.Value;
                     break;
                 case Consumable:
-                    if (equipment.consumableLeft != null)
+                    if(equipment.consumableLeft != null)
                         mine = equipment.consumableLeft.Value;
                     break;
                 default:
@@ -162,8 +153,7 @@ public class Enemy : GameCharacter
 
             }
 
-            if (mine < available)
-            {
+            if(mine < available){
                 float rnd = (float)purchasingPower / available;
 
                 if(rnd > thresh)
@@ -200,10 +190,9 @@ public class Enemy : GameCharacter
     void GatherSkills(int skillPower){
 
         SkillBook sb = new SkillBook();
-        skillPower = Math.Clamp(skillPower, 0, sb.Count - 1);
+        skillPower = Math.Clamp(skillPower, 0, sb.Count-1);
 
-        while (skillPower > 0)
-        {
+        while(skillPower > 0){
 
             Skill potential = sb.ReadPage(skillPower);
             potential.UnlockSkill(this);

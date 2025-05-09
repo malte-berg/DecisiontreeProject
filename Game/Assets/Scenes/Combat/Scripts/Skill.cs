@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Skill
-{
+public abstract class Skill{
     public List<Sprite> sprites;
 
     public GameCharacter gc;
@@ -18,17 +17,17 @@ public abstract class Skill
 
     private string description;
     private Sprite icon;
-    public string Name { get { return name; } }
+    public string Name{ get { return name; } }
     // lägg till beskrivning när man skapar skills/ability
     public string DescriptionPanel { 
         get {
             return $"{description}\nSkill level: {skillLevel}\nMana Cost: {manaCost}\nCooldown: {cooldown}";
         } 
     }
-    public int Cooldown { get { return cooldown; } }
-    public string Description { get { return description; } }
-    public int SkillLevel { get { return skillLevel; } }
-    public Sprite Icon { get { return icon; } }
+    public int Cooldown{ get { return cooldown; } }
+    public string Description{ get { return description; } }
+    public int SkillLevel{ get { return skillLevel; } }
+    public Sprite Icon{ get { return icon; } }
 
     public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, int cooldown, bool attack, string description){
         this.icon = icon;
@@ -45,8 +44,7 @@ public abstract class Skill
         this.skillLevel = 0;
     }
 
-    public void UnlockSkill(GameCharacter who)
-    {
+    public void UnlockSkill(GameCharacter who) {
 
         MonoBehaviour.print($"{who.CName} unlocked: {Name}");
         who?.unlockedSkills.Add(this);
@@ -85,6 +83,5 @@ public abstract class Skill
     public abstract bool Effect(GameCharacter target);
 
     public abstract void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm);
-
 
 }
