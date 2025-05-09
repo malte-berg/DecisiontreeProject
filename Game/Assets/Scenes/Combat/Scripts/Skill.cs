@@ -76,7 +76,7 @@ public abstract class Skill
             return false;
 
         gc.Mana -= manaCost;
-        cooldownCount = cooldown;
+        cooldownCount = cooldown + 1;
 
         return Effect(target);
 
@@ -86,23 +86,5 @@ public abstract class Skill
 
     public abstract void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm);
 
-
-    public static void ModifyStatusEffect(List<StatusEffect> statuses, int turns, int delta, float deltaF, int type)
-    {
-        for(int i = 0; i < statuses.Count; i++)
-        {
-            if(statuses[i].EffectType == type)
-            {
-                statuses[i].Turns += turns;
-                statuses[i].Delta += delta;
-                statuses[i].DeltaF = deltaF;
-
-                Debug.Log("Adding onto existing stat effects"); 
-                return;
-            }
-        }
-
-        statuses.Add(new StatusEffect(turns, delta, deltaF, type));
-    }
 
 }

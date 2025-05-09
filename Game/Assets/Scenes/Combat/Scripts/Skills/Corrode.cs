@@ -8,9 +8,9 @@ public class Corrode : Skill
       gc: null,
       name: "Corrode",
       power: 1,
-      manaCost: 0,
+      manaCost: 25,
       skillCost: 1,
-      cooldown: 0,
+      cooldown: 2,
       attack: true,
       description: "Reduces enemy armor"
       )
@@ -22,18 +22,18 @@ public class Corrode : Skill
     public override bool Effect(GameCharacter target)
     {
 
-        int armorCorroded = 5; // amount of armor lost temporarily
-        
-        if(armorCorroded > target.Armor) // so we dont reduce armor below 0
+        int armorCorroded = 10;        
+        if((armorCorroded * power) > target.Armor) // so we dont reduce armor below 0
         {
-            armorCorroded = target.Armor;
+            armorCorroded = Mathf.Max(0, Mathf.FloorToInt(target.Armor / power));
+
         }
 
-        int corrodeTurns = Mathf.FloorToInt(power); // made this for clarity purpose, power decides turns for now.
+        int corrodeTurns = Mathf.FloorToInt( 2* power); // made this for clarity purpose, power decides turns for now.
 
         Debug.Log("Final Armor before: " + target.Armor);
 
-        ModifyStatusEffect(target.statusEffects, corrodeTurns, armorCorroded, power, 1);
+        target.statusEffects.Add(new StatusEffect(corrodeTurns, armorCorroded, power, 1));
         
         Debug.Log("Final Armor after corrosion: " + target.Armor);
 

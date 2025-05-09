@@ -12,9 +12,9 @@ public class MindControl : Skill
         gc: null,
         name: "Mind Control",
         power: 1,
-        manaCost: 0,
+        manaCost: 30,
         skillCost: 1,
-        cooldown: 0,
+        cooldown: 2, 
         attack: true,
         description: "Hijacks enemy's mind, making them unable to tell friend from foe"
         )
@@ -68,8 +68,8 @@ public class MindControl : Skill
             }
             e.targetedByControlled = enemyTarget;
 
-            int turn = 3; // how many turns enemy is mindcontrolled
-            turn = Mathf.FloorToInt(turn * power);
+            int turn = 1; // how many turns enemy is mindcontrolled
+            turn = Mathf.Min(4, Mathf.RoundToInt(turn * power * 1.15f));
   
             e.controlledTurns = turn;
 

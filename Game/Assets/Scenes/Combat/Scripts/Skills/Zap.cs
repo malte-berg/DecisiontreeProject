@@ -12,7 +12,7 @@ public class Zap : Skill
         power: 1,
         manaCost: 30,
         skillCost: 1,
-        cooldown: 0,
+        cooldown: 2,
         attack: true,
         description: "Steals enemy's health while dealing damage"
         )
@@ -29,12 +29,8 @@ public class Zap : Skill
 
         Debug.Log("HP before: " + gc.HP + " and health added: " + healAmount);
 
-        if (gc.HP + healAmount > gc.Vitality)
-            gc.HP = gc.Vitality;
-        else
-            gc.HP += healAmount;
-
-
+        gc.HP = Mathf.Clamp(gc.HP + healAmount, 0, gc.Vitality);
+        
         //Target takes damage.
         int damageDealt = Mathf.FloorToInt(gc.Strength * power);
 

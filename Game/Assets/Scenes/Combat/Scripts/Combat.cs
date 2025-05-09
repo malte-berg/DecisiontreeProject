@@ -285,7 +285,6 @@ public class Combat : MonoBehaviour
 
         if (currentC is Enemy)
         {
-            //ActivatePassiveEffect();  //Runs potential passive effects.
             new Task(async () => { (currentC as Enemy).AI(this, player); }).Start();
         }
 

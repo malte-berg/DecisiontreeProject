@@ -57,7 +57,6 @@ public class Player : GameCharacter
     public override void Init()
     {
 
-        sprites = new List<Sprite> { Resources.Load<Sprite>("Sprites/Characters/player1"), Resources.Load<Sprite>("Sprites/Characters/player2") };
         if(seed == 0){
             System.Random random = new System.Random();
             byte[] buffer = new byte[8];
@@ -78,34 +77,6 @@ public class Player : GameCharacter
         punch.UnlockSkill(this);
         AddSkill(punch);
         StartCoroutine(FixBars());
-
-
-        //Below is to temporary test different skills. Can be removed
-
-        //Skill mindControl = new MindControl();
-        //mindControl.UnlockSkill(this);
-        //AddSkill(mindControl);
-
-        //Skill disarm = new Disarm();
-        //disarm.UnlockSkill(this);
-        //AddSkill(disarm);
-
-        //Skill drain = new Drain();
-        //drain.UnlockSkill(this);
-        //AddSkill(drain);
-
-        //Skill zap = new Zap();
-        //zap.UnlockSkill(this);
-        //AddSkill(zap);
-
-        //Skill corrode = new Corrode();
-        //corrode.UnlockSkill(this);
-        //AddSkill(corrode);
-
-        
-        //Skill shield = new Shield();
-        //shield.UnlockSkill(this);
-        //AddSkill(shield);
 
     }
 

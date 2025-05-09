@@ -10,9 +10,9 @@ public class Drain : Skill
         gc: null,
         name: "Drain",
         power: 1,
-        manaCost: 0,
+        manaCost: 20,
         skillCost: 1,
-        cooldown: 0,
+        cooldown: 2,
         attack: true,
         description: "Reduces enemy's Mana"
     )
@@ -22,20 +22,13 @@ public class Drain : Skill
 
     public override bool Effect(GameCharacter target)
     {
+        int manaDrained = Mathf.Max(1, Mathf.RoundToInt(0.10f * target.Mana * power));
+        int finalManaDrained = Mathf.Clamp(manaDrained, 0, target.Mana);
 
-        int manaDrained = 10 ; // amount of mana lost temporarily
-
-        if(manaDrained > target.Mana)
-        {
-            manaDrained = target.Mana;
-        }
-
-        int drainTurns = Mathf.FloorToInt(power); // made this for clarity purpose, power decides turns for now.
 
         Debug.Log("Before MANA: " + target.Mana);
         
-        //target.statusEffects.Add(new StatusEffect(drainTurns, manaDrained, power, 4));
-        ModifyStatusEffect(target.statusEffects, drainTurns, manaDrained, power, 4); 
+        target.Mana -= manaDrained;
 
         Debug.Log("After MANA: " + target.Mana);
 

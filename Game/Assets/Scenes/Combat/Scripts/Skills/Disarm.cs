@@ -8,10 +8,10 @@ public class Disarm : Skill
          sprites: null,
          gc: null,
          name: "Disarm",
-         power: 10,
-         manaCost: 40,
+         power: 1,
+         manaCost: 40, 
          skillCost: 1,
-         cooldown: 0,
+         cooldown: 3,
          attack: true,
          description: "Removes enemy's weapons"
          )
