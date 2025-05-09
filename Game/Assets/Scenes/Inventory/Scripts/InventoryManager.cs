@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour{
 
@@ -7,6 +8,7 @@ public class InventoryManager : MonoBehaviour{
     public InventoryList il;
     public StatsList sl;
     public ItemDescription id;
+    public Image bg;
 
     public void Init(){
 
@@ -26,9 +28,15 @@ public class InventoryManager : MonoBehaviour{
 
     }
 
+    void setBackgrund(){
+        AreaData ad = AreaDataLoader.Load(player.CurrentAreaIndex);
+        bg.sprite = ad.backgroundImage;
+    }
+
     void Awake(){
 
         Init();
+        setBackgrund();
 
     }
 

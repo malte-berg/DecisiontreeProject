@@ -6,7 +6,7 @@ public class Sacrifice : Skill {
 
     public Sacrifice() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Sacrifice_Icon"),
-        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation")},
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/sacrifice")},
         gc: null, 
         name: "Sacrifice", 
         power: 0, 

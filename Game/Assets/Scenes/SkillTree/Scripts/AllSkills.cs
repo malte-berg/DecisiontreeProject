@@ -10,6 +10,7 @@ public class AllSkills : MonoBehaviour {
     Player player;
     SkillTreeTree stt;
     public GameObject skillTreePanel;
+    public Image bg;
 
     public void Init() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); // bad practice
@@ -57,7 +58,13 @@ public class AllSkills : MonoBehaviour {
         return depth * -100;
     }
 
+    void setBackgrund(){
+        AreaData ad = AreaDataLoader.Load(player.CurrentAreaIndex);
+        bg.sprite = ad.backgroundImage;
+    }
+
     void Awake() {
         Init();
+        setBackgrund();
     }
 }

@@ -74,7 +74,7 @@ public abstract class Skill{
             return false;
 
         gc.Mana -= manaCost;
-        cooldownCount = cooldown;
+        cooldownCount = cooldown + 1;
 
         return Effect(target);
 
