@@ -1,12 +1,13 @@
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class Zap : Skill
 {
 
     public Zap() : base(
         icon: null,
-        sprites: null,
+        sprites: Resources.LoadAll<Sprite>("Sprites/Abilities/zap").ToList(),
         gc: null,
         name: "Zap",
         power: 1,
@@ -38,5 +39,19 @@ public class Zap : Skill
 
     }
 
-    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){}
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){
+        float delay = 0.1f;
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+        Transform AbilityContainer = AbilityRenderer.gameObject.transform;
+
+        sm.SetScale(AbilityRenderer.transform, 3f);
+
+        sm.RollSprites(sprites, AbilityRenderer, delay);
+
+        sm.DisplaceSprite(targetPos + Vector3.up * 1.5f, AbilityContainer, delay);
+        sm.DelayedAction(() => sm.HideSprite(AbilityRenderer), delay*sprites.Count - 0.1f);
+
+        
+
+    }
 }

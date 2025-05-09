@@ -76,6 +76,10 @@ public class Player : GameCharacter {
         AddSkill(punch);
         StartCoroutine(FixBars());
 
+        // Skill zap = new Zap();
+        // zap.UnlockSkill(this);
+        // AddSkill(zap);
+
     }
     //Hide the player model.
     public void HidePlayer(){
