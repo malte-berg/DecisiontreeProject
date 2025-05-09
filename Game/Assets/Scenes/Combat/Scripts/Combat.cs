@@ -55,22 +55,18 @@ public class Combat : MonoBehaviour{
 
         // Spawn enemies
         int spawnIndex = (player.CurrentAreaIndex-1) * 2;
-        int rnd = 0;
+        System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
         if(player.CombatsWon == 10){
 
-            for (int i = 0; i < 2; i++) {
-                rnd = UnityEngine.Random.Range(0,2);
-                SpawnEnemy(enemyPrefabs[spawnIndex + rnd]);
-            }
+            for (int i = 0; i < 2; i++)
+                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 3], rand);
             // TODO SPAWN BOSS
             // SpawnEnemy(/*BOSS PREFAB[spawnIndex]*/);
 
         } else {
 
-            for (int i = 0; i < 4; i++) {
-                rnd = UnityEngine.Random.Range(0,2);
-                SpawnEnemy(enemyPrefabs[spawnIndex + rnd]);
-            }
+            for (int i = 0; i < 4; i++)
+                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 3], rand);
         }
 
         GetCurrentCharacter();
@@ -119,16 +115,14 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public Enemy SpawnEnemy(GameObject prefab){
+    public Enemy SpawnEnemy(GameObject prefab, System.Random rand){
 
         int i = enemies.Count;
 
         // Create enemy
-        System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + i * 69 + player.CombatsWon * 1337);
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
         cEnemy.Init();
-        cEnemy.CreateEnemy(new Item[0], rand.NextDouble(), "Street Thug");
-        // cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4) + player.CombatsWon, "Street Thug");
+        cEnemy.CreateEnemy(AreaDataLoader.GetAreaItems(player.CurrentAreaIndex), rand.NextDouble(), "Street Thug");
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.c = this;
 
