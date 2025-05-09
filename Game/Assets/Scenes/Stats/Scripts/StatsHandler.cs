@@ -16,11 +16,13 @@ public class StatsHandler : MonoBehaviour {
     public TextMeshProUGUI levelText;
     public Image expBar;
     public Player player;
-    
+    public Image bg;
+
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         this.statPoints = player.StatPoints;    //Get player's current amount of stat points.
         DisplayStatText(); //Make sure the stat texts show the correct player stats.
+        setBackgrund();
     }
 
     //Changes the text in the stat windows to show the correct player stats
@@ -93,4 +95,10 @@ public class StatsHandler : MonoBehaviour {
         
         DisplayStatText();
     }
+
+    void setBackgrund(){
+        AreaData ad = AreaDataLoader.Load(player.CurrentAreaIndex);
+        bg.sprite = ad.backgroundImage;
+    }
+
 }

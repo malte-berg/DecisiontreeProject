@@ -443,6 +443,7 @@ MonoBehaviour:
   pointCounterText: {fileID: 240371765}
   skillButtonPrefab: {fileID: 6454624238827218289, guid: d288f55924b10edbeb8206ce4251cd98, type: 3}
   skillTreePanel: {fileID: 2046884152}
+  bg: {fileID: 1302085156}
 --- !u!1 &838583530
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,6 +813,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1aca80d78f2ca44094ad46ff8a5dee7, type: 3}
+--- !u!114 &1302085156 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4867904425068513691, guid: d1aca80d78f2ca44094ad46ff8a5dee7, type: 3}
+  m_PrefabInstance: {fileID: 1302085155}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1653910305
 GameObject:
   m_ObjectHideFlags: 0
