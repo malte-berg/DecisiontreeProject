@@ -202,6 +202,13 @@ public class Combat : MonoBehaviour{
             player.RemoveSkillAt(2);
             player.RemoveSkillAt(1);
 
+            // Reset mana after tutorial
+            player.Mana = 1;
+            player.MaxMana = 1;
+
+            // Reset Magic after the tutorial
+            player.UpdateStats(0, 0, -5);
+
             //Switch Scene to the in game menu scene, with the Intro cutscene.
             GetComponent<SceneSwitch>().SwitchScene(1);
         }
