@@ -51,7 +51,10 @@ public class Zap : Skill
         sm.DisplaceSprite(targetPos + Vector3.up * 1.5f, AbilityContainer, delay);
         sm.DelayedAction(() => sm.HideSprite(AbilityRenderer), delay*sprites.Count - 0.1f);
 
-        
+        Vector3 toTarget = targetPos - sender.transform.position;
+
+        sm.AttackAnimation(sender);
+        sm.LungeTo(sender, toTarget * 0.05f, 0.2f);        
 
     }
 }

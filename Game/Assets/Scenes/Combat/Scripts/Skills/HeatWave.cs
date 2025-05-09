@@ -41,13 +41,13 @@ public class HeatWave : Skill {
         sm.HideSprite(AbilityRenderer);
 
         sm.ChangeOpacity(AbilityRenderer, 1f);
-        sm.SetScale(AbilityRenderer.transform, 1.5f);
+        sm.SetScale(AbilityRenderer.transform, 1.6f);
 
         Vector3 toTarget = targetPos - sender.transform.position; 
 
         sm.AttackAnimation(sender);
         sm.LungeTo(sender, toTarget * 0.05f, 0.2f);
-        sm.RollScales(AbilityContainer, toTarget * 0.95f, 10, 0.5f, 1.15f, false, false, 8);
+        sm.RollScales(AbilityContainer, toTarget * 0.95f, 10, 0.5f, 1.20f, false, false, 8);
     }
 
 }
