@@ -49,6 +49,10 @@ public class Combat : MonoBehaviour{
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
       
+        // Reset cooldown
+        for(int i = 0; i < player.SkillCount; i++)
+            player.skills[i].cooldownCount = 0;
+
         // Spawn enemies
         int spawnIndex = (player.CurrentAreaIndex-1) * 2;
         int rnd = 0;
