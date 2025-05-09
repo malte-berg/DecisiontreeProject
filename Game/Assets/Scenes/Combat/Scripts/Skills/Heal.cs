@@ -44,7 +44,7 @@ public class Heal : Skill
 
         Transform tr = AbilityRenderer.gameObject.transform;
 
-        sm.RollScales(tr, Vector3.zero, 10, 0.4f, 0.96f, true, true, false, 10);
+        sm.RollScales(tr, Vector3.zero, 10, 0.4f, 0.96f, true, true, 10);
     }
 
 

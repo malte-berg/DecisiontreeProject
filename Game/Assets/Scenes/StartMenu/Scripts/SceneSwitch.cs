@@ -30,7 +30,6 @@ public class SceneSwitch : MonoBehaviour{
             if(GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>().CombatsWon == 10)
                 //Play cutscene nr. 1 next.
                 withCutscene = 1; //In Cutscene scene, "Slumsboss" cutscene is set as "Scene Scripts" nr. 1.
-
         }
 
         StartCoroutine(LoadScene(sceneIndex, withCutscene));

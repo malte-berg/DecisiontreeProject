@@ -49,6 +49,6 @@ public class HeatWave : Skill
 
         sm.AttackAnimation(sender);
         sm.LungeTo(sender, toTarget * 0.05f, 0.2f);
-        sm.RollScales(AbilityContainer, toTarget * 0.95f, 10, 0.5f, 1.15f, false, false, false, 8);
+        sm.RollScales(AbilityContainer, toTarget * 0.95f, 10, 0.5f, 1.15f, false, false, 8);
     }
 }

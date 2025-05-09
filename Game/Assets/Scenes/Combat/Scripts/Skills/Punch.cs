@@ -44,7 +44,7 @@ public class Punch : Skill
 
         sm.AttackAnimation(sender);
         sm.LungeTo(sender, toTarget * 0.65f, 0.45f);
-        sm.RollScales(AbilityContainer, toTarget * 0.95f, 10, 0.18f, 0.8f, false, false, false, 10);
+        sm.RollScales(AbilityContainer, toTarget * 0.95f, 10, 0.18f, 0.8f, false, false, 10);
     }
 
 }

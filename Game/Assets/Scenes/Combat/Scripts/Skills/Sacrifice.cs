@@ -9,18 +9,17 @@ public class Sacrifice : Skill
 
     public Sacrifice() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Sacrifice_Icon"),
-        sprites: new List<Sprite> { Resources.Load<Sprite>("Sprites/Abilities/sacrifice") },
-        gc: null,
-        name: "Sacrifice",
-        power: 0,
-        manaCost: 0,
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation")},
+        gc: null, 
+        name: "Sacrifice", 
+        power: 0, 
+        manaCost: 0, 
         skillCost: 1,
         cooldown: 0,
         attack: false,
-        description: "Inflict damage on yourself to gain mana"
-
-        )
-    {
+        description: "Inflict damage on yourself to gain mana."
+        
+        ){
 
         this.selfDamage = 10;
 
@@ -54,6 +53,6 @@ public class Sacrifice : Skill
         sm.SetScale(AbilityRenderer.transform, 1.3f);
 
         sm.AttackAnimation(sender);
-        sm.RollScales(AbilityContainer, Vector3.zero, 15, 0.4f, 1.25f, false, false, true, 4);
+        sm.RollScales(AbilityContainer, Vector3.zero, 10, 0.18f, 0.8f, false, false, 10);
     }
 }
