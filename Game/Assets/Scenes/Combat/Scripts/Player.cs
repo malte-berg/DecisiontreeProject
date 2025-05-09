@@ -100,6 +100,7 @@ public class Player : GameCharacter {
 
             StatPoints += 5;      // Reward stat points for every new level reached
             SkillPoints += 1;     // Reward skill points for every new level reached
+            MaxMana = 10 * currentLevel;
         }
     }
 

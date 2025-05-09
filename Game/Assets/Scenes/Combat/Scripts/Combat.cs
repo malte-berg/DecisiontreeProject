@@ -191,7 +191,6 @@ public class Combat : MonoBehaviour{
                     int difficulty = (int)MathF.Log(player.CombatsWon, MathF.E) + 1;
                     player.AddExp(difficulty * player.CurrentAreaIndex * player.CurrentAreaIndex * 5);      // Give EXP for winning the battle
                     player.Gold += difficulty * player.CurrentAreaIndex * 15;                               // Give Gold for winning the battle
-                    player.MaxMana = 10 * player.CurrentLevel;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
                 }
