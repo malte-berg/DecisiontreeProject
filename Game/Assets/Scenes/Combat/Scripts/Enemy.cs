@@ -179,6 +179,23 @@ public class Enemy : GameCharacter {
         string enemyName = this.gameObject.name;
         Item item = availableItems[i];
         
+        // bosses get only a weapon and their own hat
+        if(enemyName.Contains("Boss")) {
+            if(enemyName.Contains("Gladiator")){ 
+                if(item is GladiatorHelmet || item is Broadsword) return true;
+                else return false;
+            }
+            else if(enemyName.Contains("Guard")){
+                if(item is EnforcerHelmet || item is Broadsword) return true;
+                else return false;
+            }
+            else if(enemyName.Contains("Leader")) {
+                if(item is Katana) return true;
+                else return false;
+            }
+            else return false;
+        }
+
         if(item is Torso) {
             if(!(enemyName.Contains("Thug") || enemyName.Contains("Addict")))
                 return false;

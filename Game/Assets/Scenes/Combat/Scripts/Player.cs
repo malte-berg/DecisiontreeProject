@@ -68,6 +68,7 @@ public class Player : GameCharacter {
 
         equipment = gameObject.GetComponent<Equipment>();
         gameObject.name = "Player";
+        skills[0] = new Punch();
         HidePlayer();
         DontDestroyOnLoad(gameObject);
       

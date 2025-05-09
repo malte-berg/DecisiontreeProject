@@ -54,12 +54,12 @@ public class Combat : MonoBehaviour{
             player.skills[i].cooldownCount = 0;
 
         // Spawn enemies
-        int spawnIndex = (player.CurrentAreaIndex-1) * 2;
+        int spawnIndex = player.CurrentAreaIndex-1;
         System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
         if(player.CombatsWon == 10){
 
             for (int i = 0; i < 2; i++) {
-                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+                SpawnEnemy(enemyPrefabs[spawnIndex*2 + rand.Next() % 2], rand);
             }
             // spawn a boss!
             SpawnEnemy(enemyPrefabs[spawnIndex + 6], rand);
@@ -67,7 +67,7 @@ public class Combat : MonoBehaviour{
         } else {
 
             for (int i = 0; i < 4; i++)
-                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+                SpawnEnemy(enemyPrefabs[spawnIndex*2 + rand.Next() % 2], rand);
         }
 
         GetCurrentCharacter();
