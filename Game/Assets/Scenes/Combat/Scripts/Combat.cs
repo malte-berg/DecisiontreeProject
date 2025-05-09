@@ -190,6 +190,9 @@ public class Combat : MonoBehaviour{
                     player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle
+                    int difficulty = (int)MathF.Log(player.CombatsWon, MathF.E) + 1;
+                    player.AddExp(difficulty * player.CurrentAreaIndex * player.CurrentAreaIndex * 5);      // Give EXP for winning the battle
+                    player.Gold += difficulty * player.CurrentAreaIndex * 15;                               // Give Gold for winning the battle
                     player.MaxMana = 10 * player.CurrentLevel;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
@@ -212,6 +215,7 @@ public class Combat : MonoBehaviour{
         }
 
         // GAME OVER (Player died)
+        player.AddExp((player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1));
         SceneManager.LoadScene("DemoLoseScreen");
         Debug.LogWarning("Main character died lol");
 
