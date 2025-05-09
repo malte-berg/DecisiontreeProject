@@ -203,6 +203,7 @@ public class Player : GameCharacter {
         for(int i = 0; i < save.inventory.Length; i++){
 
             Type type = Type.GetType(save.inventory[i]);
+            print(type);
             inventory[i] = (Item)Activator.CreateInstance(type);
 
             if(save.equipped.Contains(i))

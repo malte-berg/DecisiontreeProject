@@ -160,6 +160,7 @@ public class Combat : MonoBehaviour{
                     player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle
+                    player.MaxMana = 10 * player.CurrentLevel;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
                 }

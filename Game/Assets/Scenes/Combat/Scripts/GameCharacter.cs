@@ -243,7 +243,7 @@ public class GameCharacter : MonoBehaviour{
             armor,
             strength,
             magic,
-            mana
+            maxMana
         };
 
         return temp;
