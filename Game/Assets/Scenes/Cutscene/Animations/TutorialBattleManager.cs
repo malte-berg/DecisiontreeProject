@@ -64,7 +64,7 @@ public class TutorialBattleManager : SceneScript
         Tutorial§Next, we have the 'Ability Description'.
         ");
         db.Enqueue(@"
-        Tutorial§Here, you can view the description of the applied ability such as the skill level, the mana cost and the cooldown.
+        Tutorial§Here, you can view the description of the selected ability such as the skill level, the mana cost and the cooldown.
         ");
         db.Enqueue(@"
         Tutorial§Each skill has its own purpose — for example, 'Punch' is a simple physical attack that costs no Mana.
