@@ -210,6 +210,7 @@ public class Combat : MonoBehaviour{
             player.UpdateStats(0, 0, -5);
 
             //Switch Scene to the in game menu scene, with the Intro cutscene.
+            GetComponent<SceneSwitch>().WithCutscene = 0;
             GetComponent<SceneSwitch>().SwitchScene(1);
         }
         else

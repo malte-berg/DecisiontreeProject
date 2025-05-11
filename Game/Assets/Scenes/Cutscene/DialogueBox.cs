@@ -76,8 +76,6 @@ public class DialogueBox : MonoBehaviour{
             yield return new WaitForSeconds(typeSpeed);
         }
 
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-
-        sc.waitingForDialogue = false;
+        sc.waitingForDialogue = true;
     }
 }
