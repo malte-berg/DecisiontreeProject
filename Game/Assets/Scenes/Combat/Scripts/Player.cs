@@ -71,33 +71,6 @@ public class Player : GameCharacter {
         HidePlayer();
         DontDestroyOnLoad(gameObject);
 
-        // Tutorial
-        if (combatsWon[0] == 0)
-        {
-            combatsWon[1] = -1;
-
-            // Give mana to the player for the tutorial
-            Mana = 20;
-            MaxMana = 20;
-
-            // Add Magic for the tutorial
-            UpdateStats(0, 0, 5); // +5 Magic
-
-            Skill punch = new Punch();
-            punch.UnlockSkill(this);
-            AddSkill(punch);
-
-            Skill heal = new Heal();
-            heal.UnlockSkill(this);
-            AddSkill(heal); 
-
-            Skill sacrifice = new Sacrifice();
-            sacrifice.UnlockSkill(this);
-            AddSkill(sacrifice);
-
-            combatsWon[0] = 1;
-        }
-
         StartCoroutine(FixBars());
     }
     //Hide the player model.

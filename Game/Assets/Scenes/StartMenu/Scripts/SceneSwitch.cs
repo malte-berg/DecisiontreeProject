@@ -33,15 +33,6 @@ public class SceneSwitch : MonoBehaviour{
                 withCutscene = 3; //In Cutscene scene, "Slumsboss" cutscene is set as "Scene Scripts" nr. 3.
         }
 
-        if (sceneIndex == 1)
-        {
-            if (player.CombatsWon == -1)
-            {
-                withCutscene = 0;
-                player.CombatsWon = 0;
-            }
-        }
-
         StartCoroutine(LoadScene(sceneIndex, withCutscene));
 
     }

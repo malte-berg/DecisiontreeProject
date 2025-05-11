@@ -20,6 +20,13 @@ public class NewGame : MonoBehaviour{
     public void StartNewGame() {
 
         prepPlayerAndArea();
+
+        Player p = playerObject.GetComponent<Player>(); 
+        Punch pS = new Punch();                         
+        pS.UnlockSkill(p);                              
+        p.AddSkill(pS);                                 
+
+        p.CurrentAreaIndex = 0;                         
         
         new SaveManager().CreateSave(playerObject.GetComponent<Player>());
         GetComponent<SceneSwitch>().WithCutscene = 1;

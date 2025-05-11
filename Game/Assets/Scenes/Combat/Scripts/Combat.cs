@@ -36,7 +36,7 @@ public class Combat : MonoBehaviour{
         player.c = this;
         player.ShowPlayer();
         player.transform.position = new Vector3(-4, 0, 0);
-
+        
         // Create status bar
         player.bars = CreateBars(player);
         player.Moved();
@@ -48,7 +48,19 @@ public class Combat : MonoBehaviour{
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
-      
+
+
+        // Set up tutorial-specific setup if in tutorial area
+        if (player.CurrentAreaIndex == 0 && player.CombatsArr[0] == 0)
+        {
+            SetupTutorialPlayer();
+            for (int i = 0; i < 4; i++)
+            {
+                int rand = UnityEngine.Random.Range(0, 1);
+                SpawnEnemy(enemyPrefabs[rand]);
+            }
+        }
+
         // Spawn enemies
         int spawnIndex = (player.CurrentAreaIndex-1) * 2;
         int rnd = 0;
@@ -197,7 +209,7 @@ public class Combat : MonoBehaviour{
         }
 
         // GAME OVER (Player died)
-        if (player.CombatsWon == -1)
+        if (player.CurrentAreaIndex == 0)
         {
             player.RemoveSkillAt(2);
             player.RemoveSkillAt(1);
@@ -208,6 +220,8 @@ public class Combat : MonoBehaviour{
 
             // Reset Magic after the tutorial
             player.UpdateStats(0, 0, -5);
+
+            player.CurrentAreaIndex = 1;
 
             //Switch Scene to the in game menu scene, with the Intro cutscene.
             GetComponent<SceneSwitch>().WithCutscene = 0;
@@ -304,4 +318,22 @@ public class Combat : MonoBehaviour{
 
     }
 
+    private void SetupTutorialPlayer()
+    {
+        player.Mana = 20;
+        player.MaxMana = 20;
+
+        // Add 5 Magic
+        player.UpdateStats(0, 0, 5);
+
+        Skill heal = new Heal();
+        heal.UnlockSkill(player);
+        player.AddSkill(heal);
+
+        Skill sacrifice = new Sacrifice();
+        sacrifice.UnlockSkill(player);
+        player.AddSkill(sacrifice);
+
+        player.CombatsArr[0] = 1;
+    }
 }
