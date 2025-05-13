@@ -24,7 +24,6 @@ public class CutsceneManager : MonoBehaviour{
         if (!sceneScripts[currCutscene].skipping) sceneScripts[currCutscene].skipping = true;
         Debug.Log(dialogueBoxGO);
         dialogueBoxGO.GetComponent<DialogueBox>().SkipDialogue();
-        Debug.Log("Skip Dialogue Button Pressed");
     }
 
     IEnumerator DoCutscene(AsyncOperation from, int to, int cutscene){
@@ -39,6 +38,8 @@ public class CutsceneManager : MonoBehaviour{
 
         if(cutscene >= 0 && cutscene < sceneScripts.Length) {
 
+            sceneScripts[currCutscene].skipping = false;
+            
             if(canvas == null) canvas = GameObject.FindGameObjectWithTag("Canvas");
             Backgrounds bg = Instantiate(backgroundGO, canvas.transform).GetComponent<Backgrounds>();
             bg.Init(backgrounds);
@@ -47,7 +48,6 @@ public class CutsceneManager : MonoBehaviour{
             sceneScripts[cutscene].LoadCutscene(db, bg);
             GameObject.FindGameObjectWithTag("Skip").GetComponent<RectTransform>().SetAsLastSibling();
             yield return sceneScripts[cutscene].RunAnimation();
-
         }
 
         Destroy(canvas);

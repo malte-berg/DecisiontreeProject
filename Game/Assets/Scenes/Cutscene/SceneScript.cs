@@ -16,7 +16,7 @@ public abstract class SceneScript : MonoBehaviour {
     }
 
     public void SkipCutscene(){
-        if (!skipping) skipping = true;
+        skipping = !skipping;
     }
 
     public IEnumerator WaitForSecs(float seconds){
