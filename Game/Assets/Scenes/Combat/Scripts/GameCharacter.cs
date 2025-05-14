@@ -193,8 +193,8 @@ public class GameCharacter : MonoBehaviour{
 
         print($"Selected skill is {selectedSkill}");
         bool skill = skills[selectedSkill].TrySkill(target);
-        healthBar.UpdateBar(HP, Vitality);
-        manaBar.UpdateBar(mana, MaxMana);
+        healthBar.UpdateBar(HP, Vitality, 0);
+        manaBar.UpdateBar(mana, MaxMana, 1);
 
         Vector3 posOfTarget = target.transform.GetChild(0).position;
         if (spriteManager != null && skill) {
@@ -214,7 +214,7 @@ public class GameCharacter : MonoBehaviour{
 
         hp -= dmg - Armor;
 
-        healthBar.UpdateBar(hp, Vitality);
+        healthBar.UpdateBar(hp, Vitality, 0);
 
         if(hp <= 0)
             c.KillCharacter(this);
@@ -241,6 +241,7 @@ public class GameCharacter : MonoBehaviour{
     }
 
     public void AddSkill(Skill newSkill) {
+        
         if (skillCount == skills.Length) {
             Debug.Log("Not enough slots!!");
             return;
@@ -248,6 +249,21 @@ public class GameCharacter : MonoBehaviour{
 
         skills[skillCount] = newSkill;
         skillCount++;
+    }
+
+    public void RemoveSkillAt(int index)
+    {
+        if (index < 0 || index >= skillCount)
+            return;
+
+        for (int i = index; i < skillCount - 1; i++)
+        {
+            skills[i] = skills[i + 1];
+        }
+
+        unlockedSkills.RemoveAt(index);
+        skills[skillCount - 1] = null;
+        skillCount--;
     }
 
     //Update the player stats (permanently).
