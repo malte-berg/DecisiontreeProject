@@ -11,7 +11,6 @@ public class Zap : Skill
         gc: null,
         name: "Zap",
         power: 1,
-        // manaCost : 0, // for debug
         manaCost: 25,
         skillCost: 1,
         cooldown: 2,

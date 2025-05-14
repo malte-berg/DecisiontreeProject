@@ -10,7 +10,6 @@ public class Corrode : Skill
       name: "Corrode",
       power: 1,
       manaCost: 25,
-    //   manaCost: 0, //debug
       skillCost: 1,
       cooldown: 2,
       attack: true,

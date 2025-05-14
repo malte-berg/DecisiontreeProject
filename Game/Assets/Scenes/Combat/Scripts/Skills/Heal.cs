@@ -10,7 +10,6 @@ public class Heal : Skill {
         name: "Heal",
         power: 0,
         manaCost: 15,
-        // manaCost: 0, //debug
         skillCost: 1,
         cooldown: 2,
         attack: false,

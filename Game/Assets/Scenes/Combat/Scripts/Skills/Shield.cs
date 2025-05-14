@@ -11,7 +11,6 @@ public class Shield : Skill
          name: "Shield",
          power: 1,
          manaCost: 25,
-        //  manaCost: 0, //debug
          skillCost: 1,
          cooldown: 2,
          attack: false,
