@@ -1,106 +1,256 @@
 fileFormatVersion: 2
-guid: 7c07084564a2e7542881e996ae8627e3
+guid: e5023b3acd07a2745a26e5e144a4cf07
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8501407956082068465
-    second: sacrifice_0
+      213: -5737382562216858710
+    second: corrode_0
   - first:
-      213: -3503976268794555309
-    second: sacrifice_1
+      213: -4992569176967898419
+    second: corrode_1
   - first:
-      213: 1920073684076833875
-    second: sacrifice_2
+      213: -2590478105489174619
+    second: corrode_2
   - first:
-      213: -2144479810367464776
-    second: sacrifice_3
+      213: -5308208566549653940
+    second: corrode_3
   - first:
-      213: 3359332115935900732
-    second: sacrifice_4
+      213: -3941802845496540816
+    second: corrode_4
   - first:
-      213: -2022285825408875891
-    second: sacrifice_5
+      213: 363516791198489568
+    second: corrode_5
   - first:
-      213: 6856300848962857907
-    second: sacrifice_6
+      213: 894970385304296670
+    second: corrode_6
   - first:
-      213: -6854957112572586000
-    second: sacrifice_7
+      213: -3710957227050233220
+    second: corrode_7
   - first:
-      213: -8956322498338744906
-    second: sacrifice_8
+      213: 2698536931161876320
+    second: corrode_8
   - first:
-      213: -545988166307758326
-    second: sacrifice_9
+      213: 905279282904393456
+    second: corrode_9
   - first:
-      213: -6551836909729161909
-    second: sacrifice_10
+      213: -2287522005781952076
+    second: corrode_10
   - first:
-      213: -2571299892754532656
-    second: sacrifice_11
+      213: 5588318530958607512
+    second: corrode_11
   - first:
-      213: 8923441494805886692
-    second: sacrifice_12
+      213: 4654705129964426000
+    second: corrode_12
   - first:
-      213: 1306676622839976787
-    second: sacrifice_13
+      213: 9217473506719635272
+    second: corrode_13
   - first:
-      213: 8507456938426468723
-    second: sacrifice_14
+      213: -2003875031700795639
+    second: corrode_14
   - first:
-      213: 3184662449725403498
-    second: sacrifice_15
+      213: 7190983761279393507
+    second: corrode_15
   - first:
-      213: 8012148614968542063
-    second: sacrifice_16
+      213: -2555941010840190647
+    second: corrode_16
   - first:
-      213: -3423018589978839731
-    second: sacrifice_17
+      213: 7227503660083498521
+    second: corrode_17
   - first:
-      213: -3753855515518852029
-    second: sacrifice_18
+      213: -842916053930568086
+    second: corrode_18
   - first:
-      213: 7277026367035641620
-    second: sacrifice_19
+      213: 6604052382881978073
+    second: corrode_19
   - first:
-      213: 5702468333707922385
-    second: sacrifice_20
+      213: -843101351259694405
+    second: corrode_20
   - first:
-      213: 3079953508523582276
-    second: sacrifice_21
+      213: -1903165652274304569
+    second: corrode_21
   - first:
-      213: -8188443468096687064
-    second: sacrifice_22
+      213: -1592396188108847914
+    second: corrode_22
   - first:
-      213: 8240908736282764048
-    second: sacrifice_23
+      213: 7600081636861242546
+    second: corrode_23
   - first:
-      213: 3148819252657631411
-    second: sacrifice_24
+      213: 4008741601143947636
+    second: corrode_24
   - first:
-      213: 5714991352383369235
-    second: sacrifice_25
+      213: 6668686096403384470
+    second: corrode_25
   - first:
-      213: -6656345465606732454
-    second: sacrifice_26
+      213: 1914642549184083296
+    second: corrode_26
   - first:
-      213: -155601897015641014
-    second: sacrifice_27
+      213: -1992149092057350232
+    second: corrode_27
   - first:
-      213: 2110363689766433885
-    second: sacrifice_28
+      213: -4072276182618732147
+    second: corrode_28
   - first:
-      213: 246788828532542531
-    second: sacrifice_29
+      213: -2128991933406749696
+    second: corrode_29
   - first:
-      213: 2745106330316998639
-    second: sacrifice_30
+      213: -7870598338425004582
+    second: corrode_30
   - first:
-      213: 4237609861322785790
-    second: sacrifice_31
+      213: 8167637487276858682
+    second: corrode_31
   - first:
-      213: 1234145476958850214
-    second: sacrifice_32
+      213: -8589412095588351719
+    second: corrode_32
+  - first:
+      213: 8730925531897026576
+    second: corrode_33
+  - first:
+      213: 5922430554355584801
+    second: corrode_34
+  - first:
+      213: -2851969266528676690
+    second: corrode_35
+  - first:
+      213: 1979093290736023134
+    second: corrode_36
+  - first:
+      213: 3796658131900596599
+    second: corrode_37
+  - first:
+      213: 3203220549427539492
+    second: corrode_38
+  - first:
+      213: 2247677699377635515
+    second: corrode_39
+  - first:
+      213: 1229040355209257593
+    second: corrode_40
+  - first:
+      213: 8251961907567867346
+    second: corrode_41
+  - first:
+      213: 1077868708152029539
+    second: corrode_42
+  - first:
+      213: 6651822715366142234
+    second: corrode_43
+  - first:
+      213: -7962361869496588763
+    second: corrode_44
+  - first:
+      213: 8313983547095789553
+    second: corrode_45
+  - first:
+      213: -5023579304331851631
+    second: corrode_46
+  - first:
+      213: 8694749711050465087
+    second: corrode_47
+  - first:
+      213: 7167765892035464680
+    second: corrode_48
+  - first:
+      213: 164605524834595395
+    second: corrode_49
+  - first:
+      213: 4480337204578416874
+    second: corrode_50
+  - first:
+      213: -7611744607946303674
+    second: corrode_51
+  - first:
+      213: 5326103830121713507
+    second: corrode_52
+  - first:
+      213: 7135490164541138466
+    second: corrode_53
+  - first:
+      213: -2657261275855811262
+    second: corrode_54
+  - first:
+      213: 4927020966819654706
+    second: corrode_55
+  - first:
+      213: 5767704290119283201
+    second: corrode_56
+  - first:
+      213: 4447757186235612973
+    second: corrode_57
+  - first:
+      213: -4211139955137922748
+    second: corrode_58
+  - first:
+      213: -3793665101140661688
+    second: corrode_59
+  - first:
+      213: 6090924727681229787
+    second: corrode_60
+  - first:
+      213: -1884500603415979044
+    second: corrode_61
+  - first:
+      213: -811728107275043713
+    second: corrode_62
+  - first:
+      213: -6742000169231890693
+    second: corrode_63
+  - first:
+      213: -5264397340908951922
+    second: corrode_64
+  - first:
+      213: 626543904076988834
+    second: corrode_65
+  - first:
+      213: -6011659046345106084
+    second: corrode_66
+  - first:
+      213: 2409088443242160847
+    second: corrode_67
+  - first:
+      213: -7289990023188989170
+    second: corrode_68
+  - first:
+      213: -4752192297882765403
+    second: corrode_69
+  - first:
+      213: -3059710196015101132
+    second: corrode_70
+  - first:
+      213: 9188729569080888764
+    second: corrode_71
+  - first:
+      213: -2448774118391072665
+    second: corrode_72
+  - first:
+      213: 2603892115808917715
+    second: corrode_73
+  - first:
+      213: 1952257218644617935
+    second: corrode_74
+  - first:
+      213: 2926566018731612373
+    second: corrode_75
+  - first:
+      213: -3108196910552785280
+    second: corrode_76
+  - first:
+      213: -6797683450373099647
+    second: corrode_77
+  - first:
+      213: -3970935363510479215
+    second: corrode_78
+  - first:
+      213: -3986657324469589927
+    second: corrode_79
+  - first:
+      213: -2325897053288974632
+    second: corrode_80
+  - first:
+      213: -1043345674721262176
+    second: corrode_81
+  - first:
+      213: -6608340878874711477
+    second: corrode_82
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -209,7 +359,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sacrifice_0
+      name: corrode_0
       rect:
         serializedVersion: 2
         x: 0
@@ -224,14 +374,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6f88c8826e2f7a408b5c6db4fd2b05a
-      internalID: -1765901471
+      spriteID: 0cbc1863a76d9494fbaac4e42a6b3225
+      internalID: 28893003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sacrifice_1
+      name: corrode_1
       rect:
         serializedVersion: 2
         x: 72
@@ -246,14 +396,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b25a3e37ca62814596cb873834c5839
-      internalID: -1802409354
+      spriteID: 2818cc2b0634b3847922cdd6346574af
+      internalID: 970072354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sacrifice_2
+      name: corrode_2
       rect:
         serializedVersion: 2
         x: 144
@@ -268,14 +418,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f530d53eda59e0245afe0740afe0c806
-      internalID: 1287192605
+      spriteID: 712f8f47732bff8469a9d1ffb7b29aed
+      internalID: 1343531081
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sacrifice_3
+      name: corrode_3
       rect:
         serializedVersion: 2
         x: 0
@@ -290,14 +440,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b26db1da63d4d0541a82101da82ab113
-      internalID: 267126046
+      spriteID: d679051f0404d50478c865807c6f9605
+      internalID: 1788039117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sacrifice_4
+      name: corrode_4
       rect:
         serializedVersion: 2
         x: 72
@@ -312,14 +462,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86191e29824424b4bae865845358a5e6
-      internalID: 620124538
+      spriteID: 7cdf8dea37fa4024f991bd30f4810b07
+      internalID: -2002565468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sacrifice_5
+      name: corrode_5
       rect:
         serializedVersion: 2
         x: 144
@@ -334,14 +484,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 559409a4d1fbb22468317b2448d9bebb
-      internalID: 451353494
+      spriteID: d949ff03b6e84334ca4e5f093523fa77
+      internalID: 1523315421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sacrifice_6
+      name: corrode_6
       rect:
         serializedVersion: 2
         x: 0
@@ -356,14 +506,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45d36b72c01513644a19329a1bb932b6
-      internalID: -373839571
+      spriteID: ba4c009ca0df59d43a28764caa5a1ab6
+      internalID: -380596624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sacrifice_7
+      name: corrode_7
       rect:
         serializedVersion: 2
         x: 72
@@ -378,14 +528,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dab90a7e421a579459abf8e17d0feb7b
-      internalID: -1410957765
+      spriteID: 1d8fa76fcd5ff3a4980c6d1da0f336c4
+      internalID: 1751126270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sacrifice_8
+      name: corrode_8
       rect:
         serializedVersion: 2
         x: 144
@@ -400,8 +550,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d56977e699afcc640806a78120b3d469
-      internalID: -172482782
+      spriteID: fea982f2e146ae04db04b5696d3fb725
+      internalID: -745419646
       vertices: []
       indices: 
       edges: []
@@ -410,7 +560,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e4cd004113bd81f4e82675397a106821
+    spriteID: 44499160b881274449b1df1468b38278
     internalID: 0
     vertices: []
     indices: 
@@ -420,15 +570,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sacrifice_0: -1765901471
-      sacrifice_1: -1802409354
-      sacrifice_2: 1287192605
-      sacrifice_3: 267126046
-      sacrifice_4: 620124538
-      sacrifice_5: 451353494
-      sacrifice_6: -373839571
-      sacrifice_7: -1410957765
-      sacrifice_8: -172482782
+      corrode_0: 28893003
+      corrode_1: 970072354
+      corrode_2: 1343531081
+      corrode_3: 1788039117
+      corrode_4: -2002565468
+      corrode_5: 1523315421
+      corrode_6: -380596624
+      corrode_7: 1751126270
+      corrode_8: -745419646
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
