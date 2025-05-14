@@ -13,7 +13,8 @@ public class Heal : Skill {
         skillCost: 1,
         cooldown: 2,
         attack: false,
-        description: "Regain some lost health."
+        description: "Regain some lost health.",
+        soundEffect: null
         
         ){
     }

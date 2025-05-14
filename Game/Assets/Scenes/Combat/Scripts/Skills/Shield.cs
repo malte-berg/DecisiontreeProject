@@ -13,7 +13,8 @@ public class Shield : Skill
          skillCost: 1,
          cooldown: 2,
          attack: false,
-         description: "Add some armor to player"
+         description: "Add some armor to player",
+         soundEffect: null
          )
     {
 

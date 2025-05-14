@@ -13,7 +13,8 @@ public class Disarm : Skill
          skillCost: 1,
          cooldown: 3,
          attack: true,
-         description: "Removes enemy's weapons"
+         description: "Removes enemy's weapons",
+         soundEffect: null
          )
     {
 

@@ -14,7 +14,8 @@ public class Drain : Skill
         skillCost: 1,
         cooldown: 2,
         attack: true,
-        description: "Reduces enemy's Mana"
+        description: "Reduces enemy's Mana",
+        soundEffect: null
     )
     {
 
