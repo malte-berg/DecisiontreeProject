@@ -59,13 +59,13 @@ public class Combat : MonoBehaviour{
         if (player.CurrentAreaIndex == 0 && player.CombatsWon == 0) {
             
             SetupTutorialPlayer();
+            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(2).gameObject.SetActive(false);   //Make return button in tutorial disappear.
             for (int i = 0; i < 4; i++) {
                 int rnd = UnityEngine.Random.Range(0, 1);
                 SpawnEnemy(enemyPrefabs[rnd], tutRand);
             }
 
         } else {
-
             // Spawn enemies
             int spawnIndex = player.CurrentAreaIndex-1;
             System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
