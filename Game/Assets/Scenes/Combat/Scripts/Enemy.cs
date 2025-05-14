@@ -57,7 +57,6 @@ public class Enemy : GameCharacter {
         
         GatherItems((level - 1) * 6 + 1, rnd);
         GatherSkills(level / 3);
-        equipment.PrintEquipment();
 
         SetSprite();
 

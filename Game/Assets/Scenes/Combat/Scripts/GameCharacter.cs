@@ -191,7 +191,6 @@ public class GameCharacter : MonoBehaviour{
 
     public bool UseSkill(GameCharacter target){
 
-        print($"Selected skill is {selectedSkill}");
         bool skill = skills[selectedSkill].TrySkill(target);
         healthBar.UpdateBar(HP, Vitality, 0);
         manaBar.UpdateBar(mana, MaxMana, 1);
@@ -206,8 +205,6 @@ public class GameCharacter : MonoBehaviour{
     }
     
     public void TakeDamage(int dmg){
-
-        print($"{cName} is attacked with {dmg} damage and has {Armor} armor");
 
         if(dmg <= Armor)
             return;
