@@ -16,7 +16,7 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(100, 120);
 
@@ -31,7 +31,7 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         bg.SetBG(11);
         db.MoveDialogueBox(-390, 120);
@@ -56,7 +56,7 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(0, 120);
 
@@ -71,7 +71,7 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(390, 120);
 
@@ -86,7 +86,7 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         bg.SetBG(10);
         db.MoveDialogueBox(0, 0);
@@ -99,6 +99,6 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(2);
+        yield return WaitForSecs(2);
     }
 }
