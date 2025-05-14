@@ -60,7 +60,7 @@ public class AreaInitializer : MonoBehaviour
 
     void AreaDictionaryInit()
     {
-        for (int i = 1; i < religionItems.Count; i++)
+        for (int i = 0; i < religionItems.Count; i++)
         {
             AreaDataLoader.InitAreaRegionItems(i, GetAreaItems(i));
         }
