@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9b39d7cd7cb19426da3eacee7ee60a70
+guid: 1aa95dcb569f7014fa63b5c29965fc9f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1521487376802658841
-    second: Area 3_0
+      213: -8444753671858095025
+    second: CombatsSceneTutorial_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Area 3_0
+      name: CombatsSceneTutorial_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 512
+        width: 1919
+        height: 901
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e5cf6fba4792eae0800000000000000
-      internalID: -1521487376802658841
+      spriteID: f4cf83517453eca80800000000000000
+      internalID: -8444753671858095025
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CombatsSceneTutorial_0: -8444753671858095025
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1366,6 +1366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 801700154}
   - component: {fileID: 801700155}
+  - component: {fileID: 801700156}
   m_Layer: 0
   m_Name: Combat
   m_TagString: Untagged
@@ -1415,6 +1416,18 @@ MonoBehaviour:
   barPrefab: {fileID: 2952723159946313452, guid: 0c7f3005e50ca8d42bc35019f18b7290, type: 3}
   marker: {fileID: 6787740618812977528, guid: 91eb33aabfa92344db9d7d5b9ddd2602, type: 3}
   targeting: {fileID: 635128218622116287, guid: 69dac99111e378d4a8f0fc4505f0b0f2, type: 3}
+--- !u!114 &801700156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801700153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3507cbca751d7984dbf33ea6bc33c825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858997724
 GameObject:
   m_ObjectHideFlags: 0

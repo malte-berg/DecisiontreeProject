@@ -45,6 +45,7 @@ public static class AreaDataLoader
 
     public static Item[] GetAreaItems(int areaIndex)
     {
+        if(areaIndex < 1) areaIndex = 1;
         return Load(areaIndex).RegionItems;
     }
     public static void InitAreaRegionItems(int areaIndex, Item[] regionItems)

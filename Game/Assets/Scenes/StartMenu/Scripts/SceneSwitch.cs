@@ -24,12 +24,13 @@ public class SceneSwitch : MonoBehaviour{
 
     public void SwitchScene(int sceneIndex){
 
-        if(sceneIndex == 4){    //Scene 4 is Combat
+        Player player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>();
 
+        if (sceneIndex == 4){    //Scene 4 is Combat
             //If the player has won 10 battles in Area 1...
-            if(GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>().CombatsWon == 10)
-                //Play cutscene nr. 1 next.
-                withCutscene = 1; //In Cutscene scene, "Slumsboss" cutscene is set as "Scene Scripts" nr. 1.
+            if (player.CombatsWon == 10)
+                //Play cutscene nr. 3 next.
+                withCutscene = 3; //In Cutscene scene, "Slumsboss" cutscene is set as "Scene Scripts" nr. 3.
         }
 
         StartCoroutine(LoadScene(sceneIndex, withCutscene));
