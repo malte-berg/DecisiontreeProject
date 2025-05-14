@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,14 +7,17 @@ public class DialogueBox : MonoBehaviour{
 
     SceneScript sc;
     List<string> queue = new List<string>();
+    Coroutine typingCoroutine;
 
     public TMP_Text talkingName;
     public TMP_Text talkingText;
+    public float typeSpeed; // Speed of typewriter effect
 
     public void Init(SceneScript sc){
 
         this.sc = sc;
         transform.GetChild(0).gameObject.SetActive(false);
+        typeSpeed = 0.02f;
         
     }
 
@@ -35,7 +39,11 @@ public class DialogueBox : MonoBehaviour{
         string dialogue = queue[0].Split('§')[1];
 
         talkingName.text = who;
-        talkingText.text = dialogue;
+
+        if (typingCoroutine != null)
+        StopCoroutine(typingCoroutine);
+
+        typingCoroutine = StartCoroutine(TypeText(dialogue));
 
         transform.GetChild(0).gameObject.SetActive(true);
         
@@ -65,4 +73,14 @@ public class DialogueBox : MonoBehaviour{
         rect.anchoredPosition = new Vector2(positionX, positionY);
     }
 
+    IEnumerator TypeText(string dialogue)
+    {
+        talkingText.text = "";
+
+        foreach (char letter in dialogue.ToCharArray())
+        {
+            talkingText.text += letter;
+            yield return new WaitForSeconds(typeSpeed);
+        }
+    }
 }

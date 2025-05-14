@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ff3777808a0a79241a7e5f29d3df8655
+guid: 8fd0d9dccbe82684d8db9eb4cc8cf178
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4403399419998243942
-    second: zap_Icon_0
+      213: 136827229706474802
+    second: MainMenuSceneTutorial_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: zap_Icon_0
+      name: MainMenuSceneTutorial_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 1919
+        height: 906
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a93f7d6ce8bf3e2c0800000000000000
-      internalID: -4403399419998243942
+      spriteID: 2355146f3ab16e100800000000000000
+      internalID: 136827229706474802
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      zap_Icon_0: -4403399419998243942
+      MainMenuSceneTutorial_0: 136827229706474802
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
