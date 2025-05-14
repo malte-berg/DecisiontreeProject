@@ -71,13 +71,11 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (skill.unlocked) {
             skill.UpgradeSkill();
             player.SkillPoints -= skill.skillCost;
-            Debug.Log($"Upgraded {skill.Name}!");
         } 
         if (!skill.unlocked && (parent == null || parent.skill.unlocked)) {
             skill.UnlockSkill(player);
             player.AddSkill(skill);
             player.SkillPoints -= skill.skillCost;
-            Debug.Log($"Unlocked {skill.Name}!");
         }
         SetNode();
         UpdateToolTip();

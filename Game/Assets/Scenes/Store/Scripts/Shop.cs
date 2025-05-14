@@ -51,7 +51,6 @@ public class Shop : MonoBehaviour
         {
             inventoryIndex++;
         }
-        Debug.Log("inventoryIndex: " + inventoryIndex);
     }
 
     void LoadItems()
