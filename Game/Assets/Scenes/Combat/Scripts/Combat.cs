@@ -29,6 +29,7 @@ public class Combat : MonoBehaviour{
         marker = Instantiate(marker);
         markerT = marker.transform;
         targeting = Instantiate(targeting);
+        targeting.SetActive(false);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
@@ -297,6 +298,8 @@ public class Combat : MonoBehaviour{
     }
 
     public void CharacterHover(GameCharacter hover){
+
+        targeting.SetActive(true);
 
         targeting.GetComponent<Targeting>().HoverOn(hover.transform);
 
