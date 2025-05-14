@@ -14,7 +14,7 @@ public class TEMP : MonoBehaviour{
         
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         player.HidePlayer();
-        TMP_Text combatCounter = transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+        TMP_Text combatCounter = transform.GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<TMP_Text>();
         combatCounter.text = $"{player.CombatsWon}";
         float redness = (float)player.CombatsWon / 20;
         combatCounter.faceColor = new Color(1,1-redness,1-redness);

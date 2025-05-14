@@ -50,7 +50,7 @@ public class Player : GameCharacter {
         currentAreaIndex = 1; // save index(0) for tutorial Area
         currentLevel = 1;
         currentExp = 0;
-        expToNextLevel = 100;
+        expToNextLevel = 6;
     }
     
     public override void Init(){
@@ -97,10 +97,10 @@ public class Player : GameCharacter {
         {
             CurrentExp -= ExpToNextLevel;
             CurrentLevel++;
-            ExpToNextLevel += 50;
 
             StatPoints += 5;      // Reward stat points for every new level reached
             SkillPoints += 1;     // Reward skill points for every new level reached
+            MaxMana = 10 * currentLevel;
         }
     }
 
@@ -187,6 +187,9 @@ public class Player : GameCharacter {
         seed = save.seed;
         currentLevel = save.level;
         currentExp = save.xp;
+        ExpToNextLevel = 6;
+        for(int i = 0; i < currentLevel; i++)
+            ExpToNextLevel += (int)Mathf.Sqrt(ExpToNextLevel);
         gold = save.gold;
         skillPoints = save.skillPoints;
         currentAreaIndex = save.area;
