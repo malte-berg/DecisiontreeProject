@@ -57,7 +57,6 @@ public class Enemy : GameCharacter {
         
         GatherItems((level - 1) * 6 + 1, rnd);
         GatherSkills(level / 3);
-        equipment.PrintEquipment();
 
         SetSprite();
 
@@ -246,7 +245,7 @@ public class Enemy : GameCharacter {
 
             Skill potential = sb.ReadPage(skillPower);
             skillPower--;
-            if(potential is Sacrifice) continue; // ignoring sacrifice to limit amount of self use abilities
+            if(potential is Sacrifice || potential is MindControl) continue; // ignoring sacrifice and mindcontrol to limit amount of self use abilities
             potential.UnlockSkill(this);
             AddSkill(potential);
 

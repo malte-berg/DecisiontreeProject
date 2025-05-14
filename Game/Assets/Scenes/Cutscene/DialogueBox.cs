@@ -11,12 +11,13 @@ public class DialogueBox : MonoBehaviour{
 
     public TMP_Text talkingName;
     public TMP_Text talkingText;
-    public float typeSpeed = 0.1f; // Speed of typewriter effect
+    public float typeSpeed; // Speed of typewriter effect
 
     public void Init(SceneScript sc){
 
         this.sc = sc;
         transform.GetChild(0).gameObject.SetActive(false);
+        typeSpeed = 0.02f;
         
     }
 
@@ -40,7 +41,7 @@ public class DialogueBox : MonoBehaviour{
         talkingName.text = who;
 
         if (typingCoroutine != null)
-            StopCoroutine(typingCoroutine);
+        StopCoroutine(typingCoroutine);
 
         typingCoroutine = StartCoroutine(TypeText(dialogue));
 

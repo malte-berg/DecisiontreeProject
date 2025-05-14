@@ -26,13 +26,7 @@ public class Drain : Skill
         int manaDrained = Mathf.Max(1, Mathf.RoundToInt(0.10f * target.Mana * power));
         int finalManaDrained = Mathf.Clamp(manaDrained, 0, target.Mana);
 
-
-        Debug.Log("Before MANA: " + target.Mana);
-        
         target.Mana -= manaDrained;
-
-        Debug.Log("After MANA: " + target.Mana);
-
 
         return true;
 

@@ -50,7 +50,6 @@ public abstract class Skill{
 
     public void UnlockSkill(GameCharacter who) {
 
-        MonoBehaviour.print($"{who.CName} unlocked: {Name}");
         who?.unlockedSkills.Add(this);
         power = 1;
         skillLevel = 1;

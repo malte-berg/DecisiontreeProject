@@ -823,6 +823,7 @@ MonoBehaviour:
   db: {fileID: 0}
   bg: {fileID: 0}
   waitingForDialogue: 0
+  skipping: 0
 --- !u!114 &1948377409
 MonoBehaviour:
   m_ObjectHideFlags: 0

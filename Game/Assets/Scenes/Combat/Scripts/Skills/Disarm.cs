@@ -22,7 +22,6 @@ public class Disarm : Skill
 
     public override bool Effect(GameCharacter target)
     {
-        Debug.Log("mana: " + gc.Mana);
         //Removes the target's weapon equipment.
         if (target.equipment.weaponLeft != null || target.equipment.weaponRight != null)
         {

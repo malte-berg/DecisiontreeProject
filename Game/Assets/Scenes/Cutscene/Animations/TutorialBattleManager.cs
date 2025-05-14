@@ -16,7 +16,7 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(100, 120);
 
@@ -31,10 +31,10 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         bg.SetBG(11);
-        db.MoveDialogueBox(-390, 120);
+        db.MoveDialogueBox(-390, 125);
 
         db.Enqueue(@"
         Tutorial§At the bottom left of the screen, you'll see your 'Ability Bar'.
@@ -56,9 +56,9 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
-        db.MoveDialogueBox(0, 120);
+        db.MoveDialogueBox(0, 125);
 
         db.Enqueue(@"
         Tutorial§Next, we have the 'Ability Description'.
@@ -71,9 +71,9 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
-        db.MoveDialogueBox(390, 120);
+        db.MoveDialogueBox(390, 125);
 
         db.Enqueue(@"
         Tutorial§In the bottom-right corner, you'll find the 'Flee' button.
@@ -86,7 +86,7 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         bg.SetBG(10);
         db.MoveDialogueBox(0, 0);
@@ -99,6 +99,6 @@ public class TutorialBattleManager : SceneScript
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(2);
+        yield return WaitForSecs(2);
     }
 }

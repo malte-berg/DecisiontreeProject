@@ -77,7 +77,6 @@ public class SkillSelection : MonoBehaviour
             ShowSelect();
             UpdateAbilityText(skillIndex);
             imageRect.anchoredPosition = buttonTransforms[skillIndex].anchoredPosition;;
-            Debug.Log($"Selected skill: {player.skills[skillIndex]?.Name}");
         }
     }
 

@@ -62,7 +62,6 @@ public class StatsHandler : MonoBehaviour {
                     magicIncrease++;
                     break;
                 default:
-                    print("brokie");
                     break;
             }
             

@@ -27,6 +27,9 @@ public class TEMP : MonoBehaviour{
             combatCounter.faceColor = new Color(0.7f,0,0);
         }
 
+        // Load items
+        GetComponent<AreaInitializer>().Init();
+
         // try to avoid unnecessary performance overhead
         if (currentAreaIndex != player.CurrentAreaIndex)
         {
@@ -37,7 +40,6 @@ public class TEMP : MonoBehaviour{
 
     void UpdateBackground()
     {
-        // Debug.Log(currentAreaIndex);
         currentArea = AreaDataLoader.Load(currentAreaIndex);
         backgroundImage.sprite = currentArea.backgroundImage;
     }

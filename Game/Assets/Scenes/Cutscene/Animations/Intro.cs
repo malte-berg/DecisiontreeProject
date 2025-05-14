@@ -81,7 +81,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(2);
+        yield return WaitForSecs(2);
 
         // Tutorial for main menu
         bg.SetBG(8); // Set main menu background
@@ -94,10 +94,10 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(2);
+        yield return WaitForSecs(2);
 
         bg.SetBG(9);
-        db.MoveDialogueBox(-390, 40); 
+        db.MoveDialogueBox(-390, 55); 
 
         db.Enqueue(@"
         Tutorial§Let’s start with the 'Inventory Button'.
@@ -110,9 +110,9 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
-        db.MoveDialogueBox(-390, 120);
+        db.MoveDialogueBox(-390, 130);
 
         db.Enqueue(@"
         Tutorial§Next, we have the 'Stats Button'.
@@ -125,9 +125,9 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
-        db.MoveDialogueBox(-310, 40);
+        db.MoveDialogueBox(-310, 55);
 
         db.Enqueue(@"
         Tutorial§The 'Map Button' lets you choose between three unique maps.
@@ -140,9 +140,9 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
-        db.MoveDialogueBox(-210, 120);
+        db.MoveDialogueBox(-210, 130);
 
         db.Enqueue(@"
         Tutorial§Then we have the 'Store Button'.
@@ -155,9 +155,9 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
-        db.MoveDialogueBox(-125, 40);
+        db.MoveDialogueBox(-125, 55);
 
         db.Enqueue(@"
         Tutorial§Next, we have the 'Skill Tree Button'.
@@ -170,9 +170,9 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
-        db.MoveDialogueBox(360, 25);
+        db.MoveDialogueBox(210, 130);
 
         db.Enqueue(@"
         Tutorial§Next, in the bottom-right corner, we have the 'Fight Button'.
@@ -182,9 +182,24 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
+        yield return WaitForSecs(1);
+
+        db.MoveDialogueBox(360, 55);
+
+        db.Enqueue(@"
+        Tutorial§You’ll also see a 'Wins Counter' here.
+        ");
+        db.Enqueue(@"
+        Tutorial§This shows how many battles you've won so far.
+        ");
+        db.Enqueue(@"
+        Tutorial§It's a great way to track your progress as you get stronger!
+        ");
+        db.ContinueDialogue();
+        yield return WaitForDialogue();
         yield return new WaitForSeconds(1);
 
-        db.MoveDialogueBox(395, 105);
+        db.MoveDialogueBox(-180, 135);
 
         db.Enqueue(@"
         Tutorial§Finally, we have the 'Return Button'.
@@ -194,7 +209,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         bg.SetBG(8);
         db.MoveDialogueBox(0, 0);
@@ -210,7 +225,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(2);
+        yield return WaitForSecs(2);
     }
 
 }

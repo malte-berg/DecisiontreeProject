@@ -49,23 +49,35 @@ public class Combat : MonoBehaviour{
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana, 1);
-        
+
+        SpriteRenderer[] sr = new SpriteRenderer[7];
+        Transform container = player.transform.GetChild(0);
+
+        for(int i = 0; i < sr.Length; i++) {
+            sr[i] = container.GetChild(i).GetComponent<SpriteRenderer>();
+        }
+
+        foreach (SpriteRenderer s in sr) {
+            s.color = Color.white;
+            // s.color = new Color(s.color.r, s.color.g, s.color.b, 1);
+        }
+
         // Reset cooldown
         for(int i = 0; i < player.SkillCount; i++)
             player.skills[i].cooldownCount = 0;
-        System.Random tutRand = new System.Random(123);
+        System.Random tutRand = new System.Random(12);
 
         // Set up tutorial-specific setup if in tutorial area
         if (player.CurrentAreaIndex == 0 && player.CombatsWon == 0) {
             
             SetupTutorialPlayer();
+            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(2).gameObject.SetActive(false);   //Make return button in tutorial disappear.
             for (int i = 0; i < 4; i++) {
                 int rnd = UnityEngine.Random.Range(0, 1);
                 SpawnEnemy(enemyPrefabs[rnd], tutRand);
             }
 
         } else {
-
             // Spawn enemies
             int spawnIndex = player.CurrentAreaIndex-1;
             System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
@@ -254,7 +266,6 @@ public class Combat : MonoBehaviour{
             RewardData.expEarned = gainedExp;
             RewardData.goldEarned = 0;
             SceneManager.LoadScene("DemoLoseScreen");
-            Debug.LogWarning("Main character died lol");
         }
     }
 
@@ -274,7 +285,6 @@ public class Combat : MonoBehaviour{
             currentC = GetCurrentCharacter();
 
         if(!currentC.UseSkill(clicked)){
-            print("it failed :(");
             return false;
         }
 

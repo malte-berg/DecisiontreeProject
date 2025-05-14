@@ -12,7 +12,16 @@ public class AreaInitializer : MonoBehaviour
     }
 
     void ReligionItemsInit(){
-        religionItems[0] = new Item[] {}; // tutorial area
+        religionItems[0] = new Item[] { // tutorial area
+            new Knife(),
+            new Pipe(),
+            new BrassKnuckles(),
+            new Jacket(),
+            new CombatJacket(),
+            new Bucket(),
+            new BicycleHelmet(),
+            new WorkerBoots(),
+            new Wand()};
         religionItems[1] = new Item[] {
             new Knife(),
             new Pipe(),
@@ -51,7 +60,7 @@ public class AreaInitializer : MonoBehaviour
 
     void AreaDictionaryInit()
     {
-        for (int i = 1; i < religionItems.Count; i++)
+        for (int i = 0; i < religionItems.Count; i++)
         {
             AreaDataLoader.InitAreaRegionItems(i, GetAreaItems(i));
         }
