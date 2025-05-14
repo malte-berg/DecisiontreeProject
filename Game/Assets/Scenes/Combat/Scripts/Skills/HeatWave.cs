@@ -9,7 +9,8 @@ public class HeatWave : Skill {
         gc: null, 
         name: "Heat Wave", 
         power: 0, 
-        manaCost: 20, 
+        // manaCost: 20, 
+        manaCost: 0, //debug
         skillCost: 1,
         cooldown: 3,
         attack: true,

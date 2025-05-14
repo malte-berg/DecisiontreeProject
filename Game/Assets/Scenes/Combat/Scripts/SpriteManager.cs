@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 
 public class SpriteManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class SpriteManager : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Dictionary<string, SpriteRenderer> spriteLayers = new Dictionary<string, SpriteRenderer>();
 
-    private readonly float ATTACK_TIME = 0.35f; 
+    private readonly float ATTACK_TIME = 0.3f; 
     private readonly float CHANGE_SPRITE_TIME = 0.3f; 
 
 

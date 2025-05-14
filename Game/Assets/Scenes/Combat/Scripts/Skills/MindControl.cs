@@ -13,8 +13,8 @@ public class MindControl : Skill
         gc: null,
         name: "Mind Control",
         power: 1,
-        // manaCost : 0, // for debug
-        manaCost: 30,
+        manaCost : 0, // for debug
+        // manaCost: 30,
         skillCost: 1,
         cooldown: 2, 
         attack: true,

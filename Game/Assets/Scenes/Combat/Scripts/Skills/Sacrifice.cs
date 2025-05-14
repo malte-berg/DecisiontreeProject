@@ -1,12 +1,11 @@
 using UnityEngine;
-using System;
-using System.Collections.Generic;
+using System.Linq;
 
 public class Sacrifice : Skill {
 
     public Sacrifice() : base(
-        icon: Resources.Load<Sprite>("Sprites/Abilities/sacrifice_Icon"),
-        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/sacrifice")},
+        icon: Resources.Load<Sprite>("Sprites/Abilities/sacrifice_Icon"),        
+        sprites: Resources.LoadAll<Sprite>("Sprites/Abilities/sacrifice").ToList(),
         gc: null, 
         name: "Sacrifice", 
         power: 0, 
@@ -37,16 +36,25 @@ public class Sacrifice : Skill {
     }
 
     public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm) {
+        float delay = 0.1f;
         SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
         Transform AbilityContainer = AbilityRenderer.gameObject.transform;
+        sm.ChangeOpacity(AbilityRenderer, 3f);
 
-        sm.SetSprite(this.sprites[0], AbilityRenderer);
-        sm.HideSprite(AbilityRenderer);
+        float totalDelay = delay*sprites.Count + 0.15f;
 
-        sm.ChangeOpacity(AbilityRenderer, 1f);
-        sm.SetScale(AbilityRenderer.transform, 1.3f);
+        AbilityRenderer.enabled = true;
+        sm.SetSprite(null, AbilityRenderer);
+        AbilityContainer.localScale = new Vector3(1.8f, 2.6f, 1f);
+
+        sm.RollSprites(sprites, AbilityRenderer, delay);
+        sm.DelayedAction(() => sm.SetSprite(sprites[8], AbilityRenderer), delay*sprites.Count);
+
+        // sm.DisplaceSprite(targetPos + Vector3.up * -0.05f + Vector3.right * 0.1f, AbilityContainer, totalDelay);
+        sm.DelayedAction(() => sm.HideSprite(AbilityRenderer), totalDelay);
+
+        Vector3 toTarget = targetPos - sender.transform.position;
 
         sm.AttackAnimation(sender);
-        sm.RollScales(AbilityContainer, Vector3.zero, 10, 0.18f, 0.8f, false, false, 10);
     }
 }

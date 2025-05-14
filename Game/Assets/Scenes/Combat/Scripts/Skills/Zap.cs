@@ -11,8 +11,8 @@ public class Zap : Skill
         gc: null,
         name: "Zap",
         power: 1,
-        // manaCost : 0, // for debug
-        manaCost: 25,
+        manaCost : 0, // for debug
+        // manaCost: 25,
         skillCost: 1,
         cooldown: 2,
         attack: true,
@@ -44,6 +44,7 @@ public class Zap : Skill
         float delay = 0.08f;
         SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
         Transform AbilityContainer = AbilityRenderer.gameObject.transform;
+        sm.ChangeOpacity(AbilityRenderer, 1f);
 
         float totalDelay = delay*sprites.Count + 0.2f;
 
