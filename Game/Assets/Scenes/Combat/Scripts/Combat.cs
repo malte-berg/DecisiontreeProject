@@ -204,8 +204,12 @@ public class Combat : MonoBehaviour{
                 if (enemyCount == 1){
                     player.CombatsWon++;
                     int difficulty = (int)MathF.Log(player.CombatsWon, MathF.E) + 1;
-                    player.AddExp(difficulty * player.CurrentAreaIndex * player.CurrentAreaIndex * 5);      // Give EXP for winning the battle
-                    player.Gold += difficulty * player.CurrentAreaIndex * 15;                               // Give Gold for winning the battle
+                    int expEarned = difficulty * player.CurrentAreaIndex * player.CurrentAreaIndex * 5;
+                    int goldEarned = difficulty * player.CurrentAreaIndex * 15;
+                    player.AddExp(expEarned); // Give EXP for winning the battle
+                    player.Gold += goldEarned; // Give Gold for winning the battle
+                    RewardData.expEarned = expEarned;
+                    RewardData.goldEarned = goldEarned;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
                 }
@@ -227,8 +231,8 @@ public class Combat : MonoBehaviour{
         }
 
         // GAME OVER (Player died)
-        if (player.CurrentAreaIndex == 0)
-        {
+
+        if (player.CurrentAreaIndex == 0) {
             player.RemoveSkillAt(2);
             player.RemoveSkillAt(1);
 
@@ -244,10 +248,11 @@ public class Combat : MonoBehaviour{
             //Switch Scene to the in game menu scene, with the Intro cutscene.
             GetComponent<SceneSwitch>().WithCutscene = 0;
             GetComponent<SceneSwitch>().SwitchScene(1);
-        }
-        else
-        {
-            player.AddExp((player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1));
+        } else {
+            int gainedExp = (player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1);
+            player.AddExp(gainedExp);
+            RewardData.expEarned = gainedExp;
+            RewardData.goldEarned = 0;
             SceneManager.LoadScene("DemoLoseScreen");
             Debug.LogWarning("Main character died lol");
         }
