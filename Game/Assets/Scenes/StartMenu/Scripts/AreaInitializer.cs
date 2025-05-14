@@ -42,7 +42,8 @@ public class AreaInitializer : MonoBehaviour
             new Broadsword(),
             new EnforcerHelmet(),
             new MageHat(),
-            new Staff()
+            new Staff(),
+            new JesterBoots()
         };
         religionItems[3] = new Item[] { 
             new MilitaryJacket(),

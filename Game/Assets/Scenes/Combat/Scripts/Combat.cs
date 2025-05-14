@@ -23,6 +23,8 @@ public class Combat : MonoBehaviour{
     int turn = 0;
     GameCharacter currentC;
 
+    float lastTurnTime = 1f;
+
     public void Init(){
 
         // Create markers
@@ -275,7 +277,7 @@ public class Combat : MonoBehaviour{
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
-        if(currentC == player)
+        if(currentC == player && Time.time - lastTurnTime >= 0.6f)
             UseTurnOn(clicked);
 
     }
@@ -295,6 +297,8 @@ public class Combat : MonoBehaviour{
     }
 
     void NewTurn(){
+
+        lastTurnTime = Time.time;
 
         currentC = GetCurrentCharacter();
         List<StatusEffect> se = currentC.statusEffects;
