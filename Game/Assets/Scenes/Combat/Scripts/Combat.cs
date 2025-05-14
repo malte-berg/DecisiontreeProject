@@ -249,7 +249,6 @@ public class Combat : MonoBehaviour{
             GetComponent<SceneSwitch>().WithCutscene = 0;
             GetComponent<SceneSwitch>().SwitchScene(1);
         } else {
-            player.AddExp((player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1));
             int gainedExp = (player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1);
             player.AddExp(gainedExp);
             RewardData.expEarned = gainedExp;
