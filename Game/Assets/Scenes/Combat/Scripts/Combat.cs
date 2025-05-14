@@ -56,31 +56,33 @@ public class Combat : MonoBehaviour{
         System.Random tutRand = new System.Random(123);
 
         // Set up tutorial-specific setup if in tutorial area
-        if (player.CurrentAreaIndex == 0 && player.CombatsWon == 0)
-        {
+        if (player.CurrentAreaIndex == 0 && player.CombatsWon == 0) {
+            
             SetupTutorialPlayer();
-            for (int i = 0; i < 4; i++)
-            {
-                int rand = UnityEngine.Random.Range(0, 1);
-                SpawnEnemy(enemyPrefabs[rand], tutRand);
+            for (int i = 0; i < 4; i++) {
+                int rnd = UnityEngine.Random.Range(0, 1);
+                SpawnEnemy(enemyPrefabs[rnd], tutRand);
             }
-        }
-
-        // Spawn enemies
-        int spawnIndex = (player.CurrentAreaIndex-1) * 2;
-        System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
-        if(player.CombatsWon == 10){
-
-            for (int i = 0; i < 2; i++) {
-                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
-            }
-            // spawn a boss!
-            SpawnEnemy(enemyPrefabs[spawnIndex + 6], rand);
 
         } else {
 
-            for (int i = 0; i < 4; i++)
-                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+            // Spawn enemies
+            int spawnIndex = (player.CurrentAreaIndex-1) * 2;
+            System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
+            if(player.CombatsWon == 10){
+
+                for (int i = 0; i < 2; i++) {
+                    SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+                }
+                // spawn a boss!
+                SpawnEnemy(enemyPrefabs[spawnIndex + 6], rand);
+
+            } else {
+
+                for (int i = 0; i < 4; i++)
+                    SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+            }
+
         }
 
         GetCurrentCharacter();
