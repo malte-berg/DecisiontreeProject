@@ -33,7 +33,7 @@ public class StatsList : MonoBehaviour {
         text += $"<color=orange>Armor: \t{im.player.Armor}</color>\n";
         text += $"<color=red>Strength: \t{im.player.Strength}</color>\n";
         text += $"<color=blue>Magic: \t{im.player.Magic}</color>\n";
-        text += $"<color=purple>Mana: \t{im.player.Mana}</color>\n";
+        text += $"<color=purple>Mana: \t{im.player.MaxMana}</color>\n";
 
         statText.text = text;
 
