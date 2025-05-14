@@ -212,20 +212,20 @@ TextureImporter:
       name: sacrifice_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 234
-        width: 84
-        height: 29
+        x: 0
+        y: 192
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f047c0f918ee40a80800000000000000
-      internalID: -8501407956082068465
+      spriteID: b6f88c8826e2f7a408b5c6db4fd2b05a
+      internalID: -1765901471
       vertices: []
       indices: 
       edges: []
@@ -234,20 +234,20 @@ TextureImporter:
       name: sacrifice_1
       rect:
         serializedVersion: 2
-        x: 108
-        y: 241
-        width: 13
-        height: 22
+        x: 72
+        y: 192
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3541a1df5206f5fc0800000000000000
-      internalID: -3503976268794555309
+      spriteID: 8b25a3e37ca62814596cb873834c5839
+      internalID: -1802409354
       vertices: []
       indices: 
       edges: []
@@ -256,20 +256,20 @@ TextureImporter:
       name: sacrifice_2
       rect:
         serializedVersion: 2
-        x: 170
-        y: 213
-        width: 28
-        height: 40
+        x: 144
+        y: 192
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 35ca9f9b7d875aa10800000000000000
-      internalID: 1920073684076833875
+      spriteID: f530d53eda59e0245afe0740afe0c806
+      internalID: 1287192605
       vertices: []
       indices: 
       edges: []
@@ -278,20 +278,20 @@ TextureImporter:
       name: sacrifice_3
       rect:
         serializedVersion: 2
-        x: 177
-        y: 249
-        width: 12
-        height: 14
+        x: 0
+        y: 96
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8badc0379f64d32e0800000000000000
-      internalID: -2144479810367464776
+      spriteID: b26db1da63d4d0541a82101da82ab113
+      internalID: 267126046
       vertices: []
       indices: 
       edges: []
@@ -300,20 +300,20 @@ TextureImporter:
       name: sacrifice_4
       rect:
         serializedVersion: 2
-        x: 21
-        y: 99
-        width: 39
-        height: 58
+        x: 72
+        y: 96
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c34bbecc2cebe9e20800000000000000
-      internalID: 3359332115935900732
+      spriteID: 86191e29824424b4bae865845358a5e6
+      internalID: 620124538
       vertices: []
       indices: 
       edges: []
@@ -322,20 +322,20 @@ TextureImporter:
       name: sacrifice_5
       rect:
         serializedVersion: 2
-        x: 33
-        y: 153
-        width: 13
-        height: 14
+        x: 144
+        y: 96
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d82423e91c56fe3e0800000000000000
-      internalID: -2022285825408875891
+      spriteID: 559409a4d1fbb22468317b2448d9bebb
+      internalID: 451353494
       vertices: []
       indices: 
       edges: []
@@ -344,20 +344,20 @@ TextureImporter:
       name: sacrifice_6
       rect:
         serializedVersion: 2
-        x: 91
-        y: 103
-        width: 30
-        height: 54
+        x: 0
+        y: 0
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3bbe3afbb49762f50800000000000000
-      internalID: 6856300848962857907
+      spriteID: 45d36b72c01513644a19329a1bb932b6
+      internalID: -373839571
       vertices: []
       indices: 
       edges: []
@@ -366,20 +366,20 @@ TextureImporter:
       name: sacrifice_7
       rect:
         serializedVersion: 2
-        x: 105
-        y: 153
-        width: 12
-        height: 14
+        x: 72
+        y: 0
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f7d29243dc4ed0a0800000000000000
-      internalID: -6854957112572586000
+      spriteID: dab90a7e421a579459abf8e17d0feb7b
+      internalID: -1410957765
       vertices: []
       indices: 
       edges: []
@@ -388,548 +388,20 @@ TextureImporter:
       name: sacrifice_8
       rect:
         serializedVersion: 2
-        x: 30
-        y: 138
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b51ea0f320c4b380800000000000000
-      internalID: -8956322498338744906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_9
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 96
-        width: 19
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a0fb8afc7a24c68f0800000000000000
-      internalID: -545988166307758326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_10
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 97
-        width: 13
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4ddc413b033315a0800000000000000
-      internalID: -6551836909729161909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_11
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 96
-        width: 19
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0d6bd51fe58e05cd0800000000000000
-      internalID: -2571299892754532656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_12
-      rect:
-        serializedVersion: 2
-        x: 151
-        y: 95
-        width: 48
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e6b2e7d2ce66db70800000000000000
-      internalID: 8923441494805886692
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_13
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 96
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3531fa4277f322210800000000000000
-      internalID: 1306676622839976787
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_14
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 97
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 37987d4d20f801670800000000000000
-      internalID: 8507456938426468723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_15
-      rect:
-        serializedVersion: 2
-        x: 182
-        y: 96
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a61786dff91323c20800000000000000
-      internalID: 3184662449725403498
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_16
-      rect:
-        serializedVersion: 2
-        x: 187
-        y: 96
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f6386d217bed03f60800000000000000
-      internalID: 8012148614968542063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_17
-      rect:
-        serializedVersion: 2
-        x: 199
-        y: 97
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d45b0c47abefe70d0800000000000000
-      internalID: -3423018589978839731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_18
-      rect:
-        serializedVersion: 2
-        x: 7
+        x: 144
         y: 0
-        width: 48
-        height: 30
+        width: 72
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 344ab532c40a7ebc0800000000000000
-      internalID: -3753855515518852029
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_19
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 10
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41f8f4cece03df460800000000000000
-      internalID: 7277026367035641620
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_20
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 1
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1db039d8cbc332f40800000000000000
-      internalID: 5702468333707922385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_21
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 0
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4432440d5613eba20800000000000000
-      internalID: 3079953508523582276
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_22
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 0
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 824babccc0ecc5e80800000000000000
-      internalID: -8188443468096687064
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_23
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 1
-        width: 7
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0132c8c55d69d5270800000000000000
-      internalID: 8240908736282764048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_24
-      rect:
-        serializedVersion: 2
-        x: 79
-        y: 0
-        width: 25
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b0b1985d6ad2bb20800000000000000
-      internalID: 3148819252657631411
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_25
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 1
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3107d3d0b5abf4f40800000000000000
-      internalID: 5714991352383369235
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_26
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 0
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a558a3cd019ef93a0800000000000000
-      internalID: -6656345465606732454
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_27
-      rect:
-        serializedVersion: 2
-        x: 118
-        y: 0
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a4c710a26e037ddf0800000000000000
-      internalID: -155601897015641014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_28
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 1
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d54396b3894894d10800000000000000
-      internalID: 2110363689766433885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_29
-      rect:
-        serializedVersion: 2
-        x: 156
-        y: 0
-        width: 20
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 34c873bc125cc6300800000000000000
-      internalID: 246788828532542531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_30
-      rect:
-        serializedVersion: 2
-        x: 175
-        y: 1
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe78839c9a3981620800000000000000
-      internalID: 2745106330316998639
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_31
-      rect:
-        serializedVersion: 2
-        x: 179
-        y: 0
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ef346d097b30fca30800000000000000
-      internalID: 4237609861322785790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sacrifice_32
-      rect:
-        serializedVersion: 2
-        x: 190
-        y: 0
-        width: 14
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6ac8943c5c0902110800000000000000
-      internalID: 1234145476958850214
+      spriteID: d56977e699afcc640806a78120b3d469
+      internalID: -172482782
       vertices: []
       indices: 
       edges: []
@@ -938,7 +410,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e4cd004113bd81f4e82675397a106821
     internalID: 0
     vertices: []
     indices: 
@@ -947,7 +419,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sacrifice_0: -1765901471
+      sacrifice_1: -1802409354
+      sacrifice_2: 1287192605
+      sacrifice_3: 267126046
+      sacrifice_4: 620124538
+      sacrifice_5: 451353494
+      sacrifice_6: -373839571
+      sacrifice_7: -1410957765
+      sacrifice_8: -172482782
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
