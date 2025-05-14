@@ -102,6 +102,11 @@ public class Player : GameCharacter {
             SkillPoints += 1;     // Reward skill points for every new level reached
             MaxMana = 10 * currentLevel;
         }
+
+        ExpToNextLevel = 6;
+        for(int i = 0; i < currentLevel; i++)
+            ExpToNextLevel += (int)Mathf.Sqrt(ExpToNextLevel);
+            
     }
 
     public Save CreateSave(){
