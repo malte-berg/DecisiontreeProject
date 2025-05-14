@@ -8,8 +8,26 @@ public class SaveManager {
 
         Save s = player.CreateSave();
         string json = JsonUtility.ToJson(s, true);
+        DeleteOldSaves();
         File.WriteAllText($"Saves/{DateTime.Now.ToString("yyyyMMddHHmmss")}.json", json);
         return s;
+
+    }
+
+    void DeleteOldSaves(){
+
+        DirectoryInfo directoryInfo = new DirectoryInfo("Saves");
+        FileInfo[] files = directoryInfo.GetFiles("*.json");
+
+        foreach(FileInfo file in files){
+
+            try{
+
+                file.Delete();
+
+            } catch {}
+
+        }
 
     }
 
