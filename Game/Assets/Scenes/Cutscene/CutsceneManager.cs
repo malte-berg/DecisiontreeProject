@@ -22,8 +22,7 @@ public class CutsceneManager : MonoBehaviour{
 
     public void SkipCutscene(){
         if (!sceneScripts[currCutscene].skipping) sceneScripts[currCutscene].skipping = true;
-        Debug.Log(dialogueBoxGO);
-        dialogueBoxGO.GetComponent<DialogueBox>().SkipDialogue();
+        GameObject.FindGameObjectWithTag("DialogueBox").GetComponent<DialogueBox>().SkipDialogue();
     }
 
     IEnumerator DoCutscene(AsyncOperation from, int to, int cutscene){
@@ -39,7 +38,7 @@ public class CutsceneManager : MonoBehaviour{
         if(cutscene >= 0 && cutscene < sceneScripts.Length) {
 
             sceneScripts[currCutscene].skipping = false;
-            
+
             if(canvas == null) canvas = GameObject.FindGameObjectWithTag("Canvas");
             Backgrounds bg = Instantiate(backgroundGO, canvas.transform).GetComponent<Backgrounds>();
             bg.Init(backgrounds);
