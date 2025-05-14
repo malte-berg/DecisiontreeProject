@@ -241,6 +241,7 @@ public class GameCharacter : MonoBehaviour{
     }
 
     public void AddSkill(Skill newSkill) {
+        
         if (skillCount == skills.Length) {
             Debug.Log("Not enough slots!!");
             return;
@@ -248,6 +249,21 @@ public class GameCharacter : MonoBehaviour{
 
         skills[skillCount] = newSkill;
         skillCount++;
+    }
+
+    public void RemoveSkillAt(int index)
+    {
+        if (index < 0 || index >= skillCount)
+            return;
+
+        for (int i = index; i < skillCount - 1; i++)
+        {
+            skills[i] = skills[i + 1];
+        }
+
+        unlockedSkills.RemoveAt(index);
+        skills[skillCount - 1] = null;
+        skillCount--;
     }
 
     //Update the player stats (permanently).
