@@ -41,16 +41,43 @@ public class AllSkills : MonoBehaviour {
         heal.Init(skillButton, player, new Heal(), punch, pointCounterText);
         heal.offsetX = 160;
         heal.offsetY = getYFromDepth(2);
-        
         punch.AddRightChild(heal);
         
+        skillButton = Instantiate(skillButtonPrefab, panelRect);
+        SkillButtonNode shield = skillButton.GetComponent<SkillButtonNode>();
+        shield.Init(skillButton, player, new Shield(), heal, pointCounterText);
+        shield.offsetX = 80;
+        shield.offsetY = getYFromDepth(3);
+        heal.AddLeftChild(shield);
+
         skillButton = Instantiate(skillButtonPrefab, panelRect);
         SkillButtonNode sacrifice = skillButton.GetComponent<SkillButtonNode>();
         sacrifice.Init(skillButton, player, new Sacrifice(), heal, pointCounterText);
         sacrifice.offsetX = 240;
         sacrifice.offsetY = getYFromDepth(3);
-
         heal.AddChild(sacrifice);
+
+        skillButton = Instantiate(skillButtonPrefab, panelRect);
+        SkillButtonNode zap = skillButton.GetComponent<SkillButtonNode>();
+        zap.Init(skillButton, player, new Zap(), heatWave, pointCounterText);
+        zap.offsetX = -240;
+        zap.offsetY = getYFromDepth(3);
+        heatWave.AddChild(zap);
+
+        skillButton = Instantiate(skillButtonPrefab, panelRect);
+        SkillButtonNode mindControl = skillButton.GetComponent<SkillButtonNode>();
+        mindControl.Init(skillButton, player, new MindControl(), zap, pointCounterText);
+        mindControl.offsetX = -300;
+        mindControl.offsetY = getYFromDepth(4);
+        zap.AddLeftChild(mindControl);
+
+        skillButton = Instantiate(skillButtonPrefab, panelRect);
+        SkillButtonNode corrode = skillButton.GetComponent<SkillButtonNode>();
+        corrode.Init(skillButton, player, new Corrode(), zap, pointCounterText);
+        corrode.offsetX = -180;
+        corrode.offsetY = getYFromDepth(4);
+        zap.AddChild(corrode);
+
         stt.UpdateNodes(punch);
     }
 

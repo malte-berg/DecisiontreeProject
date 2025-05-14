@@ -29,6 +29,7 @@ public class Combat : MonoBehaviour{
         marker = Instantiate(marker);
         markerT = marker.transform;
         targeting = Instantiate(targeting);
+        targeting.SetActive(false);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
@@ -52,7 +53,6 @@ public class Combat : MonoBehaviour{
         // Reset cooldown
         for(int i = 0; i < player.SkillCount; i++)
             player.skills[i].cooldownCount = 0;
-
         System.Random tutRand = new System.Random(123);
 
         // Set up tutorial-specific setup if in tutorial area
@@ -67,12 +67,12 @@ public class Combat : MonoBehaviour{
         } else {
 
             // Spawn enemies
-            int spawnIndex = (player.CurrentAreaIndex-1) * 2;
+            int spawnIndex = player.CurrentAreaIndex-1;
             System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
             if(player.CombatsWon == 10){
 
                 for (int i = 0; i < 2; i++) {
-                    SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+                    SpawnEnemy(enemyPrefabs[spawnIndex*2 + rand.Next() % 2], rand);
                 }
                 // spawn a boss!
                 SpawnEnemy(enemyPrefabs[spawnIndex + 6], rand);
@@ -80,7 +80,7 @@ public class Combat : MonoBehaviour{
             } else {
 
                 for (int i = 0; i < 3 && i < player.CurrentAreaIndex + player.CombatsWon; i++)
-                    SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+                    SpawnEnemy(enemyPrefabs[spawnIndex*2 + rand.Next() % 2], rand);
             }
           
         }
@@ -333,6 +333,8 @@ public class Combat : MonoBehaviour{
     }
 
     public void CharacterHover(GameCharacter hover){
+
+        targeting.SetActive(true);
 
         targeting.GetComponent<Targeting>().HoverOn(hover.transform);
 
