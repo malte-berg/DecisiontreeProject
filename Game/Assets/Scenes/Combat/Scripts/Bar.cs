@@ -14,8 +14,11 @@ public class Bar : MonoBehaviour
         
     }
 
-    public void UpdateBar(int current, int max, int type)
-    {
+    /**
+    *   type == 0: HP bar
+    *   type == 1: Mana bar
+    */
+    public void UpdateBar(int current, int max, int type) {
         if (slider == null || valueText == null || max == 0) return;
 
         current = Mathf.Clamp(current, 0, max); // To keep current between 0 and the max value
