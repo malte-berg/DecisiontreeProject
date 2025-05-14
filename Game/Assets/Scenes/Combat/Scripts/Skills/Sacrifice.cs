@@ -4,11 +4,9 @@ using System.Collections.Generic;
 
 public class Sacrifice : Skill {
 
-    int selfDamage;
-
     public Sacrifice() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Sacrifice_Icon"),
-        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation")},
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/sacrifice")},
         gc: null, 
         name: "Sacrifice", 
         power: 0, 
@@ -20,22 +18,20 @@ public class Sacrifice : Skill {
         
         ){
 
-        this.selfDamage = 10;
-        
     }
 
     public override bool Effect(GameCharacter target){
 
-        if(target.HP < selfDamage)
+        int selfDmg = (int)(gc.Strength * 0.1f + gc.Magic * 0.15f);
+
+        if(target.HP < selfDmg)
             return false;
 
-        target.Mana += 10 + (int)Math.Floor((0.9 * gc.Strength) * (0.1 * gc.Magic) * power);
+        target.HP -= selfDmg;
+        target.Mana += (int)(selfDmg * power);
 
-        if(target.Mana > target.MaxMana) {
+        if(target.Mana > target.MaxMana)
             target.Mana = target.MaxMana;
-        }
-
-        target.HP -= Mathf.FloorToInt(selfDamage/(gc.Strength * power));
 
         return true;
     }

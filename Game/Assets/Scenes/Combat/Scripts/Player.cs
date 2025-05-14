@@ -70,9 +70,9 @@ public class Player : GameCharacter {
         gameObject.name = "Player";
         HidePlayer();
         DontDestroyOnLoad(gameObject);
-
         StartCoroutine(FixBars());
     }
+    
     //Hide the player model.
     public void HidePlayer(){
 

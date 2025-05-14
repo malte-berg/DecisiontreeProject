@@ -8,7 +8,7 @@ public class Katana : Weapon{
         icon: Resources.Load<Sprite>("Sprites/Icons/katana_Icon"),
         sprites: new List<Sprite> {Resources.Load<Sprite>("Sprites/Items/katana1"), Resources.Load<Sprite>("Sprites/Items/katana2")},
         name: "Katana",
-        value: 110,
+        value: 200,
         description: "Surviving the nuclear blast the way of the Samurai persists.",
         vitalityAdd: 8,
         vitalityMult: 1.005f,

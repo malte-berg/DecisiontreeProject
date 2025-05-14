@@ -8,14 +8,14 @@ public class Punch : Skill
         icon: Resources.Load<Sprite>("Sprites/Abilities/Punch_Icon"),
         sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation")},
         gc: null,
-        name: "Punch", 
-        power: 0, 
+        name: "Punch",
+        power: 0,
         manaCost: 0,
         skillCost: 1,
         cooldown: 0,
         attack: true,
         description: "Perform a basic attack on one enemy."
-        
+
         ){
 
     }
@@ -40,7 +40,7 @@ public class Punch : Skill
         sm.ChangeOpacity(AbilityRenderer, 1f);
         sm.SetScale(AbilityRenderer.transform, 6f);
 
-        Vector3 toTarget = targetPos - sender.transform.position; 
+        Vector3 toTarget = targetPos - sender.transform.position;
 
         sm.AttackAnimation(sender);
         sm.LungeTo(sender, toTarget * 0.65f, 0.45f);

@@ -278,7 +278,7 @@ public class GameCharacter : MonoBehaviour{
             armor,
             strength,
             magic,
-            mana
+            maxMana
         };
 
         return temp;
@@ -301,7 +301,7 @@ public class GameCharacter : MonoBehaviour{
 
     float GetEffectFactor(int type){
 
-        float factor = 0;
+        float factor = 1;
 
         for(int i = 0; i < statusEffects.Count; i++){
 
