@@ -37,6 +37,8 @@ public class Combat : MonoBehaviour{
         player.c = this;
         player.ShowPlayer();
         player.transform.position = new Vector3(-4, 0, 0);
+        player.transform.GetChild(0).transform.position = new Vector3(-4, 0, 0);
+        player.transform.GetChild(1).transform.position = new Vector3(-4, 0, 0);
         
         // Create status bar
         player.bars = CreateBars(player);
