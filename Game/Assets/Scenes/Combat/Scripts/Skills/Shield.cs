@@ -4,7 +4,7 @@ public class Shield : Skill
 {
 
     public Shield() : base(
-         icon: null,
+         icon: Resources.Load<Sprite>("Sprites/Abilities/shield_Icon"),
          sprites: null,
          gc: null,
          name: "Shield",

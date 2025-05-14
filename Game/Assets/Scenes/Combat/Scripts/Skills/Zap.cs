@@ -6,12 +6,13 @@ public class Zap : Skill
 {
 
     public Zap() : base(
-        icon: null,
+        icon: Resources.Load<Sprite>("Sprites/Abilities/zap_Icon"),
         sprites: Resources.LoadAll<Sprite>("Sprites/Abilities/zap").ToList(),
         gc: null,
         name: "Zap",
         power: 1,
-        manaCost: 30,
+        // manaCost : 0, // for debug
+        manaCost: 25,
         skillCost: 1,
         cooldown: 2,
         attack: true,
@@ -41,16 +42,20 @@ public class Zap : Skill
     }
 
     public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){
-        float delay = 0.1f;
+        float delay = 0.08f;
         SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
         Transform AbilityContainer = AbilityRenderer.gameObject.transform;
 
-        sm.SetScale(AbilityRenderer.transform, 3f);
+        float totalDelay = delay*sprites.Count + 0.2f;
+
+        AbilityRenderer.enabled = true;
+        sm.SetSprite(null, AbilityRenderer);
+        sm.SetScale(AbilityRenderer.transform, 5f);
 
         sm.RollSprites(sprites, AbilityRenderer, delay);
 
-        sm.DisplaceSprite(targetPos + Vector3.up * 1.5f, AbilityContainer, delay);
-        sm.DelayedAction(() => sm.HideSprite(AbilityRenderer), delay*sprites.Count - 0.1f);
+        sm.DisplaceSprite(targetPos + Vector3.up * 3f + Vector3.right * 0.1f, AbilityContainer, totalDelay);
+        sm.DelayedAction(() => sm.HideSprite(AbilityRenderer), totalDelay);
 
         Vector3 toTarget = targetPos - sender.transform.position;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Heal : Skill {
     
     public Heal() : base(
-        icon: Resources.Load<Sprite>("Sprites/Abilities/Heal_Icon"),
+        icon: Resources.Load<Sprite>("Sprites/Abilities/heal_Icon"),
         sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/heal")},
         gc: null,
         name: "Heal",

@@ -14,8 +14,11 @@ public class Bar : MonoBehaviour
         
     }
 
-    public void UpdateBar(int current, int max)
-    {
+    /**
+    *   type == 0: HP bar
+    *   type == 1: Mana bar
+    */
+    public void UpdateBar(int current, int max, int type) {
         if (slider == null || valueText == null || max == 0) return;
 
         current = Mathf.Clamp(current, 0, max); // To keep current between 0 and the max value
@@ -23,11 +26,32 @@ public class Bar : MonoBehaviour
         float percentage = (float)current / max;
         slider.value = percentage;
         valueText.text = $"{current} / {max}";
-        float colorValue = MapValue(current, 0f, max, 1.0f, 0f);
-        valueText.color = new Color(colorValue, colorValue, colorValue, 1f);
+        UpdateTextColor(percentage);
+        if (type == 0) {
+            UpdateBarColor(percentage);
+        }
     }
 
-    private float MapValue(float value, float fromLow, float fromHigh, float toLow, float toHigh) {
-        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+    private void UpdateTextColor(float hpPercentage) {
+        valueText.color = ColorFromPercentage(hpPercentage, true);
+    }
+
+    private void UpdateBarColor(float hpPercentage) {
+        Image sliderFill = slider.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+        sliderFill.color = ColorFromPercentage(hpPercentage, false);
+    }
+
+    private Color32 ColorFromPercentage(float value, bool isText) {
+        if (value >= 0.75f) {
+            if (isText) return new Color32(255, 255, 255, 255);
+            return new Color32(52, 194, 0, 255);
+        } else if (value >= 0.50f) {
+            if (isText) return new Color32(255, 255, 255, 255);
+            return new Color32(255, 203, 15, 255);
+        } else if (value >= 0.25f) {
+            return new Color32(245, 144, 66, 255);
+        } else {
+            return new Color32(255, 43, 43, 255);
+        }
     }
 }

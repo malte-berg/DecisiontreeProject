@@ -13,7 +13,7 @@ public class MageHat : Head{
         armorAdd: 3,
         armorMult: 1f,
         strengthAdd: 0,
-        strengthMult: 0.9f,
+        strengthMult: 1f,
         magicAdd: 8,
         magicMult: 1f,
         manaAdd: 20,

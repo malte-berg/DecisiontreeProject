@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class MindControl : Skill
 {
@@ -7,11 +8,12 @@ public class MindControl : Skill
     public static System.Random rand = new System.Random();
 
     public MindControl() : base(
-        icon: null,
-        sprites: null,
+        icon: Resources.Load<Sprite>("Sprites/Abilities/mindControl_Icon"),
+        sprites: Resources.LoadAll<Sprite>("Sprites/Abilities/mindControl").ToList(),
         gc: null,
         name: "Mind Control",
         power: 1,
+        // manaCost : 0, // for debug
         manaCost: 30,
         skillCost: 1,
         cooldown: 2, 
@@ -75,6 +77,26 @@ public class MindControl : Skill
 
     }
 
-    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){}
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){
+        float delay = 0.12f;
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+        Transform AbilityContainer = AbilityRenderer.gameObject.transform;
+
+        float totalDelay = delay*sprites.Count + 0.2f;
+
+        AbilityRenderer.enabled = true;
+        sm.SetSprite(null, AbilityRenderer);
+        sm.SetScale(AbilityRenderer.transform, 2.5f);
+
+        sm.RollSprites(sprites, AbilityRenderer, delay);
+
+        sm.DisplaceSprite(targetPos + Vector3.up * -0.5f + Vector3.right * 0.33f, AbilityContainer, totalDelay);
+        sm.DelayedAction(() => sm.HideSprite(AbilityRenderer), totalDelay);
+
+        Vector3 toTarget = targetPos - sender.transform.position;
+
+        sm.AttackAnimation(sender);
+        sm.LungeTo(sender, toTarget * 0.05f, 0.2f);  
+    }
 
 }

@@ -51,7 +51,6 @@ public class AreaInitializer : MonoBehaviour
 
     void AreaDictionaryInit()
     {
-        Debug.Log("religionItems.Count"+religionItems.Count);
         for (int i = 1; i < religionItems.Count; i++)
         {
             AreaDataLoader.InitAreaRegionItems(i, GetAreaItems(i));

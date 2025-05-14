@@ -8,7 +8,6 @@ using UnityEngine;
 public class Enemy : GameCharacter {
 
     Item[] availableItems;
-    int enemyPower;
 
     //For mindcontrol ability
     public Enemy targetedByControlled = null; // which target the mind controlled enemy targets
@@ -30,7 +29,7 @@ public class Enemy : GameCharacter {
 
     ){}
 
-    public void CreateEnemy(Item[] availableItems, double rnd, string cName){
+    public void CreateEnemy(Item[] availableItems, double rnd, int combatsWon, string cName){
 
         StartCoroutine(FixBars());
 
@@ -39,7 +38,7 @@ public class Enemy : GameCharacter {
         }
 
         this.availableItems = availableItems;
-        level += (int)(7 * rnd) - 3;
+        level += (int)(7 * rnd) - 4 + (int)(MathF.Log(combatsWon+1, MathF.E) * 2.5f);
         if(level < 1) level = 1;
         CName = cName;
 
@@ -56,7 +55,7 @@ public class Enemy : GameCharacter {
         punch.UnlockSkill(this);
         AddSkill(punch);
         
-        GatherItems((level - 1) * 10 + 1, rnd);
+        GatherItems((level - 1) * 6 + 1, rnd);
         GatherSkills(level / 3);
         equipment.PrintEquipment();
 
@@ -179,6 +178,23 @@ public class Enemy : GameCharacter {
         string enemyName = this.gameObject.name;
         Item item = availableItems[i];
         
+        // bosses get only a weapon and their own hat
+        if(enemyName.Contains("Boss")) {
+            if(enemyName.Contains("Gladiator")){ 
+                if(item is GladiatorHelmet || item is Broadsword) return true;
+                else return false;
+            }
+            else if(enemyName.Contains("Guard")){
+                if(item is EnforcerHelmet || item is Broadsword) return true;
+                else return false;
+            }
+            else if(enemyName.Contains("Leader")) {
+                if(item is Katana) return true;
+                else return false;
+            }
+            else return false;
+        }
+
         if(item is Torso) {
             if(!(enemyName.Contains("Thug") || enemyName.Contains("Addict")))
                 return false;

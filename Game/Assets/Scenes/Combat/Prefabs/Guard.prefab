@@ -359,6 +359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed990991cdc84e4caac092ee7b9b80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteContainer: {fileID: 0}
+  abilityContainer: {fileID: 0}
   spriteRenderer: {fileID: 0}
 --- !u!114 &-5186805524164634729
 MonoBehaviour:
@@ -373,13 +375,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   c: {fileID: 0}
+  bars: {fileID: 0}
   healthBar: {fileID: 0}
   manaBar: {fileID: 0}
   equipment: {fileID: 0}
   sprites:
   - {fileID: 21300000, guid: 65a585e54b4fa854ba7a7e637b97fd13, type: 3}
   - {fileID: 21300000, guid: 4cc99f48348e41349a09aef45d6ce427, type: 3}
-  level: 12
+  targetedByControlled: {fileID: 0}
+  controlledTurns: 0
+  level: 18
 --- !u!1 &4836084402290988427
 GameObject:
   m_ObjectHideFlags: 0

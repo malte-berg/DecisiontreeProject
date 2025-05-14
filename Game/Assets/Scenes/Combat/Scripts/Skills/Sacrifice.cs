@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Sacrifice : Skill {
 
     public Sacrifice() : base(
-        icon: Resources.Load<Sprite>("Sprites/Abilities/Sacrifice_Icon"),
+        icon: Resources.Load<Sprite>("Sprites/Abilities/sacrifice_Icon"),
         sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/sacrifice")},
         gc: null, 
         name: "Sacrifice", 
