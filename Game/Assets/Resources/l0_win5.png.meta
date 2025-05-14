@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9b39d7cd7cb19426da3eacee7ee60a70
+guid: 67dedf938763c4f1ca4bd693d14577e9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1521487376802658841
-    second: Area 3_0
+      213: 3751252986602699801
+    second: l0_win5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Area 3_0
+      name: l0_win5_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 512
+        width: 4096
+        height: 2048
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e5cf6fba4792eae0800000000000000
-      internalID: -1521487376802658841
+      spriteID: 91cb31167b02f0430800000000000000
+      internalID: 3751252986602699801
       vertices: []
       indices: 
       edges: []
