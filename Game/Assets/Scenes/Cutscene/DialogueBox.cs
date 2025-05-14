@@ -75,7 +75,5 @@ public class DialogueBox : MonoBehaviour{
             talkingText.text += letter;
             yield return new WaitForSeconds(typeSpeed);
         }
-
-        sc.waitingForDialogue = true;
     }
 }
