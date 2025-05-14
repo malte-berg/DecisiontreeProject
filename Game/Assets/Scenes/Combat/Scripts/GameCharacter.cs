@@ -241,17 +241,6 @@ public class GameCharacter : MonoBehaviour{
     }
 
     public void AddSkill(Skill newSkill) {
-
-        print(skillCount);
-
-        for(int i = 0; i < skillCount; i++){
-
-            if(skills[i] != null)
-                print(skills[i].Name);
-            else
-                print("Empty skill");
-
-        }
         
         if (skillCount == skills.Length) {
             Debug.Log("Not enough slots!!");
