@@ -26,6 +26,12 @@ public class DialogueBox : MonoBehaviour{
 
     }
 
+    //Empties all enqueued dialogues.
+    public void SkipDialogue(){
+        queue.Clear();
+        ContinueDialogue();
+    }
+
     public void DisplayNext(){
         
         string who = queue[0].Split('§')[0];
