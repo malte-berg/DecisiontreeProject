@@ -13,8 +13,11 @@ public class HeatWave : Skill {
         skillCost: 1,
         cooldown: 3,
         attack: true,
-        description: "Deal Fire Damage to all enemies."
-        
+        description: "Deal Fire Damage to all enemies.",
+        soundEffect: new AudioClip[] {
+            Resources.Load<AudioClip>("Sounds/heat wave_sound1"),
+            Resources.Load<AudioClip>("Sounds/heat wave_sound2")
+        } 
         ){
 
     }
