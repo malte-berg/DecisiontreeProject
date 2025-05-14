@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mindControl_Icon_0: -3981232544256229667
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
