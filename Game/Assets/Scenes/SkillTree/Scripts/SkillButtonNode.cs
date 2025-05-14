@@ -41,7 +41,7 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         Image imageComponent = self.GetComponent<Image>();
         TMP_Text skillNameText = skillName.GetComponent<TMP_Text>();
 
-        if (imageComponent != null) {
+        if (imageComponent != null && skill != null && skill.Icon != null) {
             imageComponent.sprite = skill.Icon;
             if (skill.unlocked) {
                 imageComponent.color = Color.white;
@@ -87,8 +87,10 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (left == null){
             left = child;
             child.parent = this;
+            /*
             child.offsetX = this.offsetX + this.offsetX / 2;
             child.offsetY = this.offsetY - 100;
+            */
             child.MoveNode();
             child.DrawLine();
             return true;
@@ -96,8 +98,10 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (right == null){
             right = child;
             child.parent = this;
+            /*
             child.offsetX = this.offsetX + this.offsetX / 2;
             child.offsetY = this.offsetY - 100;
+            */
             child.MoveNode();
             child.DrawLine();
             return true;

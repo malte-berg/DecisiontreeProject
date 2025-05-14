@@ -29,6 +29,7 @@ public class Combat : MonoBehaviour{
         marker = Instantiate(marker);
         markerT = marker.transform;
         targeting = Instantiate(targeting);
+        targeting.SetActive(false);
 
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
@@ -43,16 +44,15 @@ public class Combat : MonoBehaviour{
 
         // Update HealthBar on the player
         player.HP = player.Vitality;
-        player.healthBar.UpdateBar(player.HP, player.Vitality);
+        player.healthBar.UpdateBar(player.HP, player.Vitality, 0);
 
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
-        player.manaBar.UpdateBar(player.Mana, player.MaxMana);
+        player.manaBar.UpdateBar(player.Mana, player.MaxMana, 1);
         
         // Reset cooldown
         for(int i = 0; i < player.SkillCount; i++)
             player.skills[i].cooldownCount = 0;
-
         System.Random tutRand = new System.Random(123);
 
         // Set up tutorial-specific setup if in tutorial area
@@ -67,12 +67,12 @@ public class Combat : MonoBehaviour{
         } else {
 
             // Spawn enemies
-            int spawnIndex = (player.CurrentAreaIndex-1) * 2;
+            int spawnIndex = player.CurrentAreaIndex-1;
             System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
             if(player.CombatsWon == 10){
 
                 for (int i = 0; i < 2; i++) {
-                    SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+                    SpawnEnemy(enemyPrefabs[spawnIndex*2 + rand.Next() % 2], rand);
                 }
                 // spawn a boss!
                 SpawnEnemy(enemyPrefabs[spawnIndex + 6], rand);
@@ -80,7 +80,7 @@ public class Combat : MonoBehaviour{
             } else {
 
                 for (int i = 0; i < 3 && i < player.CurrentAreaIndex + player.CombatsWon; i++)
-                    SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
+                    SpawnEnemy(enemyPrefabs[spawnIndex*2 + rand.Next() % 2], rand);
             }
           
         }
@@ -161,11 +161,11 @@ public class Combat : MonoBehaviour{
 
         // Update HealthBar on the cEnemy
         cEnemy.HP = cEnemy.Vitality;
-        cEnemy.healthBar.UpdateBar(cEnemy.HP, cEnemy.Vitality);
+        cEnemy.healthBar.UpdateBar(cEnemy.HP, cEnemy.Vitality, 0);
 
         // Update ManaBar on the cEnemy
         cEnemy.Mana = cEnemy.MaxMana;
-        cEnemy.manaBar.UpdateBar(cEnemy.Mana, cEnemy.MaxMana);
+        cEnemy.manaBar.UpdateBar(cEnemy.Mana, cEnemy.MaxMana, 1);
 
         enemies.Add(cEnemy);
         return cEnemy;
@@ -204,8 +204,12 @@ public class Combat : MonoBehaviour{
                 if (enemyCount == 1){
                     player.CombatsWon++;
                     int difficulty = (int)MathF.Log(player.CombatsWon, MathF.E) + 1;
-                    player.AddExp(difficulty * player.CurrentAreaIndex * player.CurrentAreaIndex * 5);      // Give EXP for winning the battle
-                    player.Gold += difficulty * player.CurrentAreaIndex * 15;                               // Give Gold for winning the battle
+                    int expEarned = difficulty * player.CurrentAreaIndex * player.CurrentAreaIndex * 5;
+                    int goldEarned = difficulty * player.CurrentAreaIndex * 15;
+                    player.AddExp(expEarned); // Give EXP for winning the battle
+                    player.Gold += goldEarned; // Give Gold for winning the battle
+                    RewardData.expEarned = expEarned;
+                    RewardData.goldEarned = goldEarned;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
                 }
@@ -227,8 +231,8 @@ public class Combat : MonoBehaviour{
         }
 
         // GAME OVER (Player died)
-        if (player.CurrentAreaIndex == 0)
-        {
+
+        if (player.CurrentAreaIndex == 0) {
             player.RemoveSkillAt(2);
             player.RemoveSkillAt(1);
 
@@ -244,10 +248,11 @@ public class Combat : MonoBehaviour{
             //Switch Scene to the in game menu scene, with the Intro cutscene.
             GetComponent<SceneSwitch>().WithCutscene = 0;
             GetComponent<SceneSwitch>().SwitchScene(1);
-        }
-        else
-        {
-            player.AddExp((player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1));
+        } else {
+            int gainedExp = (player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1);
+            player.AddExp(gainedExp);
+            RewardData.expEarned = gainedExp;
+            RewardData.goldEarned = 0;
             SceneManager.LoadScene("DemoLoseScreen");
             Debug.LogWarning("Main character died lol");
         }
@@ -333,6 +338,8 @@ public class Combat : MonoBehaviour{
     }
 
     public void CharacterHover(GameCharacter hover){
+
+        targeting.SetActive(true);
 
         targeting.GetComponent<Targeting>().HoverOn(hover.transform);
 

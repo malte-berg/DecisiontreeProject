@@ -3,8 +3,8 @@ guid: ab5e4153cadef0f429073de3dbe5e217
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2281458042351831758
-    second: Icon4_0
+      213: -922556183131666872
+    second: heal_Icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Icon4_0
+      name: heal_Icon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23539a78ff1a650e0800000000000000
-      internalID: -2281458042351831758
+      spriteID: 846c8131a0c6233f0800000000000000
+      internalID: -922556183131666872
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Icon4_0: -2281458042351831758
+      heal_Icon_0: -922556183131666872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
