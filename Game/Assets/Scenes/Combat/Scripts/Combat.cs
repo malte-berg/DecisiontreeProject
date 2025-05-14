@@ -193,8 +193,8 @@ public class Combat : MonoBehaviour{
                     int goldEarned = difficulty * player.CurrentAreaIndex * 15;
                     player.AddExp(expEarned); // Give EXP for winning the battle
                     player.Gold += goldEarned; // Give Gold for winning the battle
-                    WinScreenData.expEarned = expEarned;
-                    WinScreenData.goldEarned = goldEarned;
+                    RewardData.expEarned = expEarned;
+                    RewardData.goldEarned = goldEarned;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
                 }
@@ -216,7 +216,10 @@ public class Combat : MonoBehaviour{
         }
 
         // GAME OVER (Player died)
-        player.AddExp((player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1));
+        int gainedExp = (player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1);
+        player.AddExp(gainedExp);
+        RewardData.expEarned = gainedExp;
+        RewardData.goldEarned = 0;
         SceneManager.LoadScene("DemoLoseScreen");
         Debug.LogWarning("Main character died lol");
 
