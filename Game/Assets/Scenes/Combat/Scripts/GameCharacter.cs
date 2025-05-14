@@ -124,8 +124,8 @@ public class GameCharacter : MonoBehaviour{
 
     public IEnumerator FixBars(){
         
-        yield return new WaitForSeconds(1);
         Moved();
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(FixBars());
 
     }
