@@ -189,8 +189,12 @@ public class Combat : MonoBehaviour{
                 if (enemyCount == 1){
                     player.CombatsWon++;
                     int difficulty = (int)MathF.Log(player.CombatsWon, MathF.E) + 1;
-                    player.AddExp(difficulty * player.CurrentAreaIndex * player.CurrentAreaIndex * 5);      // Give EXP for winning the battle
-                    player.Gold += difficulty * player.CurrentAreaIndex * 15;                               // Give Gold for winning the battle
+                    int expEarned = difficulty * player.CurrentAreaIndex * player.CurrentAreaIndex * 5;
+                    int goldEarned = difficulty * player.CurrentAreaIndex * 15;
+                    player.AddExp(expEarned); // Give EXP for winning the battle
+                    player.Gold += goldEarned; // Give Gold for winning the battle
+                    WinScreenData.expEarned = expEarned;
+                    WinScreenData.goldEarned = goldEarned;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
                 }
