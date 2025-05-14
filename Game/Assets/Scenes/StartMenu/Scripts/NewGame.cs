@@ -21,6 +21,10 @@ public class NewGame : MonoBehaviour{
 
         prepPlayerAndArea();
         
+        Player p = playerObject.GetComponent<Player>();
+        Punch pS = new Punch();
+        pS.UnlockSkill(p);
+        p.AddSkill(pS);
         new SaveManager().CreateSave(playerObject.GetComponent<Player>());
         GetComponent<SceneSwitch>().WithCutscene = 0;
         GetComponent<SceneSwitch>().SwitchScene(1);
