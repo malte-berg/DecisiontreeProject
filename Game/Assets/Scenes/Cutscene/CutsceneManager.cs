@@ -9,6 +9,7 @@ public class CutsceneManager : MonoBehaviour{
     public Sprite[] backgrounds;
     public SceneScript[] sceneScripts;
     GameObject canvas;
+    int currCutscene;
 
     public void SwitchScene(int from, int to, int cutscene){
 
@@ -19,7 +20,15 @@ public class CutsceneManager : MonoBehaviour{
 
     }
 
+    public void SkipCutscene(){
+        if (!sceneScripts[currCutscene].skipping) sceneScripts[currCutscene].skipping = true;
+        Debug.Log(dialogueBoxGO);
+        dialogueBoxGO.GetComponent<DialogueBox>().SkipDialogue();
+    }
+
     IEnumerator DoCutscene(AsyncOperation from, int to, int cutscene){
+
+        currCutscene = cutscene;
 
         while(!from.isDone)
             yield return null;
@@ -29,14 +38,16 @@ public class CutsceneManager : MonoBehaviour{
 
         if(cutscene >= 0 && cutscene < sceneScripts.Length) {
 
+            sceneScripts[currCutscene].skipping = false;
+            
             if(canvas == null) canvas = GameObject.FindGameObjectWithTag("Canvas");
             Backgrounds bg = Instantiate(backgroundGO, canvas.transform).GetComponent<Backgrounds>();
             bg.Init(backgrounds);
             DialogueBox db = Instantiate(dialogueBoxGO, canvas.transform).GetComponent<DialogueBox>();
             db.Init(sceneScripts[cutscene]);
             sceneScripts[cutscene].LoadCutscene(db, bg);
+            GameObject.FindGameObjectWithTag("Skip").GetComponent<RectTransform>().SetAsLastSibling();
             yield return sceneScripts[cutscene].RunAnimation();
-
         }
 
         Destroy(canvas);
