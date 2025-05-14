@@ -3,7 +3,7 @@ using UnityEngine;
 public class Corrode : Skill
 {
     public Corrode() : base(
-      icon: null,
+      icon: Resources.Load<Sprite>("Sprites/Abilities/corrode_Icon"),
       sprites: null,
       gc: null,
       name: "Corrode",

@@ -6,7 +6,11 @@ public class SkillBook {
         typeof(Punch),
         typeof(HeatWave),
         typeof(Heal),
-        typeof(Sacrifice)
+        typeof(Sacrifice),
+        typeof(Zap),
+        typeof(Corrode),
+        typeof(MindControl),
+        typeof(Shield)
     };
 
     public int Count{ get{ return pages.Length; }}
