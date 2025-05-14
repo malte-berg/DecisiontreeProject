@@ -9,8 +9,8 @@ public class Corrode : Skill
       gc: null,
       name: "Corrode",
       power: 1,
-      // manaCost: 25,
-      manaCost: 0, //debug
+      manaCost: 25,
+    //   manaCost: 0, //debug
       skillCost: 1,
       cooldown: 2,
       attack: true,

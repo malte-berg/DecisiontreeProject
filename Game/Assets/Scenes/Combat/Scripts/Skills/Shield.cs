@@ -10,8 +10,8 @@ public class Shield : Skill
          gc: null,
          name: "Shield",
          power: 1,
-        //  manaCost: 25,
-         manaCost: 0, //debug
+         manaCost: 25,
+        //  manaCost: 0, //debug
          skillCost: 1,
          cooldown: 2,
          attack: false,
