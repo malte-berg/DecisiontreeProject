@@ -15,7 +15,7 @@ public class Zap : Skill
         skillCost: 1,
         cooldown: 2,
         attack: true,
-        description: "Steals enemy's health while dealing damage",
+        description: "Steals enemy's health while dealing damage.",
         soundEffect: new AudioClip[] {
             Resources.Load<AudioClip>("Sounds/zap_sound")
         }
