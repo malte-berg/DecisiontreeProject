@@ -70,6 +70,7 @@ public class Player : GameCharacter {
         gameObject.name = "Player";
         HidePlayer();
         DontDestroyOnLoad(gameObject);
+        
         StartCoroutine(FixBars());
     }
     

@@ -48,21 +48,23 @@ public class Combat : MonoBehaviour{
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
+        
+        // Reset cooldown
+        for(int i = 0; i < player.SkillCount; i++)
+            player.skills[i].cooldownCount = 0;
+
+        System.Random tutRand = new System.Random(123);
 
         // Set up tutorial-specific setup if in tutorial area
-        if (player.CurrentAreaIndex == 0 && player.CombatsArr[0] == 0)
+        if (player.CurrentAreaIndex == 0 && player.CombatsWon == 0)
         {
             SetupTutorialPlayer();
             for (int i = 0; i < 4; i++)
             {
                 int rand = UnityEngine.Random.Range(0, 1);
-                SpawnEnemy(enemyPrefabs[rand]);
+                SpawnEnemy(enemyPrefabs[rand], tutRand);
             }
         }
-      
-        // Reset cooldown
-        for(int i = 0; i < player.SkillCount; i++)
-            player.skills[i].cooldownCount = 0;
 
         // Spawn enemies
         int spawnIndex = (player.CurrentAreaIndex-1) * 2;
@@ -349,6 +351,6 @@ public class Combat : MonoBehaviour{
         sacrifice.UnlockSkill(player);
         player.AddSkill(sacrifice);
 
-        player.CombatsArr[0] = 1;
+        player.CombatsWon = 1;
     }
 }
