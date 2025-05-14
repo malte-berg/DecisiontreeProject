@@ -17,14 +17,15 @@ public class SceneSwitch : MonoBehaviour{
 
         if(p == null)
             LoadScene(0);
-        else
-            p.GetComponent<Player>().HidePlayer();
-
+        
     }
 
     public void SwitchScene(int sceneIndex){
 
         Player player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Player>();
+
+        if(sceneIndex != 4 && sceneIndex != 3)
+            player.HidePlayer();
 
         if (sceneIndex == 4){    //Scene 4 is Combat
             //If the player has won 10 battles in Area 1...
