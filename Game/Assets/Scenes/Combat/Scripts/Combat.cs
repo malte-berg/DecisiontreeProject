@@ -63,7 +63,6 @@ public class Combat : MonoBehaviour{
 
         foreach (SpriteRenderer s in sr) {
             s.color = Color.white;
-            // s.color = new Color(s.color.r, s.color.g, s.color.b, 1);
         }
 
         // Reset cooldown

@@ -5,19 +5,22 @@ public class Shield : Skill
 {
 
     public Shield() : base(
-         icon: Resources.Load<Sprite>("Sprites/Abilities/shield_Icon"),
-         sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/shield")},
-         gc: null,
-         name: "Shield",
-         power: 1,
-         manaCost: 25,
-         skillCost: 1,
-         cooldown: 2,
-         attack: false,
-         description: "Add some armor to player"
-         )
+        icon: Resources.Load<Sprite>("Sprites/Abilities/shield_Icon"),
+        sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/shield")},
+        gc: null,
+        name: "Shield",
+        power: 1,
+        manaCost: 25,
+        skillCost: 1,
+        cooldown: 2,
+        attack: false,
+        description: "Add some armor to player",
+        soundEffect: new AudioClip[] {
+            Resources.Load<AudioClip>("Sounds/shield_sound")
+        }
+        )
     {
-
+        
     }
 
     public override bool Effect(GameCharacter target)
