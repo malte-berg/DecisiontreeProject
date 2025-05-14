@@ -53,7 +53,7 @@ public class Combat : MonoBehaviour{
         // Reset cooldown
         for(int i = 0; i < player.SkillCount; i++)
             player.skills[i].cooldownCount = 0;
-        System.Random tutRand = new System.Random(123);
+        System.Random tutRand = new System.Random(12);
 
         // Set up tutorial-specific setup if in tutorial area
         if (player.CurrentAreaIndex == 0 && player.CombatsWon == 0) {
