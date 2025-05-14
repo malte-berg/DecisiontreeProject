@@ -8,7 +8,6 @@ public static class AreaDataLoader
         AreaData currentLevelData = Resources.Load<AreaData>($"LevelData/{fileName}");
         if (currentLevelData != null)
         {
-            //Debug.Log("Load:" + currentLevelData.areaName);
             return currentLevelData;
         }
         else

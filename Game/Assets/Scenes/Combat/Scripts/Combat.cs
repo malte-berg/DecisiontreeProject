@@ -254,7 +254,6 @@ public class Combat : MonoBehaviour{
             RewardData.expEarned = gainedExp;
             RewardData.goldEarned = 0;
             SceneManager.LoadScene("DemoLoseScreen");
-            Debug.LogWarning("Main character died lol");
         }
     }
 
@@ -274,7 +273,6 @@ public class Combat : MonoBehaviour{
             currentC = GetCurrentCharacter();
 
         if(!currentC.UseSkill(clicked)){
-            print("it failed :(");
             return false;
         }
 
