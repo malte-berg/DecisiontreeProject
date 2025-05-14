@@ -43,11 +43,11 @@ public class Combat : MonoBehaviour{
 
         // Update HealthBar on the player
         player.HP = player.Vitality;
-        player.healthBar.UpdateBar(player.HP, player.Vitality);
+        player.healthBar.UpdateBar(player.HP, player.Vitality, 0);
 
         // Update ManaBar on the player
         player.Mana = player.MaxMana;
-        player.manaBar.UpdateBar(player.Mana, player.MaxMana);
+        player.manaBar.UpdateBar(player.Mana, player.MaxMana, 1);
         
         // Reset cooldown
         for(int i = 0; i < player.SkillCount; i++)
@@ -161,11 +161,11 @@ public class Combat : MonoBehaviour{
 
         // Update HealthBar on the cEnemy
         cEnemy.HP = cEnemy.Vitality;
-        cEnemy.healthBar.UpdateBar(cEnemy.HP, cEnemy.Vitality);
+        cEnemy.healthBar.UpdateBar(cEnemy.HP, cEnemy.Vitality, 0);
 
         // Update ManaBar on the cEnemy
         cEnemy.Mana = cEnemy.MaxMana;
-        cEnemy.manaBar.UpdateBar(cEnemy.Mana, cEnemy.MaxMana);
+        cEnemy.manaBar.UpdateBar(cEnemy.Mana, cEnemy.MaxMana, 1);
 
         enemies.Add(cEnemy);
         return cEnemy;

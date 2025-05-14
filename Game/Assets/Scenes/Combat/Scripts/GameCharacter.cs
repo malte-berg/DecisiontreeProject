@@ -193,8 +193,8 @@ public class GameCharacter : MonoBehaviour{
 
         print($"Selected skill is {selectedSkill}");
         bool skill = skills[selectedSkill].TrySkill(target);
-        healthBar.UpdateBar(HP, Vitality);
-        manaBar.UpdateBar(mana, MaxMana);
+        healthBar.UpdateBar(HP, Vitality, 0);
+        manaBar.UpdateBar(mana, MaxMana, 1);
 
         Vector3 posOfTarget = target.transform.GetChild(0).position;
         if (spriteManager != null && skill) {
@@ -214,7 +214,7 @@ public class GameCharacter : MonoBehaviour{
 
         hp -= dmg - Armor;
 
-        healthBar.UpdateBar(hp, Vitality);
+        healthBar.UpdateBar(hp, Vitality, 0);
 
         if(hp <= 0)
             c.KillCharacter(this);
