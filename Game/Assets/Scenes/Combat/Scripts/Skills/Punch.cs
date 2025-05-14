@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Punch : Skill
 {
-
     public Punch() : base(
         icon: Resources.Load<Sprite>("Sprites/Abilities/Punch_Icon"),
         sprites: new List<Sprite>{Resources.Load<Sprite>("Sprites/Abilities/punchAnimation")},
@@ -14,8 +13,15 @@ public class Punch : Skill
         skillCost: 1,
         cooldown: 0,
         attack: true,
-        description: "Perform a basic attack on one enemy."
-
+        description: "Perform a basic attack on one enemy.",
+        soundEffect: new AudioClip[] {
+            Resources.Load<AudioClip>("Sounds/punch_sound1"),
+            Resources.Load<AudioClip>("Sounds/punch_sound2"),
+            Resources.Load<AudioClip>("Sounds/punch_sound3"),
+            Resources.Load<AudioClip>("Sounds/punch_sound4"),
+            Resources.Load<AudioClip>("Sounds/punch_sound5"),
+            Resources.Load<AudioClip>("Sounds/punch_sound6")
+        } 
         ){
 
     }

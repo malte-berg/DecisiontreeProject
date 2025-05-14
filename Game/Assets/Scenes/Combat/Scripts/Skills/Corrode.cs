@@ -13,7 +13,10 @@ public class Corrode : Skill
       skillCost: 1,
       cooldown: 2,
       attack: true,
-      description: "Reduces enemy armor."
+      description: "Reduces enemy armor.",
+      soundEffect: new AudioClip[] {
+        Resources.Load<AudioClip>("Sounds/corrode_sound")
+      } 
       )
     {
 
