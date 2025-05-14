@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      corrode_Icon_0: -4026485423210354878
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
