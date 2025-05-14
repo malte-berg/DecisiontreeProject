@@ -23,5 +23,11 @@ public class Bar : MonoBehaviour
         float percentage = (float)current / max;
         slider.value = percentage;
         valueText.text = $"{current} / {max}";
+        float colorValue = MapValue(current, 0f, max, 1.0f, 0f);
+        valueText.color = new Color(colorValue, colorValue, colorValue, 1f);
+    }
+
+    private float MapValue(float value, float fromLow, float fromHigh, float toLow, float toHigh) {
+        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
     }
 }

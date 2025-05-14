@@ -71,12 +71,9 @@ public class Player : GameCharacter {
         HidePlayer();
         DontDestroyOnLoad(gameObject);
       
-        Skill punch = new Punch();
-        punch.UnlockSkill(this);
-        AddSkill(punch);
         StartCoroutine(FixBars());
-
     }
+    
     //Hide the player model.
     public void HidePlayer(){
 

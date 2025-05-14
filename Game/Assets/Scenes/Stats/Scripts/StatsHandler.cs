@@ -14,7 +14,7 @@ public class StatsHandler : MonoBehaviour {
     public TextMeshProUGUI statPointsText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI levelText;
-    public Image expBar;
+    public Slider expBar;
     public Player player;
     public Image bg;
 
@@ -22,7 +22,7 @@ public class StatsHandler : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         this.statPoints = player.StatPoints;    //Get player's current amount of stat points.
         DisplayStatText(); //Make sure the stat texts show the correct player stats.
-        setBackgrund();
+        SetBackgrund();
     }
 
     //Changes the text in the stat windows to show the correct player stats
@@ -34,7 +34,7 @@ public class StatsHandler : MonoBehaviour {
         expText.text = $"EXP: {player.CurrentExp}/{player.ExpToNextLevel}";
         levelText.text = $"Level: {player.CurrentLevel}";
 
-        expBar.fillAmount = (float)player.CurrentExp / player.ExpToNextLevel; // Used for the Exp level bar
+        expBar.value = (float)player.CurrentExp / player.ExpToNextLevel; // Used for the Exp level bar
     }
 
     //Update the player stats and show the new stats.
@@ -96,7 +96,7 @@ public class StatsHandler : MonoBehaviour {
         DisplayStatText();
     }
 
-    void setBackgrund(){
+    void SetBackgrund(){
         AreaData ad = AreaDataLoader.Load(player.CurrentAreaIndex);
         bg.sprite = ad.backgroundImage;
     }

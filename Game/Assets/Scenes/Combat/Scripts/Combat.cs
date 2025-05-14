@@ -49,24 +49,25 @@ public class Combat : MonoBehaviour{
         player.Mana = player.MaxMana;
         player.manaBar.UpdateBar(player.Mana, player.MaxMana);
       
+        // Reset cooldown
+        for(int i = 0; i < player.SkillCount; i++)
+            player.skills[i].cooldownCount = 0;
+
         // Spawn enemies
         int spawnIndex = (player.CurrentAreaIndex-1) * 2;
-        int rnd = 0;
+        System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + player.CombatsWon * 1337);
         if(player.CombatsWon == 10){
 
             for (int i = 0; i < 2; i++) {
-                rnd = UnityEngine.Random.Range(0,2);
-                SpawnEnemy(enemyPrefabs[spawnIndex + rnd]);
+                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
             }
-            // TODO SPAWN BOSS
-            // SpawnEnemy(/*BOSS PREFAB[spawnIndex]*/);
+            // spawn a boss!
+            SpawnEnemy(enemyPrefabs[spawnIndex + 6], rand);
 
         } else {
 
-            for (int i = 0; i < 4; i++) {
-                rnd = UnityEngine.Random.Range(0,2);
-                SpawnEnemy(enemyPrefabs[spawnIndex + rnd]);
-            }
+            for (int i = 0; i < 4; i++)
+                SpawnEnemy(enemyPrefabs[spawnIndex + rand.Next() % 2], rand);
         }
 
         GetCurrentCharacter();
@@ -115,21 +116,26 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public Enemy SpawnEnemy(GameObject prefab){
+    public Enemy SpawnEnemy(GameObject prefab, System.Random rand){
 
         int i = enemies.Count;
 
         // Create enemy
-        System.Random rand = new System.Random((int)player.Seed + player.CurrentAreaIndex * 420 + i * 69 + player.CombatsWon * 1337);
         Enemy cEnemy = Instantiate(prefab).GetComponent<Enemy>();
         cEnemy.Init();
-        cEnemy.CreateEnemy(new Item[0], rand.NextDouble(), "Street Thug");
-        // cEnemy.CreateEnemy(new Item[0], UnityEngine.Random.Range(-3,4) + player.CombatsWon, "Street Thug");
+        cEnemy.CreateEnemy(AreaDataLoader.GetAreaItems(player.CurrentAreaIndex), rand.NextDouble(), prefab.name);
         cEnemy.gameObject.name = $"{prefab.name} (E{i})";
         cEnemy.c = this;
 
+        if(prefab.name.Contains("Boss")) {
+            cEnemy.transform.position = Vector3.right * 6.5f;
+            cEnemy.transform.position = Vector3.up * 1f;
+            cEnemy.transform.localScale *= 1.3f;
+            cEnemy.transform.GetChild(0).position += new Vector3(0f,0.24f,0f);
+        }
+
         // Place enemy
-        if(i % 2 == 0)
+        else if(i % 2 == 0)
             cEnemy.transform.position = Vector3.right * (i+1) * 2 + (Vector3.up * i * 0.5f);
         else
             cEnemy.transform.position = Vector3.right * (i+1) * 2 - (Vector3.up * (i+1) * 0.25f);
@@ -153,7 +159,11 @@ public class Combat : MonoBehaviour{
 
     public async Task KillCharacter(GameCharacter target){
 
-        SpriteRenderer sr = target.gameObject.GetComponentInChildren<SpriteRenderer>();
+        SpriteRenderer[] sr = new SpriteRenderer[7];
+        Transform container = target.transform.GetChild(0);
+        for(int i = 0; i < sr.Length; i++) {
+            sr[i] = container.GetChild(i).GetComponent<SpriteRenderer>();
+        }
         float time = 1;
 
         if(target is Enemy){
@@ -163,7 +173,9 @@ public class Combat : MonoBehaviour{
 
                 while(time > 0){
 
-                    sr.color = new Color(time,time,time,time);
+                    foreach (SpriteRenderer s in sr) {
+                        s.color = new Color(time,time,time,time);                        
+                    }
                     time -= Time.deltaTime;
                     await Task.Yield();
 
@@ -178,6 +190,7 @@ public class Combat : MonoBehaviour{
                     player.CombatsWon++;
                     player.AddExp(25);          // Give EXP for winning the battle
                     player.Gold += 15;          // Give Gold for winning the battle
+                    player.MaxMana = 10 * player.CurrentLevel;
                     player.HidePlayer();
                     SceneManager.LoadScene("DemoWinScreen");
                 }
@@ -190,7 +203,9 @@ public class Combat : MonoBehaviour{
 
         while(time > 0){
 
-            sr.color = new Color(time,time,time,time);
+            foreach (SpriteRenderer s in sr) {
+                s.color = new Color(time,time,time,time);
+            }           
             time -= Time.deltaTime;
             await Task.Yield();
 
@@ -212,17 +227,18 @@ public class Combat : MonoBehaviour{
 
     }
 
-    public void UseTurnOn(GameCharacter clicked){
+    public bool UseTurnOn(GameCharacter clicked){
 
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
         if(!currentC.UseSkill(clicked)){
             print("it failed :(");
-            return;
+            return false;
         }
 
         NewTurn();
+        return true;
 
     }
 
