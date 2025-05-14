@@ -81,7 +81,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(2);
+        yield return WaitForSecs(2);
 
         // Tutorial for main menu
         bg.SetBG(8); // Set main menu background
@@ -94,7 +94,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(2);
+        yield return WaitForSecs(2);
 
         bg.SetBG(9);
         db.MoveDialogueBox(-390, 40); 
@@ -110,7 +110,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(-390, 120);
 
@@ -125,7 +125,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(-310, 40);
 
@@ -140,7 +140,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(-210, 120);
 
@@ -155,7 +155,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(-125, 40);
 
@@ -170,7 +170,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(360, 25);
 
@@ -182,7 +182,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(395, 105);
 
@@ -194,7 +194,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         bg.SetBG(8);
         db.MoveDialogueBox(0, 0);
@@ -210,7 +210,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(2);
+        yield return WaitForSecs(2);
     }
 
 }
