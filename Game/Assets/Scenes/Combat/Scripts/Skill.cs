@@ -29,10 +29,10 @@ public abstract class Skill{
     public int SkillLevel{ get { return skillLevel; } }
     public Sprite Icon{ get { return icon; } }
 
-    public AudioClip soundEffect; 
+    public AudioClip[] soundEffect; 
     private AudioSource audioSource;
 
-    public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, int cooldown, bool attack, string description, AudioClip soundEffect){
+    public Skill(Sprite icon, List<Sprite> sprites, GameCharacter gc, string name, float power, int manaCost, int skillCost, int cooldown, bool attack, string description, AudioClip[] soundEffect){
         this.icon = icon;
         this.sprites = sprites;
         this.gc = gc;
@@ -95,10 +95,11 @@ public abstract class Skill{
 
         Debug.Log(audioSource == null ? "audioSource is null" : "audioSource loaded");
         Debug.Log(soundEffect == null ? "soundEffect is null" : "soundEffect loaded");
-        
-        if (soundEffect != null)
+
+        if (soundEffect != null && soundEffect.Length > 0 && audioSource != null)
         {
-            audioSource.PlayOneShot(soundEffect);
+            int index = Random.Range(0, soundEffect.Length);
+            audioSource.PlayOneShot(soundEffect[index]);
         }
     }
 

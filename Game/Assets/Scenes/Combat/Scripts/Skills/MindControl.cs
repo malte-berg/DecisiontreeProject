@@ -19,7 +19,9 @@ public class MindControl : Skill
         cooldown: 2, 
         attack: true,
         description: "Hijacks enemy's mind, making them unable to tell friend from foe",
-        soundEffect: null
+        soundEffect: new AudioClip[] {
+            Resources.Load<AudioClip>("Sounds/mind control_sound")
+        } 
         )
     {
 

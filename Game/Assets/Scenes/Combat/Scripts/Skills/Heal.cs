@@ -14,7 +14,9 @@ public class Heal : Skill {
         cooldown: 2,
         attack: false,
         description: "Regain some lost health.",
-        soundEffect: Resources.Load<AudioClip>("Sounds/heal_sound")
+        soundEffect: new AudioClip[] {
+            Resources.Load<AudioClip>("Sounds/heal_sound")
+        } 
         
         ){
     }

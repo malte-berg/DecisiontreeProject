@@ -15,7 +15,9 @@ public class Sacrifice : Skill {
         cooldown: 0,
         attack: false,
         description: "Inflict damage on yourself to gain mana.",
-        soundEffect: Resources.Load<AudioClip>("Sounds/sacrifice_sound")
+        soundEffect: new AudioClip[] {
+            Resources.Load<AudioClip>("Sounds/sacrifice_sound")
+        } 
         
         ){
 
