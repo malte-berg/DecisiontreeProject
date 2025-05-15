@@ -29,7 +29,7 @@ public class NewGame : MonoBehaviour{
         p.CurrentAreaIndex = 0;
         
         new SaveManager().CreateSave(playerObject.GetComponent<Player>());
-        GetComponent<SceneSwitch>().WithCutscene = 0;
+        GetComponent<SceneSwitch>().WithCutscene = 1;
         GetComponent<SceneSwitch>().SwitchScene(4);
 
     }

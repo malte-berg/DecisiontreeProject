@@ -33,7 +33,7 @@ public class SceneSwitch : MonoBehaviour{
             player.MusicToPlay = 0; //Play Combat music track
             //Before Slums Boss
             if (player.CombatsWon == 10){
-                withCutscene = 2;
+                withCutscene = 3;
                 hasSeenCutscene = true;
             }
         }
@@ -46,7 +46,7 @@ public class SceneSwitch : MonoBehaviour{
                 
                 //After Slums Boss
                 if (player.CombatsWon == 11){
-                    withCutscene = 3;
+                    withCutscene = 2;
                     hasSeenCutscene = true;
                 }
             }
