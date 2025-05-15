@@ -23,6 +23,9 @@ public class Combat : MonoBehaviour{
     int turn = 0;
     GameCharacter currentC;
 
+    private AudioSource playerDead;
+    private AudioSource enemyDead;
+
     public void Init(){
 
         // Create markers
@@ -97,10 +100,25 @@ public class Combat : MonoBehaviour{
           
         }
 
+        AudioInit();
         GetCurrentCharacter();
 
     }
 
+    private void AudioInit(){
+        AudioSource[] sources = GetComponents<AudioSource>();
+
+        playerDead = sources[0];
+        enemyDead = sources[1];
+    }
+
+    public void PlayDeathSound(GameCharacter character){
+        if (character.IsPlayer()){
+            playerDead.Play();
+        } else{
+            enemyDead.Play();
+        }
+    }
     RectTransform CreateBars(GameCharacter who){
 
         GameObject t = Instantiate(barPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);

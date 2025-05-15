@@ -97,6 +97,7 @@ public class GameCharacter : MonoBehaviour{
     public List<Sprite> sprites;
     private readonly float CHARACTER_SCALE = 2.4f;
 
+
     public GameCharacter(string cName, int vitality, int armor, int strength, int magic, int mana, int maxSkill, int inventorySize){
 
         this.cName = cName;
@@ -119,14 +120,14 @@ public class GameCharacter : MonoBehaviour{
 
         equipment = gameObject.GetComponent<Equipment>();
         StartCoroutine(FixBars());
-        
+
     }
 
     public virtual bool IsPlayer()
     {
         return false; 
     }
-
+    
     public IEnumerator FixBars(){
         
         Moved();
@@ -218,10 +219,12 @@ public class GameCharacter : MonoBehaviour{
 
         healthBar.UpdateBar(hp, Vitality, 0);
 
-        if(hp <= 0)
+        if(hp <= 0){
+            c.PlayDeathSound(this);
             c.KillCharacter(this);
-        else
+        } else {
             DamageEffect();
+        }
 
     }
 
