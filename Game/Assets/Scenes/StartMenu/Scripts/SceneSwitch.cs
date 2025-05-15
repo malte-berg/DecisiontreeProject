@@ -6,6 +6,7 @@ public class SceneSwitch : MonoBehaviour{
 
     int withCutscene = -1;
     public int WithCutscene{ set{ this.withCutscene = value; }}
+    public bool hasSeenCutscene = false;
 
     // A check to see if we need to go to title screen
     void Awake(){
@@ -27,11 +28,38 @@ public class SceneSwitch : MonoBehaviour{
         if(sceneIndex != 4 && sceneIndex != 3)
             player.HidePlayer();
 
+        //If the scene switches to the Combat scene...
         if (sceneIndex == 4){    //Scene 4 is Combat
-            //If the player has won 10 battles in Area 1...
-            if (player.CombatsWon == 10)
-                //Play cutscene nr. 3 next.
-                withCutscene = 3; //In Cutscene scene, "Slumsboss" cutscene is set as "Scene Scripts" nr. 3.
+            player.MusicToPlay = 0; //Play Combat music track
+            //Before Slums Boss
+            if (player.CombatsWon == 10){
+                withCutscene = 3;
+                hasSeenCutscene = true;
+            }
+        }
+
+        //If the scene switches to the InGameMenu scene...
+        if (sceneIndex == 1){
+            //If the player is in Area 1 (The Slums)
+            if (player.CurrentAreaIndex == 1){
+                player.MusicToPlay = 0; //Play Slums main theme
+                
+                //After Slums Boss
+                if (player.CombatsWon == 11){
+                    withCutscene = 2;
+                    hasSeenCutscene = true;
+                }
+            }
+
+            //If the player is in Area 2 (Commoner's Quarters)
+            else if (player.CurrentAreaIndex == 2){
+                player.MusicToPlay = 1; //Play Commoner's Quarters main theme
+            }
+
+            //If the player is in Area 3 (Highest Heaven)
+            else if (player.CurrentAreaIndex == 3){
+                player.MusicToPlay = 2; //Play Highest Heaven main theme
+            }
         }
 
         StartCoroutine(LoadScene(sceneIndex, withCutscene));
