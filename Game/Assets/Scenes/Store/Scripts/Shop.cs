@@ -19,9 +19,10 @@ public class Shop : MonoBehaviour
     private int playerGold;
 
     // Test Demo använder först tillfälliga item. I den färdig versionen skulle man kunna sälja den givna itemarrayen enligt spelets framsteg.
-    public Item[] onSaleItems; // 2 item för test
+    public Item[] onSaleItems; 
     // private Item selectedItem;
-
+    private AudioSource audioSource;
+    
     void Awake()
     {
         Init();
@@ -38,6 +39,8 @@ public class Shop : MonoBehaviour
 
         ShowDetailPanel(false, null);
         UpdateGoldText();
+
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     void DataFromPlayer()
@@ -81,6 +84,9 @@ public class Shop : MonoBehaviour
             // the player inventory is a fixed-size array
             player.inventory[inventoryIndex++] = itemButton.currentItem;
             itemButton.ButtonClose();
+
+            audioSource.Play();
+
             // close buyButton
             buyButton.interactable = false;
             UpdateGoldText();

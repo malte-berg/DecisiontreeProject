@@ -9,6 +9,8 @@ public class ItemDescription : MonoBehaviour{
     GameObject slide;
     Item currentDisplay;
     TMP_Text equipButtonText;
+    private AudioSource equip;
+    private AudioSource unEquip;
 
     public void Init(InventoryManager im){
 
@@ -16,7 +18,15 @@ public class ItemDescription : MonoBehaviour{
         slide = transform.GetChild(1).gameObject;
         slide.SetActive(false);
         equipButtonText = slide.transform.GetChild(3).GetChild(0).GetComponent<TMP_Text>();
+        AudioInit();
 
+    }
+
+    public void AudioInit(){
+        AudioSource[] sources = im.GetComponents<AudioSource>();
+
+        equip = sources[0];
+        unEquip = sources[1];
     }
 
     public void DisplayItem(Item target){
@@ -104,8 +114,12 @@ public class ItemDescription : MonoBehaviour{
         // Update button
         if (equipButtonText.text == "Equip") {
             equipButtonText.text = "Unequip";
+            Debug.Log(equip == null ? "equip sound is null" : "equip sound loaded");
+            equip.Play();
         } else {
             equipButtonText.text = "Equip";
+            unEquip.Play();
+            Debug.Log(unEquip == null ? "unEquip sound is null" : "unEquip sound loaded");
         }
 
         im.sl.UpdateStats();
