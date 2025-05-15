@@ -61,11 +61,10 @@ public class SkillButtonNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnClick(){
         if (skill == null) {
-            Debug.Log("Skill not found");
+            Debug.LogError("Skill not found");
             return;
         }
         if (skill.skillCost > player.SkillPoints) {
-            Debug.Log("Not enough skill points!");
             return;
         }
         if (skill.unlocked) {

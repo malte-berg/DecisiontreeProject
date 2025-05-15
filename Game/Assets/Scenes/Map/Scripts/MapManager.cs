@@ -34,7 +34,7 @@ public class MapManager : MonoBehaviour
         /* temporary use */
         if (clickedButton.name == "Area1") {
             AreaDataLoader.MovePlayerToArea(player, 1);
-            if(player.CombatsWon > 0) return;
+
             SceneSwitch sw = GetComponent<SceneSwitch>();
             // sw.WithCutscene = /* Area1 intro */;
             sw.SwitchScene(1);
@@ -49,7 +49,7 @@ public class MapManager : MonoBehaviour
             }
 
             AreaDataLoader.MovePlayerToArea(player, 2);
-            if(player.CombatsWon > 0) return;
+            
             SceneSwitch sw = GetComponent<SceneSwitch>();
             // sw.WithCutscene = /* Area2 intro */;
             sw.SwitchScene(1);
@@ -64,7 +64,7 @@ public class MapManager : MonoBehaviour
 
             }
             AreaDataLoader.MovePlayerToArea(player, 3);
-            if(player.CombatsWon > 0) return;
+            
             SceneSwitch sw = GetComponent<SceneSwitch>();
             // sw.WithCutscene = /* Area3 intro */;
             sw.SwitchScene(1);
