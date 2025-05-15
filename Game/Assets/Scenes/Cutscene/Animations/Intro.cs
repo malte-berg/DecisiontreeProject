@@ -5,9 +5,29 @@ using UnityEngine;
 public class Intro : SceneScript {
 
     public override IEnumerator RunAnimation() {
+        
+        db.Enqueue(@"
+        Narrator§Ynnos wakes up, his room still dark.
+        ");
+        db.Enqueue(@"
+        Ynnos (thinking)§“Ugh… I had that dream again… Why is it always that one? Why can I never win?”
+        ");
+        db.Enqueue(@"
+        Narrator§Ynnos sighs deeply. He checks his little sister’s room. Yep, still sleeping.
+        ");
+        db.Enqueue(@"
+        Ynnos§“Welp, time to go to the Arena again. I hope some big-shot is in the audience again, we really need some more money…”
+        ");
+        db.Enqueue(@"
+        Narrator§Ynnos gets out of bed, puts on his clothes, and starts heading to the Arena.
+        ");
+
+        db.ContinueDialogue();
+        yield return WaitForDialogue();
+        yield return WaitForSecs(1);
 
         //"TheMiracle" image is set.
-        bg.SetBG(0);
+        bg.SetBG(2);
 
         db.MoveDialogueBox(-350, 150);
 
@@ -27,7 +47,7 @@ public class Intro : SceneScript {
 
         
         //"TheNuke" image is set.
-        bg.SetBG(1);
+        bg.SetBG(3);
         yield return WaitForSecs(0.5f);
 
         db.Enqueue(@"
@@ -47,7 +67,7 @@ public class Intro : SceneScript {
         yield return WaitForSecs(1);
 
         //"raidSlums" image is set.
-        bg.SetBG(2);
+        bg.SetBG(4);
         db.MoveDialogueBox(0, 0);
         yield return WaitForSecs(0.5f);
 
@@ -66,8 +86,7 @@ public class Intro : SceneScript {
         yield return WaitForDialogue();
         yield return WaitForSecs(1);
 
-        //"[Not Decided]" image is set.
-        bg.SetBG(3);
+        bg.SetBG(5);
         yield return WaitForSecs(0.5f);
 
         db.Enqueue(@"
@@ -84,7 +103,7 @@ public class Intro : SceneScript {
         yield return WaitForSecs(2);
 
         // Tutorial for main menu
-        bg.SetBG(8); // Set main menu background
+        bg.SetBG(6); // Set main menu background
 
         db.Enqueue(@"
         Tutorial§Welcome to the Main Menu!
@@ -96,7 +115,7 @@ public class Intro : SceneScript {
         yield return WaitForDialogue();
         yield return WaitForSecs(2);
 
-        bg.SetBG(9);
+        bg.SetBG(7);
         db.MoveDialogueBox(-390, 55); 
 
         db.Enqueue(@"
@@ -197,7 +216,7 @@ public class Intro : SceneScript {
         ");
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.MoveDialogueBox(-180, 135);
 
@@ -211,7 +230,7 @@ public class Intro : SceneScript {
         yield return WaitForDialogue();
         yield return WaitForSecs(1);
 
-        bg.SetBG(8);
+        bg.SetBG(6);
         db.MoveDialogueBox(0, 0);
 
         db.Enqueue(@"
