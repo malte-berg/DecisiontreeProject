@@ -15,12 +15,20 @@ public class Punch : Skill
         attack: true,
         description: "Perform a basic attack on one enemy.",
         soundEffect: new AudioClip[] {
+            // player sound effect (player attack)
             Resources.Load<AudioClip>("Sounds/punch_sound1"),
             Resources.Load<AudioClip>("Sounds/punch_sound2"),
             Resources.Load<AudioClip>("Sounds/punch_sound3"),
             Resources.Load<AudioClip>("Sounds/punch_sound4"),
             Resources.Load<AudioClip>("Sounds/punch_sound5"),
-            Resources.Load<AudioClip>("Sounds/punch_sound6")
+            Resources.Load<AudioClip>("Sounds/punch_sound6"),
+            // enemy sound effect (enemy attack)
+            Resources.Load<AudioClip>("Sounds/punch_sound7"),
+            Resources.Load<AudioClip>("Sounds/punch_sound8"),
+            Resources.Load<AudioClip>("Sounds/punch_sound9"),
+            Resources.Load<AudioClip>("Sounds/punch_sound10"),
+            Resources.Load<AudioClip>("Sounds/punch_sound11"),
+            Resources.Load<AudioClip>("Sounds/punch_sound12"),
         } 
         ){
 

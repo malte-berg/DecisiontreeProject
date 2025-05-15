@@ -84,17 +84,25 @@ public abstract class Skill{
         gc.Mana -= manaCost;
         cooldownCount = cooldown + 1;
 
-        PlaySound();
+        PlaySound(target);
 
         return Effect(target);
 
     }
 
-    private void PlaySound(){
+    private void PlaySound(GameCharacter target){
 
-        if (soundEffect != null && soundEffect.Length > 0 && audioSource != null)
+        GameCharacter character = target.GetComponent<GameCharacter>();
+
+        if (soundEffect != null && soundEffect.Length == 1)
         {
             int index = Random.Range(0, soundEffect.Length);
+            audioSource.PlayOneShot(soundEffect[index]);
+        } else if (soundEffect.Length > 1 && character.IsPlayer()){ 
+            int index = Random.Range(0, soundEffect.Length/2);
+            audioSource.PlayOneShot(soundEffect[index]);
+        } else {
+            int index = Random.Range(soundEffect.Length/2, soundEffect.Length);
             audioSource.PlayOneShot(soundEffect[index]);
         }
     }

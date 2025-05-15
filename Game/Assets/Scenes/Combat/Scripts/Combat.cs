@@ -23,6 +23,13 @@ public class Combat : MonoBehaviour{
     int turn = 0;
     GameCharacter currentC;
 
+    private AudioSource playerDead;
+    private AudioSource enemyDead;
+    private AudioSource error1;
+    private AudioSource error2;
+    private AudioSource error3;
+
+    private int angerValue = 1;
     float lastTurnTime = 1f;
 
     public void Init(){
@@ -100,10 +107,28 @@ public class Combat : MonoBehaviour{
           
         }
 
+        AudioInit();
         GetCurrentCharacter();
 
     }
 
+    private void AudioInit(){
+        AudioSource[] sources = GetComponents<AudioSource>();
+
+        playerDead = sources[0];
+        enemyDead = sources[1];
+        error1 = sources[2];
+        error2 = sources[3];
+        error3 = sources[4];
+    }
+
+    public void PlayDeathSound(GameCharacter character){
+        if (character.IsPlayer()){
+            playerDead.Play();
+        } else{
+            enemyDead.Play();
+        }
+    }
     RectTransform CreateBars(GameCharacter who){
 
         GameObject t = Instantiate(barPrefab, GameObject.FindGameObjectWithTag("Canvas").transform);
@@ -284,14 +309,38 @@ public class Combat : MonoBehaviour{
 
     public bool UseTurnOn(GameCharacter clicked){
 
-        if(currentC == null)
+        if(currentC == null){
             currentC = GetCurrentCharacter();
-
+        }
+    
         if(!currentC.UseSkill(clicked)){
+            if (!clicked.IsPlayer())
+            {
+                switch (angerValue){
+                case 1:
+                    error1.Play();
+                    angerValue++;
+                    break;
+
+                case 2:
+                    error2.Play();
+                    angerValue++;
+                    break;
+
+                case 3:
+                    error3.Play();
+                    break;
+
+                default:
+                    error3.Play();
+                    break;
+                }
+            }
             return false;
         }
 
         NewTurn();
+        angerValue = 1;
         return true;
 
     }

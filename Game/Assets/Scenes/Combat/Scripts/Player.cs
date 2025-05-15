@@ -77,6 +77,11 @@ public class Player : GameCharacter {
         StartCoroutine(FixBars());
     }
     
+    public override bool IsPlayer()
+    {
+        return true; 
+    }
+
     //Hide the player model.
     public void HidePlayer(){
 
