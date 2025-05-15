@@ -92,9 +92,6 @@ public abstract class Skill{
 
     private void PlaySound(){
 
-        Debug.Log(audioSource == null ? "audioSource is null" : "audioSource loaded");
-        Debug.Log(soundEffect == null ? "soundEffect is null" : "soundEffect loaded");
-
         if (soundEffect != null && soundEffect.Length > 0 && audioSource != null)
         {
             int index = Random.Range(0, soundEffect.Length);
