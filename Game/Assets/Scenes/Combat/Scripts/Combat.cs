@@ -29,7 +29,7 @@ public class Combat : MonoBehaviour{
     private AudioSource error2;
     private AudioSource error3;
 
-    private int angerValue = 2;
+    private int angerValue = 1;
     float lastTurnTime = 1f;
 
     public void Init(){
@@ -317,17 +317,17 @@ public class Combat : MonoBehaviour{
             if (!clicked.IsPlayer())
             {
                 switch (angerValue){
-                case 2:
+                case 1:
                     error1.Play();
                     angerValue++;
                     break;
 
-                case 3:
+                case 2:
                     error2.Play();
                     angerValue++;
                     break;
 
-                case 4:
+                case 3:
                     error3.Play();
                     break;
 
