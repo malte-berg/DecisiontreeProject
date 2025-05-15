@@ -48,6 +48,18 @@ public class CutsceneManager : MonoBehaviour{
             sceneScripts[cutscene].LoadCutscene(db, bg);
             GameObject.FindGameObjectWithTag("Skip").GetComponent<RectTransform>().SetAsLastSibling();
             yield return sceneScripts[cutscene].RunAnimation();
+
+            // If this was the intro cutscene, run the tutorial after 
+            if (cutscene == 1)
+            {
+                // Setup tutorial cutscene
+                currCutscene = 9; // 9 is the main menu tutorial
+
+                db.SkipDialogue();
+                sceneScripts[9].LoadCutscene(db, bg);
+                db.Init(sceneScripts[9]);
+                yield return sceneScripts[9].RunAnimation();
+            }
         }
 
         Destroy(canvas);
