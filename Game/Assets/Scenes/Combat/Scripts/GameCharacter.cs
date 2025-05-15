@@ -197,7 +197,15 @@ public class GameCharacter : MonoBehaviour{
 
         Vector3 posOfTarget = target.transform.GetChild(0).position;
         if (spriteManager != null && skill) {
-            skills[selectedSkill].SkillAnimation(posOfTarget, this, spriteManager);
+            foreach(Skill s in skills){
+                if(s is Shield){
+                    s.SkillAnimation(posOfTarget, this, spriteManager);
+                }
+            }
+            
+            if(!(skills[selectedSkill] is Shield)){
+                skills[selectedSkill].SkillAnimation(posOfTarget, this, spriteManager);
+            }   
         }
 
         return skill;

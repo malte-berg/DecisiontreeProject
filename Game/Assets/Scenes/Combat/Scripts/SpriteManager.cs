@@ -66,6 +66,9 @@ public class SpriteManager : MonoBehaviour
     public void HideSprite(SpriteRenderer sr) {
         sr.enabled = false;
     }
+    public void ShowSprite(SpriteRenderer sr) {
+        sr.enabled = true;
+    }
 
     public void SetScale(Transform tr, float newScale) {
         tr.localScale = Vector3.one * newScale;
@@ -78,6 +81,9 @@ public class SpriteManager : MonoBehaviour
         if(shadowRenderer == null) return;
 
         shadowRenderer.sprite = Resources.Load<Sprite>("Sprites/Characters/ShadowBehind");
+        shadowRenderer.transform.localScale = Vector3.one;
+        shadowRenderer.sortingOrder = 0;
+
         shadowGroundRenderer.sprite = Resources.Load<Sprite>("Sprites/Characters/ShadowGround");
         shadowGroundRenderer.transform.localPosition = new Vector3(0f, -0.46f, 0f);
         shadowGroundRenderer.transform.localScale = Vector3.one * 0.5f;
