@@ -94,8 +94,6 @@ public abstract class Skill{
 
         GameCharacter character = target.GetComponent<GameCharacter>();
 
-        Debug.Log(character == null ? "character is null" : "character loaded");
-
         if (soundEffect != null && soundEffect.Length == 1)
         {
             int index = Random.Range(0, soundEffect.Length);
@@ -103,11 +101,9 @@ public abstract class Skill{
         } else if (soundEffect.Length > 1 && character.IsPlayer()){ 
             int index = Random.Range(0, soundEffect.Length/2);
             audioSource.PlayOneShot(soundEffect[index]);
-            Debug.Log("Enemy attack");
         } else {
             int index = Random.Range(soundEffect.Length/2, soundEffect.Length);
             audioSource.PlayOneShot(soundEffect[index]);
-            Debug.Log("Player attack");
         }
     }
 

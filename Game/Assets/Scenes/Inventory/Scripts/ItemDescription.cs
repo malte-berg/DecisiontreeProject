@@ -118,12 +118,10 @@ public class ItemDescription : MonoBehaviour{
         // Update button
         if (equipButtonText.text == "Equip") {
             equipButtonText.text = "Unequip";
-            Debug.Log(equip == null ? "equip sound is null" : "equip sound loaded");
             equip.Play();
         } else if(equipButtonText.text == "Unequip") {
             equipButtonText.text = "Equip";
             unequip.Play();
-            Debug.Log(unequip == null ? "unequip sound is null" : "unequip sound loaded");
         } else if (equipButtonText.text == "EquipW"){
             equipButtonText.text = "Unequip "; // a space character is added to distinguish between weapons and armor
             equipWeapon.Play();
