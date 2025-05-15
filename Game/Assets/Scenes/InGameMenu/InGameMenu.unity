@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 963447665}
   m_Layer: 0
   m_Name: EventSystem
-  m_TagString: Untagged
+  m_TagString: EventSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1091,6 +1091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3507cbca751d7984dbf33ea6bc33c825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasSeenCutscene: 0
 --- !u!114 &963447665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184077bf39b584442982e62b9805c99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicToPlay: {fileID: 8300000, guid: d32d32ad6da050044aa9334a78cd8ecf, type: 3}
+  musicTracks:
+  - {fileID: 8300000, guid: d32d32ad6da050044aa9334a78cd8ecf, type: 3}
+  - {fileID: 8300000, guid: bf2b9fb363b28514f85e61d18c443acf, type: 3}
+  - {fileID: 8300000, guid: ee1062f9356b7824d99065eb8b6ca1a8, type: 3}
+  musicToPlay: 0
+  volume: 1
 --- !u!1 &1107364421
 GameObject:
   m_ObjectHideFlags: 0
