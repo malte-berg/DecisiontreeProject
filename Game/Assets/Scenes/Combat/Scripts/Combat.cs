@@ -25,6 +25,11 @@ public class Combat : MonoBehaviour{
 
     private AudioSource playerDead;
     private AudioSource enemyDead;
+    private AudioSource error1;
+    private AudioSource error2;
+    private AudioSource error3;
+
+    private int angerValue = 2;
     float lastTurnTime = 1f;
 
     public void Init(){
@@ -112,6 +117,9 @@ public class Combat : MonoBehaviour{
 
         playerDead = sources[0];
         enemyDead = sources[1];
+        error1 = sources[2];
+        error2 = sources[3];
+        error3 = sources[4];
     }
 
     public void PlayDeathSound(GameCharacter character){
@@ -301,14 +309,38 @@ public class Combat : MonoBehaviour{
 
     public bool UseTurnOn(GameCharacter clicked){
 
-        if(currentC == null)
+        if(currentC == null){
             currentC = GetCurrentCharacter();
-
+        }
+    
         if(!currentC.UseSkill(clicked)){
+            if (!clicked.IsPlayer())
+            {
+                switch (angerValue){
+                case 2:
+                    error1.Play();
+                    angerValue++;
+                    break;
+
+                case 3:
+                    error2.Play();
+                    angerValue++;
+                    break;
+
+                case 4:
+                    error3.Play();
+                    break;
+
+                default:
+                    error3.Play();
+                    break;
+                }
+            }
             return false;
         }
 
         NewTurn();
+        angerValue = 2;
         return true;
 
     }
