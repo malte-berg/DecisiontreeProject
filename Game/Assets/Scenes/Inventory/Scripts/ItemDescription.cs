@@ -10,7 +10,9 @@ public class ItemDescription : MonoBehaviour{
     Item currentDisplay;
     TMP_Text equipButtonText;
     private AudioSource equip;
-    private AudioSource unEquip;
+    private AudioSource unequip;
+    private AudioSource equipWeapon;
+    private AudioSource unequipWeapon;
 
     public void Init(InventoryManager im){
 
@@ -26,7 +28,9 @@ public class ItemDescription : MonoBehaviour{
         AudioSource[] sources = im.GetComponents<AudioSource>();
 
         equip = sources[0];
-        unEquip = sources[1];
+        unequip = sources[1];
+        equipWeapon = sources[2];
+        unequipWeapon = sources[3];
     }
 
     public void DisplayItem(Item target){
@@ -75,7 +79,7 @@ public class ItemDescription : MonoBehaviour{
                 description += $"<color=blue>Magic: \t{CalcAdd(weapon.MagicAdd)} ({CalcMult(weapon.MagicMult)})</color>\n";
                 description += $"<color=purple>Mana: \t{CalcAdd(weapon.ManaAdd)} ({CalcMult(weapon.ManaMult)})</color>\n";
 
-                equipButtonText.text = (im.player.equipment.weaponLeft == weapon) ? "Unequip" : "Equip";
+                equipButtonText.text = (im.player.equipment.weaponLeft == weapon) ? "UnequipW" : "EquipW";
                 break;
             case Consumable:
                 // TODO
@@ -116,10 +120,16 @@ public class ItemDescription : MonoBehaviour{
             equipButtonText.text = "Unequip";
             Debug.Log(equip == null ? "equip sound is null" : "equip sound loaded");
             equip.Play();
-        } else {
+        } else if(equipButtonText.text == "Unequip") {
             equipButtonText.text = "Equip";
-            unEquip.Play();
-            Debug.Log(unEquip == null ? "unEquip sound is null" : "unEquip sound loaded");
+            unequip.Play();
+            Debug.Log(unequip == null ? "unequip sound is null" : "unequip sound loaded");
+        } else if (equipButtonText.text == "EquipW"){
+            equipButtonText.text = "UnequipW";
+            equipWeapon.Play();
+        } else {
+            equipButtonText.text = "EquipW";
+            unequipWeapon.Play();
         }
 
         im.sl.UpdateStats();
