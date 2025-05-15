@@ -10,7 +10,7 @@ public class Shield : Skill
         gc: null,
         name: "Shield",
         power: 1,
-        manaCost: 25,
+        manaCost: 20,
         skillCost: 1,
         cooldown: 2,
         attack: false,
@@ -37,17 +37,32 @@ public class Shield : Skill
     }
 
     public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){
-        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["ShadowBehind"];
         Transform AbilityContainer = AbilityRenderer.gameObject.transform;
 
-        sm.SetSprite(this.sprites[0], AbilityRenderer);
-        sm.HideSprite(AbilityRenderer);
-
-        sm.ChangeOpacity(AbilityRenderer, 0.4f);
-        AbilityContainer.localScale = new Vector3(1.5f, 1.0f, 1f);
-
-        sm.AttackAnimation(sender);
-        sm.RollScales(AbilityContainer, Vector3.zero, 20, 0.8f, 1.26f, false, false, 4);
+        int len = sender.statusEffects.Count;
+        for(int i = 0; i < len; i++) {
+            StatusEffect eff = sender.statusEffects[i];
+            if(eff.EffectType == 1) {
+                if(eff.Turns > 0) {
+                    sm.SetSprite(this.sprites[0], AbilityRenderer);
+                    sm.ChangeOpacity(AbilityRenderer, 0.4f);
+                    AbilityRenderer.sortingOrder = 1000;
+                    if(eff.Turns == 2) {
+                        AbilityContainer.localScale = new Vector3(0.72f, 0.5f, 1f);
+                        sm.HideSprite(AbilityRenderer);
+                        sm.RollScales(AbilityContainer, Vector3.zero, 4, 0.2f, 1.26f, false, false, 4);
+                        sm.AttackAnimation(sender);
+                        sm.DelayedAction(() => sm.ShowSprite(AbilityRenderer), 0.4f);
+                    }
+                    return;
+                }
+            }
+        }
+        sm.AddShadow();
+        AbilityContainer.localScale = Vector3.one;
+        AbilityRenderer.sortingOrder = 0;
     }
 
 }

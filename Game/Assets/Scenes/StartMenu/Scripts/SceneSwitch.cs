@@ -26,6 +26,11 @@ public class SceneSwitch : MonoBehaviour{
 
         if(sceneIndex != 4 && sceneIndex != 3)
             player.HidePlayer();
+            foreach(StatusEffect s in player.statusEffects) {
+                while(s.Turns > 0) {
+                    s.DecrementEffect();
+                }
+            }
 
         //  COMBAT SCENE
         if (sceneIndex == 4){    //Scene 4 is Combat
