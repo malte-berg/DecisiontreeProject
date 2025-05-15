@@ -79,7 +79,7 @@ public class ItemDescription : MonoBehaviour{
                 description += $"<color=blue>Magic: \t{CalcAdd(weapon.MagicAdd)} ({CalcMult(weapon.MagicMult)})</color>\n";
                 description += $"<color=purple>Mana: \t{CalcAdd(weapon.ManaAdd)} ({CalcMult(weapon.ManaMult)})</color>\n";
 
-                equipButtonText.text = (im.player.equipment.weaponLeft == weapon) ? "UnequipW" : "EquipW";
+                equipButtonText.text = (im.player.equipment.weaponLeft == weapon) ? "Unequip " : "Equip ";
                 break;
             case Consumable:
                 // TODO
@@ -125,10 +125,10 @@ public class ItemDescription : MonoBehaviour{
             unequip.Play();
             Debug.Log(unequip == null ? "unequip sound is null" : "unequip sound loaded");
         } else if (equipButtonText.text == "EquipW"){
-            equipButtonText.text = "UnequipW";
+            equipButtonText.text = "Unequip "; // a space character is added to distinguish between weapons and armor
             equipWeapon.Play();
         } else {
-            equipButtonText.text = "EquipW";
+            equipButtonText.text = "Equip ";
             unequipWeapon.Play();
         }
 
