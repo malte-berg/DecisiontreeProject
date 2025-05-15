@@ -122,6 +122,11 @@ public class GameCharacter : MonoBehaviour{
         
     }
 
+    public virtual bool IsPlayer()
+    {
+        return false; 
+    }
+
     public IEnumerator FixBars(){
         
         Moved();
