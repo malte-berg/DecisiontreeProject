@@ -6,7 +6,7 @@ public class AfterSlumsBoss : SceneScript
     public override IEnumerator RunAnimation() {
 
         //"guardsEnterSlumsArena" image is set.
-        bg.SetBG(4);
+        bg.SetBG(9);
         db.MoveDialogueBox(0, -150);
 
         db.Enqueue(@"
@@ -24,9 +24,9 @@ public class AfterSlumsBoss : SceneScript
 
 
         //"slumsArenaEscape" image is set.
-        bg.SetBG(5);
+        bg.SetBG(10);
         db.MoveDialogueBox(-150, 0);
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.Enqueue(@"
         Robed Man§“Ynnos! Over here! I will help you escape this place!”
@@ -40,9 +40,9 @@ public class AfterSlumsBoss : SceneScript
 
 
         //"slumsRobedConversation" image is set.
-        bg.SetBG(6);
+        bg.SetBG(11);
         db.MoveDialogueBox(-350, 0);
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.Enqueue(@"
         Narrator§As Ynnos catches his breath, the robed man gives him a map and a card.
@@ -69,12 +69,12 @@ public class AfterSlumsBoss : SceneScript
 
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         //"ynnosEntersCommQuart" image is set.
-        bg.SetBG(7);
+        bg.SetBG(12);
         db.MoveDialogueBox(0,0);
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
 
         db.Enqueue(@"
         Narrator§After arriving at the apartment and entering their new home, Ynnos find a letter on a table, addressed to him.
@@ -85,6 +85,6 @@ public class AfterSlumsBoss : SceneScript
 
         db.ContinueDialogue();
         yield return WaitForDialogue();
-        yield return new WaitForSeconds(1);
+        yield return WaitForSecs(1);
     }
 }
