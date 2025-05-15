@@ -340,7 +340,7 @@ public class Combat : MonoBehaviour{
         }
 
         NewTurn();
-        angerValue = 2;
+        angerValue = 1;
         return true;
 
     }
