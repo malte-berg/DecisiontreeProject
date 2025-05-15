@@ -20,6 +20,7 @@ public class Player : GameCharacter {
     int expToNextLevel;
     int cutscene = -1;          // For telling cutscene scene to run animation
     int musicToPlay;
+    public bool[] hasSeenCutscene = new bool[5];    // Used for making sure cutscenes in "InGameMenu" don't get repeated. (Kinda scuffed solution, but the expo is soon)
 
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}

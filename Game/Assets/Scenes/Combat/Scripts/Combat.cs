@@ -261,7 +261,7 @@ public class Combat : MonoBehaviour{
             player.CurrentAreaIndex = 1;
 
             //Switch Scene to the in game menu scene, with the Intro cutscene.
-            GetComponent<SceneSwitch>().WithCutscene = 0;
+            GetComponent<SceneSwitch>().WithCutscene = 1;
             GetComponent<SceneSwitch>().SwitchScene(1);
         } else {
             int gainedExp = (player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1);
