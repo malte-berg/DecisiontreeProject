@@ -7,8 +7,8 @@ public class WinLoseUpdate : MonoBehaviour
     public GameObject expText;
 
     void Init() {
-        goldText.GetComponent<TMP_Text>().text = "Gold: " + RewardData.goldEarned;
-        expText.GetComponent<TMP_Text>().text = "Exp: " + RewardData.expEarned;
+        goldText.GetComponent<TMP_Text>().text = "+" + RewardData.goldEarned + " Gold";
+        expText.GetComponent<TMP_Text>().text = "+" + RewardData.expEarned + " EXP";
     }
 
     void Awake()

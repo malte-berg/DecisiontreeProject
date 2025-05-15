@@ -19,6 +19,8 @@ public class Player : GameCharacter {
     int currentExp;
     int expToNextLevel;
     int cutscene = -1;          // For telling cutscene scene to run animation
+    int musicToPlay;
+    public bool[] hasSeenCutscene = new bool[5];    // Used for making sure cutscenes in "InGameMenu" don't get repeated. (Kinda scuffed solution, but the expo is soon)
 
     public int StatPoints{get { return statPoints; } set{ this.statPoints = value; }}
     public int SkillPoints { get { return skillPoints; } set {this.skillPoints = value; }}
@@ -30,6 +32,7 @@ public class Player : GameCharacter {
     public int CurrentExp { get { return currentExp; } set { this.currentExp = value; }}
     public int ExpToNextLevel { get { return expToNextLevel; } set { this.expToNextLevel = value; }}
     public int Cutscene{ get{ return cutscene; }}
+    public int MusicToPlay{ get{ return musicToPlay; } set { this.musicToPlay = value; }}
 
     public Player() : base(
 
@@ -107,6 +110,11 @@ public class Player : GameCharacter {
             SkillPoints += 1;     // Reward skill points for every new level reached
             MaxMana = 10 * currentLevel;
         }
+
+        ExpToNextLevel = 6;
+        for(int i = 0; i < currentLevel; i++)
+            ExpToNextLevel += (int)Mathf.Sqrt(ExpToNextLevel);
+            
     }
 
     public Save CreateSave(){

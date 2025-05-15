@@ -25,6 +25,7 @@ public class Combat : MonoBehaviour{
 
     private AudioSource playerDead;
     private AudioSource enemyDead;
+    float lastTurnTime = 1f;
 
     public void Init(){
 
@@ -40,6 +41,8 @@ public class Combat : MonoBehaviour{
         player.c = this;
         player.ShowPlayer();
         player.transform.position = new Vector3(-4, 0, 0);
+        player.transform.GetChild(0).transform.position = new Vector3(-4, 0, 0);
+        player.transform.GetChild(1).transform.position = new Vector3(-4, 0, 0);
         
         // Create status bar
         player.bars = CreateBars(player);
@@ -62,7 +65,6 @@ public class Combat : MonoBehaviour{
 
         foreach (SpriteRenderer s in sr) {
             s.color = Color.white;
-            // s.color = new Color(s.color.r, s.color.g, s.color.b, 1);
         }
 
         // Reset cooldown
@@ -276,7 +278,7 @@ public class Combat : MonoBehaviour{
             player.CurrentAreaIndex = 1;
 
             //Switch Scene to the in game menu scene, with the Intro cutscene.
-            GetComponent<SceneSwitch>().WithCutscene = 0;
+            GetComponent<SceneSwitch>().WithCutscene = 1;
             GetComponent<SceneSwitch>().SwitchScene(1);
         } else {
             int gainedExp = (player.CurrentAreaIndex + 1) * (player.CurrentAreaIndex + 1);
@@ -292,7 +294,7 @@ public class Combat : MonoBehaviour{
         if(currentC == null)
             currentC = GetCurrentCharacter();
 
-        if(currentC == player)
+        if(currentC == player && Time.time - lastTurnTime >= 0.6f)
             UseTurnOn(clicked);
 
     }
@@ -312,6 +314,8 @@ public class Combat : MonoBehaviour{
     }
 
     void NewTurn(){
+
+        lastTurnTime = Time.time;
 
         currentC = GetCurrentCharacter();
         List<StatusEffect> se = currentC.statusEffects;

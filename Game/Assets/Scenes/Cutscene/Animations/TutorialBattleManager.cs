@@ -6,7 +6,7 @@ public class TutorialBattleManager : SceneScript
     public override IEnumerator RunAnimation()
     {
         db.MoveDialogueBox(0, 0);
-        bg.SetBG(10); // Set combat background
+        bg.SetBG(0); // Set combat background
 
         db.Enqueue(@"
         Tutorial§Welcome to the battle arena!
@@ -33,7 +33,7 @@ public class TutorialBattleManager : SceneScript
         yield return WaitForDialogue();
         yield return WaitForSecs(1);
 
-        bg.SetBG(11);
+        bg.SetBG(1);
         db.MoveDialogueBox(-390, 125);
 
         db.Enqueue(@"
@@ -88,7 +88,7 @@ public class TutorialBattleManager : SceneScript
         yield return WaitForDialogue();
         yield return WaitForSecs(1);
 
-        bg.SetBG(10);
+        bg.SetBG(0);
         db.MoveDialogueBox(0, 0);
 
         db.Enqueue(@"

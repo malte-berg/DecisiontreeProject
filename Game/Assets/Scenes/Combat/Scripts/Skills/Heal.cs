@@ -38,12 +38,12 @@ public class Heal : Skill {
         sm.SetSprite(this.sprites[0], AbilityRenderer);        
         sm.HideSprite(AbilityRenderer);
 
-        sm.SetScale(AbilityRenderer.transform, 1.6f);
+        sm.SetScale(AbilityRenderer.transform, 1.8f);
         sm.ChangeOpacity(AbilityRenderer, 1f);
 
         Transform tr = AbilityRenderer.gameObject.transform;
 
-        sm.RollScales(tr, Vector3.zero, 10, 0.4f, 0.96f, true, true, 10);
+        sm.RollScales(tr, Vector3.zero, 8, 0.6f, 0.96f, true, true, 8);
     }
 
 

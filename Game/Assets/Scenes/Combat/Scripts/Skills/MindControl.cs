@@ -13,12 +13,11 @@ public class MindControl : Skill
         gc: null,
         name: "Mind Control",
         power: 1,
-        // manaCost : 0, // for debug
         manaCost: 30,
         skillCost: 1,
         cooldown: 2, 
         attack: true,
-        description: "Hijacks enemy's mind, making them unable to tell friend from foe",
+        description: "Hijacks enemy's mind, making them unable to tell friend from foe.",
         soundEffect: new AudioClip[] {
             Resources.Load<AudioClip>("Sounds/mind control_sound")
         } 

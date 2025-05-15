@@ -21,7 +21,7 @@ public abstract class Skill{
     // lägg till beskrivning när man skapar skills/ability
     public string DescriptionPanel { 
         get {
-            return $"{description}\nSkill level: {skillLevel}\nMana Cost: {manaCost}\nCooldown: {cooldown}";
+            return $"{description}\nMana Cost: {manaCost}\nCooldown: {cooldown}";
         } 
     }
     public int Cooldown{ get { return cooldown; } }

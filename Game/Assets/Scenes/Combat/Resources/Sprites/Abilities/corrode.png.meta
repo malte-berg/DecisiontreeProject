@@ -1,0 +1,586 @@
+fileFormatVersion: 2
+guid: e5023b3acd07a2745a26e5e144a4cf07
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5737382562216858710
+    second: corrode_0
+  - first:
+      213: -4992569176967898419
+    second: corrode_1
+  - first:
+      213: -2590478105489174619
+    second: corrode_2
+  - first:
+      213: -5308208566549653940
+    second: corrode_3
+  - first:
+      213: -3941802845496540816
+    second: corrode_4
+  - first:
+      213: 363516791198489568
+    second: corrode_5
+  - first:
+      213: 894970385304296670
+    second: corrode_6
+  - first:
+      213: -3710957227050233220
+    second: corrode_7
+  - first:
+      213: 2698536931161876320
+    second: corrode_8
+  - first:
+      213: 905279282904393456
+    second: corrode_9
+  - first:
+      213: -2287522005781952076
+    second: corrode_10
+  - first:
+      213: 5588318530958607512
+    second: corrode_11
+  - first:
+      213: 4654705129964426000
+    second: corrode_12
+  - first:
+      213: 9217473506719635272
+    second: corrode_13
+  - first:
+      213: -2003875031700795639
+    second: corrode_14
+  - first:
+      213: 7190983761279393507
+    second: corrode_15
+  - first:
+      213: -2555941010840190647
+    second: corrode_16
+  - first:
+      213: 7227503660083498521
+    second: corrode_17
+  - first:
+      213: -842916053930568086
+    second: corrode_18
+  - first:
+      213: 6604052382881978073
+    second: corrode_19
+  - first:
+      213: -843101351259694405
+    second: corrode_20
+  - first:
+      213: -1903165652274304569
+    second: corrode_21
+  - first:
+      213: -1592396188108847914
+    second: corrode_22
+  - first:
+      213: 7600081636861242546
+    second: corrode_23
+  - first:
+      213: 4008741601143947636
+    second: corrode_24
+  - first:
+      213: 6668686096403384470
+    second: corrode_25
+  - first:
+      213: 1914642549184083296
+    second: corrode_26
+  - first:
+      213: -1992149092057350232
+    second: corrode_27
+  - first:
+      213: -4072276182618732147
+    second: corrode_28
+  - first:
+      213: -2128991933406749696
+    second: corrode_29
+  - first:
+      213: -7870598338425004582
+    second: corrode_30
+  - first:
+      213: 8167637487276858682
+    second: corrode_31
+  - first:
+      213: -8589412095588351719
+    second: corrode_32
+  - first:
+      213: 8730925531897026576
+    second: corrode_33
+  - first:
+      213: 5922430554355584801
+    second: corrode_34
+  - first:
+      213: -2851969266528676690
+    second: corrode_35
+  - first:
+      213: 1979093290736023134
+    second: corrode_36
+  - first:
+      213: 3796658131900596599
+    second: corrode_37
+  - first:
+      213: 3203220549427539492
+    second: corrode_38
+  - first:
+      213: 2247677699377635515
+    second: corrode_39
+  - first:
+      213: 1229040355209257593
+    second: corrode_40
+  - first:
+      213: 8251961907567867346
+    second: corrode_41
+  - first:
+      213: 1077868708152029539
+    second: corrode_42
+  - first:
+      213: 6651822715366142234
+    second: corrode_43
+  - first:
+      213: -7962361869496588763
+    second: corrode_44
+  - first:
+      213: 8313983547095789553
+    second: corrode_45
+  - first:
+      213: -5023579304331851631
+    second: corrode_46
+  - first:
+      213: 8694749711050465087
+    second: corrode_47
+  - first:
+      213: 7167765892035464680
+    second: corrode_48
+  - first:
+      213: 164605524834595395
+    second: corrode_49
+  - first:
+      213: 4480337204578416874
+    second: corrode_50
+  - first:
+      213: -7611744607946303674
+    second: corrode_51
+  - first:
+      213: 5326103830121713507
+    second: corrode_52
+  - first:
+      213: 7135490164541138466
+    second: corrode_53
+  - first:
+      213: -2657261275855811262
+    second: corrode_54
+  - first:
+      213: 4927020966819654706
+    second: corrode_55
+  - first:
+      213: 5767704290119283201
+    second: corrode_56
+  - first:
+      213: 4447757186235612973
+    second: corrode_57
+  - first:
+      213: -4211139955137922748
+    second: corrode_58
+  - first:
+      213: -3793665101140661688
+    second: corrode_59
+  - first:
+      213: 6090924727681229787
+    second: corrode_60
+  - first:
+      213: -1884500603415979044
+    second: corrode_61
+  - first:
+      213: -811728107275043713
+    second: corrode_62
+  - first:
+      213: -6742000169231890693
+    second: corrode_63
+  - first:
+      213: -5264397340908951922
+    second: corrode_64
+  - first:
+      213: 626543904076988834
+    second: corrode_65
+  - first:
+      213: -6011659046345106084
+    second: corrode_66
+  - first:
+      213: 2409088443242160847
+    second: corrode_67
+  - first:
+      213: -7289990023188989170
+    second: corrode_68
+  - first:
+      213: -4752192297882765403
+    second: corrode_69
+  - first:
+      213: -3059710196015101132
+    second: corrode_70
+  - first:
+      213: 9188729569080888764
+    second: corrode_71
+  - first:
+      213: -2448774118391072665
+    second: corrode_72
+  - first:
+      213: 2603892115808917715
+    second: corrode_73
+  - first:
+      213: 1952257218644617935
+    second: corrode_74
+  - first:
+      213: 2926566018731612373
+    second: corrode_75
+  - first:
+      213: -3108196910552785280
+    second: corrode_76
+  - first:
+      213: -6797683450373099647
+    second: corrode_77
+  - first:
+      213: -3970935363510479215
+    second: corrode_78
+  - first:
+      213: -3986657324469589927
+    second: corrode_79
+  - first:
+      213: -2325897053288974632
+    second: corrode_80
+  - first:
+      213: -1043345674721262176
+    second: corrode_81
+  - first:
+      213: -6608340878874711477
+    second: corrode_82
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: corrode_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cbc1863a76d9494fbaac4e42a6b3225
+      internalID: 28893003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corrode_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 192
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2818cc2b0634b3847922cdd6346574af
+      internalID: 970072354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corrode_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 712f8f47732bff8469a9d1ffb7b29aed
+      internalID: 1343531081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corrode_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d679051f0404d50478c865807c6f9605
+      internalID: 1788039117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corrode_4
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 96
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cdf8dea37fa4024f991bd30f4810b07
+      internalID: -2002565468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corrode_5
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 96
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d949ff03b6e84334ca4e5f093523fa77
+      internalID: 1523315421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corrode_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4c009ca0df59d43a28764caa5a1ab6
+      internalID: -380596624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corrode_7
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8fa76fcd5ff3a4980c6d1da0f336c4
+      internalID: 1751126270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: corrode_8
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 72
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fea982f2e146ae04db04b5696d3fb725
+      internalID: -745419646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 44499160b881274449b1df1468b38278
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      corrode_0: 28893003
+      corrode_1: 970072354
+      corrode_2: 1343531081
+      corrode_3: 1788039117
+      corrode_4: -2002565468
+      corrode_5: 1523315421
+      corrode_6: -380596624
+      corrode_7: 1751126270
+      corrode_8: -745419646
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

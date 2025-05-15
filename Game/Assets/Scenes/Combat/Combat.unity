@@ -799,6 +799,7 @@ GameObject:
   - component: {fileID: 462003228}
   - component: {fileID: 462003227}
   - component: {fileID: 462003230}
+  - component: {fileID: 462003231}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -879,6 +880,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3507cbca751d7984dbf33ea6bc33c825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasSeenCutscene: 0
+--- !u!114 &462003231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462003226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 184077bf39b584442982e62b9805c99d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicTracks:
+  - {fileID: 8300000, guid: 85cd78ba9d1230b4d89cef0839a7114a, type: 3}
+  volume: 1
 --- !u!1 &499878967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,6 +1641,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  hasSeenCutscene: 0
 --- !u!1 &858997724
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Linq;
 
 public class Corrode : Skill
 {
     public Corrode() : base(
       icon: Resources.Load<Sprite>("Sprites/Abilities/corrode_Icon"),
-      sprites: null,
+      sprites: Resources.LoadAll<Sprite>("Sprites/Abilities/corrode").ToList(),
       gc: null,
       name: "Corrode",
       power: 1,
@@ -12,7 +13,7 @@ public class Corrode : Skill
       skillCost: 1,
       cooldown: 2,
       attack: true,
-      description: "Reduces enemy armor",
+      description: "Reduces enemy armor.",
       soundEffect: new AudioClip[] {
         Resources.Load<AudioClip>("Sounds/corrode_sound")
       } 
@@ -34,7 +35,29 @@ public class Corrode : Skill
         
         return true;
     }
-    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){}
+    public override void SkillAnimation(Vector3 targetPos, GameCharacter sender, SpriteManager sm){
+        float delay = 0.11f;
+        SpriteRenderer AbilityRenderer = sm.spriteLayers["Ability"];
+        Transform AbilityContainer = AbilityRenderer.gameObject.transform;
+        sm.ChangeOpacity(AbilityRenderer, 1f);
+
+        float totalDelay = delay*sprites.Count;
+
+        AbilityRenderer.enabled = true;
+        sm.SetSprite(null, AbilityRenderer);
+        AbilityContainer.localScale = new Vector3(1.8f, 2.7f, 1);
+
+        sm.RollSprites(sprites, AbilityRenderer, delay);
+        sm.DelayedAction(() => sm.SetSprite(sprites[8], AbilityRenderer), delay*sprites.Count);
+
+        sm.DisplaceSprite(targetPos + Vector3.up * -0.05f + Vector3.right * -0.1f, AbilityContainer, totalDelay);
+        sm.DelayedAction(() => sm.HideSprite(AbilityRenderer), totalDelay);
+
+        Vector3 toTarget = targetPos - sender.transform.position;
+
+        sm.AttackAnimation(sender);
+        sm.LungeTo(sender, toTarget * 0.05f, 0.2f); 
+    }
 
 
 }
